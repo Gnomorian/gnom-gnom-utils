@@ -3,5 +3,6 @@
 /bin/
 /build/
 /eclipse/
-/.project
 *.classpath
+*.project
+*.bat
