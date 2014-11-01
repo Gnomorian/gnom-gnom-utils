@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "ggutils",
+  "name": "Gnom Gnom Utils",
+  "description": "Mod that adds a bunch of useful stuff (pronounced /ɡnom/, /ɲom/)",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "www.crookedhill.co.nz",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Gnomorian"],
+  "credits": "MCForge Team, InventoryTweaks",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
