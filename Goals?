@@ -6,4 +6,10 @@ Sortivator:
 
 
 
-Ore-Finder:
+Block-Finder:
+  -GUI pops up:
+    -Block Id/Name/Value
+      -include wildcards?
+      -include multiple entries?
+    -Search radius (x, y, z) from your position
+    
