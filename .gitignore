@@ -6,3 +6,9 @@
 *.classpath
 *.project
 *.bat
+/logs/
+/mods/
+/resourcepacks/
+/saves/
+*.json
+*.txt
