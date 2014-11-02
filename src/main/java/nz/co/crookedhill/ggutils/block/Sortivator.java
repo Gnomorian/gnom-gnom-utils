@@ -66,17 +66,18 @@ public class Sortivator extends Block {
         }
         else
         {
-            IInventory iinventory = this.func_149951_m(p_149727_1_, p_149727_2_, p_149727_3_+1, p_149727_4_);
+            IInventory iinventory = this.func_149951_m/*the method below*/(p_149727_1_, p_149727_2_, p_149727_3_+1, p_149727_4_);
 
             if (iinventory != null)
             {
+            	//displays the chest above the sortivator to the player who activated the block.
                 p_149727_5_.displayGUIChest(iinventory);
             }
 
             return true;
         }
     }
-	//gets an inventory object from the coordernates specified
+	//gets an inventory object from the coordernates specified and if its a double chest it will get the contents of both.
 	public IInventory func_149951_m(World p_149951_1_, int p_149951_2_, int p_149951_3_, int p_149951_4_)
     {
         Object object = (TileEntityChest)p_149951_1_.getTileEntity(p_149951_2_, p_149951_3_, p_149951_4_);
@@ -134,7 +135,8 @@ public class Sortivator extends Block {
             return (IInventory)object;
         }
     }
-	
+	//i think this one lock the chest if an ocelot is on it, but i added it becuase it was required in the function above.
+	//a ruddy good cleanup will happen when i have a good idea of what all this mess means, and whats relervent.
 	private static boolean func_149953_o(World p_149953_0_, int p_149953_1_, int p_149953_2_, int p_149953_3_)
     {
         Iterator iterator = p_149953_0_.getEntitiesWithinAABB(EntityOcelot.class, AxisAlignedBB.getBoundingBox((double)p_149953_1_, (double)(p_149953_2_ + 1), (double)p_149953_3_, (double)(p_149953_1_ + 1), (double)(p_149953_2_ + 2), (double)(p_149953_3_ + 1))).iterator();
