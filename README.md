@@ -23,9 +23,9 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 
 ## Sortivator: sorts contents of ajacent chests.
-  -one side has different texture.
+  - one side has different texture.
     - texture faces player when block is placed.
-  -when recieving redstone signal.
+  - when recieving redstone signal.
     - sorts inventoty on side with the different texture (inventory tweaks).
     - delay between sorts to relieve load.
 
@@ -33,11 +33,11 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 # ITEMS
 ## Block-Finder: Used to find blocks around the player.
-  -GUI pops up:
+  - GUI pops up:
     -Block Id/Name/Value
-      -include wildcards?
-      -include multiple entries?
-    -Search radius (x, y, z) from your position
+      - include wildcards?
+      - include multiple entries?
+    - Search radius (x, y, z) from your position
     
 
 
