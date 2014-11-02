@@ -20,6 +20,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - block emmits light no higher than whats needed to stop uprooting.
   - loop through -y if top block is a growable block.
   - multiplies growth speed by amount of stacked remedy blocks.
+  - alternative recipe when fcraft mod is installed, recipe requires a bucket of mako
 
 
 ## Sortivator: sorts contents of ajacent chests.
@@ -28,6 +29,10 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - when recieving redstone signal.
     - sorts inventoty on side with the different texture (inventory tweaks).
     - delay between sorts to relieve load.
+    - gets the inventory of the nearby chest
+      - makes a list of all the unique items within the chest and how many of them there are
+      - replaces slots from the start of the inventory with the items it had, in order of apearance.
+      - deletes items in slots after where the sorting finished.
 
 
 
