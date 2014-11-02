@@ -2,3 +2,51 @@ gnom-gnom-utils
 ===============
 
 A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
+
+# -------------------------
+# Blocks
+# -------------------------
+Fabricator: Used to mass fabricate blocks/items.
+  - GUI pops up.
+    - 3x3 crafting grid.
+    - 3 buttons for modes of operation
+      - Always active (when materials are present, run)
+      - Active on redstone signal
+      - Active on pulse
+  - Pulls items from adjoining chests to craft whatever the user puts in crafting grid.
+    - Pulls items from chest on the left (while facing forward)
+    - Puts items into chest on the right (when facing forward)
+
+Damara's Remedy: Similar to farmlang block, but supports all plants.
+                 and plant grows faster when the blocks are stacked.
+  - semi-dificult crafting recipe.
+  - block emmits light no higher than whats needed to stop uprooting.
+  - loop through -y if top block is a growable block.
+  - multiplies growth speed by amount of stacked remedy blocks.
+
+
+Sortivator: sorts contents of ajacent chests.
+  -one side has different texture.
+    - texture faces player when block is placed.
+  -when recieving redstone signal.
+    - sorts inventoty on side with the different texture (inventory tweaks).
+    - delay between sorts to relieve load.
+
+
+
+-------------------------
+ITEMS
+-------------------------
+Block-Finder: Used to find blocks around the player.
+  -GUI pops up:
+    -Block Id/Name/Value
+      -include wildcards?
+      -include multiple entries?
+    -Search radius (x, y, z) from your position
+    
+
+
+-------------------------
+CONCEPTS
+-------------------------
+
