@@ -3,3 +3,8 @@ BLOCKS
 **********************************
 tile.GrowthBlock.name=Growth Block
 tile.sortivator.name=Sortivator
+
+**********************************
+ITEMS
+**********************************
+item.blockFinder.name=Block Finder
