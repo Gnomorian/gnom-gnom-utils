@@ -15,8 +15,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - Pulls items from chest on the left (while facing forward)
     - Puts items into chest on the right (when facing forward)
 
-## Damara's Remedy: Similar to farmlang block, but supports all plants.
-                 and plant grows faster when the blocks are stacked.
+## Damara's Remedy: Similar to farmland block, but supports all plants and plants grows faster when the blocks are stacked.
   - semi-dificult crafting recipe.
   - block emmits light no higher than whats needed to stop uprooting.
   - loop through -y if top block is a growable block.
