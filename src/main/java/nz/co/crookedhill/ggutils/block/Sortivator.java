@@ -21,7 +21,6 @@ public class Sortivator extends Block {
 		this.setCreativeTab(CreativeTabs.tabRedstone);
 		this.setHardness(0.5f);
 		this.setStepSound(Block.soundTypeWood);
-		//this.setBlockTextureName("sortivator:sortivator_texture0");
 	}
 
 	@Override
