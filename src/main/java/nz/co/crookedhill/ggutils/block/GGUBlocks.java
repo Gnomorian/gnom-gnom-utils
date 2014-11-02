@@ -12,8 +12,8 @@ public class GGUBlocks {
 	
 	public static void init() {
 		
-		growthBlock = new GrowthBlock(Material.ground).setCreativeTab(GGUtils.fcraftTabBlocks);
-		sortivator = new Sortivator(Material.wood).setCreativeTab(GGUtils.fcraftTabBlocks);	
+		growthBlock = new GrowthBlock(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		sortivator = new Sortivator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);	
 		
 		GameRegistry.registerBlock(growthBlock, "GrowthBlock");
 		GameRegistry.registerBlock(sortivator, "sortivator");

@@ -5,7 +5,6 @@ import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 import java.util.Iterator;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -49,14 +48,6 @@ public class Sortivator extends Block {
 		
 	}
 	
-	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack item) {
-		System.out.println("x: "+x);
-		System.out.println("y: "+y);
-		System.out.println("z: "+z);
-		System.out.println("Entitie's: "+((EntityPlayer)player).cameraYaw);
-		System.out.println("ItemStack: "+item.getDisplayName());
-	}	
 	@Override
 	public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
