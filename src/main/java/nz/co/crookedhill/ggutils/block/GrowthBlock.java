@@ -54,19 +54,27 @@ public class GrowthBlock extends Block {
 	
 	@Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
-		Block blockToTick = world.getBlock(x, y+1, z);
-		if(blockToTick != null && blockToTick instanceof IPlantable)
+		Block block = world.getBlock(x, y+1, z);
+		
+		//check if block is plantable
+		if(block instanceof IPlantable)
 		{
-			blockToTick.updateTick(world, x, y+1, z, rand);
+			int numberOfGrowthBlocks = 0;
+			
+			//check how many growth blocks under this one.
+			for(int i=y;i>y-16;i--)
+			{
+				if(world.getBlock(x, i, z).equals(GGUBlocks.growthBlock)){
+					numberOfGrowthBlocks++;
+				}
+			}
+			
+			//compare the number of growth blocks and test against random. Max test is 16 growth blocks.
+			if(rand.nextInt(17 - numberOfGrowthBlocks)==0)
+			{
+				int metadata = world.getBlockMetadata(x, y+1, z);
+				world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
+			}
 		}
 	}
-
-    /**
-     * How many world ticks before ticking
-     */
-	@Override
-    public int tickRate(World world)
-    {
-        return 2;
-    }
 }
