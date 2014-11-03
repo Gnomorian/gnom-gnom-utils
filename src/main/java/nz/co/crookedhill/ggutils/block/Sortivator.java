@@ -16,6 +16,7 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
@@ -68,7 +69,6 @@ public class Sortivator extends Block {
 				sort(iinventory);
 
 			}
-
 			return true;
 		}
 	}
@@ -155,35 +155,35 @@ public class Sortivator extends Block {
 	public static void sort(IInventory inventory) {
 		int maxInventoty = inventory.getSizeInventory();
 		int maxSlot = inventory.getInventoryStackLimit();
-		HashMap<ItemStack, Integer> items = new HashMap<ItemStack,Integer>();
+		HashMap<Item, ItemStack> items = new HashMap<Item,ItemStack>();
 		for(int i = 0; i < maxInventoty; i++) {
 			ItemStack currentSlot = inventory.getStackInSlot(i);
 			if(currentSlot != null) {
 				int quantity = 1;
-				if(currentSlot.stackSize > 1)
-					quantity = currentSlot.stackSize;
-				currentSlot.stackSize = 1;
 				if(!items.containsKey(currentSlot)) {
-					items.put(currentSlot, quantity);
+					items.put(currentSlot.getItem(), currentSlot);
 				}else {
-					items.replace(currentSlot, (items.get(currentSlot)+currentSlot.stackSize));
+					//add the stacksize of the existing items to the ones that needs to replace it,
+					//then set the hashmaps item to the edited currentslots item
+					currentSlot.stackSize += items.get(currentSlot.getItem()).stackSize;
+					items.replace(currentSlot.getItem(), items.get(currentSlot.getItem()),currentSlot);
 				}
 			}
 		}
 		int invSlot = 0;
-		for(Entry<ItemStack,Integer> i : items.entrySet()) {
+		for(Entry<Item,ItemStack> i : items.entrySet()) {
 			while(invSlot < maxInventoty) {
-				ItemStack item = i.getKey();
-				item.stackSize = i.getValue();
+				ItemStack item = i.getValue();
 				if(item.stackSize > maxSlot) {
-					while(maxSlot < item.stackSize){
+					while(item.stackSize > maxSlot){
 						ItemStack setItem = item;
 						setItem.stackSize = maxSlot;
 						item.stackSize-= maxSlot;
 						inventory.setInventorySlotContents(invSlot, item);
 						invSlot++;
 					}
-					inventory.setInventorySlotContents(invSlot, item);
+					inventory.setInventorySlotContents(invSlot, item); //places the remander of stack in the next slot
+					invSlot++;
 
 
 				}else{
