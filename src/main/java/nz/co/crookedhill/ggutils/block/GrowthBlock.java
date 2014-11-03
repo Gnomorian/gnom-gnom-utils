@@ -1,5 +1,6 @@
 package nz.co.crookedhill.ggutils.block;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -8,6 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -148,6 +150,11 @@ public class GrowthBlock extends Block {
 		if(upperBlock instanceof GrowthBlock)
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 		else world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+	}
+	//@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+	list.add("Tooltip stuff goes here");
 	}
 	
 

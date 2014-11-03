@@ -1,9 +1,11 @@
 package nz.co.crookedhill.ggutils;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
+import nz.co.crookedhill.ggutils.handlers.GGUEventHandler;
 import nz.co.crookedhill.ggutils.item.GGUItems;
 import nz.co.crookedhill.ggutils.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
@@ -44,6 +46,7 @@ public class GGUtils
     {
 		GGUBlocks.init();
 		GGUItems.init();
+		MinecraftForge.EVENT_BUS.register(new GGUEventHandler());
     }
     
     @EventHandler
@@ -52,5 +55,6 @@ public class GGUtils
 		//Registering the gui and renderer handlers
 		proxy.registerRenderers();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
+		
     }
 }
