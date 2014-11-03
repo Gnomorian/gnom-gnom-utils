@@ -4,18 +4,23 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import nz.co.crookedhill.ggutils.GGUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class GrowthBlock extends Block {
+	private int timesClicked;
 
-	private IIcon[] icons = new IIcon[2];
+	private IIcon[] icons = new IIcon[3];
 	int stackHeight = GGUBlocks.stackHeight;
 
 	public GrowthBlock(Material material) {
@@ -28,17 +33,50 @@ public class GrowthBlock extends Block {
 	}
 
 	@Override
+	public int damageDropped (int metadata) {
+		return metadata;
+	}
+
+
+	/**
+	 * 0=side icon(if GrowthBlock ontop)
+	 * 1=top icon
+	 * 2=side icon(if no GrowthBlock ontop)
+	 * @param iconRegister
+	 */
+	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
+		super.registerBlockIcons(iconRegister);
 		for(int i = 0; i < icons.length; i++) {
 			icons[i] = iconRegister.registerIcon(GGUtils.MODID + ":" + "growth_texture"+ i);
 		}
 	}
 
-	@Override
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		if(side == 1) {
-			return icons[1];
+		if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
+		if(side == 1) return icons[1];
+		if(side == 0 ) {
+			return icons[0];
 		}else return icons[0];
+	}
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) {
+		int meta = blockAccess.getBlockMetadata(x, y, z);
+		if(meta == 0) {
+			if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
+			if(side == 1) return icons[1];
+			if(side == 0 ) {
+				return icons[0];
+			}else return icons[2]; 
+		}
+		else{
+			if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
+			if(side == 1) return icons[1];
+			if(side == 0 ) {
+				return icons[0];
+			}else return icons[0];
+		}
 
 	}
 	@Override
@@ -46,22 +84,22 @@ public class GrowthBlock extends Block {
 	{
 		return true;
 	}
-	
+
 	@Override
 	public boolean isFertile(World world, int x, int y, int z)
 	{
 		return true;
 	}
-	
+
 	@Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-		Block block = world.getBlock(x, y+1, z);
-		
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		Block block = world.getBlock(x, y+1, z);		
+
 		//check if block is plantable
 		if(block instanceof IPlantable)
 		{
 			int numberOfGrowthBlocks = 0;
-			
+
 			//check how many growth blocks under this one.
 			for(int i=y;i>y-stackHeight;i--)
 			{
@@ -69,7 +107,7 @@ public class GrowthBlock extends Block {
 					numberOfGrowthBlocks++;
 				}
 			}
-			
+
 			//compare the number of growth blocks and test against random. Max test is 16 growth blocks.
 			if(rand.nextInt(17 - numberOfGrowthBlocks)==0)
 			{
@@ -78,4 +116,37 @@ public class GrowthBlock extends Block {
 			}
 		}
 	}
+
+	/**
+	 * sets the metadata to 1 if there is a block ontop
+	 * this is needed to change the side texture to the complete metal one
+	 * @param world current world
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
+	
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) {
+		updateMeta(world,x,y,z);
+	}
+	
+		
+	/**
+	 * Updates the textures of all GrowthBlocks
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
+	@SideOnly(Side.CLIENT)
+	private void updateMeta(World world, int x, int y, int z) {
+		Minecraft mc;
+		Block upperBlock = world.getBlock(x, y+1, z);
+		if(upperBlock instanceof GrowthBlock)
+			world.setBlockMetadataWithNotify(x, y, z, 1, 3);
+		else world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+	}
+	
+
 }
