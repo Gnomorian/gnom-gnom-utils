@@ -1,7 +1,7 @@
 [
 {
   "modid": "ggutils",
-  "name": "Gnom Gnom Utils",
+  "name": "Gnom Gnom's Utils",
   "description": "Mod that adds a bunch of useful stuff (pronounced /Gnom/, /nom/)",
   "version": "${version}",
   "mcversion": "${mcversion}",
