@@ -16,6 +16,7 @@ import nz.co.crookedhill.ggutils.GGUtils;
 public class GrowthBlock extends Block {
 
 	private IIcon[] icons = new IIcon[2];
+	int stackHeight = GGUBlocks.stackHeight;
 
 	public GrowthBlock(Material material) {
 		super(material);
@@ -62,7 +63,7 @@ public class GrowthBlock extends Block {
 			int numberOfGrowthBlocks = 0;
 			
 			//check how many growth blocks under this one.
-			for(int i=y;i>y-16;i--)
+			for(int i=y;i>y-stackHeight;i--)
 			{
 				if(world.getBlock(x, i, z).equals(GGUBlocks.growthBlock)){
 					numberOfGrowthBlocks++;

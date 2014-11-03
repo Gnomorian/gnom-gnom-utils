@@ -10,6 +10,9 @@ public class GGUBlocks {
 	public static Block growthBlock;
 	public static Block sortivator;
 	
+	//growthblock configuration
+	public static int stackHeight = 16;
+	
 	public static void init() {
 		
 		growthBlock = new GrowthBlock(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
