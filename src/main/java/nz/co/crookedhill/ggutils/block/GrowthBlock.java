@@ -116,16 +116,6 @@ public class GrowthBlock extends Block {
 			}
 		}
 	}
-
-	/**
-	 * sets the metadata to 1 if there is a block ontop
-	 * this is needed to change the side texture to the complete metal one
-	 * @param world current world
-	 * @param x
-	 * @param y
-	 * @param z
-	 */
-	
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) {
 		updateMeta(world,x,y,z);
@@ -134,18 +124,19 @@ public class GrowthBlock extends Block {
 		
 	/**
 	 * Updates the textures of all GrowthBlocks
+	 * setBlockMeta parameter 5= Flag 2 = cause texture change (spent ages finding this)
 	 * @param world
 	 * @param x
 	 * @param y
-	 * @param z
+	 * @param z 
 	 */
 	@SideOnly(Side.CLIENT)
 	private void updateMeta(World world, int x, int y, int z) {
 		Minecraft mc;
 		Block upperBlock = world.getBlock(x, y+1, z);
 		if(upperBlock instanceof GrowthBlock)
-			world.setBlockMetadataWithNotify(x, y, z, 1, 3);
-		else world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+		else world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 	}
 	
 
