@@ -22,7 +22,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
-import nz.co.crookedhill.ggutils.util.ItemStackInstance;
 
 public class Sortivator extends Block {
 
@@ -156,7 +155,6 @@ public class Sortivator extends Block {
 	public static void sort(IInventory inventory) {
 		int maxInventoty = inventory.getSizeInventory();
 		int maxSlot = inventory.getInventoryStackLimit();
-		ArrayList<ItemStackInstance> itemstacks = new ArrayList<ItemStackInstance>();
 		HashMap<ItemStack, Integer> items = new HashMap<ItemStack,Integer>();
 		for(int i = 0; i < maxInventoty; i++) {
 			ItemStack currentSlot = inventory.getStackInSlot(i);
