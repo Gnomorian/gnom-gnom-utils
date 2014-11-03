@@ -120,6 +120,17 @@ public class GrowthBlock extends Block {
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) {
 		updateMeta(world,x,y,z);
 	}
+	//if textures dont change when placing the block, clicking updates it
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    {
+		updateMeta(world,x,y,z);
+        return false;
+    }
+	
+	@Override
+	public void onBlockAdded(World world, int x, int y, int z) {
+		updateMeta(world,x,y,z);
+	}
 	
 		
 	/**
