@@ -1,15 +1,11 @@
 package nz.co.crookedhill.ggutils.block;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -20,8 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class GrowthBlock extends Block {
-	private int timesClicked;
-
+	
 	private IIcon[] icons = new IIcon[3];
 	int stackHeight = GGUBlocks.stackHeight;
 
@@ -122,13 +117,7 @@ public class GrowthBlock extends Block {
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) {
 		updateMeta(world,x,y,z);
 	}
-	//if textures dont change when placing the block, clicking updates it
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
-    {
-		updateMeta(world,x,y,z);
-        return false;
-    }
-	
+
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		updateMeta(world,x,y,z);
@@ -145,7 +134,6 @@ public class GrowthBlock extends Block {
 	 */
 	@SideOnly(Side.CLIENT)
 	private void updateMeta(World world, int x, int y, int z) {
-		Minecraft mc;
 		Block upperBlock = world.getBlock(x, y+1, z);
 		if(upperBlock instanceof GrowthBlock)
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
