@@ -6,11 +6,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+import nz.co.crookedhill.ggutils.GGUConfigManager;
 import nz.co.crookedhill.ggutils.GGUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GrowthBlock extends Block {
 	
 	private IIcon[] icons = new IIcon[3];
-	int stackHeight = GGUBlocks.stackHeight;
+	int stackHeight = GGUConfigManager.GrowthBlockStackHeight;
 
 	public GrowthBlock(Material material) {
 		super(material);
@@ -139,6 +141,5 @@ public class GrowthBlock extends Block {
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 		else world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 	}
-	
 
 }

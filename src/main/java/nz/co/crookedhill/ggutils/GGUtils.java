@@ -1,9 +1,6 @@
 package nz.co.crookedhill.ggutils;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
@@ -16,9 +13,9 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = GGUtils.MODID, version = GGUtils.VERSION)
 public class GGUtils
@@ -34,31 +31,29 @@ public class GGUtils
 	@Instance(MODID)
 	public static GGUtils instance;
 	
+	public static GGUConfigManager configs;
+	
 	//Set Creative Tabs
 	public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(CreativeTabs.getNextID(), MODID);
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-		config.load();
-		GGUBlocks.stackHeight = config.getInt("growthBlockStackHeight", "Blocks", 16, 1, 255, "Edit the functional stack size of the Damara's Remedy block");
-		config.save();
+		GGUConfigManager.init(event);
+		GGUBlocks.init();
+		GGUItems.init();
 	}
 	
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-		GGUBlocks.init();
-		GGUItems.init();
+		proxy.registerRenderers();
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(new GGUEventHandler());
+		
     }
     
     @EventHandler
-    public void load(FMLInitializationEvent event)
-    {
-		//Registering the gui and renderer handlers
-		proxy.registerRenderers();
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
-		
+    public void postInit(FMLPostInitializationEvent event) {
+    	//compatability with other mod initialization here
     }
 }

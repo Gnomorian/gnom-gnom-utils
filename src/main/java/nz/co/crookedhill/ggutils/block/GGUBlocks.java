@@ -13,9 +13,6 @@ public class GGUBlocks {
 	public static Block growthBlock;
 	public static Block sortivator;
 	
-	//growthblock configuration
-	public static int stackHeight = 16;
-	
 	public static void init() {
 		
 		//register Blocks
@@ -27,11 +24,10 @@ public class GGUBlocks {
 		GameRegistry.registerBlock(sortivator, "sortivator");
 		
 		//register Block Recipes
-		ItemStack dirtStack = new ItemStack(Blocks.dirt);
-		ItemStack ironIngot = new ItemStack(Items.iron_ingot);
-		ItemStack specMelon = new ItemStack(Items.speckled_melon);
-		//change speckled melon to bonemeal, cant find it in the list of items
+
+		/*//change speckled melon to bonemeal, cant find it in the list of items
 		GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock), "ddd", "isi","iii",
-		        'd', dirtStack, 'i', ironIngot, "s", specMelon);
+		        'd', dirtStack, 'i', ironIngot, "s", specMelon);*/
+		//GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock), new Object[]{"ddd","isi","iii",'d', Blocks.dirt, 'i', Items.iron_ingot, "s", Items.speckled_melon});
 	}
 }
