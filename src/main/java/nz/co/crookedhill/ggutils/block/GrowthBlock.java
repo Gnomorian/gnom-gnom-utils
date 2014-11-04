@@ -3,10 +3,12 @@ package nz.co.crookedhill.ggutils.block;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -18,7 +20,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class GrowthBlock extends Block {
-	
+
 	private IIcon[] icons = new IIcon[3];
 	int stackHeight = GGUConfigManager.GrowthBlockStackHeight;
 
@@ -111,10 +113,54 @@ public class GrowthBlock extends Block {
 			if(rand.nextInt((stackHeight+1) - numberOfGrowthBlocks)==0)
 			{
 				int metadata = world.getBlockMetadata(x, y+1, z);
-				world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
+
+				if(block == Blocks.nether_wart)
+				{
+					if(metadata < 3)
+					{
+						world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
+					}
+				}
+				else if(block == Blocks.reeds)
+				{
+					int i = 1;
+					while(world.getBlock(x, y+i, z) == Blocks.reeds)
+					{						
+						i++;
+					}
+					if(world.isAirBlock(x, y+i, z))
+					{
+						world.setBlock(x, y+i, z, Blocks.reeds, 2, 2);	
+					}
+				}
+				else if(block == Blocks.cactus)
+				{
+					int i = 1;
+					while(world.getBlock(x, y+i, z) == Blocks.cactus)
+					{						
+						i++;
+					}
+					if(world.isAirBlock(x, y+i, z))
+					{
+						world.setBlock(x, y+i, z, Blocks.cactus, 2, 2);	
+					}				
+				}
+				else if(block instanceof BlockCrops)
+				{
+					if(metadata < 7)
+					{
+						world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
+					}
+				}
 			}
 		}
+		else if(block instanceof BlockOre)
+		{
+			checkIfOre(world, block, x, y, z);
+		}
 	}
+
+
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) {
 		updateMeta(world,x,y,z);
@@ -124,8 +170,8 @@ public class GrowthBlock extends Block {
 	public void onBlockAdded(World world, int x, int y, int z) {
 		updateMeta(world,x,y,z);
 	}
-	
-		
+
+
 	/**
 	 * Updates the textures of all GrowthBlocks
 	 * setBlockMeta parameter 5= Flag 2 = cause texture change (spent ages finding this)
@@ -142,4 +188,23 @@ public class GrowthBlock extends Block {
 		else world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 	}
 
+	private void checkIfOre(World world, Block block, int x, int y, int z)
+	{
+		if(block == Blocks.coal_ore)
+		{
+			world.setBlock(x, y+1, z, Blocks.iron_ore, 2, 2);	
+		}
+		else if(block == Blocks.iron_ore)
+		{
+			world.setBlock(x, y+1, z, Blocks.gold_ore, 2, 2);	
+		}
+		else if(block == Blocks.gold_ore)
+		{
+			world.setBlock(x, y+1, z, Blocks.diamond_ore, 2, 2);	
+		}
+		else if(block == Blocks.diamond_ore)
+		{
+			world.setBlock(x, y+1, z, Blocks.cake, 2, 2);	
+		}
+	}
 }
