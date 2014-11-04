@@ -151,11 +151,6 @@ public class GrowthBlock extends Block {
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 		else world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 	}
-	//@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-	list.add("Tooltip stuff goes here");
-	}
 	
 
 }
