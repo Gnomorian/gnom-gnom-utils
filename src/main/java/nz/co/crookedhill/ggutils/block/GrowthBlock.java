@@ -107,8 +107,8 @@ public class GrowthBlock extends Block {
 				}
 			}
 
-			//compare the number of growth blocks and test against random. Max test is 16 growth blocks.
-			if(rand.nextInt(17 - numberOfGrowthBlocks)==0)
+			//compare the number of growth blocks and test against random. Max test is now editable in config.
+			if(rand.nextInt((stackHeight+1) - numberOfGrowthBlocks)==0)
 			{
 				int metadata = world.getBlockMetadata(x, y+1, z);
 				world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
