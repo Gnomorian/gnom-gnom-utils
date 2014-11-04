@@ -10,7 +10,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -166,6 +169,15 @@ public class GrowthBlock extends Block {
 			{
 				world.spawnParticle("hugeexplosion", x, y+1, z, 0.0f, 0.0f, 0.0f);
 				world.createExplosion((Entity)null, x, y+1, z, 2.0F, false);
+				for(int j=0;j<world.loadedEntityList.size();j++)
+				{
+					Entity entity = (Entity) world.loadedEntityList.get(j);
+					if(entity.getDistance(x, y, z) < 10 && entity instanceof EntityPlayer)
+					{
+						EntityPlayer player = (EntityPlayer) entity;
+						player.addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "The cake is a lie."));
+					}
+				}
 				world.setBlockToAir(x, y+1, z);
 			}
 		}
