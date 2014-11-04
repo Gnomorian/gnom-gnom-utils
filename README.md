@@ -16,10 +16,14 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - Puts items into chest on the right (when facing forward)
 
 ## Damara's Remedy: Similar to farmland block, but supports all plants and plants grows faster when the blocks are stacked.
-  - semi-dificult crafting recipe.
-  - block emmits light no higher than whats needed to stop uprooting.
-  - loop through -y if top block is a growable block.
-  - multiplies growth speed by amount of stacked remedy blocks.
+~~  - semi-dificult crafting recipe.
+~~  - block emmits light no higher than whats needed to stop uprooting.
+~~  - loop through -y if top block is a growable block.
+~~  - multiplies growth speed by amount of stacked remedy blocks.
+  - 3 types. Manual, semi-automatic, automatic.
+    - Manual = have to gather and replant crops yourself.
+    - Semi = redstone pulse to break and replant crops.
+    - Auto = automatically breaks and replants crops when mature.
   - alternative recipe when fcraft mod is installed, recipe requires a bucket of mako
 
 
