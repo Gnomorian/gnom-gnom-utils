@@ -2,7 +2,6 @@ package nz.co.crookedhill.ggutils;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.handlers.GGUEventHandler;

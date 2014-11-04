@@ -22,7 +22,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GrowthBlock extends Block {
 
 	private IIcon[] icons = new IIcon[3];
-	int stackHeight = GGUConfigManager.GrowthBlockStackHeight;
+	private int stackHeight = GGUConfigManager.growthBlockStackHeight;
+	private int growthHeight = GGUConfigManager.growthCactusReedMaxHeight;
 
 	public GrowthBlock(Material material) {
 		super(material);
@@ -128,9 +129,11 @@ public class GrowthBlock extends Block {
 					{						
 						i++;
 					}
-					if(world.isAirBlock(x, y+i, z))
-					{
-						world.setBlock(x, y+i, z, Blocks.reeds, 2, 2);	
+					if(i<growthHeight){
+						if(world.isAirBlock(x, y+i, z))
+						{
+							world.setBlock(x, y+i, z, Blocks.reeds, 2, 2);	
+						}
 					}
 				}
 				else if(block == Blocks.cactus)
@@ -140,10 +143,12 @@ public class GrowthBlock extends Block {
 					{						
 						i++;
 					}
-					if(world.isAirBlock(x, y+i, z))
-					{
-						world.setBlock(x, y+i, z, Blocks.cactus, 2, 2);	
-					}				
+					if(i<growthHeight){
+						if(world.isAirBlock(x, y+i, z))
+						{
+							world.setBlock(x, y+i, z, Blocks.cactus, 2, 2);	
+						}
+					}
 				}
 				else if(block instanceof BlockCrops)
 				{
@@ -192,15 +197,15 @@ public class GrowthBlock extends Block {
 	{
 		if(block == Blocks.coal_ore)
 		{
-			world.setBlock(x, y+1, z, Blocks.iron_ore, 2, 2);	
+			world.setBlock(x, y+1, z, Blocks.iron_ore, 0, 2);	
 		}
 		else if(block == Blocks.iron_ore)
 		{
-			world.setBlock(x, y+1, z, Blocks.gold_ore, 2, 2);	
+			world.setBlock(x, y+1, z, Blocks.gold_ore, 0, 2);	
 		}
 		else if(block == Blocks.gold_ore)
 		{
-			world.setBlock(x, y+1, z, Blocks.diamond_ore, 2, 2);	
+			world.setBlock(x, y+1, z, Blocks.diamond_ore, 0, 2);	
 		}
 		else if(block == Blocks.diamond_ore)
 		{

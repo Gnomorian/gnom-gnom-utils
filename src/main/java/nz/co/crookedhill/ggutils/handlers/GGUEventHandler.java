@@ -2,7 +2,6 @@ package nz.co.crookedhill.ggutils.handlers;
 
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import nz.co.crookedhill.ggutils.GGUConfigManager;
-import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GGUEventHandler {
@@ -12,7 +11,7 @@ public class GGUEventHandler {
 			event.toolTip.add("Growing plants has");
 			event.toolTip.add("never been faster!");
 			event.toolTip.add("Stack these blocks up to ");
-			event.toolTip.add(GGUConfigManager.GrowthBlockStackHeight+" times to grow faster");
+			event.toolTip.add(GGUConfigManager.growthBlockStackHeight+" times to grow faster");
 		}
 		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.sortivator")) {
 			event.toolTip.add("Right clicking on the the sortivator");
