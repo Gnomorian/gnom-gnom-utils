@@ -81,7 +81,6 @@ public class GrowthBlock extends Block {
 				return icons[0];
 			}else return icons[0];
 		}
-
 	}
 	@Override
 	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
@@ -161,10 +160,6 @@ public class GrowthBlock extends Block {
 				}
 			}
 		}
-		else if(block instanceof BlockOre)
-		{
-			checkIfOre(world, block, x, y, z);
-		}
 		else if(block instanceof BlockCake)
 		{
 			if(!world.isRemote)
@@ -173,6 +168,10 @@ public class GrowthBlock extends Block {
 				world.createExplosion((Entity)null, x, y+1, z, 2.0F, false);
 				world.setBlockToAir(x, y+1, z);
 			}
+		}
+		else if(block instanceof BlockOre)
+		{
+			checkIfOre(world, block, x, y, z);
 		}
 	}
 
