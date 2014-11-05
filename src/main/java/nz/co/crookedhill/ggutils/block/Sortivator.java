@@ -1,10 +1,12 @@
 package nz.co.crookedhill.ggutils.block;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
+import ibxm.Player;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,6 +20,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.network.GGUSortPacket;
 
 public class Sortivator extends Block {
 
@@ -55,7 +58,7 @@ public class Sortivator extends Block {
 		}
 		else
 		{
-			IInventory iinventory = this.func_149951_m(world, x, y+1, z);
+			IInventory iinventory = this.getInventory(world, x, y+1, z);
 
 			if (iinventory != null)
 			{
@@ -69,7 +72,7 @@ public class Sortivator extends Block {
 		}
 	}
 	//gets an inventory object from the coordernates specified and if its a double chest it will get the contents of both.
-	public IInventory func_149951_m(World world, int x, int y, int z)
+	public IInventory getInventory(World world, int x, int y, int z)
 	{
 		Object object = (TileEntityChest)world.getTileEntity(x, y, z);
 
@@ -167,5 +170,11 @@ public class Sortivator extends Block {
 		}
 	}
 	
+	public boolean onBlockActivated(World world, int x, int y, int z, Player player, float meta, float a1, float a2, float a3) {
+		String message = ""+(char)x+(char)y+(char)z;
+		GGUtils.network.sendToServer(new GGUSortPacket(message));
+		return false;
+		
+	}
 
 }
