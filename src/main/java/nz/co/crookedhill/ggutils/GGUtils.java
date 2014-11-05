@@ -6,6 +6,8 @@ import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.handlers.GGUEventHandler;
 import nz.co.crookedhill.ggutils.item.GGUItems;
+import nz.co.crookedhill.ggutils.network.GGUSortPacket;
+import nz.co.crookedhill.ggutils.network.GGUSortPacketHandler;
 import nz.co.crookedhill.ggutils.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -15,6 +17,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = GGUtils.MODID, version = GGUtils.VERSION)
 public class GGUtils
@@ -30,6 +34,8 @@ public class GGUtils
 	@Instance(MODID)
 	public static GGUtils instance;
 	
+	public static SimpleNetworkWrapper network;
+	
 	public static GGUConfigManager configs;
 	
 	//Set Creative Tabs
@@ -37,6 +43,8 @@ public class GGUtils
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
+		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
 		GGUConfigManager.init(event);
 		GGUBlocks.init();
 		GGUItems.init();
