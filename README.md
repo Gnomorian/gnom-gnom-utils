@@ -47,6 +47,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - include wildcards?
       - include multiple entries?
     - Search radius (x, y, z) from your position
+    - Uses Experience from the player as Power
     
 
 
