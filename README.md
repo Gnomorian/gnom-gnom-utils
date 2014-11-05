@@ -50,6 +50,15 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - include wildcards?
       - include multiple entries?
     - Search radius (x, y, z) from your position.
+  
+
+# MOBS
+## CreeperMite
+  - silverfish creeper with emense speed that exploeds when close.
+  - explosion is smaller than normal creeper.
+  - breaking grass/leaf blocks spawns the creepermite rather than stone.
+  - mite makes the hurt creeper hissing noise.
+  - can be disabled in config.
     
 
 
