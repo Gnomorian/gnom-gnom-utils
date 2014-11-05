@@ -20,6 +20,8 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - ~~block emmits light no higher than whats needed to stop uprooting.~~
   - ~~loop through -y if top block is a growable block.~~
   - ~~multiplies growth speed by amount of stacked remedy blocks.~~
+  - ~~connected textures, changes side texture if its the top block or not.~~
+  - ~~config to change effective stack height.~~
   - 3 types. Manual, semi-automatic, automatic.
     - ~~Manual = have to gather and replant crops yourself.~~
     - Semi = redstone pulse to break and replant crops.
@@ -28,13 +30,12 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 
 ## Sortivator: sorts contents of ajacent chests.
-  - ~~one side has different texture~~.
-    - ~~connected textures, changes side texture if its the top block or not~~.
+  - ~~one side has different texture.~~
     - texture faces player when block is placed.
   - when recieving redstone signal.
     - sorts inventoty on side with the different texture (inventory tweaks).
     - delay between sorts to relieve load.
-    - ~~gets the inventory of the nearby chest~~.
+    - ~~gets the inventory of the nearby chest.~~
       - makes a list of all the unique items within the chest and how many of them there are
       - replaces slots from the start of the inventory with the items it had, in order of apearance.
       - deletes items in slots after where the sorting finished.
@@ -43,12 +44,12 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 # ITEMS
 ## Block-Finder: Used to find blocks around the player.
+  - Uses Experience from the player as Power
   - GUI pops up:
     -Block Id/Name/Value
       - include wildcards?
       - include multiple entries?
-    - Search radius (x, y, z) from your position
-    - Uses Experience from the player as Power
+    - Search radius (x, y, z) from your position.
     
 
 
