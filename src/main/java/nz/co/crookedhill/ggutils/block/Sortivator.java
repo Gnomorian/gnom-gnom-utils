@@ -66,7 +66,7 @@ public class Sortivator extends Block {
 			{
 				//displays the chest above the sortivator to the player who activated the block.
 				//p_149727_5_.displayGUIChest(iinventory);
-				sort(iinventory);
+				sortAlt(iinventory);
 
 			}
 
@@ -129,7 +129,7 @@ public class Sortivator extends Block {
 	}
 
 	// sorts the inventory passed to the function
-	public static void sort(IInventory inventory) {
+	/*public static void sort(IInventory inventory) {
 		int maxInventoty = inventory.getSizeInventory();
 		int maxSlot = inventory.getInventoryStackLimit();
 		HashMap<Item, ItemStack> items = new HashMap<Item,ItemStack>();
@@ -171,16 +171,17 @@ public class Sortivator extends Block {
 			inventory.setInventorySlotContents(invSlot, null);
 			invSlot++;
 		}
-	}
+	}*/
 	
-	public boolean onBlockActivated(World world, int x, int y, int z, Player player, float meta, float a1, float a2, float a3) {
+	/*public boolean onBlockActivated(World world, int x, int y, int z, Player player, float meta, float a1, float a2, float a3) {
 		String message = ""+(char)x+(char)y+(char)z;
 		GGUtils.network.sendToServer(new GGUSortPacket(message));
 		return false;
 		
-	}
+	}*/
 	
 	public void sortAlt(IInventory inventory) {
+		System.out.println("im running even tho the break point isnt");
 		int maxInventory = inventory.getSizeInventory();
 		int maxSlot = inventory.getInventoryStackLimit();
 		ArrayList<ItemStack> items = new ArrayList<ItemStack>();

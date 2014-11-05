@@ -18,10 +18,11 @@ public class GGUSortPacketHandler implements IMessageHandler<GGUSortPacket, IMes
 			int y = (int)message.coords.indexOf(1);
 			int z = (int)message.coords.indexOf(2);
 			World world = ctx.getServerHandler().playerEntity.worldObj;
+			System.out.println(x+" "+y+" "+z+" "+ctx.getServerHandler().playerEntity.getDisplayName());
 			Block sortivator = world.getBlock(x, y, z);
 			if(sortivator instanceof Sortivator) {
 				IInventory inventory = ((Sortivator)sortivator).getInventory(world, x, y+1, z);
-				((Sortivator)sortivator).sort(inventory);
+				((Sortivator)sortivator).sortAlt(inventory);
 			}
 			else System.out.println("That didnt work");
 		}
