@@ -159,7 +159,7 @@ public class Sortivator extends Block {
 		}
 		//set inventory to copy of items
 		int currInventory = 0;
-		for(int i = currInventory; i<items.size(); i++) {
+		for(int i = 0; i<items.size(); i++) {
 			if(items.get(i).stackSize > maxSlot){
 				while(items.get(i).stackSize > maxSlot) {
 					items.get(i).stackSize -= maxSlot;
