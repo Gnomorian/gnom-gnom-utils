@@ -65,8 +65,8 @@ public class Sortivator extends Block {
 			if (iinventory != null)
 			{
 				//displays the chest above the sortivator to the player who activated the block.
-				//p_149727_5_.displayGUIChest(iinventory);
-				sortAlt(iinventory);
+				player.displayGUIChest(iinventory);
+				sort(iinventory);
 
 			}
 
@@ -127,61 +127,8 @@ public class Sortivator extends Block {
 			return (IInventory)object;
 		}
 	}
-
-	// sorts the inventory passed to the function
-	/*public static void sort(IInventory inventory) {
-		int maxInventoty = inventory.getSizeInventory();
-		int maxSlot = inventory.getInventoryStackLimit();
-		HashMap<Item, ItemStack> items = new HashMap<Item,ItemStack>();
-		for(int i = 0; i < maxInventoty; i++) {
-			ItemStack currentSlot = inventory.getStackInSlot(i);
-			if(currentSlot != null) {
-				if(!items.containsKey(currentSlot.getItem())) {
-					items.put(currentSlot.getItem(), currentSlot);
-				}else {
-					currentSlot.stackSize += items.get(currentSlot.getItem()).stackSize;
-					items.replace(currentSlot.getItem(),currentSlot);
-				}
-			}
-		}
-		int invSlot = 0;
-		for(Entry<Item,ItemStack> i : items.entrySet()) {
-			while(invSlot < maxInventoty) {
-				ItemStack item = i.getValue();
-				if(item.stackSize > maxSlot) {
-					while(item.stackSize > maxSlot){
-						ItemStack setItem = item;
-						setItem.stackSize = maxSlot;
-						item.stackSize-= maxSlot;
-						inventory.setInventorySlotContents(invSlot, item);
-						invSlot++;
-					}
-					inventory.setInventorySlotContents(invSlot, item); //places the remander of invent
-
-
-				}else{
-					inventory.setInventorySlotContents(invSlot, item);
-					invSlot++;
-				}
-
-
-			}
-		}
-		while(invSlot < maxInventoty) {
-			inventory.setInventorySlotContents(invSlot, null);
-			invSlot++;
-		}
-	}*/
 	
-	/*public boolean onBlockActivated(World world, int x, int y, int z, Player player, float meta, float a1, float a2, float a3) {
-		String message = ""+(char)x+(char)y+(char)z;
-		GGUtils.network.sendToServer(new GGUSortPacket(message));
-		return false;
-		
-	}*/
-	
-	public void sortAlt(IInventory inventory) {
-		System.out.println("im running even tho the break point isnt");
+	public void sort(IInventory inventory) {
 		int maxInventory = inventory.getSizeInventory();
 		int maxSlot = inventory.getInventoryStackLimit();
 		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
@@ -192,12 +139,18 @@ public class Sortivator extends Block {
 				//if the array isnt empty
 				if(items.size()>0){
 					//loop through itemstacks in the array
+					boolean isExistant = false;
 				loopItems:for(ItemStack inItem : items) {
 					//if item is already in the array, change stacksize
 					if(inItem.getItem().equals(currentSlot.getItem())) {
 						inItem.stackSize += currentSlot.stackSize;
+						isExistant = true;
 						break loopItems;
+						
 					}
+				}
+				if(isExistant == false){
+					items.add(currentSlot);
 				}
 				}else
 					//if array is empty
@@ -207,8 +160,19 @@ public class Sortivator extends Block {
 		//set inventory to copy of items
 		int currInventory = 0;
 		for(int i = currInventory; i<items.size(); i++) {
-			inventory.setInventorySlotContents(i, items.get(i));
-			currInventory++;
+			if(items.get(i).stackSize > maxSlot){
+				while(items.get(i).stackSize > maxSlot) {
+					items.get(i).stackSize -= maxSlot;
+					ItemStack newitemstack = items.get(i);
+					newitemstack.stackSize = maxSlot;
+					inventory.setInventorySlotContents(currInventory, newitemstack);
+					currInventory++;
+				}
+				//i=currInventory;
+			}else {
+				inventory.setInventorySlotContents(currInventory, items.get(i));
+				currInventory++;
+			}
 		}
 		//set rest of inventory to null
 		

@@ -3,6 +3,7 @@ package nz.co.crookedhill.ggutils.network;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
+import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.block.Sortivator;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -10,6 +11,12 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class GGUSortPacketHandler implements IMessageHandler<GGUSortPacket, IMessage>{
+	
+	/**
+	 * an example of sending a message is:
+	 * String message = ""+(char)x+(char)y+(char)z;
+	 * GGUtils.network.sendToServer(new GGUSortPacket(message));
+	 */
 
 	@Override
 	public IMessage onMessage(GGUSortPacket message, MessageContext ctx) {
@@ -22,7 +29,7 @@ public class GGUSortPacketHandler implements IMessageHandler<GGUSortPacket, IMes
 			Block sortivator = world.getBlock(x, y, z);
 			if(sortivator instanceof Sortivator) {
 				IInventory inventory = ((Sortivator)sortivator).getInventory(world, x, y+1, z);
-				((Sortivator)sortivator).sortAlt(inventory);
+				((Sortivator)sortivator).sort(inventory);
 			}
 			else System.out.println("That didnt work");
 		}
