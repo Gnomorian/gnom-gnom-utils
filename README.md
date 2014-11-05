@@ -28,12 +28,13 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 
 ## Sortivator: sorts contents of ajacent chests.
-  - one side has different texture.
+  - ~~one side has different texture~~.
+    - ~~connected textures, changes side texture if its the top block or not~~.
     - texture faces player when block is placed.
   - when recieving redstone signal.
     - sorts inventoty on side with the different texture (inventory tweaks).
     - delay between sorts to relieve load.
-    - gets the inventory of the nearby chest
+    - ~~gets the inventory of the nearby chest~~.
       - makes a list of all the unique items within the chest and how many of them there are
       - replaces slots from the start of the inventory with the items it had, in order of apearance.
       - deletes items in slots after where the sorting finished.
