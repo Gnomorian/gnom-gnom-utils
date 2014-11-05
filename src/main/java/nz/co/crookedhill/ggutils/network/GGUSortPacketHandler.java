@@ -3,8 +3,6 @@ package nz.co.crookedhill.ggutils.network;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
-import nz.co.crookedhill.ggutils.GGUtils;
-import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.block.Sortivator;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
