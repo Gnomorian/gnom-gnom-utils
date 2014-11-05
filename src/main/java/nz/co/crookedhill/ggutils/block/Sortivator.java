@@ -3,6 +3,8 @@ package nz.co.crookedhill.ggutils.block;
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 import ibxm.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -137,6 +139,7 @@ public class Sortivator extends Block {
 				if(!items.containsKey(currentSlot.getItem())) {
 					items.put(currentSlot.getItem(), currentSlot);
 				}else {
+					currentSlot.stackSize += items.get(currentSlot.getItem()).stackSize;
 					items.replace(currentSlot.getItem(),currentSlot);
 				}
 			}
@@ -175,6 +178,42 @@ public class Sortivator extends Block {
 		GGUtils.network.sendToServer(new GGUSortPacket(message));
 		return false;
 		
+	}
+	
+	public void sortAlt(IInventory inventory) {
+		int maxInventory = inventory.getSizeInventory();
+		int maxSlot = inventory.getInventoryStackLimit();
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+		//get a copy of all items
+		for(int i = 0; i < maxInventory; i++) {
+			ItemStack currentSlot = inventory.getStackInSlot(i);
+			if(currentSlot != null) {
+				//if the array isnt empty
+				if(items.size()>0){
+					//loop through itemstacks in the array
+				loopItems:for(ItemStack inItem : items) {
+					//if item is already in the array, change stacksize
+					if(inItem.getItem().equals(currentSlot.getItem())) {
+						inItem.stackSize += currentSlot.stackSize;
+						break loopItems;
+					}
+				}
+				}else
+					//if array is empty
+					items.add(currentSlot);
+			}
+		}
+		//set inventory to copy of items
+		int currInventory = 0;
+		for(int i = currInventory; i<items.size(); i++) {
+			inventory.setInventorySlotContents(i, items.get(i));
+			currInventory++;
+		}
+		//set rest of inventory to null
+		
+		for(int i = currInventory; i < maxInventory; i++) {
+			inventory.setInventorySlotContents(i, null);
+		}
 	}
 
 }
