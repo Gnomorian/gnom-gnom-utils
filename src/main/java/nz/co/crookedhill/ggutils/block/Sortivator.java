@@ -166,6 +166,26 @@ public class Sortivator extends Block {
 		int currInventory = 0;
 		/*add the items array to the inventory in order so it is sorted*/
 		for(int i = 0; i<items.size(); i++) {
+			
+			/*if the itemstack stacksize is bigger than the stacksizes limit,
+			 * overflow the exess items to the next slot while its bigger*/
+			if(items.get(i).getQuantity() > items.get(i).getItemStack().getMaxStackSize()){
+				while(items.get(i).getQuantity() > items.get(i).getItemStack().getMaxStackSize()) {
+					items.get(i).setQuantity(items.get(i).getQuantity()-items.get(i).getItemStack().getMaxStackSize( ));
+					ItemStack newitemstack = items.get(i).getItemStack();
+					newitemstack.stackSize = items.get(i).getItemStack().getMaxStackSize();
+					inventory.setInventorySlotContents(currInventory, newitemstack);
+					currInventory++;
+				}
+				/*when the overflow is done, place the rest of the items*/
+				items.get(i).getItemStack().stackSize = items.get(i).getQuantity();
+				inventory.setInventorySlotContents(currInventory, items.get(i).getItemStack());
+				currInventory++;
+			}
+			
+			
+			/*if the itemstack is bigger than the slot limit in the inventory,
+			 * overflow the excess items to the next slot while its bigger*/
 			if(items.get(i).getQuantity() > maxSlot){
 				while(items.get(i).getQuantity() > maxSlot) {
 					items.get(i).setQuantity(items.get(i).getQuantity()-maxSlot);
@@ -178,7 +198,7 @@ public class Sortivator extends Block {
 				items.get(i).getItemStack().stackSize = items.get(i).getQuantity();
 				inventory.setInventorySlotContents(currInventory, items.get(i).getItemStack());
 				currInventory++;
-				//i=currInventory;
+
 			}else {
 				ItemStack setItem = items.get(i).getItemStack();
 				setItem.stackSize = items.get(i).getQuantity();
@@ -193,5 +213,6 @@ public class Sortivator extends Block {
 			inventory.setInventorySlotContents(i, null);
 		}
 	}
+	
 
 }
