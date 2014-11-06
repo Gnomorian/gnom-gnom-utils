@@ -8,6 +8,7 @@ import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
 import nz.co.crookedhill.ggutils.handlers.GGUEventHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
 import nz.co.crookedhill.ggutils.item.GGUItems;
 import nz.co.crookedhill.ggutils.network.GGUSortPacket;
 import nz.co.crookedhill.ggutils.network.GGUSortPacketHandler;
@@ -60,6 +61,8 @@ public class GGUtils
 		proxy.registerRenderers();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(new GGUEventHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
+		
 		EntityRegistry.registerModEntity(GGUEntityCreeperMite.class, "creeper_mite", 0, this, 64, 1, true);
 		EntityRegistry.addSpawn(GGUEntityCreeperMite.class, 200, 1, 8, EnumCreatureType.monster);
 		EntityList.addMapping(GGUEntityCreeperMite.class, "creeper_mite", 0, 113213, 3523523);

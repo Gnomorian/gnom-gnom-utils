@@ -21,7 +21,6 @@ public class GGUEntityCreeperMite extends EntityMob
 {
     /** A cooldown before this entity will search for another Silverfish to join them in battle. */
     private int allySummonCooldown;
-    private static final String __OBFID = "CL_00001696";
 
     public GGUEntityCreeperMite(World p_i1740_1_)
     {

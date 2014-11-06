@@ -16,7 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GGURenderCreeperMite extends RenderLiving{
 	
 	private static ResourceLocation miteTexture = new ResourceLocation("bronzeage:textures/entity/bear.png");
-	private static final String __OBFID = "CL_00001022";
 
 	private void setEntityTexture() {
 		miteTexture =  new ResourceLocation("textures/entity/silverfish.png");
