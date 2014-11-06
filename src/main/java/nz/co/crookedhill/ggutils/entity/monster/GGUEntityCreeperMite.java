@@ -19,7 +19,6 @@ public class GGUEntityCreeperMite extends EntitySilverfish
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.6000000238418579D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
     }
     
     /**
@@ -31,7 +30,7 @@ public class GGUEntityCreeperMite extends EntitySilverfish
     	
         if (this.attackTime <= 0 && f < 1.2F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)
         {
-			world.createExplosion((Entity)null, entity.posX, entity.posY, entity.posZ, 0.5F, false);
+			world.createExplosion((Entity)null, entity.posX, entity.posY, entity.posZ, 0.1F, false);
 			this.setDead();
         }
     }
