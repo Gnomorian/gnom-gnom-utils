@@ -65,9 +65,7 @@ public class Sortivator extends Block {
 
 			if (iinventory != null)
 			{
-				//displays the chest above the sortivator to the player who activated the block.
-				player.displayGUIChest(iinventory);
-				sortAlt(iinventory);
+				sort(iinventory);
 
 			}
 
@@ -128,71 +126,7 @@ public class Sortivator extends Block {
 			return (IInventory)object;
 		}
 	}
-	/**
-	 * sorts the contents of the inventory passed to it
-	 * @param inventory
-	 */
 	public void sort(IInventory inventory) {
-		/*amount of slots in the inventory*/
-		int maxInventory = inventory.getSizeInventory();
-		
-		/*max stack size in one slot in the inventory*/
-		int maxSlot = inventory.getInventoryStackLimit();
-		
-		/*the list of found unique itemstacks in the inventory*/
-		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-		
-		
-		/*get a copy of all the unique itemstacks within the inventory and quantity of items*/
-		for(int i = 0; i < maxInventory; i++) {
-			ItemStack currentSlot = inventory.getStackInSlot(i);
-			if(currentSlot != null) {
-				//if the array isnt empty
-				if(items.size()>0){
-					//loop through itemstacks in the array
-					boolean isExistant = false;
-				loopItems:for(ItemStack inItem : items) {
-					//if item is already in the array, change stacksize
-					if(inItem.getItem().equals(currentSlot.getItem())) {
-						inItem.stackSize += currentSlot.stackSize;
-						isExistant = true;
-						break loopItems;
-						
-					}
-				}
-				if(isExistant == false){
-					items.add(currentSlot);
-				}
-				}else
-					//if array is empty
-					items.add(currentSlot);
-			}
-		}
-		//set inventory to copy of items
-		int currInventory = 0;
-		for(int i = 0; i<items.size(); i++) {
-			if(items.get(i).stackSize > maxSlot){
-				while(items.get(i).stackSize > maxSlot) {
-					items.get(i).stackSize -= maxSlot;
-					ItemStack newitemstack = items.get(i);
-					newitemstack.stackSize = maxSlot;
-					inventory.setInventorySlotContents(currInventory, newitemstack);
-					currInventory++;
-				}
-				//i=currInventory;
-			}else {
-				inventory.setInventorySlotContents(currInventory, items.get(i));
-				currInventory++;
-			}
-		}
-		//set rest of inventory to null
-		
-		for(int i = currInventory; i < maxInventory; i++) {
-			inventory.setInventorySlotContents(i, null);
-		}
-	}
-	
-	public void sortAlt(IInventory inventory) {
 		/*amount of slots in the inventory*/
 		int maxInventory = inventory.getSizeInventory();
 		
@@ -240,6 +174,10 @@ public class Sortivator extends Block {
 					inventory.setInventorySlotContents(currInventory, newitemstack);
 					currInventory++;
 				}
+				/*when the overflow is done, place the rest of the items*/
+				items.get(i).getItemStack().stackSize = items.get(i).getQuantity();
+				inventory.setInventorySlotContents(currInventory, items.get(i).getItemStack());
+				currInventory++;
 				//i=currInventory;
 			}else {
 				ItemStack setItem = items.get(i).getItemStack();
