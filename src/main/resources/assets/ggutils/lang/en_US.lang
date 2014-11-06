@@ -8,3 +8,8 @@ tile.sortivator.name=Sortivator
 ITEMS
 **********************************
 item.blockFinder.name=Block Finder
+
+**********************************
+MOBS
+**********************************
+entity.creeper_mite.name=Creeper Mite
