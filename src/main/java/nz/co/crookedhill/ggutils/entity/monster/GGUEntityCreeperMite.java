@@ -1,5 +1,6 @@
 package nz.co.crookedhill.ggutils.entity.monster;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.world.World;
@@ -20,4 +21,19 @@ public class GGUEntityCreeperMite extends EntitySilverfish
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.6000000238418579D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
     }
+    
+    /**
+     * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
+     */
+    protected void attackEntity(Entity entity, float f)
+    {
+    	World world = entity.worldObj;
+    	
+        if (this.attackTime <= 0 && f < 1.2F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)
+        {
+			world.createExplosion((Entity)null, entity.posX, entity.posY, entity.posZ, 0.5F, false);
+			this.setDead();
+        }
+    }
+    
 }
