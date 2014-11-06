@@ -64,7 +64,7 @@ public class GGUtils
 		MinecraftForge.EVENT_BUS.register(new GGUEventHandler());
 		EntityRegistry.registerModEntity(GGUEntityCreeperMite.class, "creeper_mite", 0, this, 64, 1, true);
 		EntityRegistry.addSpawn(GGUEntityCreeperMite.class, 200, 1, 8, EnumCreatureType.monster);
-		EntityList.addMapping(GGUEntityCreeperMite.class, "creeper_mite", 0);
+		EntityList.addMapping(GGUEntityCreeperMite.class, "creeper_mite", 0, 113213, 3523523);
 		
     }
     
