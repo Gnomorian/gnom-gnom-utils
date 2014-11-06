@@ -1,14 +1,7 @@
 package nz.co.crookedhill.ggutils.block;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import ibxm.Player;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,14 +9,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.item.GGUItemStack;
-import nz.co.crookedhill.ggutils.network.GGUSortPacket;
 
 public class Sortivator extends Block {
 

@@ -1,7 +1,5 @@
 package nz.co.crookedhill.ggutils;
 
-import com.sun.prism.paint.Color;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
