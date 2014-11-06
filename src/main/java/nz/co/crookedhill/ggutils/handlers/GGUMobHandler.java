@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -41,8 +40,8 @@ public class GGUMobHandler {
 				for(int i=0;i<rand.nextInt(20);i++)
 				{
 					//TODO: change to entity creeperrmite
-					Entity creeperMite = new EntitySilverfish(world);
-					creeperMite.setVelocity(1.0D*rand.nextDouble(), 0.2D*rand.nextDouble(), 0.2D*rand.nextDouble());
+					Entity creeperMite = new EntityCreeper(world);
+					creeperMite.setVelocity(0.2D*rand.nextDouble(), -0.2D*rand.nextDouble(), 0.2D*rand.nextDouble());
 					creeperMite.setLocationAndAngles(x, y, z, 0.0F, 0.0F);
 					world.spawnEntityInWorld(creeperMite);
 				}
