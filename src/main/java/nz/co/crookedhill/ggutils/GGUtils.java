@@ -7,6 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
+import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEventHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;

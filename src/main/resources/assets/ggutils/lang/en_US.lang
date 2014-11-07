@@ -3,6 +3,7 @@ BLOCKS
 **********************************
 tile.GrowthBlock.name=Damara's Remedy
 tile.sortivator.name=Sortivator
+tile.eggTimer.name= Egg Timer
 
 **********************************
 ITEMS
