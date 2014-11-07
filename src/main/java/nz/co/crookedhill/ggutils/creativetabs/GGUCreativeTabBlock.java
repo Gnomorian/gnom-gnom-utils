@@ -22,5 +22,4 @@ public class GGUCreativeTabBlock extends CreativeTabs{
 	public Item getTabIconItem() {
 		return Item.getItemFromBlock(GGUBlocks.sortivator);
 	}
-
 }

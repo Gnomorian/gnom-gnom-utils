@@ -16,11 +16,10 @@ public class GGUBlocks {
 	
 	public static void init() {
 		
-		//register Blocks
-		
+		//register Blocks	
 		growthBlock = new GrowthBlock(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		sortivator = new Sortivator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
-		eggTimer = new Sortivator(Material.anvil).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		eggTimer = new GGUBlockEggTimer(Material.anvil).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		
 		GameRegistry.registerBlock(growthBlock, "GrowthBlock");
 		GameRegistry.registerBlock(sortivator, "sortivator");

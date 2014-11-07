@@ -74,6 +74,7 @@ public class GGUtils
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(new GGUEventHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
 		
 		EntityRegistry.registerModEntity(GGUEntityCreeperMite.class, "creeper_mite", 0, this, 64, 1, true);
 		EntityRegistry.addSpawn(GGUEntityCreeperMite.class, 200, 1, 8, EnumCreatureType.monster);
