@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.block.Sortivator;
+import nz.co.crookedhill.ggutils.util.GGUSort;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -27,7 +28,7 @@ public class GGUSortPacketHandler implements IMessageHandler<GGUSortPacket, IMes
 			Block sortivator = world.getBlock(x, y, z);
 			if(sortivator instanceof Sortivator) {
 				IInventory inventory = ((Sortivator)sortivator).getInventory(world, x, y+1, z);
-				((Sortivator)sortivator).sort(inventory);
+				GGUSort.sort(inventory);
 			}
 			else System.out.println("That didnt work");
 		}
