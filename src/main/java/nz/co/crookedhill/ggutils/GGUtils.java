@@ -29,7 +29,7 @@ import cpw.mods.fml.relauncher.Side;
 public class GGUtils
 {
     public static final String MODID = "ggutils";
-    public static final String VERSION = "1.7.10_0.1.0";
+    public static final String VERSION = "0.0.3.0";
     
     //Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
