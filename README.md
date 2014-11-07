@@ -45,17 +45,18 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - more efficent sorting algorithm, less linear.
     - can be disabled in config.
  
-## Egg Timer: explodes to notify the user that a set period of time has elapsed or a specific time of day has come
+## Egg Timer: explodes to notify the user that a set period of time has elapsed or a specific time of day has come.
   - GUI pops up with
     - Time of day
     - or
     - Timer
   - Explodes when either the time of day has come or time set has elapsed.
+    - 2 crafting recipies, one for explosion, one for non-explosion (metadata to tell it which)
  
 
 # ITEMS
 ## Block-Finder: Used to find blocks around the player.
-  - Uses Experience from the player as Power
+  - Uses Experience from the player as a Power source.
   - GUI pops up:
     -Block Id/Name/Value
       - include wildcards?
@@ -71,7 +72,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - ~~breaking grass/leaf blocks spawns the creepermite rather than stone.~~
   - ~~hurting the creepermite causes more to spawn from grass or leaf blocks like mining does.~~
   - ~~mite makes the hurt creeper hissing noise.~~
-  - can be disabled in config.
+  - ~~can be disabled in config.~~
     
 
 
