@@ -45,7 +45,12 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - more efficent sorting algorithm, less linear.
     - can be disabled in config.
  
- 
+## Egg Timer: explodes to notify the user that a set period of time has elapsed or a specific time of day has come
+  - GUI pops up with
+    - Time of day
+    - or
+    - Timer
+  - Explodes when either the time of day has come or time set has elapsed.
  
 
 # ITEMS
@@ -61,8 +66,8 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 # MOBS
 ## CreeperMite
-  - silverfish creeper with imense speed that exploeds when close without delay.
-  - explosion is smaller than normal creeper.
+  - ~~silverfish creeper with imense speed that exploeds when close without delay.~~
+  - ~~explosion is smaller than normal creeper.~~
   - breaking grass/leaf blocks spawns the creepermite rather than stone.
   - hurting the creepermite causes more to spawn from grass or leaf blocks like mining does.
   - mite makes the hurt creeper hissing noise.
