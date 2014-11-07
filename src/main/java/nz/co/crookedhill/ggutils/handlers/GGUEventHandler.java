@@ -1,7 +1,7 @@
 package nz.co.crookedhill.ggutils.handlers;
 
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import nz.co.crookedhill.ggutils.GGUConfigManager;
+import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GGUEventHandler {
