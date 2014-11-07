@@ -40,9 +40,9 @@ public class GGUtils
      * third 0=
      * 	the number of features added (blocks, items etc.)
      * forth 0=
-     * 	the number of bug fixes added since last feature added.
+     * 	the number of bug fixes/sub features added since last feature added.
      */
-    public static final String VERSION = "0.0.3.0";
+    public static final String VERSION = "0.0.3.5";
     
     //Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
