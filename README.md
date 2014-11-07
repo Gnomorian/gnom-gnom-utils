@@ -68,9 +68,9 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 ## CreeperMite
   - ~~silverfish creeper with imense speed that exploeds when close without delay.~~
   - ~~explosion is smaller than normal creeper.~~
-  - breaking grass/leaf blocks spawns the creepermite rather than stone.
+  - ~~breaking grass/leaf blocks spawns the creepermite rather than stone.~~
   - hurting the creepermite causes more to spawn from grass or leaf blocks like mining does.
-  - mite makes the hurt creeper hissing noise.
+  - ~~mite makes the hurt creeper hissing noise.~~
   - can be disabled in config.
     
 
