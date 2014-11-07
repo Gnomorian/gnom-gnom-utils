@@ -15,7 +15,7 @@ public class GGUCreativeTabBlock extends CreativeTabs{
     @SideOnly(Side.CLIENT)
     public String getTranslatedTabLabel()
     {
-        return "GnomGnom-Utils Blocks";
+        return "GnomGnom's Utils Blocks";
     }
     
 	@Override
