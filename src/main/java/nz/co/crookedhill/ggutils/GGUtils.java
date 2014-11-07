@@ -7,6 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
+import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEventHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
@@ -30,35 +31,35 @@ import cpw.mods.fml.relauncher.Side;
 @Mod(modid = GGUtils.MODID, version = GGUtils.VERSION)
 public class GGUtils
 {
-    public static final String MODID = "ggutils";
-    /**
-     * 0.0.0.0
-     * first 0=
-     * 	the number of Minecraft versions supported since making the mod.
-     * second 0=
-     * 	the number of milestones reached.
-     * third 0=
-     * 	the number of features added (blocks, items etc.)
-     * forth 0=
-     * 	the number of bug fixes/sub features added since last feature added.
-     */
-    public static final String VERSION = "0.0.3.5";
-    
-    //Setting proxy for client and server side
+	public static final String MODID = "ggutils";
+	/**
+	 * 0.0.0.0
+	 * first 0=
+	 * 	the number of Minecraft versions supported since making the mod.
+	 * second 0=
+	 * 	the number of milestones reached.
+	 * third 0=
+	 * 	the number of features added (blocks, items etc.)
+	 * forth 0=
+	 * 	the number of bug fixes/sub features added since last feature added.
+	 */
+	public static final String VERSION = "0.0.3.6";
+
+	//Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
 	public static CommonProxy proxy;
-	
+
 	//Mod instance
 	@Instance(MODID)
 	public static GGUtils instance;
-	
+
 	public static SimpleNetworkWrapper network;
-	
+
 	public static GGUConfigManager configs;
-	
+
 	//Set Creative Tabs
 	public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(CreativeTabs.getNextID(), MODID);
-	
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
@@ -66,25 +67,22 @@ public class GGUtils
 		GGUConfigManager.init(event);
 		GGUBlocks.init();
 		GGUItems.init();
+		GGUEntityMob.init();
 	}
-	
-    @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+
+	@EventHandler
+	public void init(FMLInitializationEvent event)
+	{
 		proxy.registerRenderers();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(new GGUEventHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
-		
-		EntityRegistry.registerModEntity(GGUEntityCreeperMite.class, "creeper_mite", 0, this, 64, 1, true);
-		EntityRegistry.addSpawn(GGUEntityCreeperMite.class, 200, 1, 8, EnumCreatureType.monster);
-		EntityList.addMapping(GGUEntityCreeperMite.class, "creeper_mite", 0, 113213, 3523523);
-		
-    }
-    
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-    	//compatability with other mod initialization here
-    }
+
+	}
+
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		//compatability with other mod initialization here
+	}
 }
