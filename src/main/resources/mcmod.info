@@ -5,7 +5,7 @@
   "description": "Mod that adds a bunch of useful stuff (pronounced /Gnom/, /nom/)",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "www.crookedhill.co.nz",
+  "url": "http://www.crookedhill.co.nz/",
   "updateUrl": "",
   "authorList": ["Gnomorian"],
   "credits": "MCForge Team, UnrelentlessAce",
