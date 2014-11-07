@@ -35,4 +35,30 @@ public class GGUEntityCreeperMite extends EntitySilverfish
         }
     }
     
+    /**
+     * Returns the sound this mob makes while it's alive.
+     */
+    @Override
+    protected String getLivingSound()
+    {
+        return "mob.creeper.say";
+    }
+
+    /**
+     * Returns the sound this mob makes when it is hurt.
+     */
+    @Override
+    protected String getHurtSound()
+    {
+        return "mob.creeper.hit";
+    }
+
+    /**
+     * Returns the sound this mob makes on death.
+     */
+    @Override
+    protected String getDeathSound()
+    {
+        return "mob.creeper.kill";
+    }
 }
