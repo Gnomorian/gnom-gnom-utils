@@ -30,9 +30,35 @@ public class GGUEntityCreeperMite extends EntitySilverfish
     	
         if (this.attackTime <= 0 && f < 1.2F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)
         {
-			world.createExplosion((Entity)null, entity.posX, entity.posY, entity.posZ, 0.1F, false);
+			world.createExplosion((Entity)this, entity.posX, entity.posY, entity.posZ, 0.1F, false);
 			this.setDead();
         }
     }
     
+    /**
+     * Returns the sound this mob makes while it's alive.
+     */
+    @Override
+    protected String getLivingSound()
+    {
+        return "mob.creeper.say";
+    }
+
+    /**
+     * Returns the sound this mob makes when it is hurt.
+     */
+    @Override
+    protected String getHurtSound()
+    {
+        return "mob.creeper.hit";
+    }
+
+    /**
+     * Returns the sound this mob makes on death.
+     */
+    @Override
+    protected String getDeathSound()
+    {
+        return "mob.creeper.kill";
+    }
 }

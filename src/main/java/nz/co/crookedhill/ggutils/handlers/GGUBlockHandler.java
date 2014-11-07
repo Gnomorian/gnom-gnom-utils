@@ -34,10 +34,11 @@ public class GGUBlockHandler {
 			{
 				int creeperChance = GGUConfigManager.creeperMiteChance;
 				
-				if(rand.nextInt(100) <= creeperChance)
+				//checks to see if config is not set to 0 then does random 10% check.
+				if(creeperChance > 0 && rand.nextInt(100) <= creeperChance)
 				{
 					Entity creeperMite = new GGUEntityCreeperMite(world);
-					creeperMite.setLocationAndAngles(x, y, z, 0.0F, 0.0F);
+					creeperMite.setLocationAndAngles(x, y+1, z, 0.0F, 0.0F);
 					world.spawnEntityInWorld(creeperMite);	
 				}
 			}
