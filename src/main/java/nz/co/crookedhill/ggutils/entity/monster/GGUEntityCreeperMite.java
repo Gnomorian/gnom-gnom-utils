@@ -7,6 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 
 public class GGUEntityCreeperMite extends EntitySilverfish
@@ -56,7 +58,7 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 	@Override
 	protected String getHurtSound()
 	{
-		return "mob.creeper.hit";
+		return "mob.creeper.say";
 	}
 
 	/**
@@ -67,6 +69,29 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 	{
 		return "mob.creeper.kill";
 	}
+	
+	/**
+     * Called when the entity is attacked.
+     */
+	@Override
+    public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+    {
+        if (this.isEntityInvulnerable())
+        {
+            return false;
+        }
+        else
+        {
+            if (this.allySummonCooldown <= 0 && (p_70097_1_ instanceof EntityDamageSource || p_70097_1_ == DamageSource.magic))
+            {
+                findFriend();
+                this.allySummonCooldown += 20;
+            }
+
+            return super.attackEntityFrom(p_70097_1_, p_70097_2_);
+        }
+    }
+	
 	@Override
 	protected void updateEntityActionState()
 	{
@@ -74,34 +99,14 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 
 		if (!this.worldObj.isRemote)
 		{
-			int i;
-			int j;
-			int k;
-			int i1;
-			this.allySummonCooldown = 1;
 				if (this.allySummonCooldown > 0)
 				{
 					--this.allySummonCooldown;
-					if (this.allySummonCooldown == 0 && this.entityToAttack != null)
+					if (this.allySummonCooldown <= 0 && this.entityToAttack != null)
 					{
-						findBlock:for(int y = -2; y <= 2; y++) {
-							for (int x = -4; x <= 4; x++) {
-								for(int z = -4; x <= 4; x++) {
-									Block block = this.worldObj.getBlock(((int)this.posX)+x, ((int)this.posY)+y, ((int)this.posZ)+z);
-									if(isBlockBurrowable(block)) {
-										System.out.println("Block is a leaf");
-										this.worldObj.setBlock(((int)this.posX)+x, ((int)this.posY)+y, ((int)this.posZ)+z, Blocks.air);
-										Entity creeperMite = new GGUEntityCreeperMite(this.worldObj);
-										creeperMite.setLocationAndAngles(((float)this.posX)+x, ((float)this.posY)+y, ((float)this.posZ)+z, 0.0F, 0.0F);
-										this.worldObj.spawnEntityInWorld(creeperMite);
-										this.allySummonCooldown = 20;
-										break findBlock;
-									}
-								}
-							}
-						}
-						
+						findFriend();
 					}
+					this.allySummonCooldown = 20;
 				}
 
 			else if (this.entityToAttack != null && !this.hasPath())
@@ -120,5 +125,27 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 	{
 		return block instanceof BlockTallGrass || block instanceof BlockDoublePlant;
 	}
+	
+	/**
+	 * loops through blocks near by, if it finds a compatable block defined by isBlock Burrowable
+	 * it will replace it will a creeperMite.
+	 */
+    protected void findFriend() {
+    	findBlock:for(int y = -2; y <= 2; y++) {
+			for (int x = -4; x <= 4; x++) {
+				for(int z = -4; z <= 4; z++) {
+					Block block = this.worldObj.getBlock(((int)this.posX)+x, ((int)this.posY)+y, ((int)this.posZ)+z);
+					if(isBlockBurrowable(block)) {
+						System.out.println("Found Friend!");
+						this.worldObj.setBlock(((int)this.posX)+x, ((int)this.posY)+y, ((int)this.posZ)+z, Blocks.air);
+						Entity creeperMite = new GGUEntityCreeperMite(this.worldObj);
+						creeperMite.setLocationAndAngles(((float)this.posX)+x, ((float)this.posY)+y, ((float)this.posZ)+z, 0.0F, 0.0F);
+						this.worldObj.spawnEntityInWorld(creeperMite);
+						break findBlock;
+					}
+				}
+			}
+		}
+    }
 
 }
