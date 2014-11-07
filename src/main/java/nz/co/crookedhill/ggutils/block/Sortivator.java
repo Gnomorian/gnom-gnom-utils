@@ -1,12 +1,5 @@
 package nz.co.crookedhill.ggutils.block;
 
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-
-<<<<<<< HEAD
-=======
-import java.util.ArrayList;
-
->>>>>>> origin/master
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,6 +9,7 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.util.GGUSort;
 
@@ -74,23 +68,23 @@ public class Sortivator extends Block {
 		{
 			return null;
 		}
-		else if (world.isSideSolid(x, y + 1, z, DOWN))
+		else if (world.isSideSolid(x, y + 1, z, ForgeDirection.DOWN))
 		{
 			return null;
 		}
-		else if (world.getBlock(x - 1, y, z) == this && (world.isSideSolid(x - 1, y + 1, z, DOWN)))
+		else if (world.getBlock(x - 1, y, z) == this && (world.isSideSolid(x - 1, y + 1, z, ForgeDirection.DOWN)))
 		{
 			return null;
 		}
-		else if (world.getBlock(x + 1, y, z) == this && (world.isSideSolid(x + 1, y + 1, z, DOWN)))
+		else if (world.getBlock(x + 1, y, z) == this && (world.isSideSolid(x + 1, y + 1, z, ForgeDirection.DOWN)))
 		{
 			return null;
 		}
-		else if (world.getBlock(x, y, z - 1) == this && (world.isSideSolid(x, y + 1, z - 1, DOWN)))
+		else if (world.getBlock(x, y, z - 1) == this && (world.isSideSolid(x, y + 1, z - 1, ForgeDirection.DOWN)))
 		{
 			return null;
 		}
-		else if (world.getBlock(x, y, z + 1) == this && (world.isSideSolid(x, y + 1, z + 1, DOWN)))
+		else if (world.getBlock(x, y, z + 1) == this && (world.isSideSolid(x, y + 1, z + 1, ForgeDirection.DOWN)))
 		{
 			return null;
 		}
