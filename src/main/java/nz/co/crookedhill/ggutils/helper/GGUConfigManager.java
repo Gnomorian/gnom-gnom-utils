@@ -1,4 +1,4 @@
-package nz.co.crookedhill.ggutils;
+package nz.co.crookedhill.ggutils.helper;
 
 import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;

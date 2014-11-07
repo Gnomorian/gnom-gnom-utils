@@ -2,10 +2,14 @@ package nz.co.crookedhill.ggutils.block;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+
+>>>>>>> origin/master
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
@@ -22,7 +26,6 @@ public class Sortivator extends Block {
 	protected Sortivator(Material material) {
 		super(material);
 		this.setBlockName("sortivator");
-		this.setCreativeTab(CreativeTabs.tabRedstone);
 		this.setHardness(0.5f);
 		this.setStepSound(Block.soundTypeWood);
 	}

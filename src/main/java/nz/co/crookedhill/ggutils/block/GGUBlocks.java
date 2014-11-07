@@ -12,6 +12,7 @@ public class GGUBlocks {
 	
 	public static Block growthBlock;
 	public static Block sortivator;
+	public static Block eggTimer;
 	
 	public static void init() {
 		
@@ -19,9 +20,11 @@ public class GGUBlocks {
 		
 		growthBlock = new GrowthBlock(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		sortivator = new Sortivator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		eggTimer = new Sortivator(Material.anvil).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		
 		GameRegistry.registerBlock(growthBlock, "GrowthBlock");
 		GameRegistry.registerBlock(sortivator, "sortivator");
+		GameRegistry.registerBlock(eggTimer, "eggTimer");
 		
 		//register Block Recipes
 

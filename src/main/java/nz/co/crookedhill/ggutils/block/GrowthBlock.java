@@ -8,7 +8,6 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -19,8 +18,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
-import nz.co.crookedhill.ggutils.GGUConfigManager;
 import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -35,7 +34,6 @@ public class GrowthBlock extends Block {
 		this.setBlockName("GrowthBlock");
 		this.setHardness(0.5f);
 		this.setLightLevel(0.5f);
-		this.setCreativeTab(CreativeTabs.tabMisc);
 		this.setTickRandomly(true);
 	}
 
