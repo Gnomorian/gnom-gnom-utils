@@ -1,46 +1,52 @@
 package nz.co.crookedhill.ggutils.util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import nz.co.crookedhill.ggutils.item.GGUItemStack;
 
 public class GGUSort {
-	
+
 	public static void sort(IInventory inventory) {
 		/*amount of slots in the inventory*/
 		int maxInventory = inventory.getSizeInventory();
-		
 		/*max stack size in one slot in the inventory*/
 		int maxSlot = inventory.getInventoryStackLimit();
-		
 		/*the list of found unique itemstacks in the inventory*/
-		ArrayList<GGUItemStack> items = new ArrayList<GGUItemStack>();
-		
-		
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+
+
 		/*get a copy of all the unique itemstacks within the inventory and quantity of items*/
 		for(int i = 0; i < maxInventory; i++) {
 			ItemStack currentSlot = inventory.getStackInSlot(i);
 			if(currentSlot != null) {
 				if(items.size()>0){
-					boolean isExistant = false;
-				loopItems:for(GGUItemStack inItem : items) {
-					//if item is already in the array, change stacksize
-					if(inItem.compareTo(currentSlot)) {
-						inItem.setQuantity(inItem.getQuantity()+currentSlot.stackSize);
-						isExistant = true;
-						break loopItems;
-						
+					if(currentSlot.isStackable()){
+						boolean isExistant = false;
+						loopItems:for(ItemStack inItem : items) {
+							//if item is already in the array, change stacksize
+							if(inItem.isItemEqual(currentSlot)) {
+								inItem.stackSize += currentSlot.stackSize;
+								isExistant = true;
+								break loopItems;
+
+							}
+						}
+						/*if the item doesnt exist, add it*/
+						if(isExistant == false){
+							ItemStack itemstack = currentSlot;
+							items.add(itemstack);
+						}
+					}else{
+						ItemStack newitemstack = currentSlot;
+						items.add(newitemstack);
 					}
-				}
-					/*if the item doesnt exist, add it*/
-				if(isExistant == false){
-					items.add(new GGUItemStack(currentSlot));
-				}
-				}else
+				}else{
 					/*if the item array is empty, add the itemstack to the array*/
-					items.add(new GGUItemStack(currentSlot));
+					ItemStack newitemstack = currentSlot;
+					items.add(newitemstack);
+				}
 			}
 		}
 		/*currInventory is the current inventory slot we are looking at.
@@ -48,52 +54,141 @@ public class GGUSort {
 		int currInventory = 0;
 		/*add the items array to the inventory in order so it is sorted*/
 		for(int i = 0; i<items.size(); i++) {
-			
+
 			/*if the itemstack stacksize is bigger than the stacksizes limit,
 			 * overflow the exess items to the next slot while its bigger*/
-			if(items.get(i).getQuantity() > items.get(i).getItemStack().getMaxStackSize()){
-				while(items.get(i).getQuantity() > items.get(i).getItemStack().getMaxStackSize()) {
-					items.get(i).setQuantity(items.get(i).getQuantity()-items.get(i).getItemStack().getMaxStackSize( ));
-					ItemStack newitemstack = items.get(i).getItemStack();
-					newitemstack.stackSize = items.get(i).getItemStack().getMaxStackSize();
-					inventory.setInventorySlotContents(currInventory, newitemstack);
-					currInventory++;
+			if(items.get(i).getMaxStackSize() > maxSlot) {
+				List<ItemStack> newStack = splitItemStackByInvStack(items.get(i), maxSlot);
+				for(ItemStack stack : newStack) {
+					inventory.setInventorySlotContents(currInventory, stack);
+					currInventory++; 
 				}
-				/*when the overflow is done, place the rest of the items*/
-				items.get(i).getItemStack().stackSize = items.get(i).getQuantity();
-				inventory.setInventorySlotContents(currInventory, items.get(i).getItemStack());
-				currInventory++;
-			}
-			
-			
-			/*if the itemstack is bigger than the slot limit in the inventory,
-			 * overflow the excess items to the next slot while its bigger*/
-			if(items.get(i).getQuantity() > maxSlot){
-				while(items.get(i).getQuantity() > maxSlot) {
-					items.get(i).setQuantity(items.get(i).getQuantity()-maxSlot);
-					ItemStack newitemstack = items.get(i).getItemStack();
-					newitemstack.stackSize = maxSlot;
-					inventory.setInventorySlotContents(currInventory, newitemstack);
-					currInventory++;
-				}
-				/*when the overflow is done, place the rest of the items*/
-				items.get(i).getItemStack().stackSize = items.get(i).getQuantity();
-				inventory.setInventorySlotContents(currInventory, items.get(i).getItemStack());
-				currInventory++;
-
 			}else {
-				ItemStack setItem = items.get(i).getItemStack();
-				setItem.stackSize = items.get(i).getQuantity();
-				inventory.setInventorySlotContents(currInventory, setItem);
-				currInventory++;
+				List<ItemStack> newStack = splitItemStackByMaxStack(items.get(i));
+				newStack = splitItemStackByInvStack(newStack, maxSlot);
+				for(ItemStack stack : newStack) {
+					inventory.setInventorySlotContents(currInventory, stack);
+					currInventory++;
+				}
+			}
+			for(int j = currInventory; j < maxInventory; j++) {
+				inventory.setInventorySlotContents(j, null);
 			}
 		}
-		/*when all items from the list have been added, set the 
-		 * remaining inventory slots to null to delete duplicates*/
-		
-		for(int i = currInventory; i < maxInventory; i++) {
-			inventory.setInventorySlotContents(i, null);
+	}
+	/**
+	 * gets an itemstack and splits it into multiple stacks that
+	 * fit its itemStack limit.
+	 * @param itemstack
+	 * @return list of split itemstacks
+	 */
+	private static List<ItemStack> splitItemStackByMaxStack(ItemStack itemstack) {
+		List<ItemStack> splitStacks = new ArrayList<ItemStack>();
+		if(itemstack.getMaxStackSize() < itemstack.stackSize) {
+			float exess = itemstack.stackSize%itemstack.getMaxStackSize();
+			float fullstacks = itemstack.stackSize/itemstack.getMaxStackSize();
+			for(int i = 0; i < fullstacks; i++) {
+				ItemStack copyItemstack = itemstack;
+				copyItemstack.stackSize = itemstack.getMaxStackSize();
+				splitStacks.add(copyItemstack);
+			}
+			if(exess != 0){
+				ItemStack exessItemStack = itemstack; 
+				exessItemStack.stackSize = (int) exess;
+				splitStacks.add(exessItemStack);
+			}
 		}
+		else
+			splitStacks.add(itemstack);
+		return splitStacks;
+
+	}
+	/**
+	 * gets a list of itemstacks and splits them into multiple stacks that
+	 * fit their itemStack limit.
+	 * @param itemstack
+	 * @return list of split itemstacks
+	 */
+	private static List<ItemStack> splitItemStackByMaxStack(List<ItemStack> itemstacks) {
+		List<ItemStack> splitStacks = new ArrayList<ItemStack>();
+		for(ItemStack itemstack : itemstacks){
+			if(itemstack.getMaxStackSize() < itemstack.stackSize) {
+				float exess = itemstack.stackSize%itemstack.getMaxStackSize();
+				float fullstacks = itemstack.stackSize/itemstack.getMaxStackSize();
+				for(int i = 0; i < fullstacks; i++) {
+					ItemStack copyItemstack = itemstack;
+					copyItemstack.stackSize = itemstack.getMaxStackSize();
+					splitStacks.add(copyItemstack);
+				}
+				if(exess != 0){
+					ItemStack exessItemStack = itemstack; 
+					exessItemStack.stackSize = (int) exess;
+					splitStacks.add(exessItemStack);
+				}
+			}
+			else
+				splitStacks.add(itemstack);
+		}
+		return splitStacks;
+
+	}
+	/**
+	 * gets an itemstack and splits it into multiple stacks that fit the 
+	 * inventories slot limit
+	 * @param itemstack
+	 * @param maxSlot
+	 * @return list of split itemstacks
+	 */
+	private static List<ItemStack> splitItemStackByInvStack(ItemStack itemstack, int maxSlot) {
+		List<ItemStack> splitStacks = new ArrayList<ItemStack>();
+		if(maxSlot < itemstack.stackSize) {
+			float exess = itemstack.stackSize%maxSlot;
+			float fullstacks = itemstack.stackSize/maxSlot;
+			for(int i = 0; i < fullstacks; i++) {
+				ItemStack copyItemstack = itemstack;
+				copyItemstack.stackSize = maxSlot;
+				splitStacks.add(copyItemstack);
+			}
+			if(exess != 0){
+				ItemStack exessItemStack = itemstack; 
+				exessItemStack.stackSize = (int) exess;
+				splitStacks.add(exessItemStack);
+			}
+		}
+		else
+			splitStacks.add(itemstack);
+		return splitStacks;
+
+	}
+	/**
+	 * gets a list of  itemstacks and splits them into multiple stacks that fit the 
+	 * inventories slot limit
+	 * @param itemstacks
+	 * @param maxSlot
+	 * @return list of split item stacks
+	 */
+	private static List<ItemStack> splitItemStackByInvStack(List<ItemStack> itemstacks, int maxSlot) {
+		List<ItemStack> splitStacks = new ArrayList<ItemStack>();
+		for(ItemStack itemstack : itemstacks) {
+			if(maxSlot < itemstack.stackSize) {
+				float exess = itemstack.stackSize%maxSlot;
+				float fullstacks = itemstack.stackSize/maxSlot;
+				for(int i = 0; i < fullstacks; i++) {
+					ItemStack copyItemstack = itemstack;
+					copyItemstack.stackSize = maxSlot;
+					splitStacks.add(copyItemstack);
+				}
+				if(exess != 0){
+					ItemStack exessItemStack = itemstack; 
+					exessItemStack.stackSize = (int) exess;
+					splitStacks.add(exessItemStack);
+				}
+			}
+			else
+				splitStacks.add(itemstack);
+		}
+		return splitStacks;
+
 	}
 
 }

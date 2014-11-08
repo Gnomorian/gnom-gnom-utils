@@ -28,6 +28,9 @@ public class GrowthBlock extends Block {
 	private IIcon[] icons = new IIcon[3];
 	private int stackHeight = GGUConfigManager.growthBlockStackHeight;
 	private int growthHeight = GGUConfigManager.growthCactusReedMaxHeight;
+	
+	/*0=manual,1=redstone,2=automatic*/
+	int mode = 0;
 
 	public GrowthBlock(Material material) {
 		super(material);
@@ -189,6 +192,15 @@ public class GrowthBlock extends Block {
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) {
 		updateMeta(world,x,y,z);
+		
+		boolean flag = world.isBlockIndirectlyGettingPowered( x, y, z);
+		if(flag) {
+			System.out.println(world.getBlockMetadata(x, y+1, z));
+			Block block = world.getBlock(x, y+1, z);
+			if(block instanceof IPlantable) {
+				//TODO: harvest plant when fully grown
+			}
+		}
 	}
 
 	@Override
