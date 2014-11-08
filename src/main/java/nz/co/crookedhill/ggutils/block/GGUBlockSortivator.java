@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
@@ -15,11 +16,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.util.GGUSort;
 
-public class Sortivator extends Block {
+public class GGUBlockSortivator extends Block {
 
 	private IIcon[] icons = new IIcon[2];
 
-	protected Sortivator(Material material) {
+	protected GGUBlockSortivator(Material material) {
 		super(material);
 		this.setBlockName("sortivator");
 		this.setHardness(0.5f);
@@ -126,22 +127,22 @@ public class Sortivator extends Block {
 		}
 		else
 		{
-			if (world.getBlock(x - 1, y, z) == this)
+			if (world.getBlock(x - 1, y, z) == Blocks.chest)
 			{
 				object = new InventoryLargeChest("container.chestDouble", (TileEntityChest)world.getTileEntity(x - 1, y, z), (IInventory)object);
 			}
 
-			if (world.getBlock(x + 1, y, z) == this)
+			if (world.getBlock(x + 1, y, z) == Blocks.chest)
 			{
 				object = new InventoryLargeChest("container.chestDouble", (IInventory)object, (TileEntityChest)world.getTileEntity(x + 1, y, z));
 			}
 
-			if (world.getBlock(x, y, z - 1) == this)
+			if (world.getBlock(x, y, z - 1) == Blocks.chest)
 			{
 				object = new InventoryLargeChest("container.chestDouble", (TileEntityChest)world.getTileEntity(x, y, z - 1), (IInventory)object);
 			}
 
-			if (world.getBlock(x, y, z + 1) == this)
+			if (world.getBlock(x, y, z + 1) == Blocks.chest)
 			{
 				object = new InventoryLargeChest("container.chestDouble", (IInventory)object, (TileEntityChest)world.getTileEntity(x, y, z + 1));
 			}
@@ -149,6 +150,7 @@ public class Sortivator extends Block {
 			return (IInventory)object;
 		}
 	}
+	
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {

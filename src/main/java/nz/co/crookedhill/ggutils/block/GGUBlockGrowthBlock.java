@@ -23,7 +23,7 @@ import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class GrowthBlock extends Block {
+public class GGUBlockGrowthBlock extends Block {
 
 	private IIcon[] icons = new IIcon[3];
 	private int stackHeight = GGUConfigManager.growthBlockStackHeight;
@@ -32,7 +32,7 @@ public class GrowthBlock extends Block {
 	/*0=manual,1=redstone,2=automatic*/
 	int mode = 0;
 
-	public GrowthBlock(Material material) {
+	public GGUBlockGrowthBlock(Material material) {
 		super(material);
 		this.setBlockName("GrowthBlock");
 		this.setHardness(0.5f);
@@ -220,7 +220,7 @@ public class GrowthBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	private void updateMeta(World world, int x, int y, int z) {
 		Block upperBlock = world.getBlock(x, y+1, z);
-		if(upperBlock instanceof GrowthBlock)
+		if(upperBlock instanceof GGUBlockGrowthBlock)
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 		else world.setBlockMetadataWithNotify(x, y, z, 0, 2);
 	}

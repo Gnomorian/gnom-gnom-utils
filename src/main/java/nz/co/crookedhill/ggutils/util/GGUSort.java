@@ -1,6 +1,8 @@
 package nz.co.crookedhill.ggutils.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import net.minecraft.inventory.IInventory;
@@ -49,6 +51,9 @@ public class GGUSort {
 				}
 			}
 		}
+		
+		sortByUnlocName(items);
+		
 		/*currInventory is the current inventory slot we are looking at.
 		 * i is the item in the items list that we are looking at.*/
 		int currInventory = 0;
@@ -191,4 +196,23 @@ public class GGUSort {
 
 	}
 
+	/**
+	 * Sort the itemstack array by unlocalized name
+	 * @param itemStack itemstack array to sort
+	 * @return sorted itemstack
+	 */
+	private static List<ItemStack> sortByUnlocName(ArrayList<ItemStack> itemStack)
+	{
+		//Sort by unloc name.
+		Collections.sort(itemStack, new Comparator<ItemStack>() {
+		        @Override
+		        public int compare(ItemStack  stack1, ItemStack  stack2)
+		        {
+
+		            return  stack1.getDisplayName().compareTo(stack2.getDisplayName());
+		        }
+		    });
+
+		return itemStack;
+	}
 }
