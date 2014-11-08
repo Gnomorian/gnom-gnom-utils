@@ -12,7 +12,6 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.util.GGUSort;
 
@@ -105,26 +104,6 @@ public class GGUBlockSortivator extends Block {
 		{
 			return null;
 		}
-		else if (world.isSideSolid(x, y + 1, z, ForgeDirection.DOWN))
-		{
-			return null;
-		}
-		else if (world.getBlock(x - 1, y, z) == this && (world.isSideSolid(x - 1, y + 1, z, ForgeDirection.DOWN)))
-		{
-			return null;
-		}
-		else if (world.getBlock(x + 1, y, z) == this && (world.isSideSolid(x + 1, y + 1, z, ForgeDirection.DOWN)))
-		{
-			return null;
-		}
-		else if (world.getBlock(x, y, z - 1) == this && (world.isSideSolid(x, y + 1, z - 1, ForgeDirection.DOWN)))
-		{
-			return null;
-		}
-		else if (world.getBlock(x, y, z + 1) == this && (world.isSideSolid(x, y + 1, z + 1, ForgeDirection.DOWN)))
-		{
-			return null;
-		}
 		else
 		{
 			if (world.getBlock(x - 1, y, z) == Blocks.chest)
@@ -170,9 +149,13 @@ public class GGUBlockSortivator extends Block {
 			case 3:
 				GGUSort.sort(getInventory(world, x, y, z+1));
 				break;
-			case 4:
+			/*case 4:
+				if(getInventory(world, x, y-1, z).){
+					
+				}
 				GGUSort.sort(getInventory(world, x, y-1, z));
 				break;
+				*/
 			case 5:
 				GGUSort.sort(getInventory(world, x, y+1, z));
 				break;
