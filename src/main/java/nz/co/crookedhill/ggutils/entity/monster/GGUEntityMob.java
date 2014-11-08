@@ -1,12 +1,11 @@
 package nz.co.crookedhill.ggutils.entity.monster;
 
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
+import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class GGUEntityMob {
 	

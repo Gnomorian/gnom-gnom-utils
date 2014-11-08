@@ -114,29 +114,29 @@ public class GGUSort {
 	 * @param itemstack
 	 * @return list of split itemstacks
 	 */
-	private static List<ItemStack> splitItemStackByMaxStack(List<ItemStack> itemstacks) {
-		List<ItemStack> splitStacks = new ArrayList<ItemStack>();
-		for(ItemStack itemstack : itemstacks){
-			if(itemstack.getMaxStackSize() < itemstack.stackSize) {
-				float exess = itemstack.stackSize%itemstack.getMaxStackSize();
-				float fullstacks = itemstack.stackSize/itemstack.getMaxStackSize();
-				for(int i = 0; i < fullstacks; i++) {
-					ItemStack copyItemstack = itemstack;
-					copyItemstack.stackSize = itemstack.getMaxStackSize();
-					splitStacks.add(copyItemstack);
-				}
-				if(exess != 0){
-					ItemStack exessItemStack = itemstack; 
-					exessItemStack.stackSize = (int) exess;
-					splitStacks.add(exessItemStack);
-				}
-			}
-			else
-				splitStacks.add(itemstack);
-		}
-		return splitStacks;
-
-	}
+//	private static List<ItemStack> splitItemStackByMaxStack(List<ItemStack> itemstacks) {
+//		List<ItemStack> splitStacks = new ArrayList<ItemStack>();
+//		for(ItemStack itemstack : itemstacks){
+//			if(itemstack.getMaxStackSize() < itemstack.stackSize) {
+//				float exess = itemstack.stackSize%itemstack.getMaxStackSize();
+//				float fullstacks = itemstack.stackSize/itemstack.getMaxStackSize();
+//				for(int i = 0; i < fullstacks; i++) {
+//					ItemStack copyItemstack = itemstack;
+//					copyItemstack.stackSize = itemstack.getMaxStackSize();
+//					splitStacks.add(copyItemstack);
+//				}
+//				if(exess != 0){
+//					ItemStack exessItemStack = itemstack; 
+//					exessItemStack.stackSize = (int) exess;
+//					splitStacks.add(exessItemStack);
+//				}
+//			}
+//			else
+//				splitStacks.add(itemstack);
+//		}
+//		return splitStacks;
+//
+//	}
 	/**
 	 * gets an itemstack and splits it into multiple stacks that fit the 
 	 * inventories slot limit
