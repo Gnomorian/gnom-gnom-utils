@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class GGUEntityCreeperMite extends EntitySilverfish
 {
-	private int allySummonCooldown;
+	private int allySummonCooldown = 20;
 
 	public GGUEntityCreeperMite(World world)
 	{
@@ -96,23 +96,28 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 	protected void updateEntityActionState()
 	{
 		super.updateEntityActionState();
-
+		
 		if (!this.worldObj.isRemote)
 		{
 				if (this.allySummonCooldown > 0)
 				{
 					--this.allySummonCooldown;
+					
 					if (this.allySummonCooldown <= 0 && this.entityToAttack != null)
 					{
 						findFriend();
+						this.allySummonCooldown = 20;
 					}
-					this.allySummonCooldown = 20;
 				}
 
 			else if (this.entityToAttack != null && !this.hasPath())
 			{
 				this.entityToAttack = null;
 			}
+            else
+            {
+                this.updateWanderPath();
+            }
 		}
 	}
 
