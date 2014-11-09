@@ -1,9 +1,15 @@
 package nz.co.crookedhill.ggutils.block;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import nz.co.crookedhill.ggutils.util.GGURecipeFilter;
 
 public class GGULazyCrafter extends Block{
 
@@ -25,6 +31,16 @@ public class GGULazyCrafter extends Block{
 		//get the players inventory.
 		//display the inventory and the items avalable 
 		//to craft with current items.
+		IInventory inventory = player.inventory;
+		List invItems = new ArrayList();
+		//36-39=armour
+		for(int i = 0; i < 35; i++) {
+			ItemStack items = inventory.getStackInSlot(i);
+			if(items == null)
+				continue;
+			invItems.add(items);
+		}
+		GGURecipeFilter.filter(invItems);
 		return true;
 		
 	}
