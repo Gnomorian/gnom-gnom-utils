@@ -61,6 +61,13 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - click crafts single item.
       - shift click to craft one stack.
       - button to toggle craft all you can with the raw materials in your inventory.
+    - Supported recipe types:
+      - ShapedRecipes
+      - ShapelessRecipes
+      - RecipesArmorDyes
+      - RecipeFireworks
+      - RecipeBookCloning
+      - RecipesMapCloning
 
 # ITEMS
 ## Block-Finder: Used to find blocks around the player.
