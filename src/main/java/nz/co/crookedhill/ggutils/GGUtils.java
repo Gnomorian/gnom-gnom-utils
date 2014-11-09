@@ -6,7 +6,7 @@ import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
-import nz.co.crookedhill.ggutils.handlers.GGUEventHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import nz.co.crookedhill.ggutils.item.GGUItems;
@@ -39,7 +39,7 @@ public class GGUtils
 	 * forth 0=
 	 * 	the number of bug fixes/sub features added since last feature added.
 	 */
-	public static final String VERSION = "0.0.3.6";
+	public static final String VERSION = "0.0.4.1";
 
 	//Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
@@ -61,8 +61,8 @@ public class GGUtils
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
 		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
 		GGUConfigManager.init(event);
-		GGUBlocks.init();
 		GGUItems.init();
+		GGUBlocks.init();
 		GGUEntityMob.init();
 	}
 
@@ -71,7 +71,7 @@ public class GGUtils
 	{
 		proxy.registerRenderers();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
-		MinecraftForge.EVENT_BUS.register(new GGUEventHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUToolTipHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
 
