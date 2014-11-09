@@ -53,6 +53,10 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - Explodes when either the time of day has come or time set has elapsed.
     - 2 crafting recipies, one for explosion, one for non-explosion (metadata to tell it which)
  
+## Lazy Man's Crafting Table - instead of a 3x3 crafting grid, it shows all items craftable with the items that the user has in their inv.
+  - Gui Pops up with a list of items.
+    - items depnd on materials in users inventory.
+    - option for single craft or max craft.
 
 # ITEMS
 ## Block-Finder: Used to find blocks around the player.
