@@ -2,8 +2,6 @@ package nz.co.crookedhill.ggutils.entity.monster;
 
 import java.util.List;
 
-import com.sun.prism.paint.Color;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockTallGrass;
@@ -16,12 +14,11 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 public class GGUEntityCreeperMite extends EntitySilverfish
 {
-	private int allySummonCooldown = 20;
+	private int allySummonCooldown = 200;
 	private double chatDistance = 10d;
 
 	public GGUEntityCreeperMite(World world)
@@ -115,7 +112,7 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 					if (this.allySummonCooldown <= 0 && this.entityToAttack != null)
 					{
 						findFriend();
-						this.allySummonCooldown = 20;
+						this.allySummonCooldown = 200;
 					}
 				}
 
