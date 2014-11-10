@@ -40,7 +40,11 @@ public class GGULazyCrafter extends Block{
 				continue;
 			invItems.add(items);
 		}
-		GGURecipeFilter.filter(invItems);
+		List recipes = GGURecipeFilter.filter(invItems);
+		for(int i = 0; i < recipes.size(); i++) {
+				System.out.println(recipes.get(i).toString());
+		}
+
 		return true;
 		
 	}

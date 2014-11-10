@@ -5,10 +5,6 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.RecipeBookCloning;
-import net.minecraft.item.crafting.RecipeFireworks;
-import net.minecraft.item.crafting.RecipesArmorDyes;
-import net.minecraft.item.crafting.RecipesMapCloning;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 
@@ -41,36 +37,54 @@ public class GGURecipeFilter {
 		List recipes = CraftingManager.getInstance().getRecipeList();
 		for(int i = 0; i < recipes.size(); i++) {
 			Object currentRecipe = recipes.get(i);
-			System.out.println("Shaped Recipes");
+
 			if(currentRecipe instanceof ShapedRecipes) {
+				int gotRequiredItems = 0;
 				ItemStack[] requiredItems = ((ShapedRecipes)recipes.get(i)).recipeItems;
 				ItemStack output = ((ShapedRecipes)recipes.get(i)).getRecipeOutput();
+				if(output == null)
+					continue;
+				for(int k = 0; k < requiredItems.length; k++) {
+					for(int l = 0; l<inventoryItems.size();l++) {
+						if(inventoryItems.get(l) != null) {
+							if(requiredItems[k].isItemEqual(inventoryItems.get(l))) {
+								if(inventoryItems.get(l).stackSize >= requiredItems[k].stackSize) {
+									gotRequiredItems++;
+								}
+							}
+						}
+					}
+				}
+				if(gotRequiredItems == requiredItems.length) {
+					avalableRecipes.add(recipes.get(i));
+				}
 			}
+
 			else if(currentRecipe instanceof ShapelessRecipes) {
-				List requiredItems = ((ShapelessRecipes)recipes.get(i)).recipeItems;
+				int gotRequiredItems = 0;
+				List<ItemStack> requiredItems = ((ShapelessRecipes)recipes.get(i)).recipeItems;
 				ItemStack output = ((ShapelessRecipes)recipes.get(i)).getRecipeOutput();
-			}
-			else if(currentRecipe instanceof RecipesArmorDyes) {
-				ItemStack requiredItems = ((RecipesArmorDyes)recipes.get(i)).getRecipeOutput();
-			}
-			else if(currentRecipe instanceof RecipeFireworks) {
-				//List requiredItems = ((RecipeFireworks)recipes.get(i)).;
-				//ItemStack output = ((RecipeFireworks)recipes.get(i)).getRecipeOutput();
-				System.out.println("Cant figure it out yet.");
-			}
-			else if(currentRecipe instanceof RecipeBookCloning) {
-				List requiredItems = ((ShapelessRecipes)recipes.get(i)).recipeItems;
-				ItemStack output = ((ShapelessRecipes)recipes.get(i)).getRecipeOutput();
-			}
-			else if(currentRecipe instanceof RecipesMapCloning) {
-				List requiredItems = ((ShapelessRecipes)recipes.get(i)).recipeItems;
-				ItemStack output = ((ShapelessRecipes)recipes.get(i)).getRecipeOutput();
+				if(output == null)
+					continue;
+
+				for(int k = 0; k < requiredItems.size(); k++) {
+					for(int l = 0; l<inventoryItems.size();l++) {
+						if(requiredItems.get(k).isItemEqual(inventoryItems.get(l))) {
+							if(inventoryItems.get(l).stackSize >= requiredItems.get(k).stackSize) {
+								gotRequiredItems++;
+							}
+						}
+					}
+				}
+				if(gotRequiredItems == requiredItems.size()) {
+					avalableRecipes.add(recipes.get(i));
+				}
 			}
 		}
-		return recipes;
+		return avalableRecipes;
 
 	}
-	
+
 	/**
 	 * finds all the items you can craft with what you have in your inventory.
 	 * @param recipetype reprisents the recipetype it extends from.
@@ -78,10 +92,26 @@ public class GGURecipeFilter {
 	 * @param recipes list of all game recipes.
 	 * @return list of avalable recipes using items in players inventory.
 	 */
-	private List compare(String recipetype, List items, List recipes) {
+	private List compare(String recipetype, List items, Object recipe) {
 		List avalableRecipes = new ArrayList();
-		
-		
+		if(recipetype.equals("ShapedRecipes")) {
+
+		}
+		if(recipetype.equals("ShapelessRecipes")) {
+
+		}
+		if(recipetype.equals("RecipesArmorDyes")) {
+
+		}
+		if(recipetype.equals("RecipeBookCloning")) {
+
+		}
+		if(recipetype.equals("RecipesMapCloning")) {
+
+		}
+
+
+
 		return avalableRecipes;
 	}
 }
