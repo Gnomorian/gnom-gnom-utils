@@ -73,9 +73,10 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - RecipesMapCloning
 
 ## Multi Block of Awesome Modular Ender Storage
-  - Single smart block that acts as core.
+  - Single smart block that acts as core. Bound to player. Only breakable by player.
   - Infinite amount of modular single "dumb" blocks with nbt data that store 1 item attach to the smart core.
   - Whole inventory can be accessed through some form of ender chest/pouch.
+  - Renders a random item inside the block for trolling purposes.
 
 ## Anti-Cobble Block - removes cobble from inventories
   - removes cobble from your inventory as you near it/run past it.
