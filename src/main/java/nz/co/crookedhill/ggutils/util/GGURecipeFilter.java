@@ -42,9 +42,12 @@ public class GGURecipeFilter {
 				int gotRequiredItems = 0;
 				ItemStack[] requiredItems = ((ShapedRecipes)recipes.get(i)).recipeItems;
 				ItemStack output = ((ShapedRecipes)recipes.get(i)).getRecipeOutput();
+
 				if(output == null)
 					continue;
 				for(int k = 0; k < requiredItems.length; k++) {
+					if(requiredItems[k] == null)
+						continue;
 					for(int l = 0; l<inventoryItems.size();l++) {
 						if(inventoryItems.get(l) != null) {
 							if(requiredItems[k].isItemEqual(inventoryItems.get(l))) {
@@ -68,6 +71,8 @@ public class GGURecipeFilter {
 					continue;
 
 				for(int k = 0; k < requiredItems.size(); k++) {
+					if(requiredItems.get(k) == null)
+						continue;
 					for(int l = 0; l<inventoryItems.size();l++) {
 						if(requiredItems.get(k).isItemEqual(inventoryItems.get(l))) {
 							if(inventoryItems.get(l).stackSize >= requiredItems.get(k).stackSize) {
@@ -83,35 +88,5 @@ public class GGURecipeFilter {
 		}
 		return avalableRecipes;
 
-	}
-
-	/**
-	 * finds all the items you can craft with what you have in your inventory.
-	 * @param recipetype reprisents the recipetype it extends from.
-	 * @param items items in players inventory.
-	 * @param recipes list of all game recipes.
-	 * @return list of avalable recipes using items in players inventory.
-	 */
-	private List compare(String recipetype, List items, Object recipe) {
-		List avalableRecipes = new ArrayList();
-		if(recipetype.equals("ShapedRecipes")) {
-
-		}
-		if(recipetype.equals("ShapelessRecipes")) {
-
-		}
-		if(recipetype.equals("RecipesArmorDyes")) {
-
-		}
-		if(recipetype.equals("RecipeBookCloning")) {
-
-		}
-		if(recipetype.equals("RecipesMapCloning")) {
-
-		}
-
-
-
-		return avalableRecipes;
 	}
 }
