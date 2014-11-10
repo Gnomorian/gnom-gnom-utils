@@ -1,19 +1,28 @@
 package nz.co.crookedhill.ggutils.entity.monster;
 
+import java.util.List;
+
+import com.sun.prism.paint.Color;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntitySilverfish;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 public class GGUEntityCreeperMite extends EntitySilverfish
 {
 	private int allySummonCooldown = 20;
+	private double chatDistance = 10d;
 
 	public GGUEntityCreeperMite(World world)
 	{
@@ -146,6 +155,12 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 						Entity creeperMite = new GGUEntityCreeperMite(this.worldObj);
 						creeperMite.setLocationAndAngles(((float)this.posX)+x, ((float)this.posY)+y, ((float)this.posZ)+z, 0.0F, 0.0F);
 						this.worldObj.spawnEntityInWorld(creeperMite);
+						List<EntityPlayer> players = worldObj.playerEntities;
+						for(int i = 0; i < players.size(); i++) {
+							double distance = players.get(i).getDistance((double)this.posX,(double)this.posY,(double)this.posZ);
+							//System.out.println(distance);
+							players.get(i).addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Creeper Mite found a Friend!"));//send message
+						}
 						break findBlock;
 					}
 				}
