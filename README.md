@@ -16,6 +16,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - Puts items into chest on the right (when facing forward).
     - can be disabled in config.
 
+
 ## Damara's Remedy: Similar to farmland block, but supports all plants and plants grows faster when the blocks are stacked.
   - ~~semi-dificult crafting recipe.~~
   - ~~block emmits light no higher than whats needed to stop uprooting.~~
@@ -46,6 +47,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - can be disabled in config.
     - add crafting recipe for the block, (thinking glass+zombiebrain+ice, would mean change to tile entity with new model of a glass block with a brain in it.) til then wood+woodengear(ore dictionary)+zombiebrain.
  
+
 ## Egg Timer: explodes to notify the user that a set period of time has elapsed or a specific time of day has come.
   - GUI pops up with
     - Time of day
@@ -54,6 +56,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - Explodes when either the time of day has come or time set has elapsed.
     - 2 crafting recipies, one for explosion, one for non-explosion (metadata to tell it which)
  
+
 ## Lazy Man's Crafting Table (or Intelligent Crafter) - instead of a 3x3 crafting grid, it shows all items craftable with the items that the user has in their inv.
   - Gui Pops up with a list of items.
     - items depnd on materials in users inventory.
@@ -68,6 +71,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - RecipeFireworks
       - RecipeBookCloning
       - RecipesMapCloning
+
 
 # ITEMS
 ## Block-Finder: Used to find blocks around the player.
@@ -89,12 +93,19 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - ~~hurting the creepermite causes more to spawn from grass or leaf blocks like mining does.~~
   - ~~mite makes the hurt creeper hissing noise.~~
   - ~~can be disabled in config.~~
-    
+
+
+# ENCHANTMENTS
+## prosperous Auto-Smelt
+  - fortune pickaxe that also smelts the ore from the ore block.
+
+
 # Mod Support
 ## adding support for pipes, chests etc for other mods if they dont handle it.
   - Buildcraft pipes for the fabricator
   - thermal expansion chests, their stronboxes can lock, what doesn this do for the sortivator, will the game crash when accessing them?
   - agricultural mods, mods that add crops. complaints can fix this i guess :)
+
 
 -------------------------
 CONCEPTS
