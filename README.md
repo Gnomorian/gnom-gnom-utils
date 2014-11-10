@@ -89,6 +89,9 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - ~~hurting the creepermite causes more to spawn from grass or leaf blocks like mining does.~~
   - ~~mite makes the hurt creeper hissing noise.~~
   - ~~can be disabled in config.~~
+# ENCHANTMENTS
+## prosperous Auto-Smelt
+  - fortune pickaxe that also smelts the ore from the ore block.
     
 # Mod Support
 ## adding support for pipes, chests etc for other mods if they dont handle it.
