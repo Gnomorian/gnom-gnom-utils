@@ -33,10 +33,10 @@ public class GGULazyCrafter extends Block{
 		//get the players inventory.
 		//display the inventory and the items avalable 
 		//to craft with current items.
-		if(world.isRemote) {
+		if(!world.isRemote)
+		{
 			IInventory inventory = player.inventory;
 			List invItems = new ArrayList();
-			
 			//36-39=armour
 			for(int i = 0; i < 35; i++) {
 				ItemStack items = inventory.getStackInSlot(i);
@@ -45,19 +45,19 @@ public class GGULazyCrafter extends Block{
 				invItems.add(items);
 			}
 			List recipes = GGURecipeFilter.filter(invItems);
-			System.out.println(recipes.size());
 			for(int i = 0; i < recipes.size(); i++) {
 				if(recipes.get(i)instanceof ShapedRecipes) {
-                    System.out.println(player.getDisplayName()+" can craft a shaped "+((ShapedRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
-                }
-                else if(recipes.get(i)instanceof ShapelessRecipes) {
-                    System.out.println(player.getDisplayName()+" can craft a shapeless "+((ShapelessRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
-                }
+					System.out.println(player.getDisplayName()+" can craft a shaped "+((ShapedRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
+				}
+				else if(recipes.get(i)instanceof ShapelessRecipes) {
+					System.out.println(player.getDisplayName()+" can craft a shapeless "+((ShapelessRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
+				}
+
 			}
+
+			return true;
 		}
-
-		return true;
-
+		return false;
 	}
 
 }
