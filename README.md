@@ -26,7 +26,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - [X] config to change effective stack height.
   - [ ] 3 types. Manual, semi-automatic, automatic.
     - [X] Manual = have to gather and replant crops yourself.
-    - Semi = redstone pulse to break and replant crops.
+    - [ ] Semi = redstone pulse to break and replant crops.
     - [ ] Auto = automatically breaks and replants crops when mature.
   - [ ] alternative recipe when fcraft mod is installed, recipe requires a bucket of mako.
   - [ ] can be disabled in config.
