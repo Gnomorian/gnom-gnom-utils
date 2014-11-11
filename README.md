@@ -14,7 +14,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - [ ] Pulls items from adjoining chests to craft whatever the user puts in crafting grid.
     - [ ] Pulls items from chest on the left (while facing forward).
     - [ ] Puts items into chest on the right (when facing forward).
-    - [ ] can be disabled in config.
+    - [X] can be disabled in config.
 
 
 ## Damara's Remedy: Similar to farmland block, but supports all plants and plants grows faster when the blocks are stacked.
@@ -29,7 +29,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - [ ] Semi = redstone pulse to break and replant crops.
     - [ ] Auto = automatically breaks and replants crops when mature.
   - [ ] alternative recipe when fcraft mod is installed, recipe requires a bucket of mako.
-  - [ ] can be disabled in config.
+  - [X] can be disabled in config.
 
 
 ## Sortivator: sorts contents of ajacent chests.
@@ -44,7 +44,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - [X] replaces slots from the start of the inventory with the items it had, in order of apearance.
       - [X] deletes items in slots after where the sorting finished.
     - [ ] more efficent sorting algorithm, less linear.
-    - [ ] can be disabled in config.
+    - [X] can be disabled in config.
     - [ ] add crafting recipe for the block, (thinking glass+zombiebrain+ice, would mean change to tile entity with new model of a glass block with a brain in it.) til then wood+woodengear(ore dictionary)+zombiebrain.
  
 
@@ -55,6 +55,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - [ ] Timer
   - [ ] Explodes when either the time of day has come or time set has elapsed.
     - [ ] 2 crafting recipies, one for explosion, one for non-explosion (metadata to tell it which)
+  - [X] Can be disabled in config.
  
 
 ## Lazy Man's Crafting Table (or Intelligent Crafter) - instead of a 3x3 crafting grid, it shows all items craftable with the [ ] items that the user has in their inv.
@@ -71,16 +72,19 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - [ ] RecipeFireworks
       - [ ] RecipeBookCloning
       - [ ] RecipesMapCloning
+    - [X] Can be disabled in config.
 
 ## Multi Block of Awesome Modular Ender Storage
   - [ ] Single smart block that acts as core. Bound to player. Only breakable by player.
   - [ ] Infinite amount of modular single "dumb" blocks with nbt data that store 1 item attach to the smart core.
   - [ ] Whole inventory can be accessed through some form of ender chest/pouch.
   - [ ] Renders a random item inside the block for trolling purposes.
+  - [X] Can be disabled in config.
 
 ## Anti-Cobble Block - removes cobble from inventories
   - [ ] removes cobble from your inventory as you near it/run past it.
   - [ ] redstone control to enable deletion and not?
+  - [X] can be disabled in config.
 
 # ITEMS
 ## Block-Finder: Used to find blocks around the player.
@@ -91,7 +95,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - [ ] include multiple entries?
     - [ ] Search radius (x, y, z) from your position.
     - [ ] extends map to display an "x marks the spot" for the items your looking for?
-    - [ ] can be disabled in config.
+    - [X] can be disabled in config.
   
 
 # MOBS
@@ -107,6 +111,8 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 # ENCHANTMENTS
 ## prosperous Auto-Smelt
   - [X] fortune pickaxe that also smelts the ore from the ore block.
+  - [X] smelts wooden logs aswell.
+  - [X] can be disabled in config.
 
 
 # Mod Support
