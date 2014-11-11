@@ -5,12 +5,14 @@ tile.GrowthBlock.name=Damara's Remedy
 tile.sortivator.name=Sortivator
 tile.eggTimer.name=Egg Timer
 tile.lazyCrafter.name=Lazy Crafter
+tile.fabricator.name=Fabricator
 
 **********************************
 ITEMS
 **********************************
 item.blockFinder.name=Block Finder
 item.woodenGear.name=Wooden Gear
+item.arseTardis.name=Arse Tardis
 
 **********************************
 MOBS
