@@ -45,7 +45,7 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - [X] deletes items in slots after where the sorting finished.
     - [ ] more efficent sorting algorithm, less linear.
     - [ ] can be disabled in config.
-    - [ ] [ ] add crafting recipe for the block, (thinking glass+zombiebrain+ice, would mean change to tile entity with new model of a glass block with a brain in it.) til then wood+woodengear(ore dictionary)+zombiebrain.
+    - [ ] add crafting recipe for the block, (thinking glass+zombiebrain+ice, would mean change to tile entity with new model of a glass block with a brain in it.) til then wood+woodengear(ore dictionary)+zombiebrain.
  
 
 ## Egg Timer: explodes to notify the user that a set period of time has elapsed or a specific time of day has come.
