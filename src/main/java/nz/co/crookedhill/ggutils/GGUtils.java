@@ -19,6 +19,7 @@ package nz.co.crookedhill.ggutils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.common.MinecraftForge;
+import nz.co.crookedhill.ggutils.achievements.GGUAchievements;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.enchantment.GGUEnchantment;
@@ -59,7 +60,7 @@ public class GGUtils
 	 * forth 0=
 	 * 	the number of bug fixes/sub features added since last feature added.
 	 */
-	public static final String VERSION = "0.0.5.2";
+	public static final String VERSION = "0.0.6.0";
 
 	//Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
@@ -85,6 +86,7 @@ public class GGUtils
 		GGUBlocks.init();
 		GGUEntityMob.init();
 		GGUEnchantment.init();
+		GGUAchievements.init();
 	}
 
 	@EventHandler
@@ -102,6 +104,5 @@ public class GGUtils
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
-		//compatability with other mod initialization here
 	}
 }

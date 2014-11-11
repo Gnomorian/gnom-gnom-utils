@@ -27,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
+import nz.co.crookedhill.ggutils.achievements.GGUAchievements;
 import nz.co.crookedhill.ggutils.util.GGURecipeFilter;
 
 public class GGULazyCrafter extends Block
@@ -48,6 +49,7 @@ public class GGULazyCrafter extends Block
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float float1, float float2, float float3) 
 	{
+		player.addStat(GGUAchievements.usedlazyCrafter, 1);
 		//open the gui.
 		//get the players inventory.
 		//display the inventory and the items avalable 

@@ -46,7 +46,7 @@ public class GGUEnchantmentHandler
 	public void onBlockBreak(BreakEvent event) 
 	{
 		if(!event.world.isRemote) {
-			if(event.block instanceof BlockOre || event.block instanceof BlockLog) 
+			if(event.block instanceof BlockOre || event.block instanceof BlockLog)
 			{
 				if(event.getPlayer().getHeldItem().getItem().getToolClasses(event.getPlayer().getHeldItem()).contains(event.block.getHarvestTool(event.blockMetadata)) &&
 						event.getPlayer().getHeldItem().getItem().getHarvestLevel(event.getPlayer().getHeldItem(), event.block.getHarvestTool(event.blockMetadata)) >= event.block.getHarvestLevel(event.blockMetadata)) {

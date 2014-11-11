@@ -23,3 +23,13 @@ entity.creeper_mite.name=Creeper Mite
 ENCHANTMENT!
 **********************************
 enchantment.ProsperousAutoSmelt=Prosperous Auto-Smelt
+
+**********************************
+ACHIEVEMENTS
+**********************************
+achievement.creepMiteExplosion=I see my house from here!
+achievement.usedlazyCrafter=You Lazy Bugger
+achievement.craftedSortivator=Messiness be Damned!
+achievement.craftedSortivator.desc=You crafted a Sortivator Block!
+achievement.usedlazyCrafter.desc=You used a Lazy Crafter Block!
+achievement.creepMiteExplosion.desc=You had a Creeper Mite blow you 500+ blocks in the air!
