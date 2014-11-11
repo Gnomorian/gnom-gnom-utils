@@ -106,7 +106,8 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 # ENCHANTMENTS
 ## prosperous Auto-Smelt
-  - fortune pickaxe that also smelts the ore from the ore block.
+  [] fortune pickaxe that also smelts the ore from the ore block.
+  [x] fortune pickaxe that also smelts the ore from the ore block.
 
 
 # Mod Support
