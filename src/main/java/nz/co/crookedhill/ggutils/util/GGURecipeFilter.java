@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 
@@ -34,59 +33,42 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 public class GGURecipeFilter {
 	public static List filter(List<ItemStack> inventoryItems) {
 		List avalableRecipes = new ArrayList();
-		List recipes = CraftingManager.getInstance().getRecipeList();
-		for(int i = 0; i < recipes.size(); i++) {
-			Object currentRecipe = recipes.get(i);
 
-			if(currentRecipe instanceof ShapedRecipes) {
-				int gotRequiredItems = 0;
-				ItemStack[] requiredItems = ((ShapedRecipes)recipes.get(i)).recipeItems;
-				ItemStack output = ((ShapedRecipes)recipes.get(i)).getRecipeOutput();
-
-				if(output == null)
+		//for shaped recipes
+		for(ShapedRecipes recipe : GGURecipeManager.getShaped()) {
+			int gotRequiredItems = 0;
+			for(ItemStack requiredItem : recipe.recipeItems) {
+				if(requiredItem == null)
 					continue;
-				for(int k = 0; k < requiredItems.length; k++) {
-					if(requiredItems[k] == null)
+				for(ItemStack invItem : inventoryItems) {
+					if(invItem == null)
 						continue;
-					for(int l = 0; l<inventoryItems.size();l++) {
-						if(inventoryItems.get(l) != null) {
-							if(requiredItems[k].isItemEqual(inventoryItems.get(l))) {
-								if(inventoryItems.get(l).stackSize >= requiredItems[k].stackSize) {
-									gotRequiredItems++;
-								}
-							}
-						}
-					}
-				}
-				if(gotRequiredItems == requiredItems.length) {
-					avalableRecipes.add(recipes.get(i));
+					if(requiredItem.isItemEqual(invItem)&&requiredItem.stackSize <= invItem.stackSize)
+						gotRequiredItems++;
 				}
 			}
-
-			else if(currentRecipe instanceof ShapelessRecipes) {
-				int gotRequiredItems = 0;
-				List<ItemStack> requiredItems = ((ShapelessRecipes)recipes.get(i)).recipeItems;
-				ItemStack output = ((ShapelessRecipes)recipes.get(i)).getRecipeOutput();
-				if(output == null)
-					continue;
-
-				for(int k = 0; k < requiredItems.size(); k++) {
-					if(requiredItems.get(k) == null)
-						continue;
-					for(int l = 0; l<inventoryItems.size();l++) {
-						if(requiredItems.get(k).isItemEqual(inventoryItems.get(l))) {
-							if(inventoryItems.get(l).stackSize >= requiredItems.get(k).stackSize) {
-								gotRequiredItems++;
-							}
-						}
-					}
-				}
-				if(gotRequiredItems == requiredItems.size()) {
-					avalableRecipes.add(recipes.get(i));
-				}
-			}
+			if(recipe.recipeItems.length == gotRequiredItems)
+				avalableRecipes.add(recipe);
 		}
-		return avalableRecipes;
 
+		//for shapeless recipes
+		for(ShapelessRecipes recipe : GGURecipeManager.getShapeless()) {
+			int gotRequiredItems = 0;
+			for(int i = 0; i < recipe.recipeItems.size(); i++) {
+				ItemStack requiredItem = (ItemStack)recipe.recipeItems.get(i);
+				if(requiredItem == null)
+					continue;
+				for(ItemStack invItem : inventoryItems) {
+					if(invItem == null)
+						continue;
+					if(requiredItem.isItemEqual(invItem)&&requiredItem.stackSize <= invItem.stackSize)
+						gotRequiredItems++;
+				}
+			}
+			if(recipe.recipeItems.size() == gotRequiredItems)
+				avalableRecipes.add(recipe);
+		}
+		System.out.println(avalableRecipes.size());
+		return avalableRecipes;
 	}
 }

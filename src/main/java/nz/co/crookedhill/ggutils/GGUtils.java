@@ -1,6 +1,7 @@
 package nz.co.crookedhill.ggutils;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.common.MinecraftForge;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
@@ -15,6 +16,7 @@ import nz.co.crookedhill.ggutils.item.GGUItems;
 import nz.co.crookedhill.ggutils.network.GGUSortPacket;
 import nz.co.crookedhill.ggutils.network.GGUSortPacketHandler;
 import nz.co.crookedhill.ggutils.proxy.CommonProxy;
+import nz.co.crookedhill.ggutils.util.GGURecipeManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -89,6 +91,7 @@ public class GGUtils
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
 		//compatability with other mod initialization here
 	}
 }
