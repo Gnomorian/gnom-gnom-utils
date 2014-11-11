@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import nz.co.crookedhill.ggutils.item.GGUItems;
 
 public class GGUBlocks {
@@ -26,21 +27,28 @@ public class GGUBlocks {
 		lazyCrafter = new GGULazyCrafter(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		fabricator = new GGUFabricator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		
-		
+		if(GGUConfigManager.growthBlockEnabled)
 		GameRegistry.registerBlock(growthBlock, "GrowthBlock");
+		if(GGUConfigManager.sortivatorEnabled)
 		GameRegistry.registerBlock(sortivator, "sortivator");
+		if(GGUConfigManager.eggTimerEnabled)
 		GameRegistry.registerBlock(eggTimer, "eggTimer");
+		if(GGUConfigManager.lazyCrafterEnabled)
 		GameRegistry.registerBlock(lazyCrafter, "lazyCrafter");
+		if(GGUConfigManager.fabricatorEnabled)
 		GameRegistry.registerBlock(fabricator, "fabricator");
 		
 		//register Block Recipes
-
+		if(GGUConfigManager.growthBlockEnabled)
 		GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock), "ddd", "isi","iii",
 		        'd', Blocks.dirt, 'i', Items.iron_ingot, 's', Items.speckled_melon);
+		if(GGUConfigManager.sortivatorEnabled)
 		GameRegistry.addRecipe(new ItemStack(GGUBlocks.sortivator),"wgw","geg","wgw",
 				'w',Blocks.planks,'g',GGUItems.woodenGear,'e',Items.ender_pearl);
+		if(GGUConfigManager.lazyCrafterEnabled)
 		GameRegistry.addRecipe(new ItemStack(GGUBlocks.lazyCrafter)," c ","cec"," c ",
 				'c',Blocks.crafting_table,'e',Items.ender_pearl);
+		if(GGUConfigManager.fabricatorEnabled)
 		GameRegistry.addRecipe(new ItemStack(GGUBlocks.fabricator),"ici","cec","ici",
 				'i',Items.iron_ingot,'c',Blocks.crafting_table,'e',Items.ender_eye);
 				

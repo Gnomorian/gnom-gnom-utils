@@ -4,8 +4,10 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
+import nz.co.crookedhill.ggutils.enchantment.GGUEnchantment;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
@@ -27,6 +29,12 @@ import cpw.mods.fml.relauncher.Side;
 @Mod(modid = GGUtils.MODID, version = GGUtils.VERSION)
 public class GGUtils
 {
+	/*
+	 * add a function at the start that loops through the recipes and stores 
+	 * them all in lists sorted out, eg List<FurnaceRecipes>, List<ShapedRecipes> 
+	 * to reduce the time it takes to filter out all the recipes.
+	 */
+	
 	public static final String MODID = "ggutils";
 	/**
 	 * 0.0.0.0
@@ -64,6 +72,7 @@ public class GGUtils
 		GGUItems.init();
 		GGUBlocks.init();
 		GGUEntityMob.init();
+		GGUEnchantment.init();
 	}
 
 	@EventHandler
@@ -74,6 +83,7 @@ public class GGUtils
 		MinecraftForge.EVENT_BUS.register(new GGUToolTipHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUEnchantmentHandler());
 
 	}
 
