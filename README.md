@@ -72,6 +72,15 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - RecipeBookCloning
       - RecipesMapCloning
 
+## Multi Block of Awesome Modular Ender Storage
+  - Single smart block that acts as core. Bound to player. Only breakable by player.
+  - Infinite amount of modular single "dumb" blocks with nbt data that store 1 item attach to the smart core.
+  - Whole inventory can be accessed through some form of ender chest/pouch.
+  - Renders a random item inside the block for trolling purposes.
+
+## Anti-Cobble Block - removes cobble from inventories
+  - removes cobble from your inventory as you near it/run past it.
+  - redstone control to enable deletion and not?
 
 # ITEMS
 ## Block-Finder: Used to find blocks around the player.
@@ -106,10 +115,13 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - thermal expansion chests, their stronboxes can lock, what doesn this do for the sortivator, will the game crash when accessing them?
   - agricultural mods, mods that add crops. complaints can fix this i guess :)
 
-
+# Concepts
+## Swapable hotbars
+  - Swapable hotbars that swap 9x1 row of the inventory to the hotbar on keypress.
+  - Rotation? or Swapable?
+  
 -------------------------
 CONCEPTS
 -------------------------
-
 Packethandling
 http://www.minecraftforge.net/forum/index.php/topic,20135.0.html

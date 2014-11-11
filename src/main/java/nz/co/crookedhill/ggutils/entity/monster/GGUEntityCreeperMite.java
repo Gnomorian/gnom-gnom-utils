@@ -75,55 +75,55 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 	{
 		return "mob.creeper.kill";
 	}
-	
-	/**
-     * Called when the entity is attacked.
-     */
-	@Override
-    public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
-    {
-        if (this.isEntityInvulnerable())
-        {
-            return false;
-        }
-        else
-        {
-            if (this.allySummonCooldown <= 0 && (p_70097_1_ instanceof EntityDamageSource || p_70097_1_ == DamageSource.magic))
-            {
-                findFriend();
-                this.allySummonCooldown += 20;
-            }
 
-            return super.attackEntityFrom(p_70097_1_, p_70097_2_);
-        }
-    }
-	
+	/**
+	 * Called when the entity is attacked.
+	 */
+	@Override
+	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+	{
+		if (this.isEntityInvulnerable())
+		{
+			return false;
+		}
+		else
+		{
+			if (this.allySummonCooldown <= 0 && (p_70097_1_ instanceof EntityDamageSource || p_70097_1_ == DamageSource.magic))
+			{
+				findFriend();
+				this.allySummonCooldown += 200;
+			}
+
+			return super.attackEntityFrom(p_70097_1_, p_70097_2_);
+		}
+	}
+
 	@Override
 	protected void updateEntityActionState()
 	{
 		super.updateEntityActionState();
-		
+
 		if (!this.worldObj.isRemote)
 		{
-				if (this.allySummonCooldown > 0)
+			if (this.allySummonCooldown > 0)
+			{
+				--this.allySummonCooldown;
+
+				if (this.allySummonCooldown <= 0 && this.entityToAttack != null)
 				{
-					--this.allySummonCooldown;
-					
-					if (this.allySummonCooldown <= 0 && this.entityToAttack != null)
-					{
-						findFriend();
-						this.allySummonCooldown = 200;
-					}
+					findFriend();
+					this.allySummonCooldown = 200;
 				}
+			}
 
 			else if (this.entityToAttack != null && !this.hasPath())
 			{
 				this.entityToAttack = null;
 			}
-            else
-            {
-                this.updateWanderPath();
-            }
+			else
+			{
+				this.updateWanderPath();
+			}
 		}
 	}
 
@@ -136,13 +136,13 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 	{
 		return block instanceof BlockTallGrass || block instanceof BlockDoublePlant;
 	}
-	
+
 	/**
 	 * loops through blocks near by, if it finds a compatable block defined by isBlock Burrowable
 	 * it will replace it will a creeperMite.
 	 */
-    protected void findFriend() {
-    	findBlock:for(int y = -2; y <= 2; y++) {
+	protected void findFriend() {
+		findBlock:for(int y = -2; y <= 2; y++) {
 			for (int x = -4; x <= 4; x++) {
 				for(int z = -4; z <= 4; z++) {
 					Block block = this.worldObj.getBlock(((int)this.posX)+x, ((int)this.posY)+y, ((int)this.posZ)+z);
@@ -155,14 +155,15 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 						List<EntityPlayer> players = worldObj.playerEntities;
 						for(int i = 0; i < players.size(); i++) {
 							double distance = players.get(i).getDistance((double)this.posX,(double)this.posY,(double)this.posZ);
-							//System.out.println(distance);
-							players.get(i).addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Creeper Mite found a Friend!"));//send message
+							if(distance < chatDistance)
+							{
+								players.get(i).addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Creeper Mite found a Friend!"));//send message
+							}
 						}
 						break findBlock;
 					}
 				}
 			}
 		}
-    }
-
+	}
 }
