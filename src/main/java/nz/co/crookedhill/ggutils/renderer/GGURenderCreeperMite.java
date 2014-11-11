@@ -25,7 +25,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GGURenderCreeperMite extends RenderSilverfish{
+public class GGURenderCreeperMite extends RenderSilverfish
+{
 
 	public GGURenderCreeperMite()
 	{

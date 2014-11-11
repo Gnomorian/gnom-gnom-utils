@@ -28,7 +28,8 @@ import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 
-public class GGUMobHandler {
+public class GGUMobHandler 
+{
 
 	//
 	@SubscribeEvent

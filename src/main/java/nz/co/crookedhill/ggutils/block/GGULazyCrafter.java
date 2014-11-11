@@ -29,9 +29,11 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.util.GGURecipeFilter;
 
-public class GGULazyCrafter extends Block{
+public class GGULazyCrafter extends Block
+{
 
-	protected GGULazyCrafter(Material material) {
+	protected GGULazyCrafter(Material material) 
+	{
 		super(material);
 		this.setBlockName("lazyCrafter");
 		this.setHardness(0.5f);
@@ -44,7 +46,8 @@ public class GGULazyCrafter extends Block{
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float float1, float float2, float float3) {
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float float1, float float2, float float3) 
+	{
 		//open the gui.
 		//get the players inventory.
 		//display the inventory and the items avalable 
@@ -54,15 +57,18 @@ public class GGULazyCrafter extends Block{
 			IInventory inventory = player.inventory;
 			List invItems = new ArrayList();
 			//36-39=armour
-			for(int i = 0; i < 35; i++) {
+			for(int i = 0; i < 35; i++) 
+			{
 				ItemStack items = inventory.getStackInSlot(i);
 				if(items == null)
 					continue;
 				invItems.add(items);
 			}
 			List recipes = GGURecipeFilter.filter(invItems);
-			for(int i = 0; i < recipes.size(); i++) {
-				if(recipes.get(i)instanceof ShapedRecipes) {
+			for(int i = 0; i < recipes.size(); i++) 
+			{
+				if(recipes.get(i)instanceof ShapedRecipes) 
+				{
 					System.out.println(player.getDisplayName()+" can craft a shaped "+((ShapedRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
 				}
 				else if(recipes.get(i)instanceof ShapelessRecipes) {

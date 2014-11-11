@@ -22,8 +22,10 @@ import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class GGUCreativeTabBlock extends CreativeTabs{
-	public GGUCreativeTabBlock(int tabID, String label) {
+public class GGUCreativeTabBlock extends CreativeTabs
+{
+	public GGUCreativeTabBlock(int tabID, String label) 
+	{
 		super(tabID, label);
 	}
 
@@ -35,7 +37,8 @@ public class GGUCreativeTabBlock extends CreativeTabs{
     }
     
 	@Override
-	public Item getTabIconItem() {
+	public Item getTabIconItem() 
+	{
 		return Item.getItemFromBlock(GGUBlocks.sortivator);
 	}
 }

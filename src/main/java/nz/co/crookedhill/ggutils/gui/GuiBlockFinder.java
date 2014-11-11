@@ -26,22 +26,26 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly (Side.CLIENT)
-public class GuiBlockFinder extends GuiContainer {
+public class GuiBlockFinder extends GuiContainer 
+{
 
 	ResourceLocation textureLoc = new ResourceLocation(GGUtils.MODID + ":" + "textures/gui/GUIBlockFinder"+".png");
 	
-	public GuiBlockFinder(EntityPlayer player, InventoryPlayer inventoryPlayer){
+	public GuiBlockFinder(EntityPlayer player, InventoryPlayer inventoryPlayer)
+	{
 		super(new ContainerPlayer(inventoryPlayer, true, player));
 	}
 	
 	@Override
-	public void drawScreen(int x, int y, float f) {
+	public void drawScreen(int x, int y, float f) 
+	{
 		// TODO Auto-generated method stub
 		super.drawScreen(x, y, f);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
+	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) 
+	{
 		
 	}
 }

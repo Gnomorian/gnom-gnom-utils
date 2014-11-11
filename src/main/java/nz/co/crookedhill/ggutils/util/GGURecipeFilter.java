@@ -46,17 +46,22 @@ import net.minecraft.item.crafting.ShapelessRecipes;
  *
  */
 
-public class GGURecipeFilter {
-	public static List filter(List<ItemStack> inventoryItems) {
+public class GGURecipeFilter 
+{
+	public static List filter(List<ItemStack> inventoryItems) 
+	{
 		List avalableRecipes = new ArrayList();
 
 		//for shaped recipes
-		for(ShapedRecipes recipe : GGURecipeManager.getShaped()) {
+		for(ShapedRecipes recipe : GGURecipeManager.getShaped()) 
+		{
 			int gotRequiredItems = 0;
-			for(ItemStack requiredItem : recipe.recipeItems) {
+			for(ItemStack requiredItem : recipe.recipeItems) 
+			{
 				if(requiredItem == null)
 					continue;
-				for(ItemStack invItem : inventoryItems) {
+				for(ItemStack invItem : inventoryItems) 
+				{
 					if(invItem == null)
 						continue;
 					if(requiredItem.isItemEqual(invItem)&&requiredItem.stackSize <= invItem.stackSize)
@@ -68,13 +73,15 @@ public class GGURecipeFilter {
 		}
 
 		//for shapeless recipes
-		for(ShapelessRecipes recipe : GGURecipeManager.getShapeless()) {
+		for(ShapelessRecipes recipe : GGURecipeManager.getShapeless()) 
+		{
 			int gotRequiredItems = 0;
 			for(int i = 0; i < recipe.recipeItems.size(); i++) {
 				ItemStack requiredItem = (ItemStack)recipe.recipeItems.get(i);
 				if(requiredItem == null)
 					continue;
-				for(ItemStack invItem : inventoryItems) {
+				for(ItemStack invItem : inventoryItems) 
+				{
 					if(invItem == null)
 						continue;
 					if(requiredItem.isItemEqual(invItem)&&requiredItem.stackSize <= invItem.stackSize)

@@ -29,7 +29,8 @@ import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 
-public class GGUBlockHandler {
+public class GGUBlockHandler 
+{
 
 	/**
 	 * event triggers on block break
@@ -45,7 +46,8 @@ public class GGUBlockHandler {
 		int y = event.y;
 		int z = event.z;
 		
-		if(!world.isRemote && GGUConfigManager.creeperMiteExist){
+		if(!world.isRemote && GGUConfigManager.creeperMiteExist)
+		{
 			if(block instanceof BlockTallGrass || block instanceof BlockDoublePlant)
 			{
 				int creeperChance = GGUConfigManager.creeperMiteChance;

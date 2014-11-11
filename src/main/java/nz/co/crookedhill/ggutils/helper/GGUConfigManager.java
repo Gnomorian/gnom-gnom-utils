@@ -19,7 +19,8 @@ package nz.co.crookedhill.ggutils.helper;
 import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-public class GGUConfigManager {
+public class GGUConfigManager 
+{
 	
 	//BLOCKS
 	public static int growthBlockStackHeight;
@@ -44,7 +45,8 @@ public class GGUConfigManager {
 	public static boolean autoSmeltEnabled;
 	public static int autoSmeltid;
 	
-	public static void init(FMLPreInitializationEvent event) {
+	public static void init(FMLPreInitializationEvent event) 
+	{
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		growthBlockStackHeight = config.getInt("growthBlockStackHeight", "Blocks", 16, 1, 255, "Edit the functional stack size of the Damara's Remedy block.");

@@ -46,13 +46,7 @@ import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = GGUtils.MODID, version = GGUtils.VERSION)
 public class GGUtils
-{
-	/*
-	 * add a function at the start that loops through the recipes and stores 
-	 * them all in lists sorted out, eg List<FurnaceRecipes>, List<ShapedRecipes> 
-	 * to reduce the time it takes to filter out all the recipes.
-	 */
-	
+{	
 	public static final String MODID = "ggutils";
 	/**
 	 * 0.0.0.0

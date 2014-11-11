@@ -31,11 +31,13 @@ import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.util.GGUSort;
 
-public class GGUBlockSortivator extends Block {
+public class GGUBlockSortivator extends Block 
+{
 
 	private IIcon[] icons = new IIcon[2];
 
-	protected GGUBlockSortivator(Material material) {
+	protected GGUBlockSortivator(Material material) 
+	{
 		super(material);
 		this.setBlockName("sortivator");
 		this.setHardness(0.5f);
@@ -43,8 +45,10 @@ public class GGUBlockSortivator extends Block {
 	}
 
 	@Override
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		for(int i = 0; i < icons.length; i++) {
+	public void registerBlockIcons(IIconRegister iconRegister) 
+	{
+		for(int i = 0; i < icons.length; i++) 
+		{
 			icons[i] = iconRegister.registerIcon(GGUtils.MODID + ":" + "sortivator_texture"+ i);
 		}
 	}

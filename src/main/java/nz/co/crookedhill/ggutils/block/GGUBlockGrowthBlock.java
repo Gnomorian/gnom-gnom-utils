@@ -39,7 +39,8 @@ import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class GGUBlockGrowthBlock extends Block {
+public class GGUBlockGrowthBlock extends Block 
+{
 
 	private IIcon[] icons = new IIcon[3];
 	private int stackHeight = GGUConfigManager.growthBlockStackHeight;
@@ -48,7 +49,8 @@ public class GGUBlockGrowthBlock extends Block {
 	/*0=manual,1=redstone,2=automatic*/
 	int mode = 0;
 
-	public GGUBlockGrowthBlock(Material material) {
+	public GGUBlockGrowthBlock(Material material) 
+	{
 		super(material);
 		this.setBlockName("GrowthBlock");
 		this.setHardness(0.5f);
@@ -57,7 +59,8 @@ public class GGUBlockGrowthBlock extends Block {
 	}
 
 	@Override
-	public int damageDropped (int metadata) {
+	public int damageDropped (int metadata) 
+	{
 		return metadata;
 	}
 
@@ -69,15 +72,18 @@ public class GGUBlockGrowthBlock extends Block {
 	 * @param iconRegister
 	 */
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) 
+	{
 		super.registerBlockIcons(iconRegister);
-		for(int i = 0; i < icons.length; i++) {
+		for(int i = 0; i < icons.length; i++) 
+		{
 			icons[i] = iconRegister.registerIcon(GGUtils.MODID + ":" + "growth_texture"+ i);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) {
+	public IIcon getIcon(int side, int meta) 
+	{
 		if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
 		if(side == 1) return icons[1];
 		if(side == 0 ) {
@@ -85,7 +91,8 @@ public class GGUBlockGrowthBlock extends Block {
 		}else return icons[0];
 	}
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) {
+	public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) 
+	{
 		int meta = blockAccess.getBlockMetadata(x, y, z);
 		if(meta == 0) {
 			if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
@@ -94,7 +101,8 @@ public class GGUBlockGrowthBlock extends Block {
 				return icons[0];
 			}else return icons[2]; 
 		}
-		else{
+		else
+		{
 			if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
 			if(side == 1) return icons[1];
 			if(side == 0 ) {
@@ -115,7 +123,8 @@ public class GGUBlockGrowthBlock extends Block {
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
+	public void updateTick(World world, int x, int y, int z, Random rand) 
+	{
 		Block block = world.getBlock(x, y+1, z);		
 
 		//check if block is plantable
@@ -206,7 +215,8 @@ public class GGUBlockGrowthBlock extends Block {
 
 
 	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) {
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) 
+	{
 		updateMeta(world,x,y,z);
 		
 		boolean flag = world.isBlockIndirectlyGettingPowered( x, y, z);
@@ -220,7 +230,8 @@ public class GGUBlockGrowthBlock extends Block {
 	}
 
 	@Override
-	public void onBlockAdded(World world, int x, int y, int z) {
+	public void onBlockAdded(World world, int x, int y, int z) 
+	{
 		updateMeta(world,x,y,z);
 	}
 
@@ -234,7 +245,8 @@ public class GGUBlockGrowthBlock extends Block {
 	 * @param z 
 	 */
 	@SideOnly(Side.CLIENT)
-	private void updateMeta(World world, int x, int y, int z) {
+	private void updateMeta(World world, int x, int y, int z) 
+	{
 		Block upperBlock = world.getBlock(x, y+1, z);
 		if(upperBlock instanceof GGUBlockGrowthBlock)
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);

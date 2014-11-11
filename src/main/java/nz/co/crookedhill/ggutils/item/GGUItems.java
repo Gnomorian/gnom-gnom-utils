@@ -24,12 +24,14 @@ import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class GGUItems {
+public class GGUItems 
+{
 	public static Item blockFinder;
 	public static Item woodenGear;
 	public static Item arseTardis;
 	
-	public static void init() {
+	public static void init()
+{
 		
 		blockFinder = new ItemBlockFinder().setUnlocalizedName("blockFinder").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		woodenGear = new GGUWoodenGear().setUnlocalizedName("woodenGear").setCreativeTab(GGUtils.ggutilsCreativeTab);

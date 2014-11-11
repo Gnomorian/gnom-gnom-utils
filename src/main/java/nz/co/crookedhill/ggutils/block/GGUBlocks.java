@@ -26,7 +26,8 @@ import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import nz.co.crookedhill.ggutils.item.GGUItems;
 
-public class GGUBlocks {
+public class GGUBlocks 
+{
 	
 	public static Block growthBlock;
 	public static Block sortivator;
@@ -34,7 +35,8 @@ public class GGUBlocks {
 	public static Block lazyCrafter;
 	public static Block fabricator;
 	
-	public static void init() {
+	public static void init() 
+	{
 		
 		//register Blocks	
 		growthBlock = new GGUBlockGrowthBlock(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);

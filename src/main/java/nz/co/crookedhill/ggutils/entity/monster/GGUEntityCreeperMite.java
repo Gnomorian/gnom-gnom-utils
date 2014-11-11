@@ -157,19 +157,25 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 	 * loops through blocks near by, if it finds a compatable block defined by isBlock Burrowable
 	 * it will replace it will a creeperMite.
 	 */
-	protected void findFriend() {
-		findBlock:for(int y = -2; y <= 2; y++) {
-			for (int x = -4; x <= 4; x++) {
-				for(int z = -4; z <= 4; z++) {
+	protected void findFriend() 
+	{
+		findBlock:for(int y = -2; y <= 2; y++) 
+		{
+			for (int x = -4; x <= 4; x++) 
+			{
+				for(int z = -4; z <= 4; z++) 
+				{
 					Block block = this.worldObj.getBlock(((int)this.posX)+x, ((int)this.posY)+y, ((int)this.posZ)+z);
-					if(isBlockBurrowable(block)) {
+					if(isBlockBurrowable(block)) 
+					{
 						System.out.println("Found Friend!");
 						this.worldObj.setBlock(((int)this.posX)+x, ((int)this.posY)+y, ((int)this.posZ)+z, Blocks.air);
 						Entity creeperMite = new GGUEntityCreeperMite(this.worldObj);
 						creeperMite.setLocationAndAngles(((float)this.posX)+x, ((float)this.posY)+y, ((float)this.posZ)+z, 0.0F, 0.0F);
 						this.worldObj.spawnEntityInWorld(creeperMite);
 						List<EntityPlayer> players = worldObj.playerEntities;
-						for(int i = 0; i < players.size(); i++) {
+						for(int i = 0; i < players.size(); i++) 
+						{
 							double distance = players.get(i).getDistance((double)this.posX,(double)this.posY,(double)this.posZ);
 							if(distance < chatDistance)
 							{

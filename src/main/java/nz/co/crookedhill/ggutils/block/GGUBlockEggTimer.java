@@ -22,11 +22,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import nz.co.crookedhill.ggutils.GGUtils;
 
-public class GGUBlockEggTimer extends Block {
+public class GGUBlockEggTimer extends Block 
+{
 
 	private IIcon[] icons = new IIcon[2];
 
-	protected GGUBlockEggTimer(Material material) {
+	protected GGUBlockEggTimer(Material material) 
+	{
 		super(material);
 		this.setBlockName("eggTimer");
 		this.setHardness(2.5f);
@@ -34,15 +36,19 @@ public class GGUBlockEggTimer extends Block {
 	}
 
 	@Override
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		for(int i = 0; i < icons.length; i++) {
+	public void registerBlockIcons(IIconRegister iconRegister) 
+	{
+		for(int i = 0; i < icons.length; i++) 
+		{
 			icons[i] = iconRegister.registerIcon(GGUtils.MODID + ":" + "sortivator_texture"+ i);
 		}
 	}
 
 	@Override
-	public IIcon getIcon(int side, int meta) {
-		if(side == 1) {
+	public IIcon getIcon(int side, int meta) 
+	{
+		if(side == 1) 
+		{
 			return icons[1];
 		}else return icons[0];
 
