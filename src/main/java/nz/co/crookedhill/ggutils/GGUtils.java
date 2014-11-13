@@ -23,6 +23,7 @@ import nz.co.crookedhill.ggutils.achievements.GGUAchievements;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.enchantment.GGUEnchantment;
+import nz.co.crookedhill.ggutils.entity.item.GGUEntityTile;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
@@ -60,7 +61,7 @@ public class GGUtils
 	 * forth 0=
 	 * 	the number of bug fixes/sub features added since last feature added.
 	 */
-	public static final String VERSION = "0.0.6.0";
+	public static final String VERSION = "0.0.6.2";
 
 	//Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
@@ -83,6 +84,7 @@ public class GGUtils
 		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
 		GGUConfigManager.init(event);
 		GGUItems.init();
+		GGUEntityTile.init();
 		GGUBlocks.init();
 		GGUEntityMob.init();
 		GGUEnchantment.init();

@@ -16,11 +16,17 @@
 
 package nz.co.crookedhill.ggutils.block;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.entity.item.GGUEntityEggTimer;
 
 public class GGUBlockEggTimer extends Block 
 {
@@ -52,5 +58,42 @@ public class GGUBlockEggTimer extends Block
 			return icons[1];
 		}else return icons[0];
 
+	}
+
+	@Override
+	public boolean hasTileEntity(int metadata) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, int metadata) 
+	{	
+		super.createTileEntity(world, metadata);
+		return new GGUEntityEggTimer();
+	}
+
+	@Override
+	public boolean onBlockActivated(World world, int x,
+			int y, int z, EntityPlayer player,
+			int par6, float f, float f2,
+			float f3) {
+
+		GGUEntityEggTimer entity = (GGUEntityEggTimer) world.getTileEntity(x, y, z);
+
+		if(!world.isRemote && entity != null)
+		{	
+			int strength = world.getBlockPowerInput(x, y, z);
+			switch(strength)
+			{
+			case 0:
+				entity.setActive(false);
+				entity.setDelay(0);
+				break;
+			default:
+				entity.setDelay(strength*10);				
+				entity.setActive(true);
+			}
+		}
+		return true;
 	}
 }

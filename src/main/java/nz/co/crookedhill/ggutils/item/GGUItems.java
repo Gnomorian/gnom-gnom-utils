@@ -35,14 +35,10 @@ public class GGUItems
 		
 		blockFinder = new ItemBlockFinder().setUnlocalizedName("blockFinder").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		woodenGear = new GGUWoodenGear().setUnlocalizedName("woodenGear").setCreativeTab(GGUtils.ggutilsCreativeTab);
-		//looks like your pulling shit out your ass
-		arseTardis = new GGUArseTardis().setUnlocalizedName("arseTardis").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		//Register Items
 		if(GGUConfigManager.blockFinderEnabled)
 		GameRegistry.registerItem(blockFinder, "blockFinder");
 		GameRegistry.registerItem(woodenGear, "woodenGear");
-		if(GGUConfigManager.arseTardisEnabled)
-		GameRegistry.registerItem(arseTardis, "arseTardis");
 		
 		//Register Item Recipies
 		GameRegistry.addRecipe(new ItemStack(woodenGear),"sws","w w","sws"
