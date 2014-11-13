@@ -20,7 +20,7 @@ import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public abstract class GGUSortPacket implements IMessage
+public abstract class GGUAbstractPacket implements IMessage
 {
 	/**
 	 * create a new constructor with the parameters of what you want to pass
