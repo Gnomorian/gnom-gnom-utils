@@ -16,6 +16,7 @@
 
 package nz.co.crookedhill.ggutils;
 
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,14 +27,19 @@ import nz.co.crookedhill.ggutils.enchantment.GGUEnchantment;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
-import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUKeybindHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import nz.co.crookedhill.ggutils.item.GGUItems;
 import nz.co.crookedhill.ggutils.network.GGUSortPacket;
 import nz.co.crookedhill.ggutils.network.GGUSortPacketHandler;
 import nz.co.crookedhill.ggutils.proxy.CommonProxy;
 import nz.co.crookedhill.ggutils.util.GGURecipeManager;
+
+import org.lwjgl.input.Keyboard;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -49,6 +55,8 @@ import cpw.mods.fml.relauncher.Side;
 public class GGUtils
 {	
 	public static final String MODID = "ggutils";
+	public static KeyBinding arseTardis;
+
 	/**
 	 * 0.0.0.0
 	 * first 0=
@@ -81,6 +89,7 @@ public class GGUtils
 	public void preInit(FMLPreInitializationEvent event) {
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
 		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
+		
 		GGUConfigManager.init(event);
 		GGUItems.init();
 		GGUBlocks.init();
@@ -98,11 +107,13 @@ public class GGUtils
 		MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUEnchantmentHandler());
+		FMLCommonHandler.instance().bus().register(new GGUKeybindHandler());
 
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
 		GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
 	}
 }
