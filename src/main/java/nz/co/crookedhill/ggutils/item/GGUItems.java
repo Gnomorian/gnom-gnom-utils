@@ -28,7 +28,6 @@ public class GGUItems
 {
 	public static Item blockFinder;
 	public static Item woodenGear;
-	public static Item arseTardis;
 	
 	public static void init()
 {
@@ -39,8 +38,6 @@ public class GGUItems
 		if(GGUConfigManager.blockFinderEnabled)
 		GameRegistry.registerItem(blockFinder, "blockFinder");
 		GameRegistry.registerItem(woodenGear, "woodenGear");
-		if(GGUConfigManager.arseTardisEnabled)
-		GameRegistry.registerItem(arseTardis, "arseTardis");
 		
 		//Register Item Recipies
 		GameRegistry.addRecipe(new ItemStack(woodenGear),"sws","w w","sws"
