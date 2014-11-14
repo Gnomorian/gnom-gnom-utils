@@ -38,9 +38,12 @@ public class GGUItems
 		//Register Items
 		if(GGUConfigManager.blockFinderEnabled)
 		GameRegistry.registerItem(blockFinder, "blockFinder");
+		if(GGUConfigManager.sortivatorEnabled)
 		GameRegistry.registerItem(woodenGear, "woodenGear");
-		
-		//Register Item Recipies
+	}
+	public static void registerRecipes() 
+	{
+		if(GGUConfigManager.sortivatorEnabled)
 		GameRegistry.addRecipe(new ItemStack(woodenGear),"sws","w w","sws"
 				,'s',Items.stick,'w',Blocks.planks);
 	}

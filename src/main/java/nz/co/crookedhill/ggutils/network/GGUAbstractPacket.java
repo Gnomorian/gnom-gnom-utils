@@ -17,7 +17,6 @@
 package nz.co.crookedhill.ggutils.network;
 
 import io.netty.buffer.ByteBuf;
-import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public abstract class GGUAbstractPacket implements IMessage
@@ -25,21 +24,22 @@ public abstract class GGUAbstractPacket implements IMessage
 	/**
 	 * create a new constructor with the parameters of what you want to pass
 	 * to the other end of the network.
+	 * @return 
 	 */
-	public GGUSortPacket() { }
+	public GGUAbstractPacket() { }
   
   /**
    * converting the encoded variables back into something useable.
    */
 	@Override
-	public void fromBytes(ByteBuf buf);
+	public abstract void fromBytes(ByteBuf buf);
   
   /**
    * encoding the variables passed to the constructor to be sent to
    * the other end of the network.
    */
 	@Override
-	public void toBytes(ByteBuf buf);
+	public abstract void toBytes(ByteBuf buf);
 	
 
 }
