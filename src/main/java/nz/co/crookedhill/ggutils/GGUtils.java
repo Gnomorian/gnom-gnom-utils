@@ -61,7 +61,7 @@ public class GGUtils
 	 * forth 0=
 	 * 	the number of bug fixes/sub features added since last feature added.
 	 */
-	public static final String VERSION = "0.0.6.3";
+	public static final String VERSION = "0.0.6.4";
 
 	//Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")

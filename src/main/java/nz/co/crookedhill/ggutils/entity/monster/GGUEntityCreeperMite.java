@@ -31,6 +31,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 
 public class GGUEntityCreeperMite extends EntitySilverfish
 {
@@ -60,7 +61,10 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 
 		if (this.attackTime <= 0 && f < 1.2F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)
 		{
-			world.createExplosion(this, entity.posX, entity.posY, entity.posZ, 0.1F, false);
+			if(GGUConfigManager.creeperMiteNoAir)
+				world.createExplosion(this, entity.posX, entity.posY, entity.posZ, 0.1F, false);
+			else
+				world.createExplosion(this, entity.posX, entity.posY+0.2d, entity.posZ, 0.3F, false);
 			this.setDead();
 		}
 	}
@@ -106,6 +110,7 @@ public class GGUEntityCreeperMite extends EntitySilverfish
 		{
 			if (this.allySummonCooldown <= 0 && (p_70097_1_ instanceof EntityDamageSource || p_70097_1_ == DamageSource.magic))
 			{
+				if(GGUConfigManager.creeperMiteHelpChance > 0 && rand.nextInt(100) <= GGUConfigManager.creeperMiteHelpChance)
 				findFriend();
 				this.allySummonCooldown += 200;
 			}

@@ -52,7 +52,7 @@ public class GGUBlockHandler
 		{
 			if(block instanceof BlockTallGrass || block instanceof BlockDoublePlant)
 			{
-				int creeperChance = GGUConfigManager.creeperMiteChance;
+				int creeperChance = GGUConfigManager.creeperMiteGrassChance;
 				
 				//checks to see if config is not set to 0 then does random 10% check.
 				if(creeperChance > 0 && rand.nextInt(100) <= creeperChance)
