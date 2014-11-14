@@ -14,36 +14,42 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package nz.co.crookedhill.ggutils.proxy;
+package nz.co.crookedhill.ggutils.network;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import nz.co.crookedhill.ggutils.entity.item.GGUEntityEggTimer;
-import nz.co.crookedhill.ggutils.gui.GuiEggTimer;
-import cpw.mods.fml.common.network.IGuiHandler;
+import io.netty.buffer.ByteBuf;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public class CommonProxy  implements IGuiHandler 
+public class GGUOpenGuiPacket implements IMessage
 {
-
-	public void registerRenderers() {}
+	int guiID;
+	int x, y, z;
 	
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) 
+	public GGUOpenGuiPacket() { }
+	
+	public GGUOpenGuiPacket(int ID, int x, int y, int z) 
 	{
-		return null;
-	}
+        this.guiID = ID;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	public void fromBytes(ByteBuf buf) 
 	{
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		this.guiID = buf.readInt();
+		this.x = buf.readInt();
+		this.y = buf.readInt();
+		this.z = buf.readInt();
 		
-		if(ID==GuiEggTimer.GUI_ID)
-		{
-			return new GuiEggTimer((GGUEntityEggTimer)tileEntity);
-		}
-		return null;
 	}
 
+	@Override
+	public void toBytes(ByteBuf buf) 
+	{
+		buf.writeInt(this.guiID);
+		buf.writeInt(this.x);
+		buf.writeInt(this.y);
+		buf.writeInt(this.z);	
+	}
 }

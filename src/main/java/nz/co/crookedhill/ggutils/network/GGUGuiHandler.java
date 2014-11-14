@@ -14,36 +14,32 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package nz.co.crookedhill.ggutils.proxy;
+package nz.co.crookedhill.ggutils.network;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import nz.co.crookedhill.ggutils.entity.item.GGUEntityEggTimer;
-import nz.co.crookedhill.ggutils.gui.GuiEggTimer;
-import cpw.mods.fml.common.network.IGuiHandler;
+import nz.co.crookedhill.ggutils.GGUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class CommonProxy  implements IGuiHandler 
+public class GGUGuiHandler implements IMessageHandler<GGUOpenGuiPacket, IMessage>
 {
-
-	public void registerRenderers() {}
 	
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) 
-	{
-		return null;
-	}
+	/**
+	 * an example of sending a message is:
+	 * String message = ""+(char)x+(char)y+(char)z;
+	 * GGUtils.network.sendToServer(new GGUSortPacket(message));
+	 */
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	public IMessage onMessage(GGUOpenGuiPacket message, MessageContext ctx) 
 	{
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		
-		if(ID==GuiEggTimer.GUI_ID)
-		{
-			return new GuiEggTimer((GGUEntityEggTimer)tileEntity);
-		}
+			World world = ctx.getServerHandler().playerEntity.worldObj;
+			int x = message.x;
+			int y = message.y;
+			int z = message.z;
+			
+			ctx.getServerHandler().playerEntity.openGui(GGUtils.instance, message.guiID, world, x, y, z);
 		return null;
 	}
-
 }

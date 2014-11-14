@@ -16,21 +16,24 @@
 
 package nz.co.crookedhill.ggutils.block;
 
-import java.util.Random;
-
+import cpw.mods.fml.server.FMLServerHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.entity.item.GGUEntityEggTimer;
+import nz.co.crookedhill.ggutils.gui.GuiEggTimer;
+import nz.co.crookedhill.ggutils.network.GGUOpenGuiPacket;
 
 public class GGUBlockEggTimer extends Block 
 {
-
+	Minecraft mc;
 	private IIcon[] icons = new IIcon[2];
 
 	protected GGUBlockEggTimer(Material material) 
@@ -39,6 +42,7 @@ public class GGUBlockEggTimer extends Block
 		this.setBlockName("eggTimer");
 		this.setHardness(2.5f);
 		this.setStepSound(Block.soundTypeAnvil);
+		this.mc = Minecraft.getMinecraft();
 	}
 
 	@Override
@@ -82,17 +86,20 @@ public class GGUBlockEggTimer extends Block
 
 		if(!world.isRemote && entity != null)
 		{	
-			int strength = world.getBlockPowerInput(x, y, z);
-			switch(strength)
-			{
-			case 0:
-				entity.setActive(false);
-				entity.setDelay(0);
-				break;
-			default:
-				entity.setDelay(strength*10);				
-				entity.setActive(true);
-			}
+			//GGUtils.network.sendTo((new GGUOpenGuiPacket(GuiEggTimer.GUI_ID, x, y, z)), (EntityPlayerMP) player);
+			this.mc.displayGuiScreen(new GuiEggTimer(entity));
+			
+//			int strength = world.getBlockPowerInput(x, y, z);
+//			switch(strength)
+//			{
+//			case 0:
+//				entity.setActive(false);
+//				entity.setDelay(0);
+//				break;
+//			default:
+//				entity.setDelay(strength*10);				
+//				entity.setActive(true);
+//			}
 		}
 		return true;
 	}

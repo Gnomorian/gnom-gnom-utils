@@ -27,10 +27,12 @@ import nz.co.crookedhill.ggutils.entity.item.GGUEntityTile;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
-import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import nz.co.crookedhill.ggutils.item.GGUItems;
+import nz.co.crookedhill.ggutils.network.GGUGuiHandler;
+import nz.co.crookedhill.ggutils.network.GGUOpenGuiPacket;
 import nz.co.crookedhill.ggutils.network.GGUSortPacket;
 import nz.co.crookedhill.ggutils.network.GGUSortPacketHandler;
 import nz.co.crookedhill.ggutils.proxy.CommonProxy;
@@ -50,6 +52,7 @@ import cpw.mods.fml.relauncher.Side;
 public class GGUtils
 {	
 	public static final String MODID = "ggutils";
+	public static int networkID = 0;
 	/**
 	 * 0.0.0.0
 	 * first 0=
@@ -81,7 +84,9 @@ public class GGUtils
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
-		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
+		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, networkID, Side.SERVER);
+		network.registerMessage(GGUGuiHandler.class, GGUOpenGuiPacket.class, networkID++, Side.SERVER);
+
 		GGUConfigManager.init(event);
 		GGUItems.init();
 		GGUEntityTile.init();
