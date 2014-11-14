@@ -34,6 +34,8 @@ public class GGUBlockHandler
 
 	/**
 	 * event triggers on block break
+	 * used for checking if the block is long grass,
+	 * then spawning a creepermite in its place.
 	 * @param event BreakEvent event
 	 */
 	@SubscribeEvent
