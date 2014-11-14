@@ -69,6 +69,12 @@ public class GGUMobHandler
 			}
 		}
 	}
+	/**
+	 * a function that is called everytime a player is falling.
+	 * it is used to check how far the player has fallen, then
+	 * award them an achievement if they fell 500 blocks and where
+	 * attacked by a creepermite.
+	 */
 	@SubscribeEvent
 	public void onFallhandler(LivingFallEvent event)
 	{
@@ -77,7 +83,13 @@ public class GGUMobHandler
 				((EntityPlayer)event.entityLiving).addStat(GGUAchievements.creepMiteExplosion, 1);
 		}
 	}
-	
+	/**
+	 * a function subscribed to an event that is called when a player pulls
+	 * a crafting result out of the crafting bench.
+	 * this functiono currently doesnt work, and needs fixing.
+	 * 
+	 * this function exists to enable achievements from crafting sortivator etc.
+	 */
 	@SubscribeEvent
 	public void onCraft(PlayerEvent.ItemCraftedEvent event) {
 		System.out.println("craft event is being called");
