@@ -16,8 +16,6 @@
 
 package nz.co.crookedhill.ggutils.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
