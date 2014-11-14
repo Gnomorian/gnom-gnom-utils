@@ -36,8 +36,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
  * then set the block to air and spawn an itemstack, with a stacksize of
  * normal drop+(1 to i) (i being the level of the enchantment)
  * 
- * this class needs to be cleaned up wil, very hackey :)
- *
  */
 
 public class GGUEnchantmentHandler 
