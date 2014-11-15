@@ -127,6 +127,8 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 ## Swapable hotbars
   - Swapable hotbars that swap 9x1 row of the inventory to the hotbar on keypress.
   - Rotation? or Swapable?
+  - 
+## Some form of early game explosives.
   
 -------------------------
 CONCEPTS
