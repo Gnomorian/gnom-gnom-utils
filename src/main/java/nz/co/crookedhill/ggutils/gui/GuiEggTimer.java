@@ -31,7 +31,7 @@ public class GuiEggTimer extends GuiScreen {
     	super.initGui();
     	
         this.buttonList.clear();
-    	this.buttonDone = new GuiButton(buttonCount, 40, 20, 100, 20, "Done");
+    	this.buttonDone = new GuiButton(buttonCount, 40, 20, 40, 20, "Done");
     	this.buttonList.add(this.buttonDone);
     }
     
@@ -68,11 +68,11 @@ public class GuiEggTimer extends GuiScreen {
     {
         super.drawScreen(x, y, f);
 
-        xSize = 176;
-        ySize = 120;
+        xSize = 256;
+        ySize = 159;
         this.drawDefaultBackground();
 		this.mc.getTextureManager().bindTexture(iconLocation);
-		drawTexturedModalRect((this.width-xSize)/2, (this.height-ySize)/2, 40, 0, xSize, ySize);
+		drawTexturedModalRect((this.width-xSize)/2, (this.height-ySize)/2, 0, 0, xSize, ySize);
     }
     
     @Override
