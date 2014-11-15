@@ -16,16 +16,24 @@
 
 package nz.co.crookedhill.ggutils.proxy;
 
+import java.util.Random;
+
+import nz.co.crookedhill.ggutils.entity.item.GGUEntityModularLimb;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
 import nz.co.crookedhill.ggutils.renderer.GGURenderCreeperMite;
+import nz.co.crookedhill.ggutils.renderer.GGURenderModularLimb;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 
 public class ClientProxy extends CommonProxy 
 {
+    Random rand = new Random();
+    
 	@Override
 	public void registerRenderers() 
 	{
+		ClientRegistry.bindTileEntitySpecialRenderer(GGUEntityModularLimb.class, new GGURenderModularLimb());
 		RenderingRegistry.registerEntityRenderingHandler(GGUEntityCreeperMite.class, new GGURenderCreeperMite());
 	}
 }

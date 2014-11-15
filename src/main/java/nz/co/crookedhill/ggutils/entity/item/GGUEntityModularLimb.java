@@ -16,46 +16,44 @@
 
 package nz.co.crookedhill.ggutils.entity.item;
 
-import net.minecraft.entity.Entity;
+import java.util.Random;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
-public class GGUEntityEggTimer extends TileEntity 
+public class GGUEntityModularLimb extends TileEntity 
 {
-	private int delay;
-	private boolean isActive = false;
+	Random rand = new Random();
+	ItemStack stack;
+	int count = 0;
+	float rotateDeg = 0;
 
-	public GGUEntityEggTimer()
+	public GGUEntityModularLimb(ItemStack stack)
 	{
-
+		this.stack = stack;
+		this.stack.stackSize = rand.nextInt(64);
 	}
 
 
 	@Override
 	public void updateEntity()
 	{
-		World world = this.worldObj;
-		if(worldObj.getBlockPowerInput(xCoord, yCoord, zCoord) <= 0)
+		if(rand.nextInt(10000) == 0)
 		{
-			this.isActive = false;
-			this.delay = 0;
+			ItemStack stack = new ItemStack(Item.getItemById(rand.nextInt(Item.itemRegistry.getKeys().size())));
+			this.stack = stack;	
 		}
 		
-		if(isActive){
-			if(this.delay <= 0){
-				world.spawnParticle("hugeexplosion", xCoord, yCoord+1, zCoord, 0.0f, 0.0f, 0.0f);
-				world.createExplosion((Entity)null, xCoord, yCoord+1, zCoord, 5.0F, true);
-				world.removeTileEntity(xCoord, yCoord, zCoord);
-				world.setBlockToAir(xCoord, yCoord, zCoord);
-				invalidate();
-				this.setActive(false);
-				this.setDelay(0);
-			}
-			this.delay--; 		
+		this.rotateDeg+=0.5f;
+		
+		if(this.rotateDeg == 360)
+		{
+			this.rotateDeg = 0;
 		}
 	}
 
@@ -63,16 +61,14 @@ public class GGUEntityEggTimer extends TileEntity
 	public void writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
-		compound.setInteger("delay", this.delay);
-		compound.setBoolean("isActive", this.isActive);
+		compound.setInteger("itemValue", Item.getIdFromItem(this.stack.getItem()));
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
-		this.delay = compound.getInteger("delay");
-		this.isActive = compound.getBoolean("isActive");
+		this.stack = new ItemStack(Item.getItemById(compound.getInteger("itemValue")), 1, 0);
 	}
 
 	@Override
@@ -89,35 +85,13 @@ public class GGUEntityEggTimer extends TileEntity
 		readFromNBT(packet.func_148857_g());
 	}
 
-	/**
-	 * Sets the delay
-	 * @param delay
-	 */
-	public void setDelay(int delay){
-		this.delay = delay;
+	public ItemStack getStack()
+	{
+		return this.stack;
 	}
-
-	/**
-	 * Gets the delay
-	 * @return
-	 */
-	public int getDelay(){
-		return this.delay;
-	}
-
-	/**
-	 * Activates or decatives the timer
-	 * @param active boolean to check if active
-	 */
-	public void setActive(boolean active){
-		this.isActive = (active==true) ? true: false;
-	}
-
-	/**
-	 * Get if timer is active.
-	 * @return boolean if active or not
-	 */
-	public boolean getActive(){
-		return this.isActive;
+	
+	public float getRotation()
+	{
+		return this.rotateDeg;
 	}
 }
