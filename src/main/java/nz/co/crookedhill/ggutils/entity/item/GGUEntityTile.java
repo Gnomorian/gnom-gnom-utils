@@ -26,6 +26,8 @@ public class GGUEntityTile
 	{
 		GameRegistry.registerTileEntity(GGUEntityEggTimer.class, "eggTimer");
 		GameRegistry.registerTileEntity(GGUEntityModularLimb.class, "modularLimb");
+		GameRegistry.registerTileEntity(GGUEntityModularCore.class, "modularCore");
+
 
 	}
 }
