@@ -11,6 +11,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.entity.item.GGUEntityModularCore;
+import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -39,11 +40,17 @@ public class GGUBlockModularCore extends Block {
 			int meta, float par7, float par8,
 			float par9) {
 		
+		GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
 		if(!world.isRemote){
+			System.out.println("PLAYER BEFORE:"+props.getNumberOfLimbs());
 			GGUEntityModularCore entity = (GGUEntityModularCore) world.getTileEntity(x, y, z);
 			int[] coords = {x, y, z};
 
 			entity.recalculateLimbs(coords);
+			int numberOfLimbs = entity.getNumberOfLimbs();
+			props.setNumberofLimbs(numberOfLimbs);
+			
+			System.out.println("PLAYER AFTER:"+props.getNumberOfLimbs());
 		}
 		return true;
 	}

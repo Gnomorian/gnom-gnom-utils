@@ -214,4 +214,9 @@ public class GGUEntityModularCore extends TileEntity
 		this.numberOfLimbs.clear();
 		calculateLimbs(coords);
 	}
+	
+	public int getNumberOfLimbs()
+	{
+		return this.numberOfLimbs.size();
+	}
 }

@@ -40,8 +40,11 @@ public class GGUItems
 		GameRegistry.registerItem(blockFinder, "blockFinder");
 		if(GGUConfigManager.sortivatorEnabled)
 		GameRegistry.registerItem(woodenGear, "woodenGear");
+	
+		registerRecipes();
 	}
-	public static void registerRecipes() 
+	
+	private static void registerRecipes() 
 	{
 		if(GGUConfigManager.sortivatorEnabled)
 		GameRegistry.addRecipe(new ItemStack(woodenGear),"sws","w w","sws"

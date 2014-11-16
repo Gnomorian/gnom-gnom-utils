@@ -29,7 +29,7 @@ import nz.co.crookedhill.ggutils.achievements.GGUAchievements;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 
 
 public class GGUMobHandler 
@@ -91,7 +91,7 @@ public class GGUMobHandler
 	 * this function exists to enable achievements from crafting sortivator etc.
 	 */
 	@SubscribeEvent
-	public void onCraft(PlayerEvent.ItemCraftedEvent event) {
+	public void onCraft(ItemCraftedEvent event) {
 		System.out.println("craft event is being called");
 		if(event.crafting.getUnlocalizedName().equals(GGUBlocks.sortivator.getUnlocalizedName())) {
 			System.out.println("crafting sucseeded");

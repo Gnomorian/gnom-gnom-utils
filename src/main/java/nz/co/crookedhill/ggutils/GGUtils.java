@@ -86,7 +86,7 @@ public class GGUtils
 	public void preInit(FMLPreInitializationEvent event) {
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
 		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
-		network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
+		network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.CLIENT);
 
 		GGUConfigManager.init(event);
 		GGUItems.init();
@@ -95,9 +95,6 @@ public class GGUtils
 		GGUEntityMob.init();
 		GGUEnchantment.init();
 		GGUAchievements.init();
-		
-		GGUBlocks.registerRecipes();
-		GGUItems.registerRecipes();
 	}
 
 	@EventHandler

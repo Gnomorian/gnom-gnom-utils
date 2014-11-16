@@ -25,17 +25,12 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
  *
  */
 public class GGUSyncPlayerPropsPacket implements IMessage
-//remember - the IMessageHandler will be implemented as a static inner class
 {
-	// Previously, we've been writing each field in our properties one at a time,
-	// but that is really annoying, and we've already done it in the save and load
-	// NBT methods anyway, so here's a slick way to efficiently send all of your
-	// extended data, and no matter how much you add or remove, you'll never have
-	// to change the packet / synchronization of your data.
-	// this will store our ExtendedPlayer data, allowing us to easily read and write
+
 	public NBTTagCompound data;
 	// The basic, no-argument constructor MUST be included to use the new automated handling
 	public GGUSyncPlayerPropsPacket() {}
+	
 	// We need to initialize our data, so provide a suitable constructor:
 	public GGUSyncPlayerPropsPacket(EntityPlayer player) {
 		// create a new tag compound
@@ -53,14 +48,5 @@ public class GGUSyncPlayerPropsPacket implements IMessage
 		// ByteBufUtils provides a convenient method for writing the compound
 		ByteBufUtils.writeTag(buffer, data);
 	}
-
-	/**
-	 *
-	 * 'VANILLA' VERSION of the Message Handler
-	 * Straight implementation without any of my personal 'improvements' :P
-	 *
-	 */
-
-
 }
 
