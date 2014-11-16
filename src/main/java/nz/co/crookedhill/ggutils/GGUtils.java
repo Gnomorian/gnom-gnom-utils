@@ -16,6 +16,7 @@
 
 package nz.co.crookedhill.ggutils;
 
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,6 +26,7 @@ import nz.co.crookedhill.ggutils.creativetabs.GGUCreativeTabBlock;
 import nz.co.crookedhill.ggutils.enchantment.GGUEnchantment;
 import nz.co.crookedhill.ggutils.entity.item.GGUEntityTile;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
+import nz.co.crookedhill.ggutils.handlers.ExtendedPropertiesHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
@@ -33,6 +35,8 @@ import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import nz.co.crookedhill.ggutils.item.GGUItems;
 import nz.co.crookedhill.ggutils.network.GGUSortPacket;
 import nz.co.crookedhill.ggutils.network.GGUSortPacketHandler;
+import nz.co.crookedhill.ggutils.network.GGUSyncPlayerPropertiesPacketHandler;
+import nz.co.crookedhill.ggutils.network.GGUSyncPlayerPropsPacket;
 import nz.co.crookedhill.ggutils.proxy.CommonProxy;
 import nz.co.crookedhill.ggutils.util.GGURecipeManager;
 import cpw.mods.fml.common.Mod;
@@ -61,7 +65,7 @@ public class GGUtils
 	 * forth 0=
 	 * 	the number of bug fixes/sub features added since last feature added.
 	 */
-	public static final String VERSION = "0.0.6.2";
+	public static final String VERSION = "0.0.6.4";
 
 	//Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
@@ -82,6 +86,8 @@ public class GGUtils
 	public void preInit(FMLPreInitializationEvent event) {
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
 		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
+		network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
+
 		GGUConfigManager.init(event);
 		GGUItems.init();
 		GGUEntityTile.init();
@@ -89,6 +95,9 @@ public class GGUtils
 		GGUEntityMob.init();
 		GGUEnchantment.init();
 		GGUAchievements.init();
+		
+		GGUBlocks.registerRecipes();
+		GGUItems.registerRecipes();
 	}
 
 	@EventHandler
@@ -100,6 +109,7 @@ public class GGUtils
 		MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUEnchantmentHandler());
+		MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
 
 	}
 

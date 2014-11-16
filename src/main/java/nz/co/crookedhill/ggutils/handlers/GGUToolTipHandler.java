@@ -22,6 +22,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GGUToolTipHandler 
 {
+	/**
+	 * called when a player hovers over an item.
+	 * used to add descriptions to all GGU items
+	 */
 	@SubscribeEvent
 	public void onTooltipEvent(ItemTooltipEvent event) 
 	{

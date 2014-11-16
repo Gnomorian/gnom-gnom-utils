@@ -39,7 +39,9 @@ public class GGUConfigManager
 	
 	//ENTITIES
 	public static boolean creeperMiteExist;
-	public static int creeperMiteChance;
+	public static int creeperMiteGrassChance;
+	public static int creeperMiteHelpChance;
+	public static boolean creeperMiteNoAir;
 	
 	//ENCHANTMENTS
 	public static boolean autoSmeltEnabled;
@@ -62,8 +64,10 @@ public class GGUConfigManager
 		arseTardisEnabled = config.getBoolean("arseTardisEnabled", "Items", true, "is the Arse Tardis enabled in game");
 		anticobbleEnabled = config.getBoolean("anticobbleEnabled", "Items", true, "is the AntiCobble item enabled in game");
 		
-		creeperMiteChance = config.getInt("creeperMiteChance", "Entities", 10, 0, 100, "Chance (out of 100) that a creeper mite will spawn from a tall grass block.");
+		creeperMiteGrassChance = config.getInt("creeperMiteGrassChance", "Entities", 10, 0, 100, "Chance (out of 100) that a creeper mite will spawn from a tall grass block.");
+		creeperMiteHelpChance = config.getInt("creeperMiteHelpChance", "Entities", 70, 0, 100, "Chance (out of 100) that a creeper mite will spawn from a tall grass block when player hits another CreeperMite.");
 		creeperMiteExist = config.getBoolean("creeperMiteExist", "Entities", true, "set to false to stop the creeper mite from existing in your game");
+		creeperMiteNoAir = config.getBoolean("creeperMiteGettingAir", "Entities", true, "set to falce to reduce the height you are tossed when a creeper explodes");
 		
 		autoSmeltEnabled = config.getBoolean("autoSmeltEnabled", "Enchantment", true, "is auto smelter enchantment enabled in game");
 		autoSmeltid = config.getInt("autoSmeltid", "Enchantment", 103, 50, 256, "the id of the enchantment Prosperous Auto-Smelt");

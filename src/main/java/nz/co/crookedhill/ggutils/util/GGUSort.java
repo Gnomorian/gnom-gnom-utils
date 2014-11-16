@@ -26,7 +26,12 @@ import net.minecraft.item.ItemStack;
 
 public class GGUSort 
 {
-
+	/**
+	 * Gets an inventory objects, gets a copy of
+	 * all unique items in the inventory and the amount
+	 * then places all the items back in, sorted by
+	 * unlocolised name.
+	 */
 	public static void sort(IInventory inventory) 
 	{
 		/*amount of slots in the inventory*/

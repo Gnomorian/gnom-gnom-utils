@@ -14,10 +14,27 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package nz.co.crookedhill.ggutils.handlers;
+package nz.co.crookedhill.ggutils.network;
 
-public class GGUPacketHandler
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+
+public abstract class GGUAbstractHandler implements IMessageHandler<GGUAbstractPacket, IMessage>
 {
 	
+	/**
+	 * an example of sending a message is:
+	 * (what is passed to the packet)
+	 * String message = ""+(char)x+(char)y+(char)z;
+	 * (what apears in the main class)
+	 * GGUtils.network.sendToServer(new GGUSortPacket(message));
+	 */
+	 
+  /**
+   * what happens when one side of the network recieves the packet 
+   * associated with the extended class.
+   */
+	public abstract IMessage onMessage(GGUSortPacket message, MessageContext ctx);
 	
 }

@@ -24,8 +24,13 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 
 public class GGURecipeManager 
 {
-	
+	/**
+	 * list of all shaped recipes found in the CraftingManager's Recipe List.
+	 */
 	private static List<ShapedRecipes> shapedRecipes = new ArrayList<ShapedRecipes>();
+	/**
+	 * list of all shapeless recipes found in the CraftingManager's Recipe List.
+	 */
 	private static List<ShapelessRecipes> shapelessRecipes = new ArrayList<ShapelessRecipes>();
 	
 	/**
@@ -49,12 +54,17 @@ public class GGURecipeManager
 			}
 		}
 	}
-	
+	/**
+	 * returns the list of shaped recipes.
+	 */
 	public static List<ShapedRecipes> getShaped() 
 	{
 		return shapedRecipes;
 		
 	}
+	/**
+	 * returns the list of shaped recipes.
+	 */
 	public static List<ShapelessRecipes> getShapeless() 
 	{
 		return shapelessRecipes;
