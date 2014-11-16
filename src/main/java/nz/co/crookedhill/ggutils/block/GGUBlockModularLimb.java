@@ -71,6 +71,7 @@ public class GGUBlockModularLimb extends Block {
 	{	
 		super.createTileEntity(world, metadata);
 		ItemStack stack = new ItemStack(Item.getItemById(rand.nextInt(Item.itemRegistry.getKeys().size())));
+		stack.stackSize = rand.nextInt(64);
 		
 		return new GGUEntityModularLimb(stack);
 	}

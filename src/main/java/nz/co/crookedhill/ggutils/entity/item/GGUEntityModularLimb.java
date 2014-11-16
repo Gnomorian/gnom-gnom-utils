@@ -36,7 +36,6 @@ public class GGUEntityModularLimb extends TileEntity
 	public GGUEntityModularLimb(ItemStack stack)
 	{
 		this.stack = stack;
-		this.stack.stackSize = rand.nextInt(64);
 	}
 
 
@@ -47,6 +46,7 @@ public class GGUEntityModularLimb extends TileEntity
 		{
 			ItemStack stack = new ItemStack(Item.getItemById(rand.nextInt(Item.itemRegistry.getKeys().size())));
 			this.stack = stack;	
+			this.stack.stackSize = rand.nextInt(64);
 		}
 		
 		this.rotateDeg+=0.5f;
