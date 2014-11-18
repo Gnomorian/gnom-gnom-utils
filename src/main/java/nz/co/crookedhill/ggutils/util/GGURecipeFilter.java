@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
 
 /**
  *	recipe instances:
@@ -53,7 +51,7 @@ public class GGURecipeFilter
 		List avalableRecipes = new ArrayList();
 
 		//for shaped recipes
-		for(ShapedRecipes recipe : GGURecipeManager.getShaped()) 
+		for(GGUShapedRecipe recipe : GGURecipeManager.getShaped()) 
 		{
 			/*
 			 * if the player has an item required for the recipe, 
@@ -82,7 +80,7 @@ public class GGURecipeFilter
 		}
 
 		//for shapeless recipes
-		for(ShapelessRecipes recipe : GGURecipeManager.getShapeless()) 
+		for(GGUShapelessRecipe recipe : GGURecipeManager.getShapeless()) 
 		{
 			/*
 			 * if the player has an item required for the recipe, 
@@ -90,8 +88,8 @@ public class GGURecipeFilter
 			 * at the end, player has all items
 			 */
 			int gotRequiredItems = 0;
-			for(int i = 0; i < recipe.recipeItems.size(); i++) {
-				ItemStack requiredItem = (ItemStack)recipe.recipeItems.get(i);
+			for(int i = 0; i < recipe.recipeItems.length; i++) {
+				ItemStack requiredItem = recipe.recipeItems[i];
 				if(requiredItem == null)
 					continue;
 				for(ItemStack invItem : inventoryItems) 
@@ -102,7 +100,7 @@ public class GGURecipeFilter
 						gotRequiredItems++;
 				}
 			}
-			if(recipe.recipeItems.size() == gotRequiredItems)
+			if(recipe.recipeItems.length == gotRequiredItems)
 				avalableRecipes.add(recipe);
 		}
 		System.out.println(avalableRecipes.size());

@@ -27,11 +27,11 @@ public class GGURecipeManager
 	/**
 	 * list of all shaped recipes found in the CraftingManager's Recipe List.
 	 */
-	private static List<ShapedRecipes> shapedRecipes = new ArrayList<ShapedRecipes>();
+	private static List<GGUShapedRecipe> shapedRecipes = new ArrayList<GGUShapedRecipe>();
 	/**
 	 * list of all shapeless recipes found in the CraftingManager's Recipe List.
 	 */
-	private static List<ShapelessRecipes> shapelessRecipes = new ArrayList<ShapelessRecipes>();
+	private static List<GGUShapelessRecipe> shapelessRecipes = new ArrayList<GGUShapelessRecipe>();
 	
 	/**
 	 * gets the list of recipes from the crafting manager and sorts them into multiple lists to 
@@ -45,19 +45,19 @@ public class GGURecipeManager
 			if(recipeList.get(i) instanceof ShapedRecipes) 
 			{
 				//if(((ShapedRecipes)recipeList.get(i)).getRecipeOutput() != null)
-					shapedRecipes.add(((ShapedRecipes)recipeList.get(i)));
+					shapedRecipes.add(new GGUShapedRecipe((ShapedRecipes)recipeList.get(i)));
 			}
 			else if(recipeList.get(i) instanceof ShapelessRecipes) 
 			{
 				if(((ShapelessRecipes)recipeList.get(i)).getRecipeOutput() != null)
-					shapelessRecipes.add(((ShapelessRecipes)recipeList.get(i)));
+					shapelessRecipes.add(new GGUShapelessRecipe((ShapelessRecipes)recipeList.get(i)));
 			}
 		}
 	}
 	/**
 	 * returns the list of shaped recipes.
 	 */
-	public static List<ShapedRecipes> getShaped() 
+	public static List<GGUShapedRecipe> getShaped() 
 	{
 		return shapedRecipes;
 		
@@ -65,7 +65,7 @@ public class GGURecipeManager
 	/**
 	 * returns the list of shaped recipes.
 	 */
-	public static List<ShapelessRecipes> getShapeless() 
+	public static List<GGUShapelessRecipe> getShapeless() 
 	{
 		return shapelessRecipes;
 		

@@ -25,7 +25,6 @@ import net.minecraft.block.BlockOre;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
@@ -105,8 +104,10 @@ public class GGUEnchantmentHandler
 		{
 			if(itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{lvl:3s,id:103s,}"))
 				enchantmentLevel = 3;
+			else
 			if(itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{lvl:2s,id:103s,}"))
 				enchantmentLevel = 2;
+			else
 			if(itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{lvl:1s,id:103s,}"))
 				enchantmentLevel = 1;
 		}

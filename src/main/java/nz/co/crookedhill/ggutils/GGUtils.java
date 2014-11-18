@@ -28,6 +28,7 @@ import nz.co.crookedhill.ggutils.entity.item.GGUEntityTile;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
 import nz.co.crookedhill.ggutils.handlers.ExtendedPropertiesHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUCommandHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
@@ -46,6 +47,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
@@ -116,5 +118,10 @@ public class GGUtils
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
+	}
+	
+	@EventHandler
+	public void serverLoad(FMLServerStartingEvent e) {
+		e.registerServerCommand(new GGUCommandHandler());
 	}
 }
