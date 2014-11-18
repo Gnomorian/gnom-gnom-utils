@@ -32,6 +32,8 @@ import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import nz.co.crookedhill.ggutils.item.GGUItems;
+import nz.co.crookedhill.ggutils.network.GGUInventorySwitchHandler;
+import nz.co.crookedhill.ggutils.network.GGUInventorySwitchPacket;
 import nz.co.crookedhill.ggutils.network.GGUSortPacket;
 import nz.co.crookedhill.ggutils.network.GGUSortPacketHandler;
 import nz.co.crookedhill.ggutils.proxy.CommonProxy;
@@ -39,6 +41,7 @@ import nz.co.crookedhill.ggutils.util.GGURecipeManager;
 
 import org.lwjgl.input.Keyboard;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -89,6 +92,7 @@ public class GGUtils
 	public void preInit(FMLPreInitializationEvent event) {
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
 		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
+		network.registerMessage(GGUInventorySwitchHandler.class, GGUInventorySwitchPacket.class, 1, Side.SERVER);
 		
 		GGUConfigManager.init(event);
 		GGUItems.init();
@@ -114,6 +118,7 @@ public class GGUtils
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
+		ClientRegistry.registerKeyBinding(arseTardis);
 		GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
 	}
 }
