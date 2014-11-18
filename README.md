@@ -113,12 +113,12 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 
 # ENCHANTMENTS
-## prosperous
+## Prosperous
   - [X] fortune pickaxe that also smelts the ore from the ore block.
   - [X] smelts wooden logs aswell.
   - [X] can be disabled in config.
 
-## liftoff
+## Liftoff
   - [ ] Enchantment on armor that makes you fly.
   - [ ] decreaces armour durability over time.
   - [ ] can be disabled in config.
