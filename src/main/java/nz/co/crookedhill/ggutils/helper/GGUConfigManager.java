@@ -16,11 +16,16 @@
 
 package nz.co.crookedhill.ggutils.helper;
 
+import java.io.File;
+
 import net.minecraftforge.common.config.Configuration;
+import nz.co.crookedhill.ggutils.GGUtils;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class GGUConfigManager 
 {
+	private static File configFile;
+	private static Configuration config;
 	
 	//BLOCKS
 	public static int growthBlockStackHeight;
@@ -49,7 +54,9 @@ public class GGUConfigManager
 	
 	public static void init(FMLPreInitializationEvent event) 
 	{
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		configFile = new File(event.getModConfigurationDirectory().getAbsolutePath()+File.separator+GGUtils.MODID+File.separator+GGUtils.MODID+".cfg");
+		config = new Configuration(configFile);
+		try {
 		config.load();
 		growthBlockStackHeight = config.getInt("growthBlockStackHeight", "Blocks", 16, 1, 255, "Edit the functional stack size of the Damara's Remedy block.");
 		growthCactusReedMaxHeight = config.getInt("growthCactusReedMaxHeight", "Blocks", 4, 1, 32, "Set the max growth height of cacti/reeds on Damara's Remedy.");
@@ -72,6 +79,12 @@ public class GGUConfigManager
 		autoSmeltEnabled = config.getBoolean("autoSmeltEnabled", "Enchantment", true, "is auto smelter enchantment enabled in game");
 		autoSmeltid = config.getInt("autoSmeltid", "Enchantment", 103, 50, 256, "the id of the enchantment Prosperous Auto-Smelt");
 		
-		config.save();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			config.save();
+		}
 	}
 }
