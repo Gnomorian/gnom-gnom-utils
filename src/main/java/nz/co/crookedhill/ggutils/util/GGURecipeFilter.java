@@ -55,6 +55,11 @@ public class GGURecipeFilter
 		//for shaped recipes
 		for(ShapedRecipes recipe : GGURecipeManager.getShaped()) 
 		{
+			/*
+			 * if the player has an item required for the recipe, 
+			 * incriment by one, if its the size of required items 
+			 * at the end, player has all items
+			 */
 			int gotRequiredItems = 0;
 			for(ItemStack requiredItem : recipe.recipeItems) 
 			{
@@ -64,7 +69,7 @@ public class GGURecipeFilter
 				{
 					if(invItem == null)
 						continue;
-					if(requiredItem.isItemEqual(invItem)&&requiredItem.stackSize <= invItem.stackSize)
+					if(requiredItem.getItem() == (invItem.getItem()) &&requiredItem.stackSize <= invItem.stackSize)
 						gotRequiredItems++;
 				}
 			}
@@ -75,6 +80,11 @@ public class GGURecipeFilter
 		//for shapeless recipes
 		for(ShapelessRecipes recipe : GGURecipeManager.getShapeless()) 
 		{
+			/*
+			 * if the player has an item required for the recipe, 
+			 * incriment by one, if its the size of required items 
+			 * at the end, player has all items
+			 */
 			int gotRequiredItems = 0;
 			for(int i = 0; i < recipe.recipeItems.size(); i++) {
 				ItemStack requiredItem = (ItemStack)recipe.recipeItems.get(i);
@@ -84,7 +94,7 @@ public class GGURecipeFilter
 				{
 					if(invItem == null)
 						continue;
-					if(requiredItem.isItemEqual(invItem)&&requiredItem.stackSize <= invItem.stackSize)
+					if(requiredItem.getItem() == (invItem.getItem())&&requiredItem.stackSize <= invItem.stackSize)
 						gotRequiredItems++;
 				}
 			}
