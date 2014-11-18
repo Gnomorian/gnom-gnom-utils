@@ -134,12 +134,11 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 ## Swapable hotbars
   - Swapable hotbars that swap 9x1 row of the inventory to the hotbar on keypress.
   - Rotation? or Swapable?
-
-
-## Some form of controlled explosives or placeable gunpowder.
   
 -------------------------
 CONCEPTS
 -------------------------
-Packethandling
-http://www.minecraftforge.net/forum/index.php/topic,20135.0.html
+### Packethandling
+ - http://www.minecraftforge.net/forum/index.php/topic,20135.0.html
+
+Some form of controlled explosives or placeable gunpowder.
