@@ -59,14 +59,14 @@ public class GGUEnchantmentHandler
 			int z = event.z;
 			EntityPlayer player = event.getPlayer();
 			ItemStack heldItemStack = player.getHeldItem();
-			Item heldItem = heldItemStack.getItem();
+			//Item heldItem = heldItemStack.getItem();
 			ArrayList<ItemStack> items;
 			
 			if(heldItemStack != null 
 					&& heldItemStack.getEnchantmentTagList() != null) 
 			{
-				if(heldItem.getToolClasses(heldItemStack).contains(block.getHarvestTool(metaData)) 
-						&& heldItem.getHarvestLevel(heldItemStack, block.getHarvestTool(metaData)) >= block.getHarvestLevel(metaData)) 
+				if(heldItemStack.getItem().getToolClasses(heldItemStack).contains(block.getHarvestTool(metaData)) 
+						&& heldItemStack.getItem().getHarvestLevel(heldItemStack, block.getHarvestTool(metaData)) >= block.getHarvestLevel(metaData)) 
 				{
 					if(block instanceof BlockOre || block instanceof BlockLog || block instanceof BlockSand)
 					{

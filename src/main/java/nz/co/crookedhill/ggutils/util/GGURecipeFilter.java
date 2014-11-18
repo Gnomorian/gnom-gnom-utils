@@ -69,12 +69,16 @@ public class GGURecipeFilter
 				{
 					if(invItem == null)
 						continue;
-					if(requiredItem.getItem() == (invItem.getItem()) &&requiredItem.stackSize <= invItem.stackSize)
+					if(requiredItem.getUnlocalizedName().equals(invItem.getUnlocalizedName()) && requiredItem.stackSize <= invItem.stackSize)
 						gotRequiredItems++;
 				}
 			}
-			if(recipe.recipeItems.length == gotRequiredItems)
+			if(recipe.recipeItems.length == gotRequiredItems) {
 				avalableRecipes.add(recipe);
+				System.out.println("can make a "+recipe.getRecipeOutput().getDisplayName()+"X"+recipe.getRecipeOutput().stackSize);
+				for(ItemStack item : recipe.recipeItems)
+				System.out.println("	requires a:"+item.getDisplayName()+"X"+item.stackSize);
+			}
 		}
 
 		//for shapeless recipes
@@ -94,7 +98,7 @@ public class GGURecipeFilter
 				{
 					if(invItem == null)
 						continue;
-					if(requiredItem.getItem() == (invItem.getItem())&&requiredItem.stackSize <= invItem.stackSize)
+					if(requiredItem.getUnlocalizedName().equals(invItem.getUnlocalizedName())&&requiredItem.stackSize <= invItem.stackSize)
 						gotRequiredItems++;
 				}
 			}

@@ -54,7 +54,7 @@ public class GGULazyCrafter extends Block
 		//get the players inventory.
 		//display the inventory and the items avalable 
 		//to craft with current items.
-		if(!world.isRemote)
+		if(world.isRemote)
 		{
 			IInventory inventory = player.inventory;
 			List invItems = new ArrayList();
@@ -71,10 +71,10 @@ public class GGULazyCrafter extends Block
 			{
 				if(recipes.get(i)instanceof ShapedRecipes) 
 				{
-					System.out.println(player.getDisplayName()+" can craft a shaped "+((ShapedRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
+					//System.out.println(player.getDisplayName()+" can craft a shaped "+((ShapedRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
 				}
 				else if(recipes.get(i)instanceof ShapelessRecipes) {
-					System.out.println(player.getDisplayName()+" can craft a shapeless "+((ShapelessRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
+					//System.out.println(player.getDisplayName()+" can craft a shapeless "+((ShapelessRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
 				}
 
 			}
