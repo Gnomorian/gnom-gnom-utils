@@ -3,7 +3,7 @@ gnom-gnom-utils
 
 A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
-![Banner](/utilsBanner.png)
+![Banner](http://www.planetminecraft.com/java/icons/download.png)
 
 # Blocks
 ## Fabricator: Used to mass fabricate blocks/items.
