@@ -76,12 +76,14 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - [ ] RecipesMapCloning
     - [X] Can be disabled in config.
 
-## Multi Block of Awesome Modular Ender Storage
+## Modular Ender Storage System (MESS)
   - [ ] Single smart block that acts as core. Bound to player. Only breakable by player.
   - [ ] Infinite amount of modular single "dumb" blocks with nbt data that store 1 item attach to the smart core.
   - [ ] Whole inventory can be accessed through some form of ender chest/pouch.
   - [ ] Renders a random item inside the block for trolling purposes.
   - [X] Can be disabled in config.
+  - [ ] a multiblock trap that can zap entities into the MESS, including players
+      - [ ] when the player who created the storage for the entity is online, the dimention is loaded.
 
 ## Anti-Cobble Block - removes cobble from inventories
   - [ ] removes cobble from your inventory as you near it/run past it.
@@ -111,10 +113,15 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 
 # ENCHANTMENTS
-## prosperous Auto-Smelt
+## prosperous
   - [X] fortune pickaxe that also smelts the ore from the ore block.
   - [X] smelts wooden logs aswell.
   - [X] can be disabled in config.
+
+## liftoff
+  - [ ] Enchantment on armor that makes you fly.
+  - [ ] decreaces armour durability over time.
+  - [ ] can be disabled in config.
 
 
 # Mod Support
@@ -130,7 +137,6 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 
 ## Some form of controlled explosives or placeable gunpowder.
-## Enchantment on armor that makes you fly but degrades your armor per sec.
   
 -------------------------
 CONCEPTS
