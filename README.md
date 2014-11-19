@@ -101,6 +101,9 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - [ ] extends map to display an "x marks the spot" for the items your looking for?
     - [X] can be disabled in config.
   
+## White Stone Alt
+  - [ ] if player dies while item is in their inventory, they are resurected with all items at their bed.
+  - [ ] item can be disabled in config.
 
 # MOBS
 ## CreeperMite
@@ -141,4 +144,5 @@ CONCEPTS
 ### Packethandling
  - http://www.minecraftforge.net/forum/index.php/topic,20135.0.html
 
-Some form of controlled explosives or placeable gunpowder.
+ - Some form of controlled explosives or placeable gunpowder.
+ - item that when it despawns on the ground, it spawns a mob where it despawned.
