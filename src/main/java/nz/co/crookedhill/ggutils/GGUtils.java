@@ -30,6 +30,7 @@ import nz.co.crookedhill.ggutils.handlers.ExtendedPropertiesHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUCommandHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUItemEffectHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
@@ -67,7 +68,7 @@ public class GGUtils
 	 * forth 0=
 	 * 	the number of bug fixes/sub features added since last feature added.
 	 */
-	public static final String VERSION = "0.0.6.4";
+	public static final String VERSION = "0.0.7.4";
 
 	//Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
@@ -112,6 +113,7 @@ public class GGUtils
 		MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
 		MinecraftForge.EVENT_BUS.register(new GGUEnchantmentHandler());
 		MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUItemEffectHandler());
 
 	}
 

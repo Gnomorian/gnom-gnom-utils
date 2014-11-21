@@ -73,7 +73,8 @@ public class GGULazyCrafter extends Block
 				{
 					//System.out.println(player.getDisplayName()+" can craft a shaped "+((ShapedRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
 				}
-				else if(recipes.get(i)instanceof ShapelessRecipes) {
+				else if(recipes.get(i)instanceof ShapelessRecipes) 
+				{
 					//System.out.println(player.getDisplayName()+" can craft a shapeless "+((ShapelessRecipes)recipes.get(i)).getRecipeOutput().getDisplayName());
 				}
 

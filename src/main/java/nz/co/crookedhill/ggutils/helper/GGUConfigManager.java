@@ -41,6 +41,7 @@ public class GGUConfigManager
 	public static boolean blockFinderEnabled;
 	public static boolean arseTardisEnabled;
 	public static boolean anticobbleEnabled;
+	public static boolean enderiumRebirthEnabled;
 	
 	//ENTITIES
 	public static boolean creeperMiteExist;
@@ -69,7 +70,8 @@ public class GGUConfigManager
 		
 		blockFinderEnabled = config.getBoolean("blockFinderEnabled", "Items", true, "is the block finder enabled in game");
 		arseTardisEnabled = config.getBoolean("arseTardisEnabled", "Items", true, "is the Arse Tardis enabled in game");
-		anticobbleEnabled = config.getBoolean("anticobbleEnabled", "Items", true, "is the AntiCobble item enabled in game");
+		anticobbleEnabled = config.getBoolean("antiCobbleEnabled", "Items", true, "is the AntiCobble item enabled in game");
+		enderiumRebirthEnabled = config.getBoolean("enderiumRebirthEnabled", "Items", true, "is the Enderium Rebirth Crystal item enabled in game");
 		
 		creeperMiteGrassChance = config.getInt("creeperMiteGrassChance", "Entities", 10, 0, 100, "Chance (out of 100) that a creeper mite will spawn from a tall grass block.");
 		creeperMiteHelpChance = config.getInt("creeperMiteHelpChance", "Entities", 70, 0, 100, "Chance (out of 100) that a creeper mite will spawn from a tall grass block when player hits another CreeperMite.");
@@ -80,7 +82,8 @@ public class GGUConfigManager
 		autoSmeltid = config.getInt("autoSmeltid", "Enchantment", 103, 50, 256, "the id of the enchantment Prosperous Auto-Smelt");
 		
 		}
-		catch(Exception e) {
+		catch(Exception e) 
+		{
 			e.printStackTrace();
 		}
 		finally {
