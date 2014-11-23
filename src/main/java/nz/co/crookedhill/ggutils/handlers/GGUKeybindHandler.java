@@ -22,7 +22,7 @@ public class GGUKeybindHandler {
 		if(FMLClientHandler.instance().getClient().inGameHasFocus){
 
 			if(GGUtils.arseTardis.isPressed()) {
-				GGUtils.network.sendToServer(new GGUInventorySwitchPacket(36, player.inventory.mainInventory));
+				GGUtils.network.sendToServer(new GGUInventorySwitchPacket(36, Minecraft.getMinecraft().thePlayer.inventory.mainInventory));
 			}
 		}
 	}
