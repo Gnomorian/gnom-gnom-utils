@@ -36,18 +36,20 @@ public class GGUItems
 		
 		blockFinder = new ItemBlockFinder().setUnlocalizedName("blockFinder").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		woodenGear = new GGUWoodenGear().setUnlocalizedName("woodenGear").setCreativeTab(GGUtils.ggutilsCreativeTab);
+		//looks like your pulling shit out your ass
+		arseTardis = new GGUArseTardis().setUnlocalizedName("arseTardis").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		enderiumRebirth = new GGUEnderiumRebirth().setUnlocalizedName("enderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
+
 		//Register Items
 		if(GGUConfigManager.blockFinderEnabled)
-			GameRegistry.registerItem(blockFinder, blockFinder.getUnlocalizedName());
-		if(GGUConfigManager.sortivatorEnabled)
-			GameRegistry.registerItem(woodenGear, woodenGear.getUnlocalizedName());
+		GameRegistry.registerItem(blockFinder, "blockFinder");
+		GameRegistry.registerItem(woodenGear, "woodenGear");
+		if(GGUConfigManager.arseTardisEnabled)
+		GameRegistry.registerItem(arseTardis, "arseTardis");
 		if(GGUConfigManager.enderiumRebirthEnabled)
 			GameRegistry.registerItem(enderiumRebirth, enderiumRebirth.getUnlocalizedName());
 	}
-	public static void registerRecipes() 
-	{
-		if(GGUConfigManager.sortivatorEnabled)
+		//Register Item Recipies
 		GameRegistry.addRecipe(new ItemStack(woodenGear),"sws","w w","sws"
 				,'s',Items.stick,'w',Blocks.planks);
 		if(GGUConfigManager.enderiumRebirthEnabled)
