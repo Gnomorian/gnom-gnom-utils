@@ -1,28 +1,43 @@
 package nz.co.crookedhill.ggutils.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class GGUInventorySwitchPacket  implements IMessage
 {
 	int altInventoryNum;
+	ItemStack[] stacks = new ItemStack[36];
+	
 	public GGUInventorySwitchPacket() { }
-	
-	public GGUInventorySwitchPacket(short altInventoryNumber)
+
+	public GGUInventorySwitchPacket(int inventorySize, ItemStack[] stacks)
 	{
-		this.altInventoryNum = altInventoryNumber;
+		this.altInventoryNum = inventorySize;
+		this.stacks = stacks;
 	}
-	
+
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		this.altInventoryNum = ByteBufUtils.readVarShort(buf);
+		//this.altInventoryNum = ByteBufUtils.readVarShort(buf);
+		this.altInventoryNum = buf.readInt();
+		
+		for(int i=0;i<this.altInventoryNum;i++)
+		{
+			this.stacks[i] = ByteBufUtils.readItemStack(buf);
+		}
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeVarShort(buf, this.altInventoryNum);
-		
-	}
+		//ByteBufUtils.writeVarShort(buf, this.altInventoryNum);
+		buf.writeInt(this.altInventoryNum);
 
+		for(int i=0;i<this.altInventoryNum;i++)
+		{
+			ByteBufUtils.writeItemStack(buf, stacks[i]);
+		}
+
+	}
 }

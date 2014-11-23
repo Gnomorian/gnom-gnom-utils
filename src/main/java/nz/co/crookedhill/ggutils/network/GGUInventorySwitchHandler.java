@@ -15,8 +15,8 @@ public class GGUInventorySwitchHandler  implements IMessageHandler<GGUInventoryS
 	@Override
 	public IMessage onMessage(GGUInventorySwitchPacket message, MessageContext ctx) {
 		System.out.println("packiet recieved");
-		ItemStack[] inventory = ctx.getServerHandler().playerEntity.inventory.mainInventory;
-		inventory = this.swapInventories(inventory);
+		ItemStack[] inventory = message.stacks;
+		ctx.getServerHandler().playerEntity.inventory.mainInventory = swapInventories(inventory);
 		return null;
 	}
 	
