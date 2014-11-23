@@ -30,6 +30,7 @@ import nz.co.crookedhill.ggutils.handlers.ExtendedPropertiesHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUCommandHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUItemEffectHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUKeybindHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
@@ -99,7 +100,7 @@ public class GGUtils
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
 		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
 		network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
-		network.registerMessage(GGUInventorySwitchHandler.class, GGUInventorySwitchPacket.class, 1, Side.SERVER);
+		network.registerMessage(GGUInventorySwitchHandler.class, GGUInventorySwitchPacket.class, 2, Side.SERVER);
 		GGUConfigManager.init(event);
 		GGUItems.init();
 		GGUEntityTile.init();
