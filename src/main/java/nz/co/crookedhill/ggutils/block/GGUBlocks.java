@@ -60,8 +60,14 @@ public class GGUBlocks
 	public static void registerRecipes() 
 	{
 		if(GGUConfigManager.growthBlockEnabled)
-			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock), "ddd", "isi","iii",
+		{
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock, 1, 10), "ddd", "isi","iii",
 					'd', Blocks.dirt, 'i', Items.iron_ingot, 's', Items.speckled_melon);
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock, 1, 11), "rrr", "rgr","rrr",
+					'g', new ItemStack(GGUBlocks.growthBlock, 1, 10), 'r', Items.redstone);
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock, 1, 12), "rrr", "dgd","rrr",
+					'g', new ItemStack(GGUBlocks.growthBlock, 1, 10), 'd', Items.diamond, 'r', Items.redstone);
+		}
 		if(GGUConfigManager.sortivatorEnabled)
 			GameRegistry.addRecipe(new ItemStack(GGUBlocks.sortivator),"wgw","geg","wgw",
 					'w',Blocks.planks,'g',GGUItems.woodenGear,'e',Items.ender_pearl);

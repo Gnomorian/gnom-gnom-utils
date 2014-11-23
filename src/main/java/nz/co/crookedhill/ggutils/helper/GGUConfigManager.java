@@ -47,12 +47,16 @@ public class GGUConfigManager
 	public static boolean autoSmeltEnabled;
 	public static int autoSmeltid;
 	
+	//OTHER
+	public static int growthBlockAutoHarvestHeight;
+
 	public static void init(FMLPreInitializationEvent event) 
 	{
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		growthBlockStackHeight = config.getInt("growthBlockStackHeight", "Blocks", 16, 1, 255, "Edit the functional stack size of the Damara's Remedy block.");
 		growthCactusReedMaxHeight = config.getInt("growthCactusReedMaxHeight", "Blocks", 4, 1, 32, "Set the max growth height of cacti/reeds on Damara's Remedy.");
+		
 		growthBlockEnabled = config.getBoolean("growthBlockEnabled", "Blocks", true, "is GrowthBlock enabled in game");
 		fabricatorEnabled = config.getBoolean("fabricatorEnabled", "Blocks", true, "is Fabricator enabled in game");
 		sortivatorEnabled = config.getBoolean("sortivatorEnabled", "Blocks", true, "is Sortivator enabled in game");
@@ -72,6 +76,8 @@ public class GGUConfigManager
 		autoSmeltEnabled = config.getBoolean("autoSmeltEnabled", "Enchantment", true, "is auto smelter enchantment enabled in game");
 		autoSmeltid = config.getInt("autoSmeltid", "Enchantment", 103, 50, 256, "the id of the enchantment Prosperous Auto-Smelt");
 		
+		growthBlockAutoHarvestHeight = config.getInt("growthBlockAutoHarvestHeight", "Other", 4, 1, 32, "Set height of cacti/reeds to harvest with the growth block in auto mode.");
+
 		config.save();
 	}
 }

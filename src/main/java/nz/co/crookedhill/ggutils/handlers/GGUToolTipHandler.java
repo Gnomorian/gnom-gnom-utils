@@ -35,6 +35,19 @@ public class GGUToolTipHandler
 			event.toolTip.add("never been faster!");
 			event.toolTip.add("Stack these blocks up to ");
 			event.toolTip.add(GGUConfigManager.growthBlockStackHeight+" times to grow faster");
+			switch(event.itemStack.getItemDamage())
+			{
+			case 10:
+				event.toolTip.add("Manual operation.");
+				break;
+			case 11:
+				event.toolTip.add("Semi Auto operation.");
+				break;
+			case 12:
+				event.toolTip.add("Auto operation.");
+				break;
+				default:
+			}
 		}
 		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.sortivator")) 
 		{

@@ -27,6 +27,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
@@ -45,9 +46,7 @@ public class GGUBlockGrowthBlock extends Block
 	private IIcon[] icons = new IIcon[3];
 	private int stackHeight = GGUConfigManager.growthBlockStackHeight;
 	private int growthHeight = GGUConfigManager.growthCactusReedMaxHeight;
-	
-	/*0=manual,1=redstone,2=automatic*/
-	int mode = 0;
+	private int harvestHieght = GGUConfigManager.growthBlockAutoHarvestHeight;
 
 	public GGUBlockGrowthBlock(Material material) 
 	{
@@ -94,7 +93,7 @@ public class GGUBlockGrowthBlock extends Block
 	public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) 
 	{
 		int meta = blockAccess.getBlockMetadata(x, y, z);
-		if(meta == 0) {
+		if(meta == 10 || meta == 11 || meta == 12) {
 			if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
 			if(side == 1) return icons[1];
 			if(side == 0 ) {
@@ -126,6 +125,7 @@ public class GGUBlockGrowthBlock extends Block
 	public void updateTick(World world, int x, int y, int z, Random rand) 
 	{
 		Block block = world.getBlock(x, y+1, z);		
+		int meta = world.getBlockMetadata(x, y, z);
 
 		//check if block is plantable
 		if(block instanceof IPlantable)
@@ -179,6 +179,15 @@ public class GGUBlockGrowthBlock extends Block
 							world.setBlock(x, y+i, z, Blocks.cactus, 2, 2);	
 						}
 					}
+					if(i==harvestHieght && (meta == 12 || meta == 22))
+					{
+						for(int j=0;j<i;j++)
+						{
+							world.func_147480_a(x, y+j, z, true);
+						}
+						world.setBlock(x, y+1, z, Blocks.cactus, 2, 2);	
+						//world.spawnEntityInWorld(new EntityItem(world, x, y+1, z, new ItemStack(Blocks.cactus, i, 0)));
+					}
 				}
 				else if(block instanceof BlockCrops)
 				{
@@ -215,24 +224,22 @@ public class GGUBlockGrowthBlock extends Block
 
 
 	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_) 
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) 
 	{
-		updateMeta(world,x,y,z);
-		
-		boolean flag = world.isBlockIndirectlyGettingPowered( x, y, z);
-		if(flag) {
-			System.out.println(world.getBlockMetadata(x, y+1, z));
-			Block block = world.getBlock(x, y+1, z);
-			if(block instanceof IPlantable) {
-				//TODO: harvest plant when fully grown
-			}
+		if(!world.isRemote)
+		{
+			//updateMeta(world,x,y,z);
 		}
 	}
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) 
 	{
-		updateMeta(world,x,y,z);
+		if(!world.isRemote)
+		{
+			System.out.println("META: "+world.getBlockMetadata(x, y, z)); //DEBUG
+			updateMeta(world,x,y,z);
+		}
 	}
 
 
@@ -248,11 +255,26 @@ public class GGUBlockGrowthBlock extends Block
 	private void updateMeta(World world, int x, int y, int z) 
 	{
 		Block upperBlock = world.getBlock(x, y+1, z);
+		int metadata = world.getBlockMetadata(x, y, z);
+
 		if(upperBlock instanceof GGUBlockGrowthBlock)
-			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-		else world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+		{
+			world.setBlockMetadataWithNotify(x, y, z, 20+metadata, 2);
+		}
+		else 
+		{
+			world.setBlockMetadataWithNotify(x, y, z, 10+metadata, 2);
+		}
 	}
 
+	/**
+	 * Check if the block on the growth block is ore
+	 * @param world the world object
+	 * @param block the block to check
+	 * @param x x coord
+	 * @param y y coord
+	 * @param z z coord
+	 */
 	private void checkIfOre(World world, Block block, int x, int y, int z)
 	{
 		if(block == Blocks.coal_ore)
