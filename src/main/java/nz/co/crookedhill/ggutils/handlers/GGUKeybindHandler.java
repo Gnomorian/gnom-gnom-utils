@@ -22,10 +22,7 @@ public class GGUKeybindHandler {
 		if(FMLClientHandler.instance().getClient().inGameHasFocus){
 
 			if(GGUtils.arseTardis.isPressed()) {
-				System.out.println("key was pressed");
 				GGUtils.network.sendToServer(new GGUInventorySwitchPacket(36, player.inventory.mainInventory));
-				//ItemStack[] inventory = player.inventory.mainInventory;
-				//player.inventory.mainInventory = this.swapInventories(inventory);
 			}
 		}
 	}

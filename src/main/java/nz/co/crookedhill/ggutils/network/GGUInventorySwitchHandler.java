@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.item.ItemStack;
+import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -14,9 +15,14 @@ public class GGUInventorySwitchHandler  implements IMessageHandler<GGUInventoryS
 	
 	@Override
 	public IMessage onMessage(GGUInventorySwitchPacket message, MessageContext ctx) {
-		System.out.println("packiet recieved");
+		GGUExtendedPlayer props = GGUExtendedPlayer.get(ctx.getServerHandler().playerEntity);
 		ItemStack[] inventory = message.stacks;
-		ctx.getServerHandler().playerEntity.inventory.mainInventory = swapInventories(inventory);
+		ctx.getServerHandler().playerEntity.inventory.mainInventory = swapInventories(inventory, props.getLastRow());
+		props.setLastRow(props.getLastRow()+1);
+		if(props.getLastRow() == 4)
+		{
+			props.setLastRow(1);
+		}
 		return null;
 	}
 	
@@ -25,7 +31,7 @@ public class GGUInventorySwitchHandler  implements IMessageHandler<GGUInventoryS
 	 * @param inventory
 	 * @return
 	 */
-	private ItemStack[] swapInventories(ItemStack[] inventory)
+	private ItemStack[] swapInventories(ItemStack[] inventory, int lastRow)
 	{
 		//all the rows
 		List<ItemStack> hotbarItems = new ArrayList<ItemStack>();
@@ -40,9 +46,7 @@ public class GGUInventorySwitchHandler  implements IMessageHandler<GGUInventoryS
 		//always need a random
 		Random rand = new Random();
 		int i;
-		int randomRowStart = ((1+rand.nextInt(3))*9);
-
-		randomRowStart = (randomRowStart < 0) ? 0 : randomRowStart;
+		int randomRowStart = (lastRow*9);
 
 		//random check
 		switch(randomRowStart)

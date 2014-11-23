@@ -14,6 +14,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 
 	public static final String GGU_EXT_PLAYER = "gguProps";
 	private final EntityPlayer player;
+	private int lastRow;
 
 	/**
 	 * Constructor - make sure to init all variables.
@@ -22,6 +23,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	 */
 	public GGUExtendedPlayer(EntityPlayer player){
 		this.player = player;
+		this.lastRow = 1;
 	}
 
 
@@ -36,12 +38,15 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	public void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
 
+		properties.setInteger("rowNumber", this.lastRow);
 		compound.setTag(GGU_EXT_PLAYER, properties);
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(GGU_EXT_PLAYER);
+		
+		this.lastRow = properties.getInteger("rowNumber");
 	}
 
 	/*===============================================================================
@@ -105,6 +110,25 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 		NBTTagCompound savedData = new NBTTagCompound();
 		GGUExtendedPlayer.get(player).saveNBTData(savedData);
 		CommonProxy.storeEntityData(getSaveKey(player), savedData);
+	}
+	
+	/*===============================================================================
+	 * 
+	 * GETTERS AND SETTER
+	 * 
+	 *===============================================================================*/
+	 
+	//Get the last row
+	public int getLastRow()
+	{
+		return this.lastRow;
+	}
+	
+	//set the last row
+	public void setLastRow(int newLastRow)
+	{
+		this.lastRow = newLastRow;
+		this.syncAll();
 	}
 }
 
