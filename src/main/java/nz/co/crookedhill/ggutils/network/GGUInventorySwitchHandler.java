@@ -2,7 +2,6 @@ package nz.co.crookedhill.ggutils.network;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.item.ItemStack;
 import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
@@ -44,7 +43,6 @@ public class GGUInventorySwitchHandler  implements IMessageHandler<GGUInventoryS
 		List<ItemStack> tempRowItems = new ArrayList<ItemStack>();
 
 		//always need a random
-		Random rand = new Random();
 		int i;
 		int randomRowStart = (lastRow*9);
 
