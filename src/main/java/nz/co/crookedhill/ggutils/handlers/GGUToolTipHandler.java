@@ -38,7 +38,7 @@ public class GGUToolTipHandler
 	}
 	if (event.itemStack.getItem().getUnlocalizedName().equals("tile.sortivator"))
 	{
-	    event.toolTip.add("Right clicking on the the sortivator");
+	    event.toolTip.add("Giving the Sortivator a Redstone signal");
 	    event.toolTip.add("when a chest is on the red dod side");
 	    event.toolTip.add("will sort the inventory of that chest");
 	}

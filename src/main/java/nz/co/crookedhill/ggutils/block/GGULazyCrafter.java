@@ -28,7 +28,7 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
-import nz.co.crookedhill.ggutils.util.GGURecipeFilter;
+import nz.co.crookedhill.ggutils.util.GGUSort;
 
 public class GGULazyCrafter extends Block
 {
@@ -47,9 +47,7 @@ public class GGULazyCrafter extends Block
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z,
-	    EntityPlayer player, int meta, float float1, float float2,
-	    float float3)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float float1, float float2, float float3)
     {
 	player.addStat(GGUtils.achievements.usedlazyCrafter, 1);
 	// open the gui.
@@ -68,7 +66,8 @@ public class GGULazyCrafter extends Block
 		    continue;
 		invItems.add(items);
 	    }
-	    List recipes = GGURecipeFilter.filter(invItems);
+
+	    List recipes = (new GGUSort()).sortRecipes(invItems);
 	    for (int i = 0; i < recipes.size(); i++)
 	    {
 		if (recipes.get(i) instanceof ShapedRecipes)

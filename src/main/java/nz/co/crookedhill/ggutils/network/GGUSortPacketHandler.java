@@ -48,7 +48,8 @@ public class GGUSortPacketHandler implements IMessageHandler<GGUSortPacket, IMes
 	    if (sortivator instanceof GGUBlockSortivator)
 	    {
 		IInventory inventory = ((GGUBlockSortivator) sortivator).getInventory(world, x, y + 1, z);
-		new GGUSort(inventory);
+		GGUSort sorter = new GGUSort();
+		sorter.sortInventory(inventory);
 	    } else
 		System.out.println("That didnt work");
 	}

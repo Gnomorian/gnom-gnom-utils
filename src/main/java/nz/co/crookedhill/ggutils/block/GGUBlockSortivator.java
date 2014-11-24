@@ -160,20 +160,21 @@ public class GGUBlockSortivator extends Block
 	boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
 	if (flag)
 	{
+	    GGUSort sorter = new GGUSort();
 	    int meta = world.getBlockMetadata(x, y, z);
 	    switch (meta)
 	    {
 	    case 0:
-		GGUSort sorter = new GGUSort(getInventory(world, x - 1, y, z));
+		sorter.sortInventory(getInventory(world, x - 1, y, z));
 		break;
 	    case 1:
-		new GGUSort(getInventory(world, x + 1, y, z));
+		sorter.sortInventory(getInventory(world, x + 1, y, z));
 		break;
 	    case 2:
-		new GGUSort(getInventory(world, x, y, z - 1));
+		sorter.sortInventory(getInventory(world, x, y, z - 1));
 		break;
 	    case 3:
-		new GGUSort(getInventory(world, x, y, z + 1));
+		sorter.sortInventory(getInventory(world, x, y, z + 1));
 		break;
 	    /*
 	     * case 4: if(getInventory(world, x, y-1, z).){
@@ -181,7 +182,7 @@ public class GGUBlockSortivator extends Block
 	     * } GGUSort.sort(getInventory(world, x, y-1, z)); break;
 	     */
 	    case 5:
-		new GGUSort(getInventory(world, x, y + 1, z));
+		sorter.sortInventory(getInventory(world, x, y + 1, z));
 		break;
 	    }
 	    world.playSound(x, y, z, "ggutils:block.sortivator.sort", 1f, 1f, false);

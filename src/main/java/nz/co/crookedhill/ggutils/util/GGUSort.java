@@ -30,8 +30,10 @@ public class GGUSort
      * Gets an inventory objects, gets a copy of all unique items in the
      * inventory and the amount then places all the items back in, sorted by
      * unlocolised name.
+     * 
+     * @return
      */
-    public GGUSort(IInventory inventory)
+    public void sortInventory(IInventory inventory)
     {
 	/* amount of slots in the inventory */
 	int maxInventory = inventory.getSizeInventory();
@@ -126,6 +128,71 @@ public class GGUSort
 		inventory.setInventorySlotContents(j, null);
 	    }
 	}
+    }
+
+    public List sortRecipes(List<ItemStack> inventoryItems)
+    {
+
+	List avalableRecipes = new ArrayList();
+
+	// for shaped recipes
+	for (GGUShapedRecipe recipe : GGURecipeManager.getShaped())
+	{
+	    /*
+	     * if the player has an item required for the recipe, incriment by
+	     * one, if its the size of required items at the end, player has all
+	     * items
+	     */
+	    int gotRequiredItems = 0;
+	    for (ItemStack requiredItem : recipe.recipeItems)
+	    {
+		if (requiredItem == null)
+		    continue;
+		for (ItemStack invItem : inventoryItems)
+		{
+		    if (invItem == null)
+			continue;
+		    if (requiredItem.getUnlocalizedName().equals(invItem.getUnlocalizedName()) && requiredItem.stackSize <= invItem.stackSize)
+			gotRequiredItems++;
+		}
+	    }
+	    if (recipe.recipeItems.length == gotRequiredItems)
+	    {
+		avalableRecipes.add(recipe);
+		System.out.println("can make a " + recipe.getRecipeOutput().getDisplayName() + "X" + recipe.getRecipeOutput().stackSize);
+		for (ItemStack item : recipe.recipeItems)
+		    System.out.println("	requires a:" + item.getDisplayName() + "X" + item.stackSize);
+	    }
+	}
+
+	// for shapeless recipes
+	for (GGUShapelessRecipe recipe : GGURecipeManager.getShapeless())
+	{
+	    /*
+	     * if the player has an item required for the recipe, incriment by
+	     * one, if its the size of required items at the end, player has all
+	     * items
+	     */
+	    int gotRequiredItems = 0;
+	    for (int i = 0; i < recipe.recipeItems.length; i++)
+	    {
+		ItemStack requiredItem = recipe.recipeItems[i];
+		if (requiredItem == null)
+		    continue;
+		for (ItemStack invItem : inventoryItems)
+		{
+		    if (invItem == null)
+			continue;
+		    if (requiredItem.getUnlocalizedName().equals(invItem.getUnlocalizedName()) && requiredItem.stackSize <= invItem.stackSize)
+			gotRequiredItems++;
+		}
+	    }
+	    if (recipe.recipeItems.length == gotRequiredItems)
+		avalableRecipes.add(recipe);
+	}
+	System.out.println(avalableRecipes.size());
+	return avalableRecipes;
+
     }
 
     /**
