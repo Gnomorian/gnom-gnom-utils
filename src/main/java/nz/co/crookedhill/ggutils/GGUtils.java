@@ -27,6 +27,7 @@ import nz.co.crookedhill.ggutils.enchantment.GGUEnchantment;
 import nz.co.crookedhill.ggutils.entity.item.GGUEntityTile;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityMob;
 import nz.co.crookedhill.ggutils.handlers.ExtendedPropertiesHandler;
+import nz.co.crookedhill.ggutils.handlers.GGUAchievementHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUCommandHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
@@ -82,7 +83,7 @@ public class GGUtils
      * of features added (blocks, items etc.) forth 0= the number of bug
      * fixes/sub features added since last feature added.
      */
-    public static final String VERSION = "0.0.7.2";
+    public static final String VERSION = "0.0.7.3";
 
     // Setting proxy for client and server side
     @SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
@@ -129,14 +130,17 @@ public class GGUtils
 	MinecraftForge.EVENT_BUS.register(new GGUEnchantmentHandler());
 	MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
 	MinecraftForge.EVENT_BUS.register(new GGUItemEffectHandler());
+	MinecraftForge.EVENT_BUS.register(new GGUAchievementHandler());
 	FMLCommonHandler.instance().bus().register(new GGUKeybindHandler());
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
+	// register keybindings
 	arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
 	ClientRegistry.registerKeyBinding(arseTardis);
+
 	recipeManager = new GGURecipeManager(CraftingManager.getInstance().getRecipeList());
     }
 
