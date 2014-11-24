@@ -23,7 +23,7 @@ public class GGUItemEffectHandler
 		{
 		    EntityPlayer player = (EntityPlayer) event.entity;
 		    ItemStack[] inv = player.inventory.mainInventory;
-		    for (int i = 0; i < inv.length; i++)
+		    findERB: for (int i = 0; i < inv.length; i++)
 		    {
 			ItemStack item = inv[i];
 			if (item == null)
@@ -42,10 +42,11 @@ public class GGUItemEffectHandler
 				player.setPositionAndUpdate(defaultSpawn.posX, defaultSpawn.posY, defaultSpawn.posZ);
 				player.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
 				player.addPotionEffect(new PotionEffect(Potion.confusion.id, 250, 3));
-				player.addPotionEffect(new PotionEffect(Potion.hunger.id, 5000, 0));
+				player.addPotionEffect(new PotionEffect(Potion.hunger.id, 2500, 0));
 
 			    }
 			    inv[i] = null;
+			    break findERB; // find enderium rebirth crystal
 			}
 		    }
 		}
