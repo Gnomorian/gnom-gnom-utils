@@ -65,6 +65,7 @@ import cpw.mods.fml.relauncher.Side;
 public class GGUtils
 {
     public static final String MODID = "ggutils";
+    public static GGUConfigManager configs;
     public static KeyBinding arseTardis;
     public static GGUBlocks blocks;
     public static GGUItems items;
@@ -93,23 +94,19 @@ public class GGUtils
 
     public static SimpleNetworkWrapper network;
 
-    public static GGUConfigManager configs;
+    public static GGUConfigManager configManager;
 
     // Set Creative Tabs
-    public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(
-	    CreativeTabs.getNextID(), MODID);
+    public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(CreativeTabs.getNextID(), MODID);
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
 	network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
-	network.registerMessage(GGUSortPacketHandler.class,
-		GGUSortPacket.class, 0, Side.SERVER);
-	network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class,
-		GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
-	network.registerMessage(GGUInventorySwitchHandler.class,
-		GGUInventorySwitchPacket.class, 2, Side.SERVER);
-	GGUConfigManager.init(event);
+	network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
+	network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
+	network.registerMessage(GGUInventorySwitchHandler.class, GGUInventorySwitchPacket.class, 2, Side.SERVER);
+	configManager = new GGUConfigManager(event);
 	items = new GGUItems();
 	tiles = new GGUEntityTile();
 	blocks = new GGUBlocks();
@@ -140,8 +137,7 @@ public class GGUtils
     {
 	arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
 	ClientRegistry.registerKeyBinding(arseTardis);
-	recipeManager = new GGURecipeManager(CraftingManager.getInstance()
-		.getRecipeList());
+	recipeManager = new GGURecipeManager(CraftingManager.getInstance().getRecipeList());
     }
 
     @EventHandler

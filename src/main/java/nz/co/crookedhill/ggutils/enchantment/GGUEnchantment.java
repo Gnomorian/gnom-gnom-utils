@@ -18,7 +18,7 @@ package nz.co.crookedhill.ggutils.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
-import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
+import nz.co.crookedhill.ggutils.GGUtils;
 
 public class GGUEnchantment
 {
@@ -27,8 +27,7 @@ public class GGUEnchantment
 
     public GGUEnchantment()
     {
-	prosperousAutoSmelt = new GGUprosperousAutoSmelt(
-		GGUConfigManager.autoSmeltid, 3, EnumEnchantmentType.digger);
+	prosperousAutoSmelt = new GGUprosperousAutoSmelt(GGUtils.configManager.autoSmeltid, 3, EnumEnchantmentType.digger);
     }
 
 }

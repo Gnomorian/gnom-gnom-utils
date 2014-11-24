@@ -27,32 +27,32 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class GGUSortPacketHandler implements IMessageHandler<GGUSortPacket, IMessage>
 {
-	
-	/**
-	 * an example of sending a message is:
-	 * String message = ""+(char)x+(char)y+(char)z;
-	 * GGUtils.network.sendToServer(new GGUSortPacket(message));
-	 */
 
-	@Override
-	public IMessage onMessage(GGUSortPacket message, MessageContext ctx) 
+    /**
+     * an example of sending a message is: String message =
+     * ""+(char)x+(char)y+(char)z; GGUtils.network.sendToServer(new
+     * GGUSortPacket(message));
+     */
+
+    @Override
+    public IMessage onMessage(GGUSortPacket message, MessageContext ctx)
+    {
+	if (message.coords.length() == 3)
 	{
-		if (message.coords.length() == 3) 
-		{
-			int x = (int)message.coords.indexOf(0);
-			int y = (int)message.coords.indexOf(1);
-			int z = (int)message.coords.indexOf(2);
-			World world = ctx.getServerHandler().playerEntity.worldObj;
-			System.out.println(x+" "+y+" "+z+" "+ctx.getServerHandler().playerEntity.getDisplayName());
-			Block sortivator = world.getBlock(x, y, z);
-			if(sortivator instanceof GGUBlockSortivator) 
-			{
-				IInventory inventory = ((GGUBlockSortivator)sortivator).getInventory(world, x, y+1, z);
-				GGUSort.sort(inventory);
-			}
-			else System.out.println("That didnt work");
-		}
-		return null;
+	    int x = (int) message.coords.indexOf(0);
+	    int y = (int) message.coords.indexOf(1);
+	    int z = (int) message.coords.indexOf(2);
+	    World world = ctx.getServerHandler().playerEntity.worldObj;
+	    System.out.println(x + " " + y + " " + z + " " + ctx.getServerHandler().playerEntity.getDisplayName());
+	    Block sortivator = world.getBlock(x, y, z);
+	    if (sortivator instanceof GGUBlockSortivator)
+	    {
+		IInventory inventory = ((GGUBlockSortivator) sortivator).getInventory(world, x, y + 1, z);
+		new GGUSort(inventory);
+	    } else
+		System.out.println("That didnt work");
 	}
-	
+	return null;
+    }
+
 }

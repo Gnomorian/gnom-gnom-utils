@@ -24,44 +24,46 @@ import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-
-public class GGUBlockHandler 
+public class GGUBlockHandler
 {
 
-	/**
-	 * event triggers on block break
-	 * used for checking if the block is long grass,
-	 * then spawning a creepermite in its place.
-	 * @param event BreakEvent event
-	 */
-	@SubscribeEvent
-	public void onBlockBreak(BreakEvent event)
+    /**
+     * event triggers on block break used for checking if the block is long
+     * grass, then spawning a creepermite in its place.
+     * 
+     * @param event
+     *            BreakEvent event
+     */
+    @SubscribeEvent
+    public void onBlockBreak(BreakEvent event)
+    {
+	Random rand = new Random();
+	Block block = event.block;
+	World world = event.world;
+	int x = event.x;
+	int y = event.y;
+	int z = event.z;
+
+	if (!world.isRemote && GGUConfigManager.creeperMiteExist)
 	{
-		Random rand = new Random();
-		Block block = event.block;
-		World world = event.world;
-		int x = event.x;
-		int y = event.y;
-		int z = event.z;
-		
-		if(!world.isRemote && GGUConfigManager.creeperMiteExist)
+	    if (block instanceof BlockTallGrass || block instanceof BlockDoublePlant)
+	    {
+		int creeperChance = GGUtils.configManager.creeperMiteGrassChance;
+
+		// checks to see if config is not set to 0 then does random 10%
+		// check.
+		if (creeperChance > 0 && rand.nextInt(100) <= creeperChance)
 		{
-			if(block instanceof BlockTallGrass || block instanceof BlockDoublePlant)
-			{
-				int creeperChance = GGUConfigManager.creeperMiteGrassChance;
-				
-				//checks to see if config is not set to 0 then does random 10% check.
-				if(creeperChance > 0 && rand.nextInt(100) <= creeperChance)
-				{
-					Entity creeperMite = new GGUEntityCreeperMite(world);
-					creeperMite.setLocationAndAngles(x, y+1, z, 0.0F, 0.0F);
-					world.spawnEntityInWorld(creeperMite);	
-				}
-			}
+		    Entity creeperMite = new GGUEntityCreeperMite(world);
+		    creeperMite.setLocationAndAngles(x, y + 1, z, 0.0F, 0.0F);
+		    world.spawnEntityInWorld(creeperMite);
 		}
+	    }
 	}
+    }
 }
