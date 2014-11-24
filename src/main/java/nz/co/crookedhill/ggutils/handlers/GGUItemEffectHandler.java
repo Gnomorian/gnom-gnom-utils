@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import nz.co.crookedhill.ggutils.item.GGUEnderiumRebirth;
 import cpw.mods.fml.common.eventhandler.EventPriority;
@@ -19,7 +20,7 @@ public class GGUItemEffectHandler
 	{
 	    if (event.entity instanceof EntityPlayer)
 	    {
-		if (event.ammount > ((EntityPlayer) event.entity).getHealth())
+		if (event.ammount >= ((EntityPlayer) event.entity).getHealth())
 		{
 		    EntityPlayer player = (EntityPlayer) event.entity;
 		    ItemStack[] inv = player.inventory.mainInventory;
@@ -32,21 +33,26 @@ public class GGUItemEffectHandler
 			{
 			    event.setCanceled(true);
 			    player.setHealth(player.getMaxHealth());
-			    ChunkCoordinates spawn = player.getBedLocation(player.dimension);
-			    if (spawn != null)
+			    Integer[] dimIDs = DimensionManager.getIDs();
+			    ChunkCoordinates spawn = player.worldObj.getSpawnPoint();
+			    for (int j = 0; i < dimIDs.length; i++)
 			    {
-				player.setPositionAndUpdate(spawn.posX, spawn.posY, spawn.posZ);
-			    } else
-			    {
-				ChunkCoordinates defaultSpawn = player.worldObj.getSpawnPoint();
-				player.setPositionAndUpdate(defaultSpawn.posX, defaultSpawn.posY, defaultSpawn.posZ);
-				player.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
-				player.addPotionEffect(new PotionEffect(Potion.confusion.id, 250, 3));
-				player.addPotionEffect(new PotionEffect(Potion.hunger.id, 2500, 0));
+				if (player.getBedLocation(dimIDs[j]) == null)
+				{
+				    continue;
+				}
+				spawn = player.getBedLocation(dimIDs[j]);
+				System.out.println("player has spawn in " + dimIDs[j] + " dimention.");
+				break;
 
 			    }
+			    player.setPositionAndUpdate(spawn.posX, spawn.posY, spawn.posZ);
+			    player.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
+			    player.addPotionEffect(new PotionEffect(Potion.confusion.id, 250, 3));
+			    player.addPotionEffect(new PotionEffect(Potion.hunger.id, 2500, 0));
 			    inv[i] = null;
 			    break findERB; // find enderium rebirth crystal
+					   // (ERB)
 			}
 		    }
 		}
