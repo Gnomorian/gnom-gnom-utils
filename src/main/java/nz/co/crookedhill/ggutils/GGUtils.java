@@ -102,9 +102,7 @@ public class GGUtils
 		GGUEntityMob.init();
 		GGUEnchantment.init();
 		GGUAchievements.init();
-		
-		GGUBlocks.registerRecipes();
-		GGUItems.registerRecipes();
+
 	}
 
     @EventHandler

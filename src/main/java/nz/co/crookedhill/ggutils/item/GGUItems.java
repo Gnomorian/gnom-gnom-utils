@@ -29,6 +29,7 @@ public class GGUItems
 	public static Item blockFinder;
 	public static Item woodenGear;
 	public static Item arseTardis;
+	public static Item enderiumRebirth;
 	
 	public static void init()
 {
