@@ -16,48 +16,62 @@
 
 package nz.co.crookedhill.ggutils.util;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 
-public class GGURecipeManager 
+public class GGURecipeManager
 {
-	
-	private static List<ShapedRecipes> shapedRecipes = new ArrayList<ShapedRecipes>();
-	private static List<ShapelessRecipes> shapelessRecipes = new ArrayList<ShapelessRecipes>();
-	
-	/**
-	 * gets the list of recipes from the crafting manager and sorts them into multiple lists to 
-	 * reduse lookup time during the game.
-	 * @param recipeList list of recipes from CraftingManager
-	 */
-	public static void init(List recipeList) 
+    /**
+     * list of all shaped recipes found in the CraftingManager's Recipe List.
+     */
+    private static List<GGUShapedRecipe> shapedRecipes = new ArrayList<GGUShapedRecipe>();
+    /**
+     * list of all shapeless recipes found in the CraftingManager's Recipe List.
+     */
+    private static List<GGUShapelessRecipe> shapelessRecipes = new ArrayList<GGUShapelessRecipe>();
+
+    /**
+     * gets the list of recipes from the crafting manager and sorts them into
+     * multiple lists to reduse lookup time during the game.
+     * 
+     * @param recipeList
+     *            list of recipes from CraftingManager
+     */
+    public static void init(List recipeList)
+    {
+	for (int i = 0; i < recipeList.size(); i++)
 	{
-		for(int i = 0; i<recipeList.size();i++)
-		{
-			if(recipeList.get(i) instanceof ShapedRecipes) 
-			{
-				//if(((ShapedRecipes)recipeList.get(i)).getRecipeOutput() != null)
-					shapedRecipes.add(((ShapedRecipes)recipeList.get(i)));
-			}
-			else if(recipeList.get(i) instanceof ShapelessRecipes) 
-			{
-				if(((ShapelessRecipes)recipeList.get(i)).getRecipeOutput() != null)
-					shapelessRecipes.add(((ShapelessRecipes)recipeList.get(i)));
-			}
-		}
+	    if (recipeList.get(i) instanceof ShapedRecipes)
+	    {
+		// if(((ShapedRecipes)recipeList.get(i)).getRecipeOutput() !=
+		// null)
+		shapedRecipes.add(new GGUShapedRecipe((ShapedRecipes) recipeList.get(i)));
+	    } else if (recipeList.get(i) instanceof ShapelessRecipes)
+	    {
+		if (((ShapelessRecipes) recipeList.get(i)).getRecipeOutput() != null)
+		    shapelessRecipes.add(new GGUShapelessRecipe((ShapelessRecipes) recipeList.get(i)));
+	    }
 	}
-	
-	public static List<ShapedRecipes> getShaped() 
-	{
-		return shapedRecipes;
-		
-	}
-	public static List<ShapelessRecipes> getShapeless() 
-	{
-		return shapelessRecipes;
-		
-	}
+    }
+
+    /**
+     * returns the list of shaped recipes.
+     */
+    public static List<GGUShapedRecipe> getShaped()
+    {
+	return shapedRecipes;
+
+    }
+
+    /**
+     * returns the list of shaped recipes.
+     */
+    public static List<GGUShapelessRecipe> getShapeless()
+    {
+	return shapelessRecipes;
+
+    }
 }

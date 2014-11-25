@@ -6,6 +6,8 @@ tile.sortivator.name=Sortivator
 tile.eggTimer.name=Egg Timer
 tile.lazyCrafter.name=Lazy Crafter
 tile.fabricator.name=Fabricator
+tile.modularCore.name=Modular Core
+tile.modularLimb.name=Modular Limb
 
 **********************************
 ITEMS
@@ -13,6 +15,7 @@ ITEMS
 item.blockFinder.name=Block Finder
 item.woodenGear.name=Wooden Gear
 item.arseTardis.name=Arse Tardis
+item.enderiumRebirth.name=Enderium Rebirth Crystal
 
 **********************************
 MOBS
@@ -22,7 +25,7 @@ entity.creeper_mite.name=Creeper Mite
 **********************************
 ENCHANTMENT!
 **********************************
-enchantment.ProsperousAutoSmelt=Prosperous Auto-Smelt
+enchantment.ProsperousAutoSmelt=Prosperity
 
 **********************************
 ACHIEVEMENTS

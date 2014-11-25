@@ -16,8 +16,6 @@
 
 package nz.co.crookedhill.ggutils.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -36,7 +34,7 @@ public class GGUBlockEggTimer extends Block
 	protected GGUBlockEggTimer(Material material) 
 	{
 		super(material);
-		this.setBlockName("eggTimer");
+		this.setBlockName("eggTimer"); 
 		this.setHardness(2.5f);
 		this.setStepSound(Block.soundTypeAnvil);
 	}

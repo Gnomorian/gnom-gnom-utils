@@ -16,14 +16,18 @@
 
 package nz.co.crookedhill.ggutils.entity.item;
 
-
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class GGUEntityTile 
+public class GGUEntityTile
 {
 
+	/**
+	 * Init the tile entities
+	 */
 	public static void init()
 	{
 		GameRegistry.registerTileEntity(GGUEntityEggTimer.class, "eggTimer");
+		GameRegistry.registerTileEntity(GGUEntityModularLimb.class, "modularLimb");
+		GameRegistry.registerTileEntity(GGUEntityModularCore.class, "modularCore");
 	}
 }

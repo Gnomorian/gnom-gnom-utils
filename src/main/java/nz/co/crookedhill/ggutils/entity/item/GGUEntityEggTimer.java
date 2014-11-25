@@ -39,8 +39,6 @@ public class GGUEntityEggTimer extends TileEntity
 	public void updateEntity()
 	{
 		World world = this.worldObj;
-
-		System.out.println(this.delay);
 		if(worldObj.getBlockPowerInput(xCoord, yCoord, zCoord) <= 0)
 		{
 			this.isActive = false;

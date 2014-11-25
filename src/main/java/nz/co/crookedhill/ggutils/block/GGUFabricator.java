@@ -19,9 +19,10 @@ package nz.co.crookedhill.ggutils.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
-public class GGUFabricator extends Block{
+public class GGUFabricator extends Block
+{
 
-	protected GGUFabricator(Material material) 
+	protected GGUFabricator(Material material)
 	{
 		super(material);
 		this.setBlockName("fabricator");

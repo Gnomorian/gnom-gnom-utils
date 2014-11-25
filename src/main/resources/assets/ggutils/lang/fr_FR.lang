@@ -1,0 +1,36 @@
+**********************************
+BLOCKS
+**********************************
+tile.GrowthBlock.name=Remède de Damara
+tile.sortivator.name=Triviculteur
+tile.eggTimer.name=Sablier d'oeuf
+tile.lazyCrafter.name=Artisan paresseux
+tile.fabricator.name=Fabricateur
+
+**********************************
+ITEMS
+**********************************
+item.blockFinder.name=Inventeur de bloc
+item.woodenGear.name=Engrenage en bois
+item.arseTardis.name=Arse Tardis
+item.enderiumRebirth.name=Cristal de renaissance d'enderium
+
+**********************************
+MOBS
+**********************************
+entity.creeper_mite.name=Mite Creeper 
+
+**********************************
+ENCHANTMENT!
+**********************************
+enchantment.ProsperousAutoSmelt=Prospérité
+
+**********************************
+ACHIEVEMENTS
+**********************************
+achievement.creepMiteExplosion=Je vois ma maison d'ici !
+achievement.usedlazyCrafter=Vous êtes paresseux
+achievement.craftedSortivator=Plutôt être damné que désordonné !
+achievement.craftedSortivator.desc=Vous avez fabriqué un bloc de Triviculteur !
+achievement.usedlazyCrafter.desc=Vous utilisez un bloc d'Artisan paresseux !
+achievement.creepMiteExplosion.desc=Vous avez été soufflée par une Mite Creeper Mite plus de 500 blocs dans les air !
