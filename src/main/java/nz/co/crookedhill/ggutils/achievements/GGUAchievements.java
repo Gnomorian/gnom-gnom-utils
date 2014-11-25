@@ -29,21 +29,13 @@ public class GGUAchievements
     public static Achievement usedlazyCrafter;
     public static Achievement craftedSortivator;
 
-    public GGUAchievements()
+    public static void init()
     {
-	creepMiteExplosion = (new Achievement("achievement.creepMiteExplosion",
-		"creepMiteExplosion", 0, 0, new ItemStack(Blocks.tnt),
-		(Achievement) null)).initIndependentStat().registerStat();
-	usedlazyCrafter = (new Achievement("achievement.usedlazyCrafter",
-		"usedlazyCrafter", 0, 1, new ItemStack(GGUBlocks.lazyCrafter),
-		(Achievement) null)).initIndependentStat().registerStat();
-	craftedSortivator = (new Achievement("achievement.craftedSortivator",
-		"craftedSortivator", 1, 0, new ItemStack(GGUBlocks.sortivator),
-		(Achievement) null)).initIndependentStat().registerStat();
+	creepMiteExplosion = (new Achievement("achievement.creepMiteExplosion", "creepMiteExplosion", 0, 0, new ItemStack(Blocks.tnt), (Achievement) null)).initIndependentStat().registerStat();
+	usedlazyCrafter = (new Achievement("achievement.usedlazyCrafter", "usedlazyCrafter", 0, 1, new ItemStack(GGUBlocks.lazyCrafter), (Achievement) null)).initIndependentStat().registerStat();
+	craftedSortivator = (new Achievement("achievement.craftedSortivator", "craftedSortivator", 1, 0, new ItemStack(GGUBlocks.sortivator), (Achievement) null)).initIndependentStat().registerStat();
 
-	AchievementPage.registerAchievementPage(new GGUAchievementPage(
-		"GGUAchievements", new Achievement[] { creepMiteExplosion,
-			usedlazyCrafter, craftedSortivator }));
+	AchievementPage.registerAchievementPage(new GGUAchievementPage("GGUAchievements", new Achievement[] { creepMiteExplosion, usedlazyCrafter, craftedSortivator }));
     }
 
 }

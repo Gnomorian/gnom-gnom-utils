@@ -10,12 +10,12 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class GGUCommandHandler
 {
-    public GGUCommandHandler(FMLServerStartingEvent e)
+    public static void init(FMLServerStartingEvent e)
     {
 	e.registerServerCommand(new GGUCommandHandler.SampleCommand());
     }
 
-    public class SampleCommand implements ICommand
+    public static class SampleCommand implements ICommand
     {
 	@Override
 	public int compareTo(Object arg0)
@@ -46,18 +46,15 @@ public class GGUCommandHandler
 	}
 
 	@Override
-	public void processCommand(ICommandSender icommandsender,
-		String[] astring)
+	public void processCommand(ICommandSender icommandsender, String[] astring)
 	{
 	    if (astring.length == 0)
 	    {
 		if (icommandsender instanceof EntityPlayer)
-		    icommandsender.addChatMessage(new ChatComponentText(
-			    "Invalid arguments"));
+		    icommandsender.addChatMessage(new ChatComponentText("Invalid arguments"));
 		return;
 	    }
-	    icommandsender.addChatMessage(new ChatComponentText("Sample: ["
-		    + astring[0] + "]"));
+	    icommandsender.addChatMessage(new ChatComponentText("Sample: [" + astring[0] + "]"));
 
 	}
 
@@ -69,8 +66,7 @@ public class GGUCommandHandler
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender p_71516_1_,
-		String[] p_71516_2_)
+	public List addTabCompletionOptions(ICommandSender p_71516_1_, String[] p_71516_2_)
 	{
 	    // TODO Auto-generated method stub
 	    return null;

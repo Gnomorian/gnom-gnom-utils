@@ -1,6 +1,5 @@
 package nz.co.crookedhill.ggutils.handlers;
 
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import nz.co.crookedhill.ggutils.GGUtils;
@@ -9,22 +8,24 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 
+public class GGUKeybindHandler
+{
 
-public class GGUKeybindHandler {
+    Minecraft mc;
 
-	Minecraft mc;
+    @SubscribeEvent
+    public void onKeyInput(KeyInputEvent event)
+    {
 
-	@SubscribeEvent
-	public void onKeyInput(KeyInputEvent event) {
+	EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
+	if (FMLClientHandler.instance().getClient().inGameHasFocus)
+	{
 
-		EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
-
-		if(FMLClientHandler.instance().getClient().inGameHasFocus){
-
-			if(GGUtils.arseTardis.isPressed()) {
-				GGUtils.network.sendToServer(new GGUInventorySwitchPacket(36, Minecraft.getMinecraft().thePlayer.inventory.mainInventory));
-			}
-		}
+	    if (GGUtils.arseTardis.isPressed())
+	    {
+		GGUtils.network.sendToServer(new GGUInventorySwitchPacket(36, Minecraft.getMinecraft().thePlayer.inventory.mainInventory));
+	    }
 	}
+    }
 
 }

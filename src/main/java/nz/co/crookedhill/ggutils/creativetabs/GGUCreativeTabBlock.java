@@ -18,7 +18,7 @@ package nz.co.crookedhill.ggutils.creativetabs;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -39,6 +39,6 @@ public class GGUCreativeTabBlock extends CreativeTabs
     @Override
     public Item getTabIconItem()
     {
-	return Item.getItemFromBlock(GGUtils.blocks.sortivator);
+	return Item.getItemFromBlock(GGUBlocks.sortivator);
     }
 }

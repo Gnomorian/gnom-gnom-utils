@@ -25,7 +25,7 @@ public class GGUEnchantment
 
     public static Enchantment prosperousAutoSmelt;
 
-    public GGUEnchantment()
+    public static void init()
     {
 	prosperousAutoSmelt = new GGUprosperousAutoSmelt(GGUtils.configManager.autoSmeltid, 3, EnumEnchantmentType.digger);
     }

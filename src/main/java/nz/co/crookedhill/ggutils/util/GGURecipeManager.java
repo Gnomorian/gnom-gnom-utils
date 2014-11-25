@@ -40,7 +40,7 @@ public class GGURecipeManager
      * @param recipeList
      *            list of recipes from CraftingManager
      */
-    public GGURecipeManager(List recipeList)
+    public static void init(List recipeList)
     {
 	for (int i = 0; i < recipeList.size(); i++)
 	{
@@ -48,13 +48,11 @@ public class GGURecipeManager
 	    {
 		// if(((ShapedRecipes)recipeList.get(i)).getRecipeOutput() !=
 		// null)
-		shapedRecipes.add(new GGUShapedRecipe(
-			(ShapedRecipes) recipeList.get(i)));
+		shapedRecipes.add(new GGUShapedRecipe((ShapedRecipes) recipeList.get(i)));
 	    } else if (recipeList.get(i) instanceof ShapelessRecipes)
 	    {
 		if (((ShapelessRecipes) recipeList.get(i)).getRecipeOutput() != null)
-		    shapelessRecipes.add(new GGUShapelessRecipe(
-			    (ShapelessRecipes) recipeList.get(i)));
+		    shapelessRecipes.add(new GGUShapelessRecipe((ShapelessRecipes) recipeList.get(i)));
 	    }
 	}
     }

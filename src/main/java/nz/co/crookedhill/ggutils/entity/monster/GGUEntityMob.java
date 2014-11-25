@@ -27,7 +27,7 @@ public class GGUEntityMob
 
     Entity creeperMite;
 
-    public GGUEntityMob()
+    public static void init()
     {
 
 	/*

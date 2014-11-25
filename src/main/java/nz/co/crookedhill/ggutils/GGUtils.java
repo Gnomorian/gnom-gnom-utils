@@ -32,7 +32,6 @@ import nz.co.crookedhill.ggutils.handlers.GGUBlockHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUCommandHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUEnchantmentHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUItemEffectHandler;
-import nz.co.crookedhill.ggutils.handlers.GGUKeybindHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUMobHandler;
 import nz.co.crookedhill.ggutils.handlers.GGUToolTipHandler;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
@@ -49,7 +48,6 @@ import nz.co.crookedhill.ggutils.util.GGURecipeManager;
 import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -66,16 +64,6 @@ import cpw.mods.fml.relauncher.Side;
 public class GGUtils
 {
     public static final String MODID = "ggutils";
-    public static GGUConfigManager configs;
-    public static KeyBinding arseTardis;
-    public static GGUBlocks blocks;
-    public static GGUItems items;
-    public static GGUEntityTile tiles;
-    public static GGUEntityMob mobs;
-    public static GGUEnchantment enchantment;
-    public static GGUAchievements achievements;
-    public static GGURecipeManager recipeManager;
-    public static GGUCommandHandler cmdHandler;
 
     /**
      * 0.0.0.0 first 0= the number of Minecraft versions supported since making
@@ -96,6 +84,7 @@ public class GGUtils
     public static SimpleNetworkWrapper network;
 
     public static GGUConfigManager configManager;
+    public static KeyBinding arseTardis;
 
     // Set Creative Tabs
     public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(CreativeTabs.getNextID(), MODID);
@@ -108,15 +97,15 @@ public class GGUtils
 	network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
 	network.registerMessage(GGUInventorySwitchHandler.class, GGUInventorySwitchPacket.class, 2, Side.SERVER);
 	configManager = new GGUConfigManager(event);
-	items = new GGUItems();
-	tiles = new GGUEntityTile();
-	blocks = new GGUBlocks();
-	mobs = new GGUEntityMob();
-	enchantment = new GGUEnchantment();
-	achievements = new GGUAchievements();
+	GGUItems.init();
+	GGUEntityTile.init();
+	GGUBlocks.init();
+	GGUEntityMob.init();
+	GGUEnchantment.init();
+	GGUAchievements.init();
 
-	blocks.registerRecipes();
-	items.registerRecipes();
+	GGUBlocks.registerRecipes();
+	GGUItems.registerRecipes();
     }
 
     @EventHandler
@@ -131,23 +120,23 @@ public class GGUtils
 	MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
 	MinecraftForge.EVENT_BUS.register(new GGUItemEffectHandler());
 	MinecraftForge.EVENT_BUS.register(new GGUAchievementHandler());
-	FMLCommonHandler.instance().bus().register(new GGUKeybindHandler());
+
+	arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
+	ClientRegistry.registerKeyBinding(arseTardis);
+	proxy.init();
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-	// register keybindings
-	arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
-	ClientRegistry.registerKeyBinding(arseTardis);
-
-	recipeManager = new GGURecipeManager(CraftingManager.getInstance().getRecipeList());
+	proxy.postInit();
+	GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
     }
 
     @EventHandler
     public void serverLoad(FMLServerStartingEvent e)
     {
-	cmdHandler = new GGUCommandHandler(e);
+	GGUCommandHandler.init(e);
 
     }
 }

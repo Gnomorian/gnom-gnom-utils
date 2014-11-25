@@ -30,7 +30,7 @@ public class GGUItems
     public static Item arseTardis;
     public static Item enderiumRebirth;
 
-    public GGUItems()
+    public static void init()
     {
 
 	blockFinder = new ItemBlockFinder().setUnlocalizedName("blockFinder").setCreativeTab(GGUtils.ggutilsCreativeTab);
@@ -46,7 +46,7 @@ public class GGUItems
 	    GameRegistry.registerItem(enderiumRebirth, enderiumRebirth.getUnlocalizedName());
     }
 
-    public void registerRecipes()
+    public static void registerRecipes()
     {
 	// Register Item Recipies
 	GameRegistry.addRecipe(new ItemStack(woodenGear), "sws", "w w", "sws", 's', Items.stick, 'w', Blocks.planks);

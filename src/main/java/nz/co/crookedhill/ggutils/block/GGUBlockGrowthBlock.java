@@ -149,7 +149,7 @@ public class GGUBlockGrowthBlock extends Block
 	    // check how many growth blocks under this one.
 	    for (int i = y; i > y - stackHeight; i--)
 	    {
-		if (world.getBlock(x, i, z).equals(GGUtils.blocks.growthBlock))
+		if (world.getBlock(x, i, z).equals(GGUBlocks.growthBlock))
 		{
 		    numberOfGrowthBlocks++;
 		}

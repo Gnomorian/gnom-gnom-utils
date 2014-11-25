@@ -2,7 +2,7 @@ package nz.co.crookedhill.ggutils.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.achievements.GGUAchievements;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -21,7 +21,7 @@ public class GGUAchievementHandler
 	if (event.entityLiving instanceof EntityPlayer)
 	{
 	    if (event.distance > 500 && event.entityLiving.getLastAttacker() instanceof GGUEntityCreeperMite)
-		((EntityPlayer) event.entityLiving).addStat(GGUtils.achievements.creepMiteExplosion, 1);
+		((EntityPlayer) event.entityLiving).addStat(GGUAchievements.creepMiteExplosion, 1);
 	}
     }
 
@@ -39,11 +39,11 @@ public class GGUAchievementHandler
 	if (event.crafting.getUnlocalizedName().equals(GGUBlocks.sortivator.getUnlocalizedName()))
 	{
 	    System.out.println("crafting sucseeded");
-	    event.player.addStat(GGUtils.achievements.craftedSortivator, 1);
+	    event.player.addStat(GGUAchievements.craftedSortivator, 1);
 	} else
 	{
 	    System.out.println(event.crafting.getUnlocalizedName());
-	    System.out.println(GGUtils.blocks.sortivator.getUnlocalizedName());
+	    System.out.println(GGUBlocks.sortivator.getUnlocalizedName());
 	}
     }
 }
