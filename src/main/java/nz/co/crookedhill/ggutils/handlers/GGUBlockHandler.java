@@ -24,7 +24,6 @@ import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -53,7 +52,7 @@ public class GGUBlockHandler
 	{
 	    if (block instanceof BlockTallGrass || block instanceof BlockDoublePlant)
 	    {
-		int creeperChance = GGUtils.configManager.creeperMiteGrassChance;
+		int creeperChance = GGUConfigManager.creeperMiteGrassChance;
 
 		// checks to see if config is not set to 0 then does random 10%
 		// check.

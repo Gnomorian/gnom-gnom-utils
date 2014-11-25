@@ -53,7 +53,7 @@ public class GGUConfigManager
     public static boolean autoSmeltEnabled;
     public static int autoSmeltid;
 
-    public GGUConfigManager(FMLPreInitializationEvent event)
+    public static void init(FMLPreInitializationEvent event)
     {
 	configFile = new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + GGUtils.MODID + File.separator + GGUtils.MODID + ".cfg");
 	config = new Configuration(configFile);

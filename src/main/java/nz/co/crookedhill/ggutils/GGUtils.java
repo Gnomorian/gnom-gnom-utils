@@ -71,7 +71,7 @@ public class GGUtils
      * of features added (blocks, items etc.) forth 0= the number of bug
      * fixes/sub features added since last feature added.
      */
-    public static final String VERSION = "0.0.7.5";
+    public static final String VERSION = "0.0.7.6";
 
     // Setting proxy for client and server side
     @SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
@@ -83,7 +83,6 @@ public class GGUtils
 
     public static SimpleNetworkWrapper network;
 
-    public static GGUConfigManager configManager;
     public static KeyBinding arseTardis;
 
     // Set Creative Tabs
@@ -96,7 +95,7 @@ public class GGUtils
 	network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
 	network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
 	network.registerMessage(GGUInventorySwitchHandler.class, GGUInventorySwitchPacket.class, 2, Side.SERVER);
-	configManager = new GGUConfigManager(event);
+	GGUConfigManager.init(event);
 	GGUItems.init();
 	GGUEntityTile.init();
 	GGUBlocks.init();

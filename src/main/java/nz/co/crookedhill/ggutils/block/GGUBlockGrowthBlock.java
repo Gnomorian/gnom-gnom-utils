@@ -35,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -42,8 +43,8 @@ public class GGUBlockGrowthBlock extends Block
 {
 
     private IIcon[] icons = new IIcon[3];
-    private int stackHeight = GGUtils.configManager.growthBlockStackHeight;
-    private int growthHeight = GGUtils.configManager.growthCactusReedMaxHeight;
+    private int stackHeight = GGUConfigManager.growthBlockStackHeight;
+    private int growthHeight = GGUConfigManager.growthCactusReedMaxHeight;
 
     /* 0=manual,1=redstone,2=automatic */
     int mode = 0;

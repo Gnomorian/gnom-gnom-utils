@@ -29,6 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -37,7 +38,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
  * ore smelts into and replace it in the list of droped items with what it
  * smelts into then set the block to air and spawn an itemstack, with a
  * stacksize of normal drop+(1 to i) (i being the level of the enchantment)
- * 
  */
 
 public class GGUEnchantmentHandler
@@ -105,11 +105,12 @@ public class GGUEnchantmentHandler
 	// check what level the enchant is.
 	for (int i = 0; i < itemStack.getEnchantmentTagList().tagCount(); i++)
 	{
-	    if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{lvl:3s,id:103s,}"))
+	    System.out.println("	" + itemStack.getEnchantmentTagList().getStringTagAt(i));
+	    if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{id:" + GGUConfigManager.autoSmeltid + "s,lvl:3s,}"))
 		enchantmentLevel = 3;
-	    else if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{lvl:2s,id:103s,}"))
+	    else if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{id:" + GGUConfigManager.autoSmeltid + "s,lvl:2s,}"))
 		enchantmentLevel = 2;
-	    else if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{lvl:1s,id:103s,}"))
+	    else if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{id:" + GGUConfigManager.autoSmeltid + "s,lvl:1s,}"))
 		enchantmentLevel = 1;
 	}
 
@@ -120,7 +121,10 @@ public class GGUEnchantmentHandler
 	    if (recipes.getSmeltingResult(items.get(i)) != null)
 	    {
 		items.set(i, recipes.getSmeltingResult(items.get(i)));
-		int dropCount = items.get(i).stackSize + rand.nextInt(enchantmentLevel + 1);
+		System.out.println("enchantment Level = " + enchantmentLevel);
+		int addedRand = Math.abs(rand.nextInt(enchantmentLevel + 1));
+		System.out.println("amount added = " + addedRand);
+		int dropCount = items.get(i).stackSize + addedRand;
 		items.get(i).stackSize = dropCount;
 	    }
 	}

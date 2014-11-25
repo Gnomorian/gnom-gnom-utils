@@ -21,6 +21,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class GGUItems
@@ -39,10 +40,10 @@ public class GGUItems
 	enderiumRebirth = new GGUEnderiumRebirth().setUnlocalizedName("enderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
 
 	// Register Items
-	if (GGUtils.configManager.blockFinderEnabled)
+	if (GGUConfigManager.blockFinderEnabled)
 	    GameRegistry.registerItem(blockFinder, "blockFinder");
 	GameRegistry.registerItem(woodenGear, "woodenGear");
-	if (GGUtils.configManager.enderiumRebirthEnabled)
+	if (GGUConfigManager.enderiumRebirthEnabled)
 	    GameRegistry.registerItem(enderiumRebirth, enderiumRebirth.getUnlocalizedName());
     }
 
@@ -50,7 +51,7 @@ public class GGUItems
     {
 	// Register Item Recipies
 	GameRegistry.addRecipe(new ItemStack(woodenGear), "sws", "w w", "sws", 's', Items.stick, 'w', Blocks.planks);
-	if (GGUtils.configManager.enderiumRebirthEnabled)
+	if (GGUConfigManager.enderiumRebirthEnabled)
 	    GameRegistry.addRecipe(new ItemStack(enderiumRebirth), "pgp", "geg", "pgp", 'p', Items.ender_pearl, 'g', Items.gold_ingot, 'e', Items.ender_eye);
 
     }
