@@ -21,6 +21,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class GGUEntityTile
 {
 
+	/**
+	 * Init the tile entities
+	 */
 	public static void init()
 	{
 		GameRegistry.registerTileEntity(GGUEntityEggTimer.class, "eggTimer");

@@ -1,8 +1,6 @@
 package nz.co.crookedhill.ggutils.renderer;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
@@ -29,7 +27,6 @@ public class GGURenderModularLimb extends TileEntitySpecialRenderer {
 		this.randomItem = ((GGUEntityModularLimb)entity).getStack();	
 		this.entityItem = new EntityItem(Minecraft.getMinecraft().thePlayer.worldObj, x, y, z, randomItem);
 
-		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 		float rotateDeg = ((GGUEntityModularLimb)entity).getRotation();
 		
 		if(this.entityItem != null)
@@ -37,11 +34,11 @@ public class GGURenderModularLimb extends TileEntitySpecialRenderer {
 			GL11.glPushMatrix();
 			//Without the below line, the item will spazz out
 			this.entityItem.hoverStart = 0.0F;
-			RenderItem.renderInFrame = true;
+			//RenderItem.renderInFrame = true;
 			GL11.glTranslatef((float)x + 0.5F, (float)y + 0.25F, (float)z + 0.5F);
 			GL11.glRotatef(rotateDeg, 0, 1, 0);
 			RenderManager.instance.renderEntityWithPosYaw(this.entityItem, 0.0D, 0.0D, 0.0D, 10.0F, 0.0F);
-			RenderItem.renderInFrame = false;
+			//RenderItem.renderInFrame = false;
 			GL11.glPopMatrix();
 		}
 	}

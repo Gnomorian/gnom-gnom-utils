@@ -20,8 +20,8 @@ public class GGUBlockModularLimb extends Block {
 
 	IIcon icon;
 	Random rand = new Random();
-	
-	protected GGUBlockModularLimb(Material material) 
+
+	public GGUBlockModularLimb(Material material) 
 	{
 		super(material);
 		this.setBlockName("modularLimb"); 
@@ -48,7 +48,7 @@ public class GGUBlockModularLimb extends Block {
 	{
 		return true;
 	}
-	
+
 	@Override
 	public boolean renderAsNormalBlock() 
 	{
@@ -59,7 +59,7 @@ public class GGUBlockModularLimb extends Block {
 	{
 		return false;
 	}
-	
+
 	@Override
 	public boolean hasTileEntity(int metadata) 
 	{
@@ -70,9 +70,20 @@ public class GGUBlockModularLimb extends Block {
 	public TileEntity createTileEntity(World world, int metadata) 
 	{	
 		super.createTileEntity(world, metadata);
-		ItemStack stack = new ItemStack(Item.getItemById(rand.nextInt(Item.itemRegistry.getKeys().size())));
-		stack.stackSize = rand.nextInt(64);
-		
-		return new GGUEntityModularLimb(stack);
+
+			int maxItems = Item.itemRegistry.getKeys().size();
+			int randomItem = rand.nextInt(maxItems);
+			Item itemToStack = Item.getItemById(randomItem);
+			
+			//to make sure random item is never null
+			while(itemToStack == null)
+			{
+				maxItems = Item.itemRegistry.getKeys().size();
+				randomItem = rand.nextInt(maxItems);
+				itemToStack = Item.getItemById(randomItem);
+			}
+			ItemStack stack = new ItemStack(itemToStack);
+			stack.stackSize = rand.nextInt(64);
+			return new GGUEntityModularLimb(stack);
 	}
 }

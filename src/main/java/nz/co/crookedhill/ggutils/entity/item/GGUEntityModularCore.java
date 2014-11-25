@@ -29,12 +29,12 @@ import net.minecraft.world.World;
 
 public class GGUEntityModularCore extends TileEntity 
 {
-	Random rand = new Random();
-	HashMap<String, ItemStack> numberOfLimbs = new HashMap<String, ItemStack>();
-
-	public GGUEntityModularCore()
-	{
-	}
+	private Random rand = new Random();
+	private HashMap<String, ItemStack> numberOfLimbs = new HashMap<String, ItemStack>();
+	private String owner;
+	
+	//need this for some reason...
+	public GGUEntityModularCore(){}
 
 
 	@Override
@@ -50,6 +50,10 @@ public class GGUEntityModularCore extends TileEntity
 
 	}
 
+	/**
+	 * recursive method to calculate number of limbs
+	 * @param coords array of ints of coords of the current limb
+	 */
 	private void calculateLimbs(int[] coords)
 	{
 		int numbOfSide = 6;
@@ -60,6 +64,9 @@ public class GGUEntityModularCore extends TileEntity
 		
 		if(!world.isRemote)
 		{
+			/**
+			 * Check all 6 sides if has limb.
+			 */
 			for(i=0; i<numbOfSide; i++)
 			{ 
 				int[] intCoords = new int[3];
@@ -178,7 +185,6 @@ public class GGUEntityModularCore extends TileEntity
 				default:
 				}
 			}
-			System.out.println(numberOfLimbs.size());
 			return;
 		}
 	}
@@ -187,12 +193,15 @@ public class GGUEntityModularCore extends TileEntity
 	public void writeToNBT(NBTTagCompound compound)
 	{
 		super.writeToNBT(compound);
+		
+		compound.setString("owner", this.owner);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound)
 	{
 		super.readFromNBT(compound);
+		this.owner = compound.getString("owner");
 	}
 
 	@Override
@@ -209,14 +218,41 @@ public class GGUEntityModularCore extends TileEntity
 		readFromNBT(packet.func_148857_g());
 	}
 
+	/**
+	 * public method to force recalculation of limbs.
+	 * @param coords of the core
+	 */
 	public void recalculateLimbs(int[] coords)
 	{
 		this.numberOfLimbs.clear();
 		calculateLimbs(coords);
 	}
 	
+	/**
+	 * Public method that returns the number of limbs.
+	 * @return the number of limbs
+	 */
 	public int getNumberOfLimbs()
 	{
 		return this.numberOfLimbs.size();
+	}
+	
+	/**
+	 * Public method to check whether the player name is the owner of this block.
+	 * @param player name to check
+	 * @return true if owner
+	 */
+	public boolean isOwner(String player)
+	{	
+		return this.owner.equals(player) ? true : false;
+	}
+	
+	/**
+	 * Public method to set the owner of this block to the player
+	 * @param player name to become owner
+	 */
+	public void setOwner(String player)
+	{
+		this.owner = player;
 	}
 }
