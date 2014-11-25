@@ -102,7 +102,6 @@ public class GGUtils
 		GGUEntityMob.init();
 		GGUEnchantment.init();
 		GGUAchievements.init();
-
 	}
 
 	@EventHandler
