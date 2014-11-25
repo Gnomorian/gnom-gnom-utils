@@ -26,7 +26,7 @@ import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import nz.co.crookedhill.ggutils.item.GGUItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class GGUBlocks 
+public class GGUBlocks
 {
 
 	public static Block growthBlock;

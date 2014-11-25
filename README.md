@@ -3,7 +3,7 @@ gnom-gnom-utils
 
 A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
-![Banner](/utilsBanner.png)
+![Banner](http://static.planetminecraft.com/files/resource_media/screenshot/1446/gnomgnomsutils8323094.jpg)
 
 # Blocks
 ## Fabricator: Used to mass fabricate blocks/items.
@@ -76,12 +76,14 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
       - [ ] RecipesMapCloning
     - [X] Can be disabled in config.
 
-## Multi Block of Awesome Modular Ender Storage
+## Modular Ender Storage System (MESS)
   - [ ] Single smart block that acts as core. Bound to player. Only breakable by player.
   - [ ] Infinite amount of modular single "dumb" blocks with nbt data that store 1 item attach to the smart core.
   - [ ] Whole inventory can be accessed through some form of ender chest/pouch.
   - [ ] Renders a random item inside the block for trolling purposes.
   - [X] Can be disabled in config.
+  - [ ] a multiblock trap that can zap entities into the MESS, including players
+      - [ ] when the player who created the storage for the entity is online, the dimention is loaded.
 
 ## Anti-Cobble Block - removes cobble from inventories
   - [ ] removes cobble from your inventory as you near it/run past it.
@@ -99,6 +101,9 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - [ ] extends map to display an "x marks the spot" for the items your looking for?
     - [X] can be disabled in config.
   
+## White Stone Alt
+  - [ ] if player dies while item is in their inventory, they are resurected with all items at their bed.
+  - [ ] item can be disabled in config.
 
 # MOBS
 ## CreeperMite
@@ -111,10 +116,15 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 
 
 # ENCHANTMENTS
-## prosperous Auto-Smelt
+## Prosperous
   - [X] fortune pickaxe that also smelts the ore from the ore block.
   - [X] smelts wooden logs aswell.
   - [X] can be disabled in config.
+
+## Liftoff
+  - [ ] Enchantment on armor that makes you fly.
+  - [ ] decreaces armour durability over time.
+  - [ ] can be disabled in config.
 
 
 # Mod Support
@@ -127,13 +137,12 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
 ## Swapable hotbars
   - Swapable hotbars that swap 9x1 row of the inventory to the hotbar on keypress.
   - Rotation? or Swapable?
-
-
-## Some form of controlled explosives or placeable gunpowder.
-## Enchantment on armor that makes you fly but degrades your armor per sec.
   
 -------------------------
 CONCEPTS
 -------------------------
-Packethandling
-http://www.minecraftforge.net/forum/index.php/topic,20135.0.html
+### Packethandling
+ - http://www.minecraftforge.net/forum/index.php/topic,20135.0.html
+
+ - Some form of controlled explosives or placeable gunpowder.
+ - item that when it despawns on the ground, it spawns a mob where it despawned.

@@ -24,7 +24,7 @@ import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class GGUItems 
+public class GGUItems
 {
 	public static Item blockFinder;
 	public static Item woodenGear;
@@ -35,12 +35,18 @@ public class GGUItems
 		
 		blockFinder = new ItemBlockFinder().setUnlocalizedName("blockFinder").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		woodenGear = new GGUWoodenGear().setUnlocalizedName("woodenGear").setCreativeTab(GGUtils.ggutilsCreativeTab);
+	// looks like your pulling shit out your ass
+	enderiumRebirth = new GGUEnderiumRebirth().setUnlocalizedName("enderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
+
+
 		//Register Items
 		if(GGUConfigManager.blockFinderEnabled)
 		GameRegistry.registerItem(blockFinder, "blockFinder");
 		if(GGUConfigManager.sortivatorEnabled)
 		GameRegistry.registerItem(woodenGear, "woodenGear");
-	
+		if (GGUConfigManager.enderiumRebirthEnabled)
+	    GameRegistry.registerItem(enderiumRebirth, enderiumRebirth.getUnlocalizedName());
+    
 		registerRecipes();
 	}
 	
@@ -49,5 +55,8 @@ public class GGUItems
 		if(GGUConfigManager.sortivatorEnabled)
 		GameRegistry.addRecipe(new ItemStack(woodenGear),"sws","w w","sws"
 				,'s',Items.stick,'w',Blocks.planks);
+	if (GGUConfigManager.enderiumRebirthEnabled)
+	    GameRegistry.addRecipe(new ItemStack(enderiumRebirth), "pgp", "geg", "pgp", 'p', Items.ender_pearl, 'g', Items.gold_ingot, 'e', Items.ender_eye);
+
 	}
 }

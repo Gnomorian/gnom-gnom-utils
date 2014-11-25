@@ -15,6 +15,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	public static final String GGU_EXT_PLAYER = "gguProps";
 	private final EntityPlayer player;
 	
+	private int lastRow;
 	private int numberOfEnderLimbs;
 
 	/**
@@ -25,6 +26,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	public GGUExtendedPlayer(EntityPlayer player){
 		this.player = player;
 		this.numberOfEnderLimbs = 0;
+		this.lastRow = 1;
 	}
 
 
@@ -38,7 +40,8 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	@Override
 	public void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
-		compound.setInteger("enderLimbs", this.numberOfEnderLimbs);
+		properties.setInteger("enderLimbs", this.numberOfEnderLimbs);
+		properties.setInteger("rowNumber", this.lastRow);		
 		compound.setTag(GGU_EXT_PLAYER, properties);
 	}
 
@@ -46,7 +49,8 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	public void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(GGU_EXT_PLAYER);
 		this.numberOfEnderLimbs = properties.getInteger("enderLimbs");
-	}
+		this.lastRow = properties.getInteger("rowNumber");	
+}
 
 	/*===============================================================================
 	 * 
@@ -126,6 +130,19 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	public int getNumberOfLimbs()
 	{
 		return this.numberOfEnderLimbs;
+	}
+
+	//Get the last row
+	public int getLastRow()
+	{
+		return this.lastRow;
+	}
+	
+	//set the last row
+	public void setLastRow(int newLastRow)
+	{
+		this.lastRow = newLastRow;
+		this.syncAll();
 	}
 }
 

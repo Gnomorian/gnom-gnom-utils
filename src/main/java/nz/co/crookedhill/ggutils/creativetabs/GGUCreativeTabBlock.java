@@ -24,21 +24,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class GGUCreativeTabBlock extends CreativeTabs
 {
-	public GGUCreativeTabBlock(int tabID, String label) 
-	{
-		super(tabID, label);
-	}
+    public GGUCreativeTabBlock(int tabID, String label)
+    {
+	super(tabID, label);
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
     public String getTranslatedTabLabel()
     {
-        return "GnomGnom's Utils Blocks";
+	return "GnomGnom's Utils Blocks";
     }
-    
-	@Override
-	public Item getTabIconItem() 
-	{
-		return Item.getItemFromBlock(GGUBlocks.sortivator);
-	}
+
+    @Override
+    public Item getTabIconItem()
+    {
+	return Item.getItemFromBlock(GGUBlocks.sortivator);
+    }
 }
