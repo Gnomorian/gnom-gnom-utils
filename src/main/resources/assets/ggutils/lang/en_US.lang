@@ -6,6 +6,8 @@ tile.sortivator.name=Sortivator
 tile.eggTimer.name=Egg Timer
 tile.lazyCrafter.name=Lazy Crafter (WIP!)
 tile.fabricator.name=Fabricator (WIP!)
+tile.modularCore.name=MESS Core (WIP!)
+tile.modularLimb.name=MESS Limb (WIP!)
 
 **********************************
 ITEMS
@@ -13,7 +15,10 @@ ITEMS
 item.blockFinder.name=Block Finder (WIP!)
 item.woodenGear.name=Wooden Gear
 item.arseTardis.name=Arse Tardis
-item.enderiumRebirth.name=Enderium Rebirth Crystal
+item.stableEnderiumRebirth.name=Enderium Rebirth Crystal
+item.unstableEnderiumRebirth.name=Unstable Enderium Rebirth Crystal
+item.betterBoat.name=Better Boat (WIP!)
+item.selfPlaceCart.name=Self-Place Cart (WIP!)
 
 **********************************
 MOBS

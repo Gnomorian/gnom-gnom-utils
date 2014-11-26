@@ -1,5 +1,7 @@
 package nz.co.crookedhill.ggutils.handlers;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -29,7 +31,7 @@ public class GGUItemEffectHandler
 			ItemStack item = inv[i];
 			if (item == null)
 			    continue;
-			if (item.getItem() instanceof GGUEnderiumRebirth)
+			if (item.getItem() instanceof GGUEnderiumRebirth && !item.getUnlocalizedName().contains("unstableEnderiumRebirth"))
 			{
 			    event.setCanceled(true);
 			    player.setHealth(player.getMaxHealth());
@@ -50,6 +52,24 @@ public class GGUItemEffectHandler
 			    player.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
 			    player.addPotionEffect(new PotionEffect(Potion.confusion.id, 250, 3));
 			    player.addPotionEffect(new PotionEffect(Potion.hunger.id, 2500, 0));
+			    inv[i] = null;
+			    break findERB; // find enderium rebirth crystal
+					   // (ERB)
+			} else if (item.getItem() instanceof GGUEnderiumRebirth)
+			{
+			    event.setCanceled(true);
+			    player.setHealth(player.getMaxHealth() / 2);
+			    Random rand = new Random();
+			    ChunkCoordinates coords = new ChunkCoordinates();
+			    coords.posX = rand.nextInt(16) + (int) player.posX;
+			    coords.posY = rand.nextInt(5) + (int) player.posY;
+			    coords.posZ = rand.nextInt(16) + (int) player.posZ;
+			    player.worldObj.createExplosion(player, coords.posX, coords.posY, coords.posZ, 1f, true);
+			    player.setPositionAndUpdate((double) coords.posX, (double) coords.posY, (double) coords.posZ);
+			    player.addPotionEffect(new PotionEffect(Potion.blindness.id, 120, 1));
+			    player.addPotionEffect(new PotionEffect(Potion.confusion.id, 250, 3));
+			    player.addPotionEffect(new PotionEffect(Potion.hunger.id, 500, 0));
+
 			    inv[i] = null;
 			    break findERB; // find enderium rebirth crystal
 					   // (ERB)

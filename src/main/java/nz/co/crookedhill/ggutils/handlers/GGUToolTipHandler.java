@@ -64,12 +64,19 @@ public class GGUToolTipHandler
 	    event.toolTip.add("you have in your current inventory");
 	    event.toolTip.add("and craft it with a single click!");
 	}
-	if (event.itemStack.getItem().getUnlocalizedName().equals("item.enderiumRebirth"))
+	if (event.itemStack.getItem().getUnlocalizedName().equals("item.stableEnderiumRebirth"))
 	{
 	    event.toolTip.add("allows you a second life when you");
 	    event.toolTip.add("are mortaly wounded, with all your");
 	    event.toolTip.add("inventory. But with a risk of being");
 	    event.toolTip.add("reborn in odd places.");
+	}
+	if (event.itemStack.getItem().getUnlocalizedName().equals("item.unstableEnderiumRebirth"))
+	{
+	    event.toolTip.add("allows you a second life when you");
+	    event.toolTip.add("are mortaly wounded, with all your");
+	    event.toolTip.add("inventory. But teleports your randomly");
+	    event.toolTip.add("near where you died explosivly.");
 	}
     }
 
