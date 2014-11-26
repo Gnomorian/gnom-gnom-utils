@@ -77,11 +77,12 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - [X] Can be disabled in config.
 
 ## Modular Ender Storage System (MESS)
-  - [ ] Single smart block that acts as core. Bound to player. Only breakable by player.
+  - [x] Single smart block that acts as core. Bound to player. Only breakable by player.
   - [ ] Infinite amount of modular single "dumb" blocks with nbt data that store 1 item attach to the smart core.
   - [ ] Whole inventory can be accessed through some form of ender chest/pouch.
-  - [ ] Renders a random item inside the block for trolling purposes.
+  - [x] Renders a random item inside the block for trolling purposes.
   - [X] Can be disabled in config.
+    - [ ] Config option to render actual or dummy item in limbs
   - [ ] a multiblock trap that can zap entities into the MESS, including players
       - [ ] when the player who created the storage for the entity is online, the dimention is loaded.
 
@@ -101,9 +102,10 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
     - [ ] extends map to display an "x marks the spot" for the items your looking for?
     - [X] can be disabled in config.
   
-## White Stone Alt
-  - [ ] if player dies while item is in their inventory, they are resurected with all items at their bed.
-  - [ ] item can be disabled in config.
+## Enderium Rebirth Crystal
+  - [x] if player dies while item is in their inventory, they are resurected with all items at their bed.
+    - [x] unstable version randomly teleports within 16 blocks with EXPLOSIONS!
+  - [x] item can be disabled in config.
 
 # MOBS
 ## CreeperMite
@@ -134,9 +136,9 @@ A mod for Minecraft that adds useful things (pronounced /ɡnom/, /ɲom/)
   - [ ] agricultural mods, mods that add crops. complaints can fix this i guess :)
 
 # Concepts
-## Swapable hotbars
-  - Swapable hotbars that swap 9x1 row of the inventory to the hotbar on keypress.
-  - Rotation? or Swapable?
+## Arse Tardis
+  - [x] Swapable hotbars that swap 9x1 row of the inventory to the hotbar on keypress.
+  - [x] Pressing hotkey rotates through inventory rows and current row is saved.
   
 -------------------------
 CONCEPTS
