@@ -1,7 +1,9 @@
 **********************************
 BLOCKS
 **********************************
-tile.GrowthBlock.name=Damara's Remedy
+tile.GrowthBlock.name=Damara's Remedy (Manual)
+tile.GrowthBlockSemi.name=Damara's Remedy (Semi-Auto)
+tile.GrowthBlockAuto.name=Damara's Remedy (Auto)
 tile.sortivator.name=Sortivator
 tile.eggTimer.name=Egg Timer
 tile.lazyCrafter.name=Lazy Crafter

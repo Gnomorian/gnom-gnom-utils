@@ -35,19 +35,26 @@ public class GGUToolTipHandler
 			event.toolTip.add("never been faster!");
 			event.toolTip.add("Stack these blocks up to ");
 			event.toolTip.add(GGUConfigManager.growthBlockStackHeight+" times to grow faster");
-			switch(event.itemStack.getItemDamage())
-			{
-			case 10:
-				event.toolTip.add("Manual operation.");
-				break;
-			case 11:
-				event.toolTip.add("Semi Auto operation.");
-				break;
-			case 12:
-				event.toolTip.add("Auto operation.");
-				break;
-				default:
-			}
+			event.toolTip.add("Manual operation.");
+			event.toolTip.add("Plant and harvest yourself.");
+		}
+		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.GrowthBlockSemi")) 
+		{
+			event.toolTip.add("Growing plants has");
+			event.toolTip.add("never been faster!");
+			event.toolTip.add("Stack these blocks up to ");
+			event.toolTip.add(GGUConfigManager.growthBlockStackHeight+" times to grow faster");
+			event.toolTip.add("Semi-Auto operation.");
+			event.toolTip.add("Plant yourself. Harvest with signal.");
+		}
+		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.GrowthBlockAuto")) 
+		{
+			event.toolTip.add("Growing plants has");
+			event.toolTip.add("never been faster!");
+			event.toolTip.add("Stack these blocks up to ");
+			event.toolTip.add(GGUConfigManager.growthBlockStackHeight+" times to grow faster");
+			event.toolTip.add("Auto operation.");
+			event.toolTip.add("Plants and harvests automatically.");
 		}
 		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.sortivator")) 
 		{
