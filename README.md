@@ -6,7 +6,7 @@ GnomGnom's Utils is a mod that attempts to add useful things to the game (pronou
 ![Banner](http://static.planetminecraft.com/files/resource_media/screenshot/1446/gnomgnomsutils8323094.jpg)
 
 ## Enderium Rebirth Crystal 
-an item that revives you from a mortal wound at your respawn point with all your inventory, however you are in a weakened state and where you are revived is not always in safety. There is also a cheaper alternative that teleports you within 16 blocks creating an explosive crater in your wake (not yet shown in video).
+An item that revives you from a mortal wound at your respawn point with all your inventory, however you are in a weakened state and where you are revived is not always in safety. There is also a cheaper alternative that teleports you within 16 blocks creating an explosive crater in your wake (not yet shown in video).
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/R3zILYD-Fao/0.jpg)](http://www.youtube.com/watch?v=R3zILYD-Fao)
 
@@ -28,14 +28,14 @@ Not quite a utility, but i can argue that its useful for server owners to make t
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/bxZq2FCG2F0/0.jpg)](http://www.youtube.com/watch?v=bxZq2FCG2F0)
 
 ## prosperity Enchantment 
-"Enchantment? Enchantment!" yes, this enchantment is fortune built into autosmelting, it can also smelt your logs into charcoal for you!
+"Enchantment? Enchantment!" Yes, this enchantment is fortune built into autosmelting, it can also smelt your logs into charcoal for you!
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/q6tkNeTHn0g/0.jpg)](http://www.youtube.com/watch?v=q6tkNeTHn0g)
 
 ## Achievements 
-just started adding achievements, one of the more notable ones is a reference to my first video of the creepermites, if you can get them to blow you up as high as 500 blocks (i did just shy of 600) then you earn an achievement. 
+Just started adding achievements, one of the more notable ones is a reference to my first video of the creepermites, if you can get them to blow you up as high as 500 blocks (i did just shy of 600) then you earn an achievement. 
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/sX21V6pZ0FA/0.jpg)](http://www.youtube.com/watch?v=sX21V6pZ0FA)
 
 
-we have a few more ambitious ideas like bringing back the Crafting Table Mk 2/3 and the Fabricator from XYCraft (of course our own spin on the idea). but I'ed like to see some comments as to what useful things you would like to see in minecraft, doesn't have to be blocks, a chat logger or anything really. so long as if it adds something that you want to add to the game, you have to make it balanced.
+We have a few more ambitious ideas like bringing back the Crafting Table Mk 2/3 and the Fabricator from XYCraft (of course our own spin on the idea). but I'ed like to see some comments as to what useful things you would like to see in minecraft, doesn't have to be blocks, a chat logger or anything really. so long as if it adds something that you want to add to the game, you have to make it balanced.
