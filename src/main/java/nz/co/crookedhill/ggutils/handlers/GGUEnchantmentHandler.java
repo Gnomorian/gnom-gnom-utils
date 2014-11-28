@@ -49,16 +49,16 @@ public class GGUEnchantmentHandler
 	public void onBlockBreak(BreakEvent event) 
 	{
 		World world = event.world;
+		EntityPlayer player = event.getPlayer();
+		ItemStack heldItemStack = player.getHeldItem();
 
-		if(!world.isRemote) {
+		if(!world.isRemote && heldItemStack != null) {
 			
 			Block block = event.block;
 			int metaData = event.blockMetadata;
 			int x = event.x;
 			int y = event.y;
 			int z = event.z;
-			EntityPlayer player = event.getPlayer();
-			ItemStack heldItemStack = player.getHeldItem();
 			Item heldItem = heldItemStack.getItem();
 			ArrayList<ItemStack> items;
 			

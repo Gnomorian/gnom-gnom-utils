@@ -19,7 +19,6 @@ package nz.co.crookedhill.ggutils.block;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockCake;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockOre;
@@ -79,12 +78,18 @@ public class GGUBlockGrowthBlockAuto extends GGUBlockGrowthBlock
 					{
 						world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
 					}
+					if(metadata == 3)
+					{
+						world.func_147480_a(x, y+1, z, true);
+						world.setBlock(x, y+1, z, block, 0, 2);
+
+					}
 				}
 				else if(block == Blocks.reeds)
 				{
 					int numberOfBlocks = 0;
 					
-					for(int i=1;i<=stackHeight;i++)
+					for(int i=1;i<=growthHeight;i++)
 					{
 						if(world.getBlock(x, y+i, z) == Blocks.reeds)
 						{
@@ -96,9 +101,9 @@ public class GGUBlockGrowthBlockAuto extends GGUBlockGrowthBlock
 						}
 					}
 					if(numberOfBlocks<growthHeight){
-						if(world.isAirBlock(x, y+numberOfBlocks, z))
+						if(world.isAirBlock(x, y+numberOfBlocks+1, z))
 						{
-							world.setBlock(x, y+numberOfBlocks, z, Blocks.reeds, 2, 2);	
+							world.setBlock(x, y+numberOfBlocks+1, z, Blocks.reeds, 2, 2);	
 						}
 					}
 					if(numberOfBlocks==harvestHieght)
@@ -113,7 +118,7 @@ public class GGUBlockGrowthBlockAuto extends GGUBlockGrowthBlock
 				{
 					int numberOfBlocks = 0;
 					
-					for(int i=1;i<=stackHeight;i++)
+					for(int i=1;i<=growthHeight;i++)
 					{
 						if(world.getBlock(x, y+i, z) == Blocks.cactus)
 						{
@@ -143,6 +148,12 @@ public class GGUBlockGrowthBlockAuto extends GGUBlockGrowthBlock
 					if(metadata < 7)
 					{
 						world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
+					}
+					if(metadata == 7)
+					{
+						world.func_147480_a(x, y+1, z, true);
+						world.setBlock(x, y, z, block, 0, 2);
+
 					}
 				}
 			}
