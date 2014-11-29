@@ -38,4 +38,4 @@ Just started adding achievements, one of the more notable ones is a reference to
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/sX21V6pZ0FA/0.jpg)](http://www.youtube.com/watch?v=sX21V6pZ0FA)
 
 
-We have a few more ambitious ideas like bringing back the Crafting Table Mk 2/3 and the Fabricator from XYCraft (of course our own spin on the idea). but I'ed like to see some comments as to what useful things you would like to see in minecraft, doesn't have to be blocks, a chat logger or anything really. so long as if it adds something that you want to add to the game, you have to make it balanced.
+We have a few more ambitious ideas but we'd like to see some comments as to what useful things you would like to see in minecraft, doesn't have to be blocks, a chat logger or anything really. So long as if it adds something that you want to add to the game, you have to make it balanced.
