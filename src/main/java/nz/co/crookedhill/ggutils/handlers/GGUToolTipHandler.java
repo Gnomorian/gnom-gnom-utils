@@ -20,7 +20,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class GGUToolTipHandler 
+public class GGUToolTipHandler
 {
 	/**
 	 * called when a player hovers over an item.

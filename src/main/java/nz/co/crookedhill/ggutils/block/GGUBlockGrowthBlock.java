@@ -39,7 +39,7 @@ import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class GGUBlockGrowthBlock extends Block 
+public class GGUBlockGrowthBlock extends Block
 {
 
 	private IIcon[] icons = new IIcon[3];
@@ -56,57 +56,72 @@ public class GGUBlockGrowthBlock extends Block
 	}
 
 	@Override
-	public int damageDropped (int metadata) 
+	public int damageDropped(int metadata)
 	{
 		return metadata;
 	}
 
-
 	/**
-	 * 0=side icon(if GrowthBlock ontop)
-	 * 1=top icon
-	 * 2=side icon(if no GrowthBlock ontop)
+	 * 0=side icon(if GrowthBlock ontop) 1=top icon 2=side icon(if no
+	 * GrowthBlock ontop)
+	 * 
 	 * @param iconRegister
 	 */
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) 
+	public void registerBlockIcons(IIconRegister iconRegister)
 	{
 		super.registerBlockIcons(iconRegister);
-		for(int i = 0; i < icons.length; i++) 
+		for (int i = 0; i < icons.length; i++)
 		{
-			icons[i] = iconRegister.registerIcon(GGUtils.MODID + ":" + "growth_texture"+ i);
+			icons[i] = iconRegister.registerIcon(GGUtils.MODID + ":" + "growth_texture" + i);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) 
+	public IIcon getIcon(int side, int meta)
 	{
-		if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
-		if(side == 1) return icons[1];
-		if(side == 0 ) {
+		if (meta > 1)
+			meta = 0; // prevents crashing if block spawned with higher metadata
+		if (side == 1)
+			return icons[1];
+		if (side == 0)
+		{
 			return icons[0];
-		}else return icons[0];
+		} else
+			return icons[0];
 	}
+
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) 
+	public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side)
 	{
 		int meta = blockAccess.getBlockMetadata(x, y, z);
-		if(meta == 0) {
-			if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
-			if(side == 1) return icons[1];
-			if(side == 0 ) {
-				return icons[0];
-			}else return icons[2]; 
-		}
-		else
+		if (meta == 0)
 		{
-			if(meta>1) meta=0; //prevents crashing if block spawned with higher metadata
-			if(side == 1) return icons[1];
-			if(side == 0 ) {
+			if (meta > 1)
+				meta = 0; // prevents crashing if block spawned with higher
+			// metadata
+			if (side == 1)
+				return icons[1];
+			if (side == 0)
+			{
 				return icons[0];
-			}else return icons[0];
+			} else
+				return icons[2];
+		} else
+		{
+			if (meta > 1)
+				meta = 0; // prevents crashing if block spawned with higher
+			// metadata
+			if (side == 1)
+				return icons[1];
+			if (side == 0)
+			{
+				return icons[0];
+			} else
+				return icons[0];
 		}
 	}
+
 	@Override
 	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
 	{
@@ -120,96 +135,94 @@ public class GGUBlockGrowthBlock extends Block
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) 
+	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		Block block = world.getBlock(x, y+1, z);		
+		Block block = world.getBlock(x, y + 1, z);
 
-		//check if block is plantable
-		if(block instanceof IPlantable)
+		// check if block is plantable
+		if (block instanceof IPlantable)
 		{
 			int numberOfGrowthBlocks = 0;
 
-			//check how many growth blocks under this one.
-			for(int i=y;i>y-stackHeight;i--)
+			// check how many growth blocks under this one.
+			for (int i = y; i > y - stackHeight; i--)
 			{
-				if(world.getBlock(x, i, z).equals(GGUBlocks.growthBlock)){
+				if (world.getBlock(x, i, z).equals(GGUBlocks.growthBlock))
+				{
 					numberOfGrowthBlocks++;
 				}
 			}
 
-			//compare the number of growth blocks and test against random. Max test is now editable in config.
-			if(rand.nextInt((stackHeight+1) - numberOfGrowthBlocks)==0)
+			// compare the number of growth blocks and test against random. Max
+			// test is now editable in config.
+			if (rand.nextInt((stackHeight + 1) - numberOfGrowthBlocks) == 0)
 			{
-				int metadata = world.getBlockMetadata(x, y+1, z);
+				int metadata = world.getBlockMetadata(x, y + 1, z);
 
-				if(block == Blocks.nether_wart)
+				if (block == Blocks.nether_wart)
 				{
-					if(metadata < 3)
+					if (metadata < 3)
 					{
-						world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
+						world.setBlockMetadataWithNotify(x, y + 1, z, metadata + 1, 2);
 					}
-				}
-				else if(block == Blocks.reeds)
+				} else if (block == Blocks.reeds)
 				{
 					int i = 1;
-					while(world.getBlock(x, y+i, z) == Blocks.reeds)
-					{						
+					while (world.getBlock(x, y + i, z) == Blocks.reeds)
+					{
 						i++;
 					}
-					if(i<growthHeight){
-						if(world.isAirBlock(x, y+i, z))
+					if (i < growthHeight)
+					{
+						if (world.isAirBlock(x, y + i, z))
 						{
-							world.setBlock(x, y+i, z, Blocks.reeds, 2, 2);	
+							world.setBlock(x, y + i, z, Blocks.reeds, 2, 2);
 						}
 					}
-				}
-				else if(block == Blocks.cactus)
+				} else if (block == Blocks.cactus)
 				{
 					int i = 1;
-					while(world.getBlock(x, y+i, z) == Blocks.cactus)
-					{						
+					while (world.getBlock(x, y + i, z) == Blocks.cactus)
+					{
 						i++;
 					}
-					if(i<growthHeight){
-						if(world.isAirBlock(x, y+i, z))
+					if (i < growthHeight)
+					{
+						if (world.isAirBlock(x, y + i, z))
 						{
-							world.setBlock(x, y+i, z, Blocks.cactus, 2, 2);	
+							world.setBlock(x, y + i, z, Blocks.cactus, 2, 2);
 						}
 					}
-				}
-				else if(block instanceof BlockCrops)
+				} else if (block instanceof BlockCrops)
 				{
-					if(metadata < 7)
+					if (metadata < 7)
 					{
-						world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
+						world.setBlockMetadataWithNotify(x, y + 1, z, metadata + 1, 2);
 					}
 				}
 			}
-		}
-		else if(block instanceof BlockCake)
+		} else if (block instanceof BlockCake)
 		{
-			if(!world.isRemote)
+			if (!world.isRemote)
 			{
-				world.spawnParticle("hugeexplosion", x, y+1, z, 0.0f, 0.0f, 0.0f);
-				world.createExplosion((Entity)null, x, y+1, z, 2.0F, false);
-				for(int j=0;j<world.loadedEntityList.size();j++)
+				world.spawnParticle("hugeexplosion", x, y + 1, z, 0.0f, 0.0f, 0.0f);
+				world.createExplosion((Entity) null, x, y + 1, z, 2.0F, false);
+				for (int j = 0; j < world.loadedEntityList.size(); j++)
 				{
 					Entity entity = (Entity) world.loadedEntityList.get(j);
-					if(entity.getDistance(x, y, z) < 10 && entity instanceof EntityPlayer)
+					if (entity.getDistance(x, y, z) < 10 && entity instanceof EntityPlayer)
 					{
 						EntityPlayer player = (EntityPlayer) entity;
 						player.addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "The cake is a lie."));
 					}
 				}
-				world.setBlockToAir(x, y+1, z);
+				world.setBlockToAir(x, y + 1, z);
 			}
-		}
-		else if(block instanceof BlockOre)
+		} else if (block instanceof BlockOre)
 		{
 			checkIfOre(world, block, x, y, z);
 		}
 	}
-
 
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) 
@@ -221,7 +234,7 @@ public class GGUBlockGrowthBlock extends Block
 	}
 
 	@Override
-	public void onBlockAdded(World world, int x, int y, int z) 
+	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		if(!world.isRemote)
 		{
@@ -231,20 +244,19 @@ public class GGUBlockGrowthBlock extends Block
 
 
 	/**
-	 * Updates the textures of all GrowthBlocks
-	 * setBlockMeta parameter 5= Flag 2 = cause texture change (spent ages finding this)
+	 * Updates the textures of all GrowthBlocks setBlockMeta parameter 5= Flag 2
+	 * = cause texture change (spent ages finding this)
+	 * 
 	 * @param world
 	 * @param x
 	 * @param y
-	 * @param z 
+	 * @param z
 	 */
 	@SideOnly(Side.CLIENT)
 	protected void updateMeta(World world, int x, int y, int z) 
 	{
 		Block upperBlock = world.getBlock(x, y+1, z);
-
 		if(upperBlock instanceof GGUBlockGrowthBlock)
-		{
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 		}
 		else 
@@ -263,21 +275,18 @@ public class GGUBlockGrowthBlock extends Block
 	 */
 	protected void checkIfOre(World world, Block block, int x, int y, int z)
 	{
-		if(block == Blocks.coal_ore)
+		if (block == Blocks.coal_ore)
 		{
-			world.setBlock(x, y+1, z, Blocks.iron_ore, 0, 2);	
-		}
-		else if(block == Blocks.iron_ore)
+			world.setBlock(x, y + 1, z, Blocks.iron_ore, 0, 2);
+		} else if (block == Blocks.iron_ore)
 		{
-			world.setBlock(x, y+1, z, Blocks.gold_ore, 0, 2);	
-		}
-		else if(block == Blocks.gold_ore)
+			world.setBlock(x, y + 1, z, Blocks.gold_ore, 0, 2);
+		} else if (block == Blocks.gold_ore)
 		{
-			world.setBlock(x, y+1, z, Blocks.diamond_ore, 0, 2);	
-		}
-		else if(block == Blocks.diamond_ore)
+			world.setBlock(x, y + 1, z, Blocks.diamond_ore, 0, 2);
+		} else if (block == Blocks.diamond_ore)
 		{
-			world.setBlock(x, y+1, z, Blocks.cake, 2, 2);	
+			world.setBlock(x, y + 1, z, Blocks.cake, 2, 2);
 		}
 	}
 }

@@ -34,7 +34,7 @@ public class GGUBlockEggTimer extends Block
 	protected GGUBlockEggTimer(Material material) 
 	{
 		super(material);
-		this.setBlockName("eggTimer");
+		this.setBlockName("eggTimer"); 
 		this.setHardness(2.5f);
 		this.setStepSound(Block.soundTypeAnvil);
 	}

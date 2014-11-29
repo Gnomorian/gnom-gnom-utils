@@ -14,6 +14,9 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 
 	public static final String GGU_EXT_PLAYER = "gguProps";
 	private final EntityPlayer player;
+	
+	private int lastRow;
+	private int numberOfEnderLimbs;
 
 	/**
 	 * Constructor - make sure to init all variables.
@@ -22,6 +25,8 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	 */
 	public GGUExtendedPlayer(EntityPlayer player){
 		this.player = player;
+		this.numberOfEnderLimbs = 0;
+		this.lastRow = 1;
 	}
 
 
@@ -35,14 +40,17 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	@Override
 	public void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = new NBTTagCompound();
-
+		properties.setInteger("enderLimbs", this.numberOfEnderLimbs);
+		properties.setInteger("rowNumber", this.lastRow);		
 		compound.setTag(GGU_EXT_PLAYER, properties);
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound properties = (NBTTagCompound) compound.getTag(GGU_EXT_PLAYER);
-	}
+		this.numberOfEnderLimbs = properties.getInteger("enderLimbs");
+		this.lastRow = properties.getInteger("rowNumber");	
+}
 
 	/*===============================================================================
 	 * 
@@ -67,7 +75,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	}
 
 	public void syncAll(){
-		GGUtils.network.sendTo(new GGUSyncPlayerPropsPacket(player), (EntityPlayerMP) player);
+		GGUtils.network.sendTo(new GGUSyncPlayerPropsPacket(this.player), (EntityPlayerMP) this.player);
 	}
 
 	/**
@@ -86,7 +94,6 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 	 * @return String
 	 */
 	private static final String getSaveKey(EntityPlayer player) {
-		// no longer a username field, so use the command sender name instead:
 		return player.getCommandSenderName() + ":" + GGU_EXT_PLAYER;
 	}
 
@@ -105,6 +112,37 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties {
 		NBTTagCompound savedData = new NBTTagCompound();
 		GGUExtendedPlayer.get(player).saveNBTData(savedData);
 		CommonProxy.storeEntityData(getSaveKey(player), savedData);
+	}
+	
+	/*===============================================================================
+	 * 
+	 * GETTERS AND SETTERS
+	 * 
+	 *===============================================================================
+	 */	
+	
+	public void setNumberofLimbs(int number)
+	{
+		this.numberOfEnderLimbs = number;
+		this.syncAll();
+	}
+	
+	public int getNumberOfLimbs()
+	{
+		return this.numberOfEnderLimbs;
+	}
+
+	//Get the last row
+	public int getLastRow()
+	{
+		return this.lastRow;
+	}
+	
+	//set the last row
+	public void setLastRow(int newLastRow)
+	{
+		this.lastRow = newLastRow;
+		this.syncAll();
 	}
 }
 
