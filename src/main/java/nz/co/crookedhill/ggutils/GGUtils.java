@@ -58,75 +58,83 @@ import cpw.mods.fml.relauncher.Side;
 @Mod(modid = GGUtils.MODID, version = GGUtils.VERSION)
 public class GGUtils
 {
-    public static final String MODID = "ggutils";
+	public static final String MODID = "ggutils";
 
-    /**
-     * 0.0.0.0 first 0= the number of Minecraft versions supported since making
-     * the mod. second 0= the number of milestones reached. third 0= the number
-     * of features added (blocks, items etc.) forth 0= the number of bug
-     * fixes/sub features added since last feature added.
-     */
-    public static final String VERSION = "0.0.8.1";
+	/**
+	 * 0.0.0.0 first 0= the number of Minecraft versions supported since making
+	 * the mod. second 0= the number of milestones reached. third 0= the number
+	 * of features added (blocks, items etc.) forth 0= the number of bug
+	 * fixes/sub features added since last feature added.
+	 */
+	public static final String VERSION = "0.0.8.1";
 
-    // Setting proxy for client and server side
-    @SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
-    public static CommonProxy proxy;
+	// Setting proxy for client and server side
+	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
+	public static CommonProxy proxy;
 
-    // Mod instance
-    @Instance(MODID)
-    public static GGUtils instance;
+	// Mod instance
+	@Instance(MODID)
+	public static GGUtils instance;
 
-    public static SimpleNetworkWrapper network;
+	public static SimpleNetworkWrapper network;
 
-    public static Object arseTardis;
+	public static Object arseTardis;
 
-    // Set Creative Tabs
-    public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(CreativeTabs.getNextID(), MODID);
+	// Set Creative Tabs
+	public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(CreativeTabs.getNextID(), MODID);
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
-	network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
-	network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
-	network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
-	network.registerMessage(GGUInventorySwitchHandler.class, GGUInventorySwitchPacket.class, 2, Side.SERVER);
 
-	GGUConfigManager.init(event);
-	GGUItems.init();
-	GGUEntityTile.init();
-	GGUBlocks.init();
-	GGUEntityMob.init();
-	GGUEnchantment.init();
-	GGUAchievements.init();
 
-    }
+	/** This is used to keep track of GUIs that we make*/
+	private static int modGuiIndex = 10;
+	/** Custom GUI indices: */
+	public static final int
+	GUI_MESS_INV = modGuiIndex++;
 
-    @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-	proxy.registerRenderers();
-	NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
-	MinecraftForge.EVENT_BUS.register(new GGUToolTipHandler());
-	MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
-	MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
-	MinecraftForge.EVENT_BUS.register(new GGUEnchantmentHandler());
-	MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
-	MinecraftForge.EVENT_BUS.register(new GGUItemEffectHandler());
-	MinecraftForge.EVENT_BUS.register(new GGUAchievementHandler());
-	proxy.init();
-    }
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event)
+	{
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("GGUChannel");
+		network.registerMessage(GGUSortPacketHandler.class, GGUSortPacket.class, 0, Side.SERVER);
+		network.registerMessage(GGUSyncPlayerPropertiesPacketHandler.class, GGUSyncPlayerPropsPacket.class, 1, Side.SERVER);
+		network.registerMessage(GGUInventorySwitchHandler.class, GGUInventorySwitchPacket.class, 2, Side.SERVER);
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
-	proxy.postInit();
-	GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
-    }
+		GGUConfigManager.init(event);
+		GGUItems.init();
+		GGUEntityTile.init();
+		GGUBlocks.init();
+		GGUEntityMob.init();
+		GGUEnchantment.init();
+		GGUAchievements.init();
 
-    @EventHandler
-    public void serverLoad(FMLServerStartingEvent e)
-    {
-	GGUCommandHandler.init(e);
+	}
 
-    }
+	@EventHandler
+	public void init(FMLInitializationEvent event)
+	{
+		proxy.registerRenderers();
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
+		MinecraftForge.EVENT_BUS.register(new GGUToolTipHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUMobHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUBlockHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUEnchantmentHandler());
+		MinecraftForge.EVENT_BUS.register(new ExtendedPropertiesHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUItemEffectHandler());
+		MinecraftForge.EVENT_BUS.register(new GGUAchievementHandler());
+		proxy.init();
+	}
+
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event)
+	{
+		proxy.postInit();
+		GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
+	}
+
+	@EventHandler
+	public void serverLoad(FMLServerStartingEvent e)
+	{
+		GGUCommandHandler.init(e);
+
+	}
 }

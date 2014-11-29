@@ -22,6 +22,10 @@ import java.util.Map;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.gui.GGUGuiMessi;
+import nz.co.crookedhill.ggutils.inventory.GGUContainerMess;
+import nz.co.crookedhill.ggutils.inventory.GGUInventoryMess;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
@@ -45,14 +49,18 @@ public class CommonProxy implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-
+		if (ID == GGUtils.GUI_MESS_INV) {
+			return new GGUContainerMess(player, player.inventory, new GGUInventoryMess(player.getHeldItem()));
+			}
 		return null;
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-
+		if (ID == GGUtils.GUI_MESS_INV) {
+			return new GGUGuiMessi(player, player.inventory, new GGUInventoryMess(player.getHeldItem()));
+		}
 		return null;
 	}
 
