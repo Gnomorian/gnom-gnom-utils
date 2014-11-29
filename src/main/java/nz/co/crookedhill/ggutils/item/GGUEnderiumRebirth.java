@@ -9,19 +9,24 @@ import nz.co.crookedhill.ggutils.GGUtils;
 
 public class GGUEnderiumRebirth extends Item
 {
-    private boolean isStable;
+	private boolean isStable;
 
-    /* stable selects the texture for the stable or unstable erb */
-    public GGUEnderiumRebirth(boolean isStable)
-    {
-	this.isStable = isStable;
-	this.setTextureName(GGUtils.MODID + ":" + "enderiumrebirth_texture");
-	this.setMaxStackSize(1);
-    }
+	/* stable selects the texture for the stable or unstable erb */
+	public GGUEnderiumRebirth(boolean isStable)
+	{
+		this.isStable = isStable;
+		this.setTextureName(GGUtils.MODID + ":" + "enderiumrebirth_texture");
+		this.setMaxStackSize(1);
+	}
 
-    public void onCreated(ItemStack itemstack, World world, EntityPlayer player)
-    {
-	if (!this.isStable)
-	    itemstack.addEnchantment(Enchantment.fireAspect, 1);
-    }
+	public void onCreated(ItemStack itemstack, World world, EntityPlayer player)
+	{
+		if (!this.isStable)
+			itemstack.addEnchantment(Enchantment.fireAspect, 1);
+	}
+
+	public boolean isStable()
+	{
+		return isStable;
+	}
 }

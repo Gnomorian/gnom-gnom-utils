@@ -180,12 +180,7 @@ public class GGUEnchantmentHandler
 	{
 		Random rand = new Random();
 
-		int enchantmentLevel = 0;
-		// check what level the enchant is.
-		for (int i = 0; i < itemStack.getEnchantmentTagList().tagCount(); i++)
-		{
-			enchantmentLevel =  EnchantmentHelper.getEnchantmentLevel(GGUEnchantment.prosperousAutoSmelt.effectId, itemStack);
-		}
+		int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(GGUEnchantment.prosperousAutoSmelt.effectId, itemStack);
 
 		FurnaceRecipes recipes = FurnaceRecipes.smelting();
 		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, 0, 3);
