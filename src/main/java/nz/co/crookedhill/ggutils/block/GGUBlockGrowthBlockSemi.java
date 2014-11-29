@@ -177,6 +177,14 @@ public class GGUBlockGrowthBlockSemi extends GGUBlockGrowthBlock
 		}
 	}
 
+	/**
+	 * Harvest the blocks
+	 * @param world The world object.
+	 * @param block The block to harvest
+	 * @param x x coord of the growth block
+	 * @param y y coords of the growth block
+	 * @param z z coord of the growth block
+	 */
 	private void harvest(World world, Block block, int x, int y, int z)
 	{
 		int meta = world.getBlockMetadata(x, y+1, z);

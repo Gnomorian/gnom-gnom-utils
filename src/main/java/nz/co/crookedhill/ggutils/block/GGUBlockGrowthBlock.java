@@ -165,7 +165,8 @@ public class GGUBlockGrowthBlock extends Block
 					{
 						world.setBlockMetadataWithNotify(x, y + 1, z, metadata + 1, 2);
 					}
-				} else if (block == Blocks.reeds)
+				} 
+				else if (block == Blocks.reeds)
 				{
 					int i = 1;
 					while (world.getBlock(x, y + i, z) == Blocks.reeds)
@@ -179,7 +180,8 @@ public class GGUBlockGrowthBlock extends Block
 							world.setBlock(x, y + i, z, Blocks.reeds, 2, 2);
 						}
 					}
-				} else if (block == Blocks.cactus)
+				} 
+				else if (block == Blocks.cactus)
 				{
 					int i = 1;
 					while (world.getBlock(x, y + i, z) == Blocks.cactus)
@@ -193,7 +195,8 @@ public class GGUBlockGrowthBlock extends Block
 							world.setBlock(x, y + i, z, Blocks.cactus, 2, 2);
 						}
 					}
-				} else if (block instanceof BlockCrops)
+				} 
+				else if (block instanceof BlockCrops)
 				{
 					if (metadata < 7)
 					{
@@ -201,7 +204,8 @@ public class GGUBlockGrowthBlock extends Block
 					}
 				}
 			}
-		} else if (block instanceof BlockCake)
+		} 
+		else if (block instanceof BlockCake)
 		{
 			if (!world.isRemote)
 			{
@@ -218,7 +222,8 @@ public class GGUBlockGrowthBlock extends Block
 				}
 				world.setBlockToAir(x, y + 1, z);
 			}
-		} else if (block instanceof BlockOre)
+		} 
+		else if (block instanceof BlockOre)
 		{
 			checkIfOre(world, block, x, y, z);
 		}
@@ -257,6 +262,7 @@ public class GGUBlockGrowthBlock extends Block
 	{
 		Block upperBlock = world.getBlock(x, y+1, z);
 		if(upperBlock instanceof GGUBlockGrowthBlock)
+		{
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
 		}
 		else 
