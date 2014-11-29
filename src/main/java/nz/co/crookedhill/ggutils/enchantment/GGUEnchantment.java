@@ -23,11 +23,13 @@ import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 public class GGUEnchantment
 {
 
-    public static Enchantment prosperousAutoSmelt;
+	public static Enchantment prosperousAutoSmelt;
+	public static Enchantment icarus;
 
-    public static void init()
-    {
-	prosperousAutoSmelt = new GGUprosperousAutoSmelt(GGUConfigManager.autoSmeltid, 3, EnumEnchantmentType.digger);
-    }
+	public static void init()
+	{
+		prosperousAutoSmelt = new GGUEnchantmentProsperity(GGUConfigManager.autoSmeltid, 3, EnumEnchantmentType.digger);
+		icarus = new GGUEnchantmentIcarus(GGUConfigManager.icarusID, 3, EnumEnchantmentType.armor_torso);
+	}
 
 }

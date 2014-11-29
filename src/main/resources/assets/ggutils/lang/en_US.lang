@@ -31,6 +31,8 @@ entity.creeper_mite.name=Creeper Mite
 ENCHANTMENT!
 **********************************
 enchantment.ProsperousAutoSmelt=Prosperity
+enchantment.Icarus=Icarus
+
 
 **********************************
 ACHIEVEMENTS

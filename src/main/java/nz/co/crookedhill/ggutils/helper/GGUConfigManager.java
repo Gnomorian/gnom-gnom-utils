@@ -46,7 +46,9 @@ public class GGUConfigManager
 
 	//ENCHANTMENTS
 	public static boolean autoSmeltEnabled;
-	public static int autoSmeltid;
+	public static int autoSmeltid;	
+	public static boolean icarusEnabled;
+	public static int icarusID;
 
 	//OTHER
 	public static int growthBlockAutoHarvestHeight;
@@ -77,8 +79,12 @@ public class GGUConfigManager
 			creeperMiteExist = config.getBoolean("creeperMiteExist", "Entities", true, "set to false to stop the creeper mite from existing in your game");
 			creeperMiteNoAir = config.getBoolean("creeperMiteGettingAir", "Entities", true, "set to falce to reduce the height you are tossed when a creeper explodes");
 
-			autoSmeltEnabled = config.getBoolean("autoSmeltEnabled", "Enchantment", true, "is auto smelter enchantment enabled in game");
-			autoSmeltid = config.getInt("autoSmeltid", "Enchantment", 103, 50, 256, "the id of the enchantment Prosperous Auto-Smelt");
+			autoSmeltEnabled = config.getBoolean("autoSmeltEnabled", "Enchantment", true, "is Prosperity enhcantment enabled in game");
+			autoSmeltid = config.getInt("autoSmeltid", "Enchantment", 103, 100, 256, "the id of the Prosperity enchantment");
+			icarusEnabled = config.getBoolean("icarusEnabled", "Enchantment", true, "is Icarus enchantment enabled in game");
+			icarusID = config.getInt("icarusID", "Enchantment", 104, 100, 256, "the id of the Icarus enchantment");
+			
+			
 			growthBlockAutoHarvestHeight = config.getInt("growthBlockAutoHarvestHeight", "Other", 4, 1, 32, "Set height of cacti/reeds to harvest with the growth block in auto mode.");
 
 		} 
