@@ -6,21 +6,21 @@ tile.GrowthBlockSemi.name=Damara's Remedy (Semi-Auto)
 tile.GrowthBlockAuto.name=Damara's Remedy (Auto)
 tile.sortivator.name=Sortivator
 tile.eggTimer.name=Egg Timer
-tile.lazyCrafter.name=Lazy Crafter (WIP!)
-tile.fabricator.name=Fabricator (WIP!)
-tile.modularCore.name=MESS Core (WIP!)
-tile.modularLimb.name=MESS Limb (WIP!)
+tile.lazyCrafter.name=Lazy Crafter
+tile.fabricator.name=Fabricator
+tile.modularCore.name=MESS Core
+tile.modularLimb.name=MESS Limb
 
 **********************************
 ITEMS
 **********************************
-item.blockFinder.name=Block Finder (WIP!)
+item.blockFinder.name=Block Finder
 item.woodenGear.name=Wooden Gear
 item.arseTardis.name=Arse Tardis
 item.stableEnderiumRebirth.name=Enderium Rebirth Crystal
 item.unstableEnderiumRebirth.name=Unstable Enderium Rebirth Crystal
-item.betterBoat.name=Better Boat (WIP!)
-item.selfPlaceCart.name=Self-Place Cart (WIP!)
+item.betterBoat.name=Better Boat
+item.selfPlaceCart.name=Self-Place Cart
 
 **********************************
 MOBS
