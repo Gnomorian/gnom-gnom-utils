@@ -1,6 +1,7 @@
 package nz.co.crookedhill.ggutils.handlers;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.network.GGUInventorySwitchPacket;
@@ -21,7 +22,7 @@ public class GGUKeybindHandler
 	if (FMLClientHandler.instance().getClient().inGameHasFocus)
 	{
 
-	    if (GGUtils.arseTardis.isPressed())
+	    if (((KeyBinding) GGUtils.arseTardis).isPressed())
 	    {
 		GGUtils.network.sendToServer(new GGUInventorySwitchPacket(36, Minecraft.getMinecraft().thePlayer.inventory.mainInventory));
 	    }

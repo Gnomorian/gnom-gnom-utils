@@ -106,19 +106,6 @@ public class GGUBlockSortivator extends Block
 
 	}
 
-	// function exists for testing
-	/*
-	 * @Override public boolean onBlockActivated(World world, int x, int y, int
-	 * z, EntityPlayer player, int meta, float float1, float float2, float
-	 * float3) { if (world.isRemote) { return true; } else { IInventory
-	 * iinventory = this.getInventory(world, x, y+1, z);
-	 * 
-	 * if (iinventory != null) { GGUSort.sort(iinventory);
-	 * 
-	 * }
-	 * 
-	 * return true; } }
-	 */
 	// gets an inventory object from the coordernates specified and if its a
 	// double chest it will get the contents of both.
 	public IInventory getInventory(World world, int x, int y, int z)
@@ -157,6 +144,7 @@ public class GGUBlockSortivator extends Block
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
 	{
+		IInventory inventory;
 		boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
 		if (flag)
 		{
@@ -165,24 +153,29 @@ public class GGUBlockSortivator extends Block
 			switch (meta)
 			{
 			case 0:
+				inventory = getInventory(world, x - 1, y, z);
+				if(inventory != null)
 				sorter.sortInventory(getInventory(world, x - 1, y, z));
 				break;
 			case 1:
+				inventory = getInventory(world, x + 1, y, z);
+				if(inventory != null)
 				sorter.sortInventory(getInventory(world, x + 1, y, z));
 				break;
 			case 2:
-				sorter.sortInventory(getInventory(world, x, y, z - 1));
+				inventory = getInventory(world, x, y, z-1);
+				if(inventory != null)
+				sorter.sortInventory(getInventory(world, x, y, z-1));
 				break;
 			case 3:
-				sorter.sortInventory(getInventory(world, x, y, z + 1));
+				inventory = getInventory(world, x , y, z+1);
+				if(inventory != null)
+				sorter.sortInventory(getInventory(world, x, y, z+1));
 				break;
-				/*
-				 * case 4: if(getInventory(world, x, y-1, z).){
-				 * 
-				 * } GGUSort.sort(getInventory(world, x, y-1, z)); break;
-				 */
 			case 5:
-				sorter.sortInventory(getInventory(world, x, y + 1, z));
+				inventory = getInventory(world, x, y+1, z);
+				if(inventory != null)
+				sorter.sortInventory(getInventory(world, x, y+1, z));
 				break;
 			}
 			world.playSound(x, y, z, "ggutils:block.sortivator.sort", 1f, 1f, false);

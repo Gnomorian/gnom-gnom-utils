@@ -25,6 +25,7 @@ import net.minecraft.block.BlockOre;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
@@ -42,43 +43,44 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GGUEnchantmentHandler
 {
-    @SubscribeEvent
-    public void onBlockBreak(BreakEvent event)
-    {
-	World world = event.world;
-
-	if (!world.isRemote)
+	@SubscribeEvent
+	public void onBlockBreak(BreakEvent event) 
 	{
+		World world = event.world;
+		EntityPlayer player = event.getPlayer();
+		ItemStack heldItemStack = player.getHeldItem();
 
-	    Block block = event.block;
-	    int metaData = event.blockMetadata;
-	    int x = event.x;
-	    int y = event.y;
-	    int z = event.z;
-	    EntityPlayer player = event.getPlayer();
-	    ItemStack heldItemStack = player.getHeldItem();
-	    // Item heldItem = heldItemStack.getItem();
-	    ArrayList<ItemStack> items;
-
-	    if (heldItemStack != null && heldItemStack.getEnchantmentTagList() != null)
-	    {
-		if (heldItemStack.getItem().getToolClasses(heldItemStack).contains(block.getHarvestTool(metaData)) && heldItemStack.getItem().getHarvestLevel(heldItemStack, block.getHarvestTool(metaData)) >= block.getHarvestLevel(metaData))
-		{
-		    if (block instanceof BlockOre || block instanceof BlockLog || block instanceof BlockSand)
-		    {
-			event.setCanceled(true);
-			world.setBlockToAir(x, y, z);
-			items = getItemsToDrop(world, block, heldItemStack, x, y, z);
-
-			for (int j = 0; j < items.size(); j++)
+		if(!world.isRemote && heldItemStack != null) {
+			
+			Block block = event.block;
+			int metaData = event.blockMetadata;
+			int x = event.x;
+			int y = event.y;
+			int z = event.z;
+			Item heldItem = heldItemStack.getItem();
+			ArrayList<ItemStack> items;
+			
+			if(heldItemStack != null 
+					&& heldItemStack.getEnchantmentTagList() != null) 
 			{
-			    world.spawnEntityInWorld(new EntityItem(world, (float) x, (float) y, (float) z, items.get(j)));
+				if(heldItem.getToolClasses(heldItemStack).contains(block.getHarvestTool(metaData)) 
+						&& heldItem.getHarvestLevel(heldItemStack, block.getHarvestTool(metaData)) >= block.getHarvestLevel(metaData)) 
+				{
+					if(block instanceof BlockOre || block instanceof BlockLog || block instanceof BlockSand)
+					{
+						event.setCanceled(true);
+						world.setBlockToAir(x, y, z);
+						items = getItemsToDrop(world, block, heldItemStack,x, y, z);
+						
+						for(int j = 0; j < items.size(); j++)
+						{
+							world.spawnEntityInWorld(new EntityItem(world, (float)x, (float)y, (float)z, items.get(j)));
+						}
+					}
+				}
 			}
-		    }
 		}
-	    }
 	}
-    }
 
     /**
      * Gets an arraylist of dropped itemstacks

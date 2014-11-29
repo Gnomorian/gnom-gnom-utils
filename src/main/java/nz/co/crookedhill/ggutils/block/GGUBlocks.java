@@ -30,6 +30,8 @@ public class GGUBlocks
 {
 
 	public static Block growthBlock;
+	public static Block growthBlockSemi;
+	public static Block growthBlockAuto;
 	public static Block sortivator;
 	public static Block eggTimer;
 	public static Block lazyCrafter;
@@ -41,6 +43,8 @@ public class GGUBlocks
 	{	
 		//register Blocks	
 		growthBlock = new GGUBlockGrowthBlock(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		growthBlockSemi = new GGUBlockGrowthBlockSemi(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		growthBlockAuto = new GGUBlockGrowthBlockAuto(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		sortivator = new GGUBlockSortivator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		eggTimer = new GGUBlockEggTimer(Material.anvil).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		lazyCrafter = new GGULazyCrafter(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
@@ -49,7 +53,11 @@ public class GGUBlocks
 		modularLimb = new GGUBlockModularLimb(Material.packedIce).setCreativeTab(GGUtils.ggutilsCreativeTab);
 		
 		if(GGUConfigManager.growthBlockEnabled)
+		{
 			GameRegistry.registerBlock(growthBlock, "GrowthBlock");
+			GameRegistry.registerBlock(growthBlockSemi, "GrowthBlockSemi");
+			GameRegistry.registerBlock(growthBlockAuto, "GrowthBlockAuto");
+		}
 		if(GGUConfigManager.sortivatorEnabled)
 			GameRegistry.registerBlock(sortivator, "sortivator");
 		if(GGUConfigManager.eggTimerEnabled)
@@ -70,8 +78,17 @@ public class GGUBlocks
 	{
 		//register Block Recipes
 		if(GGUConfigManager.growthBlockEnabled)
-			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock), "ddd", "isi","iii",
+		{
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock, 1, 0), "ddd", "isi","iii",
 					'd', Blocks.dirt, 'i', Items.iron_ingot, 's', Items.speckled_melon);
+
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlockSemi, 1, 0), "rrr", "rgr","rrr",
+					'g', new ItemStack(GGUBlocks.growthBlock, 1, 0), 'r', Items.redstone);
+
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlockAuto, 1, 0), "rrr", "dgd","rrr",
+					'g', new ItemStack(GGUBlocks.growthBlock, 1, 0), 'd', Items.diamond, 'r', Items.redstone);
+		}
+		
 		if(GGUConfigManager.sortivatorEnabled)
 			GameRegistry.addRecipe(new ItemStack(GGUBlocks.sortivator),"wgw","geg","wgw",
 					'w',Blocks.planks,'g',GGUItems.woodenGear,'e',Items.ender_pearl);

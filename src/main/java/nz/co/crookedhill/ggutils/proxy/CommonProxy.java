@@ -19,7 +19,6 @@ package nz.co.crookedhill.ggutils.proxy;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -30,7 +29,6 @@ public class CommonProxy implements IGuiHandler
 {
 
     private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();
-    public KeyBinding arseTardis;
 
     public void registerRenderers()
     {
@@ -81,7 +79,6 @@ public class CommonProxy implements IGuiHandler
 
     public void init()
     {
-	// TODO Auto-generated method stub
 
     }
 
