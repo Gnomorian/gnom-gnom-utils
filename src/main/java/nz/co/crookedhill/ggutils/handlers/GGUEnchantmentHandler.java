@@ -105,22 +105,28 @@ public class GGUEnchantmentHandler
 		{
 			EntityPlayer player = (EntityPlayer) event.entity;
 			ItemStack[] inventory = player.inventory.armorInventory;
-			
-			ItemStack armor = inventory[2];
 
+			ItemStack armor = inventory[2];
+            
 			//check if armor is being worn
 			if(armor != null)
 			{
 				enchantmentLevel =  EnchantmentHelper.getEnchantmentLevel(GGUEnchantment.icarus.effectId, armor);
 			}
-
+			
 			if(enchantmentLevel == 1)
 			{
 				player.capabilities.allowFlying = true;
 				player.capabilities.setFlySpeed(0.05F);
-				if(this.icarusTimer >= 10 && !player.worldObj.isRemote && !player.onGround)
+				
+				if(this.icarusTimer >= 40 && !player.worldObj.isRemote && !player.onGround)
 				{
 					armor.damageItem(1, (EntityLivingBase)player);	
+		            if (armor.stackSize == 0)
+		            {
+		                armor = null;
+		                player.inventory.setInventorySlotContents(38, null);
+		            }
 					this.icarusTimer = 0;
 				}
 
@@ -129,9 +135,14 @@ public class GGUEnchantmentHandler
 			{
 				player.capabilities.allowFlying = true;
 				player.capabilities.setFlySpeed(0.1F);
-				if(this.icarusTimer >= 10 && !player.worldObj.isRemote && !player.onGround)
+				if(this.icarusTimer >= 80 && !player.worldObj.isRemote && !player.onGround)
 				{
 					armor.damageItem(1, (EntityLivingBase)player);	
+		            if (armor.stackSize == 0)
+		            {
+		                armor = null;
+		                player.inventory.setInventorySlotContents(38, null);
+		            }
 					this.icarusTimer = 0;
 				}
 			}
@@ -141,9 +152,11 @@ public class GGUEnchantmentHandler
 				player.capabilities.isFlying = false;
 				this.icarusTimer = 0;
 			}
-			
+
 			if(!player.onGround)
-			this.icarusTimer++;
+			{
+				this.icarusTimer++;
+			}
 		}
 	}
 
@@ -172,13 +185,7 @@ public class GGUEnchantmentHandler
 		// check what level the enchant is.
 		for (int i = 0; i < itemStack.getEnchantmentTagList().tagCount(); i++)
 		{
-			System.out.println("	" + itemStack.getEnchantmentTagList().getStringTagAt(i));
-			if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{id:" + GGUConfigManager.autoSmeltid + "s,lvl:3s,}"))
-				enchantmentLevel = 3;
-			else if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{id:" + GGUConfigManager.autoSmeltid + "s,lvl:2s,}"))
-				enchantmentLevel = 2;
-			else if (itemStack.getEnchantmentTagList().getStringTagAt(i).equals("{id:" + GGUConfigManager.autoSmeltid + "s,lvl:1s,}"))
-				enchantmentLevel = 1;
+			enchantmentLevel =  EnchantmentHelper.getEnchantmentLevel(GGUEnchantment.prosperousAutoSmelt.effectId, itemStack);
 		}
 
 		FurnaceRecipes recipes = FurnaceRecipes.smelting();
@@ -188,9 +195,7 @@ public class GGUEnchantmentHandler
 			if (recipes.getSmeltingResult(items.get(i)) != null)
 			{
 				items.set(i, recipes.getSmeltingResult(items.get(i)));
-				System.out.println("enchantment Level = " + enchantmentLevel);
 				int addedRand = Math.abs(rand.nextInt(enchantmentLevel + 1));
-				System.out.println("amount added = " + addedRand);
 				int dropCount = items.get(i).stackSize + addedRand;
 				items.get(i).stackSize = dropCount;
 			}

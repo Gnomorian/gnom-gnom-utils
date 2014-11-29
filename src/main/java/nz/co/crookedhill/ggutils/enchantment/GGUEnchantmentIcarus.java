@@ -61,7 +61,7 @@ public class GGUEnchantmentIcarus extends Enchantment
     @Override
     public int getMinEnchantability(int level)
     {
-        return 1 + level * 10;
+        return 20 + level * 10;
     }
     
     /**
@@ -70,7 +70,7 @@ public class GGUEnchantmentIcarus extends Enchantment
     @Override
     public int getMaxEnchantability(int level)
     {
-        return this.getMinEnchantability(level)+5;
+        return this.getMinEnchantability(level)+50;
     }
 
 }

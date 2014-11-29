@@ -29,7 +29,7 @@ public class GGUEnchantment
 	public static void init()
 	{
 		prosperousAutoSmelt = new GGUEnchantmentProsperity(GGUConfigManager.autoSmeltid, 3, EnumEnchantmentType.digger);
-		icarus = new GGUEnchantmentIcarus(GGUConfigManager.icarusID, 3, EnumEnchantmentType.armor_torso);
+		icarus = new GGUEnchantmentIcarus(GGUConfigManager.icarusID, 1, EnumEnchantmentType.armor_torso);
 	}
 
 }
