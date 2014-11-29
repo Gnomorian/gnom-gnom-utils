@@ -37,6 +37,13 @@ public class GGUGuiMessi extends GuiContainer
 	private static final ResourceLocation iconLocation = new ResourceLocation(GGUtils.MODID + ":" + "textures/gui/gui_mess"+".png");
 	private final GGUInventoryMess inventory;
 
+	@Override
+	public void initGui() {
+		xSize = xTexture;
+		ySize = yTexture;
+		super.initGui();
+	}
+	
 	public GGUGuiMessi(EntityPlayer player, InventoryPlayer inv1, GGUInventoryMess inv2)
 	{
 		super(new GGUContainerMess(player, inv1, inv2));

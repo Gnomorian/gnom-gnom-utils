@@ -8,6 +8,7 @@ public class GGUSlotMess extends Slot
 {
 	public GGUSlotMess(IInventory inventory, int slotIndex, int x, int y) {
 		super(inventory, slotIndex, x, y);
+		System.out.println(this.getSlotStackLimit());
 	}
 	
 	@Override

@@ -18,8 +18,7 @@ public class GGUContainerMess extends Container
 	
 	/** Avoid magic numbers! This will greatly reduce the chance of you making errors in 'transferStackInSlot' method */
 	private static final int
-	ARMOR_START = GGUInventoryMess.INV_SIZE, ARMOR_END = ARMOR_START + 3,
-	INV_START = ARMOR_END+1, INV_END = INV_START+26,
+	INV_START = GGUInventoryMess.INV_SIZE, INV_END = INV_START+26,
 	HOTBAR_START = INV_END+1, HOTBAR_END = HOTBAR_START+8;
 
 	public GGUContainerMess(EntityPlayer player, InventoryPlayer inventoryPlayer, GGUInventoryMess inventoryCustom) {
@@ -46,12 +45,12 @@ public class GGUContainerMess extends Container
 			for (j = 0; j < 12; ++j) {
 				if(slotCount < numberOfSlots)
 				{
-					addSlotToContainer(new GGUSlotMess(this.inventory, j+i*9, -20 + j * 18, -23 + i * 18));
+					addSlotToContainer(new GGUSlotMess(this.inventory, j+i*9, 8 + j * 18, 21 + i * 18));
 					System.out.println("Mess " + (j+i*12)); //DEBUG
 				}
 				else
 				{
-					addSlotToContainer(new GGUSlotDisabled(this.inventory, j+i*9, -20 + j * 18, -23 + i * 18));
+					addSlotToContainer(new GGUSlotDisabled(this.inventory, j+i*9, 8 + j * 18, 21 + i * 18));
 					System.out.println("Disabled " + (j+i*12)); //DEBUG
 				}
 				slotCount++;
@@ -60,14 +59,12 @@ public class GGUContainerMess extends Container
 		// Add vanilla PLAYER INVENTORY - just copied/pasted from vanilla classes
 		for (i = 0; i < 3; ++i) {
 			for (j = 0; j < 9; ++j) {
-				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, -20 + j * 18, 127 + i * 18));
-				//addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 171 + i * 18));
 			}
 		}
 		// Add ACTION BAR - just copied/pasted from vanilla classes
 		for (i = 0; i < 9; ++i) {
-			addSlotToContainer(new Slot(inventoryPlayer, i, -20 + i * 18, 185));
-			//addSlotToContainer(new Slot(inventoryPlayer, i, -19 + i * 18, 185));
+			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 229));
 
 		}
 	}
@@ -100,18 +97,6 @@ public class GGUContainerMess extends Container
 					return null;
 				}
 				slot.onSlotChange(itemstack1, itemstack);
-			}
-			// Item is in inventory / hotbar, try to place in custom inventory or armor slots
-			else
-			{
-				if (index >= INV_START)
-				{
-					// place in custom inventory
-					if (!this.mergeItemStack(itemstack1, 0, ARMOR_START, false))
-					{
-						return null;
-					}
-				}
 			}
 			if (itemstack1.stackSize == 0) {
 				slot.putStack((ItemStack) null);
