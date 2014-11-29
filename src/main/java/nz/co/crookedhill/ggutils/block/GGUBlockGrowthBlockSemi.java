@@ -36,7 +36,7 @@ public class GGUBlockGrowthBlockSemi extends GGUBlockGrowthBlock
 {
 	private int stackHeight = GGUConfigManager.growthBlockStackHeight;
 	private int growthHeight = GGUConfigManager.growthCactusReedMaxHeight;
-	private int harvestHieght = GGUConfigManager.growthBlockAutoHarvestHeight;
+	private boolean flag2 = false;
 
 	public GGUBlockGrowthBlockSemi(Material material) 
 	{
@@ -48,7 +48,6 @@ public class GGUBlockGrowthBlockSemi extends GGUBlockGrowthBlock
 	public void updateTick(World world, int x, int y, int z, Random rand) 
 	{
 		Block block = world.getBlock(x, y+1, z);		
-		int meta = world.getBlockMetadata(x, y, z);
 
 		//check if block is plantable
 		if(block instanceof IPlantable)
@@ -58,8 +57,12 @@ public class GGUBlockGrowthBlockSemi extends GGUBlockGrowthBlock
 			//check how many growth blocks under this one.
 			for(int i=y;i>y-stackHeight;i--)
 			{
-				if(world.getBlock(x, i, z).equals(GGUBlocks.growthBlock)){
+				if(world.getBlock(x, i, z) instanceof GGUBlockGrowthBlock){
 					numberOfGrowthBlocks++;
+				}
+				else
+				{
+					break;
 				}
 			}
 
@@ -77,38 +80,46 @@ public class GGUBlockGrowthBlockSemi extends GGUBlockGrowthBlock
 				}
 				else if(block == Blocks.reeds)
 				{
-					int i = 1;
-					while(world.getBlock(x, y+i, z) == Blocks.reeds)
-					{						
-						i++;
-					}
-					if(i<growthHeight){
-						if(world.isAirBlock(x, y+i, z))
+					int numberOfBlocks = 0;
+
+					for(int i=1;i<=growthHeight;i++)
+					{
+						if(world.getBlock(x, y+i, z) == Blocks.reeds)
 						{
-							world.setBlock(x, y+i, z, Blocks.reeds, 2, 2);	
+							numberOfBlocks++;
+						}
+						else
+						{
+							break;
+						}
+					}
+					if(numberOfBlocks<growthHeight){
+						if(world.isAirBlock(x, y+numberOfBlocks+1, z))
+						{
+							world.setBlock(x, y+numberOfBlocks+1, z, Blocks.reeds, 2, 2);	
 						}
 					}
 				}
 				else if(block == Blocks.cactus)
 				{
-					int i = 1;
-					while(world.getBlock(x, y+i, z) == Blocks.cactus)
-					{						
-						i++;
-					}
-					if(i<growthHeight){
-						if(world.isAirBlock(x, y+i, z))
-						{
-							world.setBlock(x, y+i, z, Blocks.cactus, 2, 2);	
-						}
-					}
-					if(i==harvestHieght && (meta == 2 || meta == 7))
+					int numberOfBlocks = 0;
+
+					for(int i=1;i<=growthHeight;i++)
 					{
-						for(int j=0;j<i;j++)
+						if(world.getBlock(x, y+i, z) == Blocks.cactus)
 						{
-							world.func_147480_a(x, y+j, z, true);
+							numberOfBlocks++;
 						}
-						world.setBlock(x, y+1, z, Blocks.cactus, 2, 2);	
+						else
+						{
+							break;
+						}
+					}
+					if(numberOfBlocks<growthHeight){
+						if(world.isAirBlock(x, y+numberOfBlocks+1, z))
+						{
+							world.setBlock(x, y+numberOfBlocks+1, z, Blocks.cactus, 2, 2);	
+						}
 					}
 				}
 				else if(block instanceof BlockCrops)
@@ -116,6 +127,12 @@ public class GGUBlockGrowthBlockSemi extends GGUBlockGrowthBlock
 					if(metadata < 7)
 					{
 						world.setBlockMetadataWithNotify(x, y+1, z, metadata+1, 2);
+					}
+					if(metadata == 7)
+					{
+						world.func_147480_a(x, y+1, z, true);
+						world.setBlock(x, y, z, block, 0, 2);
+
 					}
 				}
 			}
@@ -143,4 +160,85 @@ public class GGUBlockGrowthBlockSemi extends GGUBlockGrowthBlock
 			checkIfOre(world, block, x, y, z);
 		}
 	}
+
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
+	{
+		boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
+
+		Block topBlock = world.getBlock(x, y+1, z);
+
+		if(flag && !flag2) {
+			harvest(world, topBlock, x, y, z);
+		}
+		else
+		{
+			flag2 = false;
+		}
+	}
+
+	private void harvest(World world, Block block, int x, int y, int z)
+	{
+		int meta = world.getBlockMetadata(x, y+1, z);
+		flag2 = true;
+
+		//check if block is plantable
+		if(block instanceof IPlantable)
+		{
+			if(block == Blocks.nether_wart && meta == 3)
+			{
+				world.func_147480_a(x, y+1, z, true);
+				world.setBlock(x, y+1, z, block, 0, 2);	
+			}
+			else if(block == Blocks.reeds)
+			{
+				int numberOfBlocks = 0;
+
+				for(int i=1;i<=growthHeight;i++)
+				{
+					if(world.getBlock(x, y+i, z) == Blocks.reeds)
+					{
+						numberOfBlocks++;
+					}
+					else
+					{
+						break;
+					}
+				}
+
+				for(int j=numberOfBlocks;j>1;j--)
+				{
+					world.func_147480_a(x, y+j, z, true);
+				}
+			}
+			else if(block == Blocks.cactus)
+			{
+				int numberOfBlocks = 0;
+
+				for(int i=1;i<=growthHeight;i++)
+				{
+					if(world.getBlock(x, y+i, z) == Blocks.cactus)
+					{
+						numberOfBlocks++;
+					}
+					else
+					{
+						break;
+					}
+				}
+
+				for(int j=numberOfBlocks;j>1;j--)
+				{
+					world.func_147480_a(x, y+j, z, true);
+				}
+			}
+			else if(block instanceof BlockCrops && meta == 7)
+			{
+				world.func_147480_a(x, y+1, z, true);
+				world.setBlock(x, y+1, z, block, 0, 2);
+
+			}
+		}
+	}
 }
+

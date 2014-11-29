@@ -88,6 +88,5 @@ public class GGUBlocks
 		if(GGUConfigManager.fabricatorEnabled)
 			GameRegistry.addRecipe(new ItemStack(GGUBlocks.fabricator),"ici","cec","ici",
 					'i',Items.iron_ingot,'c',Blocks.crafting_table,'e',Items.ender_eye);
-
 	}
 }

@@ -45,7 +45,7 @@ public class GGUToolTipHandler
 			event.toolTip.add("Stack these blocks up to ");
 			event.toolTip.add(GGUConfigManager.growthBlockStackHeight+" times to grow faster");
 			event.toolTip.add("Semi-Auto operation.");
-			event.toolTip.add("Plant yourself. Harvest with signal.");
+			event.toolTip.add("Plants and harvests with signal.");
 		}
 		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.GrowthBlockAuto")) 
 		{
