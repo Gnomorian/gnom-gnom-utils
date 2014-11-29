@@ -19,12 +19,12 @@ package nz.co.crookedhill.ggutils.enchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 
-public class GGUprosperousAutoSmelt extends Enchantment
+public class GGUEnchantmentProsperity extends Enchantment
 {
 
-	protected GGUprosperousAutoSmelt(int effectID, int weight, EnumEnchantmentType enchantmentType) 
+	protected GGUEnchantmentProsperity(int effectID, int weight, EnumEnchantmentType enchantmentType) 
 	{
-		super(effectID, weight, EnumEnchantmentType.digger);
+		super(effectID, weight, enchantmentType);
 		this.setName("ProsperousAutoSmelt");
 		
 	}
