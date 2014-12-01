@@ -50,7 +50,7 @@ public class CommonProxy implements IGuiHandler
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
 		if (ID == GGUtils.GUI_MESS_INV) {
-			return new GGUContainerMess(player, player.inventory, new GGUInventoryMess(player.getHeldItem()));
+			return new GGUContainerMess(player, player.inventory, new GGUInventoryMess(player.getHeldItem(), player));
 			}
 		return null;
 	}
@@ -59,7 +59,7 @@ public class CommonProxy implements IGuiHandler
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
 		if (ID == GGUtils.GUI_MESS_INV) {
-			return new GGUGuiMessi(player, player.inventory, new GGUInventoryMess(player.getHeldItem()));
+			return new GGUGuiMessi(player, player.inventory, new GGUInventoryMess(player.getHeldItem(), player));
 		}
 		return null;
 	}

@@ -21,10 +21,6 @@ public class GGUItemMessi extends Item
 			{
 				player.openGui(GGUtils.instance, GGUtils.GUI_MESS_INV, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
 			}
-			//			else 
-			//			{
-			//				new InventoryMagicBag(player.getHeldItem()).setInventorySlotContents(0, new ItemStack(Items.diamond, 4));
-			//			}
 		}
 		return stack;
 	}
