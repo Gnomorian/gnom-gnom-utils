@@ -1,15 +1,10 @@
 package nz.co.crookedhill.ggutils.inventory;
 
-import java.util.Stack;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.Constants;
 import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 import nz.co.crookedhill.ggutils.item.GGUItemMessi;
 
@@ -31,9 +26,9 @@ public class GGUInventoryMess implements IInventory
 	public GGUInventoryMess(ItemStack stack, EntityPlayer entityPlayer) {
 		this.invStack = stack;
 		this.player = entityPlayer;
-//		if (!invStack.hasTagCompound()) {
-//			invStack.setTagCompound(new NBTTagCompound());
-//		}
+		//		if (!invStack.hasTagCompound()) {
+		//			invStack.setTagCompound(new NBTTagCompound());
+		//		}
 		this.inventory = getInventory(entityPlayer);
 	}
 
@@ -41,12 +36,13 @@ public class GGUInventoryMess implements IInventory
 	public int getSizeInventory() {
 		return inventory.length;
 	}
-	
+
 	@Override
 	public ItemStack getStackInSlot(int slot) {
 		if(slot >= inventory.length)
 		{
 			ItemStack stack = new ItemStack(Items.bow);
+			stack = null;
 			return stack;
 		}
 		else
@@ -54,7 +50,7 @@ public class GGUInventoryMess implements IInventory
 			return inventory[slot];		
 		}
 	}
-	
+
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
 		ItemStack stack = getStackInSlot(slot);
@@ -68,19 +64,19 @@ public class GGUInventoryMess implements IInventory
 		}
 		return stack;
 	}
-	
+
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) {
 		ItemStack stack = getStackInSlot(slot);
 		setInventorySlotContents(slot, null);
 		return stack;
 	}
-	
+
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		if(this.inventory == null)
 		{
-			this.inventory = new ItemStack[1];
+			this.inventory = new ItemStack[INV_SIZE];
 		}
 		this.inventory[slot] = stack;
 		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
@@ -88,7 +84,7 @@ public class GGUInventoryMess implements IInventory
 		}
 		markDirty();
 	}
-	
+
 	@Override
 	public String getInventoryName() {
 		return name;
@@ -103,15 +99,15 @@ public class GGUInventoryMess implements IInventory
 	public int getInventoryStackLimit() {
 		return Integer.MAX_VALUE;
 	}
-	
+
 	@Override
 	public void markDirty() {
 		for (int i = 0; i < getSizeInventory(); ++i) {
 			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
 				inventory[i] = null;
 		}
-		
-		setInventory(this.player);
+
+		//setInventory(this.player);
 		//writeToNBT(invStack.getTagCompound());
 	}
 
@@ -126,56 +122,42 @@ public class GGUInventoryMess implements IInventory
 	}
 	@Override
 	public void openInventory() {}
-	
+
 	@Override
 	public void closeInventory() {}
-	
+
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return !(stack.getItem() instanceof GGUItemMessi);
 	}
-	
+
 	public void readFromNBT(NBTTagCompound compound) {
-//		NBTTagList items = compound.getTagList(tagName, Constants.NBT.TAG_COMPOUND);
-//		for (int i = 0; i < items.tagCount(); ++i) {
-//			NBTTagCompound item = items.getCompoundTagAt(i);
-//			byte slot = item.getByte("Slot");
-//			if (slot >= 0 && slot < getSizeInventory()) {
-//				inventory[slot] = ItemStack.loadItemStackFromNBT(item);
-//			}
-//		}
+		//		NBTTagList items = compound.getTagList(tagName, Constants.NBT.TAG_COMPOUND);
+		//		for (int i = 0; i < items.tagCount(); ++i) {
+		//			NBTTagCompound item = items.getCompoundTagAt(i);
+		//			byte slot = item.getByte("Slot");
+		//			if (slot >= 0 && slot < getSizeInventory()) {
+		//				inventory[slot] = ItemStack.loadItemStackFromNBT(item);
+		//			}
+		//		}
 	}
 
 	public void writeToNBT(NBTTagCompound compound) {
-//		NBTTagList items = new NBTTagList();
-//		for (int i = 0; i < getSizeInventory(); ++i) {
-//			if (getStackInSlot(i) != null) {
-//				NBTTagCompound item = new NBTTagCompound();
-//				item.setByte("Slot", (byte) i);
-//				getStackInSlot(i).writeToNBT(item);
-//				items.appendTag(item);
-//			}
-//		}
-//		compound.setTag(tagName, items);
+		//		NBTTagList items = new NBTTagList();
+		//		for (int i = 0; i < getSizeInventory(); ++i) {
+		//			if (getStackInSlot(i) != null) {
+		//				NBTTagCompound item = new NBTTagCompound();
+		//				item.setByte("Slot", (byte) i);
+		//				getStackInSlot(i).writeToNBT(item);
+		//				items.appendTag(item);
+		//			}
+		//		}
+		//		compound.setTag(tagName, items);
 	}
-	
+
 	private ItemStack[] getInventory(EntityPlayer player)
 	{
 		GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
 		return props.getInventory();
-	}
-	
-	private void setInventory(EntityPlayer player)
-	{
-		ItemStack[] stack = new ItemStack[getSizeInventory()];
-		
-		GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
-		for (int i = 0; i < getSizeInventory(); ++i) {
-			if (getStackInSlot(i) != null) {
-				stack[i] =  getStackInSlot(i);
-			}
-		}
-			
-		props.setInventory(stack);
 	}
 }

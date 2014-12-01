@@ -13,7 +13,7 @@ public class GGUContainerMess extends Container
 	/** The Item Inventory for this Container */
 	private final GGUInventoryMess inventory;
 	private static int numberOfLimbs;
-	
+	private EntityPlayer player;
 	public int numberOfSlots;
 	
 	/** Avoid magic numbers! This will greatly reduce the chance of you making errors in 'transferStackInSlot' method */
@@ -25,6 +25,7 @@ public class GGUContainerMess extends Container
 
 		GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
 		this.numberOfSlots = props.getNumberOfLimbs();
+		this.player = player;
 		
 		if(this.numberOfSlots > 0)
 		{
@@ -117,6 +118,7 @@ public class GGUContainerMess extends Container
 		if (slot >= 0 && getSlot(slot) != null && getSlot(slot).getStack() == player.getHeldItem()) {
 			return null;
 		}
+		this.setInventory(player);
 		return super.slotClick(slot, button, flag, player);
 	}
 
@@ -186,6 +188,23 @@ public class GGUContainerMess extends Container
 			}
 		}
 		return flag1;
+	}
+
+	private void setInventory(EntityPlayer player)
+	{
+		if(!player.worldObj.isRemote)
+		{
+			ItemStack[] stack = new ItemStack[this.inventorySlots.size()];
+
+			GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
+			for (int i = 0; i < this.inventorySlots.size(); ++i) {
+				if (getSlot(i).getStack() != null) {
+					stack[i] =  getSlot(i).getStack();
+				}
+			}
+
+			props.setInventory(stack);
+		}
 	}
 }
 

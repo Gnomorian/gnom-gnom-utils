@@ -33,6 +33,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties
 		this.player = player;
 		this.numberOfEnderLimbs = 0;
 		this.lastRow = 1;
+		this.messInventory = new ItemStack[1];
 	}
 
 
@@ -51,8 +52,6 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties
 		properties.setInteger("rowNumber", this.lastRow);		
 		compound.setTag(GGU_EXT_PLAYER, properties);
 		
-		this.messInventory = new ItemStack[this.numberOfEnderLimbs];
-		
 		NBTTagList items = new NBTTagList();
 		for (int i = 0; i < this.messInventory.length; ++i) {
 			if (this.messInventory[i] != null) {
@@ -62,7 +61,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties
 				items.appendTag(item);
 			}
 		}
-		compound.setTag(this.tagName, items);
+		compound.setTag(GGU_EXT_PLAYER, items);
 	}
 
 	@Override
@@ -74,7 +73,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties
 		
 		this.messInventory = new ItemStack[this.numberOfEnderLimbs];
 		
-		NBTTagList items = compound.getTagList(this.tagName, Constants.NBT.TAG_COMPOUND);
+		NBTTagList items = compound.getTagList(GGU_EXT_PLAYER, Constants.NBT.TAG_COMPOUND);
 		for (int i = 0; i < items.tagCount(); ++i) {
 			NBTTagCompound item = items.getCompoundTagAt(i);
 			byte slot = item.getByte("Slot");
@@ -191,7 +190,7 @@ public class GGUExtendedPlayer implements IExtendedEntityProperties
 	//get the itemstacks
 	public ItemStack[] getInventory()
 	{
-		return messInventory;
+		return this.messInventory;
 	}
 	
 	//sets the itemstacks
