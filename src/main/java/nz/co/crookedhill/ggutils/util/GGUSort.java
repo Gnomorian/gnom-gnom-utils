@@ -23,6 +23,8 @@ import java.util.List;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import nz.co.crookedhill.ggutils.helper.GGUShapedRecipe;
+import nz.co.crookedhill.ggutils.helper.GGUShapelessRecipe;
 
 public class GGUSort
 {
@@ -228,37 +230,6 @@ public class GGUSort
     }
 
     /**
-     * gets a list of itemstacks and splits them into multiple stacks that fit
-     * their itemStack limit.
-     * 
-     * @param itemstack
-     * @return list of split itemstacks
-     */
-    // private static List<ItemStack> splitItemStackByMaxStack(List<ItemStack>
-    // itemstacks) {
-    // List<ItemStack> splitStacks = new ArrayList<ItemStack>();
-    // for(ItemStack itemstack : itemstacks){
-    // if(itemstack.getMaxStackSize() < itemstack.stackSize) {
-    // float exess = itemstack.stackSize%itemstack.getMaxStackSize();
-    // float fullstacks = itemstack.stackSize/itemstack.getMaxStackSize();
-    // for(int i = 0; i < fullstacks; i++) {
-    // ItemStack copyItemstack = itemstack;
-    // copyItemstack.stackSize = itemstack.getMaxStackSize();
-    // splitStacks.add(copyItemstack);
-    // }
-    // if(exess != 0){
-    // ItemStack exessItemStack = itemstack;
-    // exessItemStack.stackSize = (int) exess;
-    // splitStacks.add(exessItemStack);
-    // }
-    // }
-    // else
-    // splitStacks.add(itemstack);
-    // }
-    // return splitStacks;
-    //
-    // }
-    /**
      * gets an itemstack and splits it into multiple stacks that fit the
      * inventories slot limit
      * 
@@ -349,5 +320,104 @@ public class GGUSort
 	});
 
 	return itemStack;
+    }
+
+    public void sortItemArray(ItemStack[] inventory)
+    {
+
+	/* amount of slots in the inventory */
+	int maxInventory = inventory.length;
+	/* max stack size in one slot in the inventory */
+	int maxSlot = 64;
+	/* the list of found unique itemstacks in the inventory */
+	ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+
+	/*
+	 * get a copy of all the unique itemstacks within the inventory and
+	 * quantity of items
+	 */
+	for (int i = 0; i < maxInventory; i++)
+	{
+	    ItemStack currentSlot = inventory[i];
+	    if (currentSlot != null)
+	    {
+		if (items.size() > 0)
+		{
+		    if (currentSlot.isStackable())
+		    {
+			boolean isExistant = false;
+			loopItems: for (ItemStack inItem : items)
+			{
+			    // if item is already in the array, change stacksize
+			    if (inItem.isItemEqual(currentSlot))
+			    {
+				inItem.stackSize += currentSlot.stackSize;
+				isExistant = true;
+				break loopItems;
+
+			    }
+			}
+			/* if the item doesnt exist, add it */
+			if (isExistant == false)
+			{
+			    ItemStack itemstack = currentSlot;
+			    items.add(itemstack);
+			}
+		    } else
+		    {
+			ItemStack newitemstack = currentSlot;
+			items.add(newitemstack);
+		    }
+		} else
+		{
+		    /*
+		     * if the item array is empty, add the itemstack to the
+		     * array
+		     */
+		    ItemStack newitemstack = currentSlot;
+		    items.add(newitemstack);
+		}
+	    }
+	}
+
+	sortByUnlocName(items);
+
+	/*
+	 * currInventory is the current inventory slot we are looking at. i is
+	 * the item in the items list that we are looking at.
+	 */
+	int currInventory = 0;
+	/* add the items array to the inventory in order so it is sorted */
+	for (int i = 0; i < items.size(); i++)
+	{
+
+	    /*
+	     * if the itemstack stacksize is bigger than the stacksizes limit,
+	     * overflow the exess items to the next slot while its bigger
+	     */
+	    if (items.get(i).getMaxStackSize() > maxSlot)
+	    {
+		List<ItemStack> newStack = splitItemStackByInvStack(items.get(i), maxSlot);
+		for (ItemStack stack : newStack)
+		{
+		    inventory[currInventory] = stack;
+		    currInventory++;
+		}
+	    } else
+	    {
+		List<ItemStack> newStack = splitItemStackByMaxStack(items.get(i));
+		newStack = splitItemStackByInvStack(newStack, maxSlot);
+		for (ItemStack stack : newStack)
+		{
+		    inventory[currInventory] = stack;
+		    currInventory++;
+		}
+	    }
+	    for (int j = currInventory; j < maxInventory; j++)
+	    {
+		inventory[j] = null;
+	    }
+	}
+
     }
 }
