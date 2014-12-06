@@ -22,47 +22,72 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
+import nz.co.crookedhill.ggutils.block.GGUBlockModularCore;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
+import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GGUBlockHandler
 {
 
-    /**
-     * event triggers on block break used for checking if the block is long
-     * grass, then spawning a creepermite in its place.
-     * 
-     * @param event
-     *            BreakEvent event
-     */
-    @SubscribeEvent
-    public void onBlockBreak(BreakEvent event)
-    {
-	Random rand = new Random();
-	Block block = event.block;
-	World world = event.world;
-	int x = event.x;
-	int y = event.y;
-	int z = event.z;
-
-	if (!world.isRemote && GGUConfigManager.creeperMiteExist)
+	/**
+	 * event triggers on block break used for checking if the block is long
+	 * grass, then spawning a creepermite in its place.
+	 * 
+	 * @param event
+	 *            BreakEvent event
+	 */
+	@SubscribeEvent
+	public void onBlockBreak(BreakEvent event)
 	{
-	    if (block instanceof BlockTallGrass || block instanceof BlockDoublePlant)
-	    {
-		int creeperChance = GGUConfigManager.creeperMiteGrassChance;
+		Random rand = new Random();
+		Block block = event.block;
+		World world = event.world;
+		int x = event.x;
+		int y = event.y;
+		int z = event.z;
 
-		// checks to see if config is not set to 0 then does random 10%
-		// check.
-		if (creeperChance > 0 && rand.nextInt(100) <= creeperChance)
+		if (!world.isRemote && GGUConfigManager.creeperMiteExist)
 		{
-		    Entity creeperMite = new GGUEntityCreeperMite(world);
-		    creeperMite.setLocationAndAngles(x, y + 1, z, 0.0F, 0.0F);
-		    world.spawnEntityInWorld(creeperMite);
+			if (block instanceof BlockTallGrass || block instanceof BlockDoublePlant)
+			{
+				int creeperChance = GGUConfigManager.creeperMiteGrassChance;
+
+				// checks to see if config is not set to 0 then does random 10%
+				// check.
+				if (creeperChance > 0 && rand.nextInt(100) <= creeperChance)
+				{
+					Entity creeperMite = new GGUEntityCreeperMite(world);
+					creeperMite.setLocationAndAngles(x, y + 1, z, 0.0F, 0.0F);
+					world.spawnEntityInWorld(creeperMite);
+				}
+			}
 		}
-	    }
 	}
-    }
+	
+	@SubscribeEvent
+	public void onBlockPlaced(PlaceEvent event)
+	{
+		if(event.player instanceof EntityPlayer && event.placedBlock instanceof GGUBlockModularCore)
+		{
+			GGUExtendedPlayer props = GGUExtendedPlayer.get(event.player);
+			if(props.hasMess())
+			{
+				event.player.addChatComponentMessage(new ChatComponentText("Currently, you can only have one MESS."));
+				event.setCanceled(true);
+			}
+			else
+			{
+				int[] coords = {event.x, event.y, event.z};
+				props.setMess(true);
+				props.setMessCoords(coords);
+			}
+		}
+	}
 }

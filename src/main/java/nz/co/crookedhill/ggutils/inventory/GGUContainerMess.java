@@ -5,6 +5,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularCore;
 import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 
 public class GGUContainerMess extends Container
@@ -118,7 +119,6 @@ public class GGUContainerMess extends Container
 		if (slot >= 0 && getSlot(slot) != null && getSlot(slot).getStack() == player.getHeldItem()) {
 			return null;
 		}
-		this.setInventory(player);
 		return super.slotClick(slot, button, flag, player);
 	}
 
@@ -194,17 +194,26 @@ public class GGUContainerMess extends Container
 	{
 		if(!player.worldObj.isRemote)
 		{
-			ItemStack[] stack = new ItemStack[this.inventorySlots.size()];
+			ItemStack[] inv = new ItemStack[GGUInventoryMess.INV_SIZE];
 
 			GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
-			for (int i = 0; i < this.inventorySlots.size(); ++i) {
+			for (int i = 0; i < GGUInventoryMess.INV_SIZE; ++i) {
 				if (getSlot(i).getStack() != null) {
-					stack[i] =  getSlot(i).getStack();
+					ItemStack stack = getSlot(i).getStack();
+					inv[i] =  stack;
 				}
 			}
-
-			props.setInventory(stack);
+			int[] coords = props.getMessCoords();
+			GGUEntityModularCore te = (GGUEntityModularCore)player.worldObj.getTileEntity(coords[0], coords[1], coords[2]);
+			te.setItems(inv);
 		}
+	}
+	
+	@Override
+	public void onContainerClosed(EntityPlayer p_75134_1_) {
+		// TODO Auto-generated method stub
+		super.onContainerClosed(p_75134_1_);
+		this.setInventory(player);
 	}
 }
 

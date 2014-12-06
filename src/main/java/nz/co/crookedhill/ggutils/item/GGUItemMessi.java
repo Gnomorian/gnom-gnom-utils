@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularCore;
+import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 
 public class GGUItemMessi extends Item
 {
@@ -19,6 +21,12 @@ public class GGUItemMessi extends Item
 		{
 			if (!player.isSneaking()) 
 			{
+				GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
+				int[] coords = props.getMessCoords();
+				GGUEntityModularCore te = (GGUEntityModularCore)player.worldObj.getTileEntity(coords[0], coords[1], coords[2]);
+				te.reCalculateLimbs(coords, true);	
+				props.setNumberofLimbs(te.getNumberOfLimbs());
+				
 				player.openGui(GGUtils.instance, GGUtils.GUI_MESS_INV, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
 			}
 		}

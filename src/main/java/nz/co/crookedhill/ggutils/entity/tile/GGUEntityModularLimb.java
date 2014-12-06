@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package nz.co.crookedhill.ggutils.entity.item;
+package nz.co.crookedhill.ggutils.entity.tile;
 
 import java.util.Random;
 

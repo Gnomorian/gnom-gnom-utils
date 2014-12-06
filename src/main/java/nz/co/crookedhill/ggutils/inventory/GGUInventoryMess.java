@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularCore;
 import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 import nz.co.crookedhill.ggutils.item.GGUItemMessi;
 
@@ -12,8 +13,6 @@ public class GGUInventoryMess implements IInventory
 {
 	/** The name your custom inventory will display in the GUI, possibly just "Inventory" */
 	private final String name = "MESSI";
-	/** The key used to store and retrieve the inventory from NBT */
-	private final String tagName = "MessInvTag";
 	/** Define the inventory size here for easy reference */
 	// This is also the place to define which slot is which if you have different types,
 	// for example SLOT_SHIELD = 0, SLOT_AMULET = 1;
@@ -26,9 +25,6 @@ public class GGUInventoryMess implements IInventory
 	public GGUInventoryMess(ItemStack stack, EntityPlayer entityPlayer) {
 		this.invStack = stack;
 		this.player = entityPlayer;
-		//		if (!invStack.hasTagCompound()) {
-		//			invStack.setTagCompound(new NBTTagCompound());
-		//		}
 		this.inventory = getInventory(entityPlayer);
 	}
 
@@ -39,16 +35,7 @@ public class GGUInventoryMess implements IInventory
 
 	@Override
 	public ItemStack getStackInSlot(int slot) {
-		if(slot >= inventory.length)
-		{
-			ItemStack stack = new ItemStack(Items.bow);
-			stack = null;
-			return stack;
-		}
-		else
-		{
-			return inventory[slot];		
-		}
+		return inventory[slot];		
 	}
 
 	@Override
@@ -106,9 +93,6 @@ public class GGUInventoryMess implements IInventory
 			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
 				inventory[i] = null;
 		}
-
-		//setInventory(this.player);
-		//writeToNBT(invStack.getTagCompound());
 	}
 
 	@Override
@@ -132,32 +116,23 @@ public class GGUInventoryMess implements IInventory
 	}
 
 	public void readFromNBT(NBTTagCompound compound) {
-		//		NBTTagList items = compound.getTagList(tagName, Constants.NBT.TAG_COMPOUND);
-		//		for (int i = 0; i < items.tagCount(); ++i) {
-		//			NBTTagCompound item = items.getCompoundTagAt(i);
-		//			byte slot = item.getByte("Slot");
-		//			if (slot >= 0 && slot < getSizeInventory()) {
-		//				inventory[slot] = ItemStack.loadItemStackFromNBT(item);
-		//			}
-		//		}
+
 	}
 
 	public void writeToNBT(NBTTagCompound compound) {
-		//		NBTTagList items = new NBTTagList();
-		//		for (int i = 0; i < getSizeInventory(); ++i) {
-		//			if (getStackInSlot(i) != null) {
-		//				NBTTagCompound item = new NBTTagCompound();
-		//				item.setByte("Slot", (byte) i);
-		//				getStackInSlot(i).writeToNBT(item);
-		//				items.appendTag(item);
-		//			}
-		//		}
-		//		compound.setTag(tagName, items);
+
 	}
 
 	private ItemStack[] getInventory(EntityPlayer player)
 	{
-		GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
-		return props.getInventory();
+		ItemStack[] inv = new ItemStack[GGUInventoryMess.INV_SIZE];
+		if(!player.worldObj.isRemote)
+		{
+			GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
+			int[] coords = props.getMessCoords();
+			GGUEntityModularCore te = (GGUEntityModularCore)player.worldObj.getTileEntity(coords[0], coords[1], coords[2]);
+			inv = te.getItems();	
+		}
+		return inv;
 	}
 }
