@@ -20,8 +20,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import nz.co.crookedhill.ggutils.GGUtils;
-import nz.co.crookedhill.ggutils.entity.item.GGUEntityModularLimb;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularLimb;
 import nz.co.crookedhill.ggutils.handlers.GGUKeybindHandler;
 import nz.co.crookedhill.ggutils.renderer.GGURenderCreeperMite;
 import nz.co.crookedhill.ggutils.renderer.GGURenderModularLimb;
@@ -36,32 +36,32 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class ClientProxy extends CommonProxy
 {
 
-    @Override
-    public void postInit()
-    {
+	@Override
+	public void postInit()
+	{
 
-    }
+	}
 
-    @Override
-    public void init()
-    {
-	GGUtils.arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
-	ClientRegistry.registerKeyBinding((KeyBinding) GGUtils.arseTardis);
-	FMLCommonHandler.instance().bus().register(new GGUKeybindHandler());
-    }
+	@Override
+	public void init()
+	{
+		GGUtils.arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
+		ClientRegistry.registerKeyBinding((KeyBinding) GGUtils.arseTardis);
+		FMLCommonHandler.instance().bus().register(new GGUKeybindHandler());
+	}
 
-    /**
-     * Returns a side-appropriate EntityPlayer for use during message handling
-     */
-    public EntityPlayer getPlayerEntity(MessageContext ctx)
-    {
-	return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntity(ctx));
-    }
+	/**
+	 * Returns a side-appropriate EntityPlayer for use during message handling
+	 */
+	public EntityPlayer getPlayerEntity(MessageContext ctx)
+	{
+		return (ctx.side.isClient() ? Minecraft.getMinecraft().thePlayer : super.getPlayerEntity(ctx));
+	}
 
-    @Override
-    public void registerRenderers()
-    {
-	ClientRegistry.bindTileEntitySpecialRenderer(GGUEntityModularLimb.class, new GGURenderModularLimb());
-	RenderingRegistry.registerEntityRenderingHandler(GGUEntityCreeperMite.class, new GGURenderCreeperMite());
-    }
+	@Override
+	public void registerRenderers()
+	{
+		ClientRegistry.bindTileEntitySpecialRenderer(GGUEntityModularLimb.class, new GGURenderModularLimb());
+		RenderingRegistry.registerEntityRenderingHandler(GGUEntityCreeperMite.class, new GGURenderCreeperMite());
+	}
 }

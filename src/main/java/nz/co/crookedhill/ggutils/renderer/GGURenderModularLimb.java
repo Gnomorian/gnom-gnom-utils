@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import nz.co.crookedhill.ggutils.entity.item.GGUEntityModularLimb;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularLimb;
 
 import org.lwjgl.opengl.GL11;
 

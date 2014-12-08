@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package nz.co.crookedhill.ggutils.entity.item;
+package nz.co.crookedhill.ggutils.entity.tile;
 
 import java.util.Random;
 
@@ -34,6 +34,7 @@ public class GGUEntityModularLimb extends TileEntity
 	ItemStack stack;
 	ItemStack actualStack;
 	int count = 0;
+	int actualStackSize;
 	float rotateDeg = 0;
 
 	//need this for some reason...
@@ -97,6 +98,7 @@ public class GGUEntityModularLimb extends TileEntity
 		if(this.actualStack != null)
 		{
 			this.actualStack.writeToNBT(item2);
+			compound.setInteger("stackSize", this.actualStack.stackSize);
 			items.appendTag(item2);
 		}
 		compound.setTag("Items", items);
@@ -113,6 +115,12 @@ public class GGUEntityModularLimb extends TileEntity
 
 		NBTTagCompound item2 = items.getCompoundTagAt(1);
 		this.actualStack = ItemStack.loadItemStackFromNBT(item2);	
+		this.actualStackSize = compound.getInteger("stackSize");
+		
+		if(this.actualStack != null)
+		{
+			this.actualStack.stackSize = this.actualStackSize;	
+		}
 	}
 
 	@Override

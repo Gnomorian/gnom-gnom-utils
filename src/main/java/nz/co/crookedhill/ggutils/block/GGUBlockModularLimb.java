@@ -12,7 +12,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
-import nz.co.crookedhill.ggutils.entity.item.GGUEntityModularLimb;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularLimb;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

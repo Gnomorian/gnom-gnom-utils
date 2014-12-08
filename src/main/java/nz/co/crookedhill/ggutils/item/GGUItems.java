@@ -33,15 +33,19 @@ public class GGUItems
 	public static Item enderiumRebirthUnstable;
 	public static Item boat;
 	public static Item selfPlaceCart;
+	public static Item messi;
+	
 
 	public static void init()
 	{
+
 		blockFinder = new ItemBlockFinder().setUnlocalizedName("blockFinder").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		woodenGear = new GGUWoodenGear().setUnlocalizedName("woodenGear").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		enderiumRebirthStable = new GGUEnderiumRebirth(true).setUnlocalizedName("stableEnderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		enderiumRebirthUnstable = new GGUEnderiumRebirth(false).setUnlocalizedName("unstableEnderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		selfPlaceCart = new GGUItemCart().setUnlocalizedName("selfPlaceCart").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		boat = new GGUItemBoat().setUnlocalizedName("betterBoat").setCreativeTab(GGUtils.ggutilsCreativeTab);
+		messi = new GGUItemMessi().setUnlocalizedName("messi").setCreativeTab(GGUtils.ggutilsCreativeTab);
 
 		registerItems();
 		registerRecipes();
@@ -61,7 +65,7 @@ public class GGUItems
 
 //		GameRegistry.registerItem(boat, boat.getUnlocalizedName());
 //		GameRegistry.registerItem(selfPlaceCart, selfPlaceCart.getUnlocalizedName());
-
+		GameRegistry.registerItem(messi, messi.getUnlocalizedName());
 	}
 
 	private static void registerRecipes()
@@ -74,6 +78,7 @@ public class GGUItems
 			GameRegistry.addRecipe(new ItemStack(enderiumRebirthUnstable), "gpg", "gtg", "gpg", 'p', Items.ender_pearl, 't', Blocks.tnt, 'g', Items.gunpowder);
 		}
 
+		GameRegistry.addRecipe(new ItemStack(messi), "lll", "lel", "lll", 'l', new ItemStack(Items.dye, 1, 4), 'e', Items.ender_eye);
 	}
 
 }

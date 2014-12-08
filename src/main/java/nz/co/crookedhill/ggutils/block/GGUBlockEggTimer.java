@@ -24,7 +24,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
-import nz.co.crookedhill.ggutils.entity.item.GGUEntityEggTimer;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityEggTimer;
 
 public class GGUBlockEggTimer extends Block 
 {

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +15,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
-import nz.co.crookedhill.ggutils.entity.item.GGUEntityModularCore;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularCore;
 import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -42,18 +43,19 @@ public class GGUBlockModularCore extends Block {
 	@Override
 	public void onBlockPlacedBy(World world, int x,
 			int y, int z, EntityLivingBase entity,
-			ItemStack stack) {
+			ItemStack stack) 
+	{
 		super.onBlockPlacedBy(world, x, y, z,
 				entity, stack);
 
-		if(entity instanceof EntityPlayer)
+		if(entity instanceof EntityPlayer && !world.isRemote)
 		{
 			GGUEntityModularCore te = (GGUEntityModularCore)world.getTileEntity(x, y, z);
 			te.setOwner(entity.getCommandSenderName());
 			this.setBlockUnbreakable();
 		}
 	}
-
+	
 	@Override
 	public void onBlockClicked(World world, int x,
 			int y, int z, EntityPlayer player) {
@@ -66,11 +68,14 @@ public class GGUBlockModularCore extends Block {
 			{
 				player.attackEntityFrom(new DamageSource("thorns"), 2.0f);
 				player.addChatComponentMessage(new ChatComponentText("No! Not yours!"));
+				this.setBlockUnbreakable();
+			}
+			else
+			{
+				this.setHardness(2.5f);
 			}
 		}
 	}
-
-
 
 	@Override
 	public boolean onBlockActivated(World world, int x,
@@ -83,11 +88,10 @@ public class GGUBlockModularCore extends Block {
 			if(te.isOwner(player.getCommandSenderName()))
 			{
 				GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
-				GGUEntityModularCore entity = (GGUEntityModularCore) world.getTileEntity(x, y, z);
 				int[] coords = {x, y, z};
 
-				entity.recalculateLimbs(coords);
-				int numberOfLimbs = entity.getNumberOfLimbs();
+				te.reCalculateLimbs(coords, true);
+				int numberOfLimbs = te.getNumberOfLimbs();
 				props.setNumberofLimbs(numberOfLimbs);
 
 				player.addChatComponentMessage(new ChatComponentText("There are "+props.getNumberOfLimbs() + " limbs attached to this core."));
@@ -102,7 +106,7 @@ public class GGUBlockModularCore extends Block {
 			}
 		}
 
-		return false;
+		return true;
 	}
 
 	@Override
