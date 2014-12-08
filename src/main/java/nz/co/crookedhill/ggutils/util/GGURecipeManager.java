@@ -21,6 +21,8 @@ import java.util.List;
 
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+import nz.co.crookedhill.ggutils.helper.GGUShapedRecipe;
+import nz.co.crookedhill.ggutils.helper.GGUShapelessRecipe;
 
 public class GGURecipeManager
 {

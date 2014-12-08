@@ -24,4 +24,9 @@ public class GGUEnderiumRebirth extends Item
 		if (!this.isStable)
 			itemstack.addEnchantment(Enchantment.fireAspect, 1);
 	}
+
+	public boolean isStable()
+	{
+		return isStable;
+	}
 }

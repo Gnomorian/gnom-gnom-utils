@@ -46,10 +46,7 @@ public class GGUBlockGrowthBlock extends Block
 	private int stackHeight = GGUConfigManager.growthBlockStackHeight;
 	private int growthHeight = GGUConfigManager.growthCactusReedMaxHeight;
 
-	/* 0=manual,1=redstone,2=automatic */
-	int mode = 0;
-
-	public GGUBlockGrowthBlock(Material material)
+	public GGUBlockGrowthBlock(Material material) 
 	{
 		super(material);
 		this.setBlockName("GrowthBlock");
@@ -168,7 +165,8 @@ public class GGUBlockGrowthBlock extends Block
 					{
 						world.setBlockMetadataWithNotify(x, y + 1, z, metadata + 1, 2);
 					}
-				} else if (block == Blocks.reeds)
+				} 
+				else if (block == Blocks.reeds)
 				{
 					int i = 1;
 					while (world.getBlock(x, y + i, z) == Blocks.reeds)
@@ -182,7 +180,8 @@ public class GGUBlockGrowthBlock extends Block
 							world.setBlock(x, y + i, z, Blocks.reeds, 2, 2);
 						}
 					}
-				} else if (block == Blocks.cactus)
+				} 
+				else if (block == Blocks.cactus)
 				{
 					int i = 1;
 					while (world.getBlock(x, y + i, z) == Blocks.cactus)
@@ -196,7 +195,8 @@ public class GGUBlockGrowthBlock extends Block
 							world.setBlock(x, y + i, z, Blocks.cactus, 2, 2);
 						}
 					}
-				} else if (block instanceof BlockCrops)
+				} 
+				else if (block instanceof BlockCrops)
 				{
 					if (metadata < 7)
 					{
@@ -204,7 +204,8 @@ public class GGUBlockGrowthBlock extends Block
 					}
 				}
 			}
-		} else if (block instanceof BlockCake)
+		} 
+		else if (block instanceof BlockCake)
 		{
 			if (!world.isRemote)
 			{
@@ -221,34 +222,31 @@ public class GGUBlockGrowthBlock extends Block
 				}
 				world.setBlockToAir(x, y + 1, z);
 			}
-		} else if (block instanceof BlockOre)
+		} 
+		else if (block instanceof BlockOre)
 		{
 			checkIfOre(world, block, x, y, z);
 		}
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_)
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) 
 	{
-		updateMeta(world, x, y, z);
-
-		boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
-		if (flag)
+		if(!world.isRemote)
 		{
-			System.out.println(world.getBlockMetadata(x, y + 1, z));
-			Block block = world.getBlock(x, y + 1, z);
-			if (block instanceof IPlantable)
-			{
-				// TODO: harvest plant when fully grown
-			}
+			updateMeta(world,x,y,z);
 		}
 	}
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
-		updateMeta(world, x, y, z);
+		if(!world.isRemote)
+		{
+			updateMeta(world,x,y,z);
+		}
 	}
+
 
 	/**
 	 * Updates the textures of all GrowthBlocks setBlockMeta parameter 5= Flag 2
@@ -260,16 +258,28 @@ public class GGUBlockGrowthBlock extends Block
 	 * @param z
 	 */
 	@SideOnly(Side.CLIENT)
-	private void updateMeta(World world, int x, int y, int z)
+	protected void updateMeta(World world, int x, int y, int z) 
 	{
-		Block upperBlock = world.getBlock(x, y + 1, z);
-		if (upperBlock instanceof GGUBlockGrowthBlock)
+		Block upperBlock = world.getBlock(x, y+1, z);
+		if(upperBlock instanceof GGUBlockGrowthBlock)
+		{
 			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-		else
+		}
+		else 
+		{
 			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+		}
 	}
 
-	private void checkIfOre(World world, Block block, int x, int y, int z)
+	/**
+	 * Check if the block on the growth block is ore
+	 * @param world the world object
+	 * @param block the block to check
+	 * @param x x coord
+	 * @param y y coord
+	 * @param z z coord
+	 */
+	protected void checkIfOre(World world, Block block, int x, int y, int z)
 	{
 		if (block == Blocks.coal_ore)
 		{

@@ -12,21 +12,21 @@ import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 public class GGUKeybindHandler
 {
 
-    Minecraft mc;
+	Minecraft mc;
 
-    @SubscribeEvent
-    public void onKeyInput(KeyInputEvent event)
-    {
-
-	EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
-	if (FMLClientHandler.instance().getClient().inGameHasFocus)
+	@SubscribeEvent
+	public void onKeyInput(KeyInputEvent event)
 	{
 
-	    if (((KeyBinding) GGUtils.arseTardis).isPressed())
-	    {
-		GGUtils.network.sendToServer(new GGUInventorySwitchPacket(36, Minecraft.getMinecraft().thePlayer.inventory.mainInventory));
-	    }
+		EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
+		if (FMLClientHandler.instance().getClient().inGameHasFocus)
+		{
+
+			if (((KeyBinding) GGUtils.arseTardis).isPressed())
+			{
+				GGUtils.network.sendToServer(new GGUInventorySwitchPacket(36, Minecraft.getMinecraft().thePlayer.inventory.mainInventory));
+			}
+		}
 	}
-    }
 
 }

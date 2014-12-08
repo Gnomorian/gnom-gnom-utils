@@ -47,9 +47,15 @@ public class GGUItems
 		boat = new GGUItemBoat().setUnlocalizedName("betterBoat").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		messi = new GGUItemMessi().setUnlocalizedName("messi").setCreativeTab(GGUtils.ggutilsCreativeTab);
 
+		registerItems();
+		registerRecipes();
+	}
+
+	private static void registerItems()
+	{
 		// Register Items
-		if (GGUConfigManager.blockFinderEnabled)
-			GameRegistry.registerItem(blockFinder, "blockFinder");
+//		if (GGUConfigManager.blockFinderEnabled)
+//			GameRegistry.registerItem(blockFinder, "blockFinder");
 		GameRegistry.registerItem(woodenGear, "woodenGear");
 		if (GGUConfigManager.enderiumRebirthEnabled)
 		{
@@ -57,12 +63,9 @@ public class GGUItems
 			GameRegistry.registerItem(enderiumRebirthUnstable, enderiumRebirthUnstable.getUnlocalizedName());
 		}
 
-		GameRegistry.registerItem(boat, boat.getUnlocalizedName());
-		GameRegistry.registerItem(selfPlaceCart, selfPlaceCart.getUnlocalizedName());
+//		GameRegistry.registerItem(boat, boat.getUnlocalizedName());
+//		GameRegistry.registerItem(selfPlaceCart, selfPlaceCart.getUnlocalizedName());
 		GameRegistry.registerItem(messi, messi.getUnlocalizedName());
-		
-		
-		registerRecipes();
 	}
 
 	private static void registerRecipes()

@@ -60,13 +60,13 @@ public class GGUtils
 {
 	public static final String MODID = "ggutils";
 
-	/**
-	 * 0.0.0.0 first 0= the number of Minecraft versions supported since making
-	 * the mod. second 0= the number of milestones reached. third 0= the number
-	 * of features added (blocks, items etc.) forth 0= the number of bug
-	 * fixes/sub features added since last feature added.
-	 */
-	public static final String VERSION = "0.0.8.1";
+    /**
+     * 0.0.0.0 first 0= the number of Minecraft versions supported since making
+     * the mod. second 0= the number of milestones reached. third 0= the number
+     * of features added (blocks, items etc.) forth 0= the number of bug
+     * fixes/sub features added since last feature added.
+     */
+    public static final String VERSION = "0.0.9.1";
 
 	// Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
