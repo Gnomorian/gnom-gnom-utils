@@ -1,9 +1,12 @@
 package nz.co.crookedhill.ggutils.inventory;
 
+import java.util.Iterator;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularCore;
 import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
@@ -126,6 +129,7 @@ public class GGUContainerMess extends Container
 		if (slot >= 0 && getSlot(slot) != null && getSlot(slot).getStack() == player.getHeldItem()) {
 			return null;
 		}
+		
 		return super.slotClick(slot, button, flag, player);
 	}
 
