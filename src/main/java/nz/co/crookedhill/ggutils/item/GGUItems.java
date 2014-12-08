@@ -49,6 +49,7 @@ public class GGUItems
 
 		registerItems();
 		registerRecipes();
+		
 	}
 
 	private static void registerItems()
@@ -56,16 +57,16 @@ public class GGUItems
 		// Register Items
 //		if (GGUConfigManager.blockFinderEnabled)
 //			GameRegistry.registerItem(blockFinder, "blockFinder");
-		GameRegistry.registerItem(woodenGear, "woodenGear");
+		GameRegistry.registerItem(woodenGear, woodenGear.getUnlocalizedName().replace("item.", ""));
 		if (GGUConfigManager.enderiumRebirthEnabled)
 		{
-			GameRegistry.registerItem(enderiumRebirthStable, enderiumRebirthStable.getUnlocalizedName());
-			GameRegistry.registerItem(enderiumRebirthUnstable, enderiumRebirthUnstable.getUnlocalizedName());
+			GameRegistry.registerItem(enderiumRebirthStable, enderiumRebirthStable.getUnlocalizedName().replace("item.", ""));
+			GameRegistry.registerItem(enderiumRebirthUnstable, enderiumRebirthUnstable.getUnlocalizedName().replace("item.", ""));
 		}
 
-//		GameRegistry.registerItem(boat, boat.getUnlocalizedName());
-//		GameRegistry.registerItem(selfPlaceCart, selfPlaceCart.getUnlocalizedName());
-		GameRegistry.registerItem(messi, messi.getUnlocalizedName());
+//		GameRegistry.registerItem(boat, boat.getUnlocalizedName().replace("item.", ""));
+//		GameRegistry.registerItem(selfPlaceCart, selfPlaceCart.getUnlocalizedName().replace("item.", ""));
+		GameRegistry.registerItem(messi, messi.getUnlocalizedName().replace("item.", ""));
 	}
 
 	private static void registerRecipes()
