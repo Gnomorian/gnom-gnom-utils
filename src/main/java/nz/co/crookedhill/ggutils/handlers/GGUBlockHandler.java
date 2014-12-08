@@ -21,6 +21,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockTallGrass;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
@@ -29,6 +30,7 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import nz.co.crookedhill.ggutils.block.GGUBlockModularCore;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
+import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularCore;
 import nz.co.crookedhill.ggutils.extendedprops.GGUExtendedPlayer;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -68,6 +70,18 @@ public class GGUBlockHandler
 					world.spawnEntityInWorld(creeperMite);
 				}
 			}
+		}
+		
+		if(block instanceof GGUBlockModularCore)
+		{
+			GGUEntityModularCore te = (GGUEntityModularCore)world.getTileEntity(x, y, z);
+				if(te.isOwner(event.getPlayer().getCommandSenderName()))
+				{
+					GGUExtendedPlayer props = GGUExtendedPlayer.get(event.getPlayer());
+					props.setMess(false);
+					int[] coords = {-1, -1, -1};
+					props.setMessCoords(coords);
+				}
 		}
 	}
 	

@@ -43,7 +43,8 @@ public class GGUBlockModularCore extends Block {
 	@Override
 	public void onBlockPlacedBy(World world, int x,
 			int y, int z, EntityLivingBase entity,
-			ItemStack stack) {
+			ItemStack stack) 
+	{
 		super.onBlockPlacedBy(world, x, y, z,
 				entity, stack);
 
@@ -54,24 +55,7 @@ public class GGUBlockModularCore extends Block {
 			this.setBlockUnbreakable();
 		}
 	}
-
-	@Override
-	public void onBlockDestroyedByPlayer(World world, int x,
-			int y, int z, int meta) {
-		super.onBlockDestroyedByPlayer(world, x, y,
-				z, meta);
-		
-		GGUEntityModularCore te = (GGUEntityModularCore)world.getTileEntity(x, y, z);
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		if(!world.isRemote){
-			if(!te.isOwner(player.getCommandSenderName()))
-			{
-				GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
-				props.setMess(false);
-				props.setMessCoords(null);
-			}
-		}
-	}
+	
 	@Override
 	public void onBlockClicked(World world, int x,
 			int y, int z, EntityPlayer player) {
@@ -84,11 +68,14 @@ public class GGUBlockModularCore extends Block {
 			{
 				player.attackEntityFrom(new DamageSource("thorns"), 2.0f);
 				player.addChatComponentMessage(new ChatComponentText("No! Not yours!"));
+				this.setBlockUnbreakable();
+			}
+			else
+			{
+				this.setHardness(2.5f);
 			}
 		}
 	}
-
-
 
 	@Override
 	public boolean onBlockActivated(World world, int x,
@@ -119,7 +106,7 @@ public class GGUBlockModularCore extends Block {
 			}
 		}
 
-		return false;
+		return true;
 	}
 
 	@Override
