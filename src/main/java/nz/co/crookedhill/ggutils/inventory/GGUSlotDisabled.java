@@ -12,7 +12,6 @@ public class GGUSlotDisabled extends Slot
 	
 	@Override
 	public boolean isItemValid(ItemStack p_75214_1_) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

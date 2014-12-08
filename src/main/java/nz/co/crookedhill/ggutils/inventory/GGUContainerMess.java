@@ -47,13 +47,11 @@ public class GGUContainerMess extends Container
 			for (j = 0; j < 12; ++j) {
 				if(slotCount < numberOfSlots)
 				{
-					addSlotToContainer(new GGUSlotMess(this.inventory, j+i*9, 8 + j * 18, 21 + i * 18));
-					System.out.println("Mess " + (j+i*12)); //DEBUG
+					addSlotToContainer(new GGUSlotMess(this.inventory, j+i*12, 8 + j * 18, 21 + i * 18));
 				}
 				else
 				{
-					addSlotToContainer(new GGUSlotDisabled(this.inventory, j+i*9, 8 + j * 18, 21 + i * 18));
-					System.out.println("Disabled " + (j+i*12)); //DEBUG
+					addSlotToContainer(new GGUSlotDisabled(this.inventory, j+i*12, 8 + j * 18, 21 + i * 18));
 				}
 				slotCount++;
 			}
@@ -90,11 +88,20 @@ public class GGUContainerMess extends Container
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-			// If item is in our custom Inventory or an ARMOR slot
+			// If item is in our custom Inventory
 			if (index < INV_START)
 			{
 				// try to place in player inventory / action bar
 				if (!this.mergeItemStack(itemstack1, INV_START, HOTBAR_END+1, true))
+				{
+					return null;
+				}
+				slot.onSlotChange(itemstack1, itemstack);
+			}
+			else if(index > INV_START)
+			{
+				// try to place in custom inv
+				if (!this.mergeItemStack(itemstack1, 0, INV_START+1, false))
 				{
 					return null;
 				}
@@ -144,7 +151,7 @@ public class GGUContainerMess extends Container
 						ItemStack.areItemStackTagsEqual(stack, itemstack1))
 				{
 					int l = itemstack1.stackSize + stack.stackSize;
-					if (l <= stack.getMaxStackSize() && l <= slot.getSlotStackLimit()) {
+					if (l <= slot.getSlotStackLimit()) {
 						stack.stackSize = 0;
 						itemstack1.stackSize = l;
 						inventory.markDirty();
@@ -190,6 +197,13 @@ public class GGUContainerMess extends Container
 		return flag1;
 	}
 
+	
+	@Override
+	public void onContainerClosed(EntityPlayer player) {
+		super.onContainerClosed(player);
+		this.setInventory(player);
+	}
+	
 	private void setInventory(EntityPlayer player)
 	{
 		if(!player.worldObj.isRemote)
@@ -208,12 +222,6 @@ public class GGUContainerMess extends Container
 			te.setItems(inv);
 		}
 	}
-	
-	@Override
-	public void onContainerClosed(EntityPlayer p_75134_1_) {
-		// TODO Auto-generated method stub
-		super.onContainerClosed(p_75134_1_);
-		this.setInventory(player);
-	}
+
 }
 

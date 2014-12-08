@@ -16,13 +16,13 @@
 
 package nz.co.crookedhill.ggutils.entity.tile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -36,8 +36,9 @@ public class GGUEntityModularCore extends TileEntity
 {
 	private Random rand = new Random();
 	private HashMap<String, ItemStack> numberOfLimbs = new HashMap<String, ItemStack>();
+	private ArrayList<String> tempCoordArray = new ArrayList<String>();
 	private String owner;
-
+	
 	//need this for some reason...
 	public GGUEntityModularCore(){}
 
@@ -64,7 +65,6 @@ public class GGUEntityModularCore extends TileEntity
 		World world = this.worldObj;
 		TileEntity tileEntity;
 		String stringCoords = String.format("%s:%s:%s", Integer.toString(coords[0]), Integer.toString(coords[1]), Integer.toString(coords[2]));
-
 		if(!world.isRemote)
 		{
 			/**
@@ -82,10 +82,7 @@ public class GGUEntityModularCore extends TileEntity
 						GGUEntityModularLimb entity = (GGUEntityModularLimb)tileEntity;
 
 						stringCoords = String.format("%s:%s:%s", Integer.toString(coords[0]+1), Integer.toString(coords[1]), Integer.toString(coords[2]));
-						if(!shouldRetrive)
-						{
-							entity.setActualStack(this.numberOfLimbs.get(stringCoords));
-						}
+
 						if(!this.numberOfLimbs.containsKey(stringCoords))
 						{
 							intCoords[0] = Integer.parseInt(stringCoords.split(":")[0]);
@@ -95,10 +92,6 @@ public class GGUEntityModularCore extends TileEntity
 							{
 								this.numberOfLimbs.put(stringCoords, entity.getActualStack());
 								calculateLimbs(intCoords, true);
-							}
-							else
-							{
-								calculateLimbs(intCoords, false);
 							}
 						}
 					}
@@ -110,10 +103,7 @@ public class GGUEntityModularCore extends TileEntity
 						GGUEntityModularLimb entity = (GGUEntityModularLimb)tileEntity;
 
 						stringCoords = String.format("%s:%s:%s", Integer.toString(coords[0]-1), Integer.toString(coords[1]), Integer.toString(coords[2]));
-						if(!shouldRetrive)
-						{
-							entity.setActualStack(this.numberOfLimbs.get(stringCoords));
-						}
+
 						if(!this.numberOfLimbs.containsKey(stringCoords))
 						{
 							intCoords[0] = Integer.parseInt(stringCoords.split(":")[0]);
@@ -124,12 +114,7 @@ public class GGUEntityModularCore extends TileEntity
 								this.numberOfLimbs.put(stringCoords, entity.getActualStack());
 								calculateLimbs(intCoords, true);
 							}
-							else
-							{
-								calculateLimbs(intCoords, false);
-							}
 						}
-
 					}
 					break;
 				case 2:
@@ -142,21 +127,13 @@ public class GGUEntityModularCore extends TileEntity
 						intCoords[0] = Integer.parseInt(stringCoords.split(":")[0]);
 						intCoords[1] = Integer.parseInt(stringCoords.split(":")[1]);
 						intCoords[2] = Integer.parseInt(stringCoords.split(":")[2]);
-						if(!shouldRetrive)
-						{
-							ItemStack stack = this.numberOfLimbs.get(stringCoords);
-							entity.setActualStack(stack);
-						}
+
 						if(!this.numberOfLimbs.containsKey(stringCoords))
 						{
 							if(shouldRetrive)
 							{
 								this.numberOfLimbs.put(stringCoords, entity.getActualStack());
 								calculateLimbs(intCoords, true);
-							}
-							else
-							{
-								calculateLimbs(intCoords, false);
 							}
 						}
 					}
@@ -168,10 +145,7 @@ public class GGUEntityModularCore extends TileEntity
 						GGUEntityModularLimb entity = (GGUEntityModularLimb)tileEntity;
 
 						stringCoords = String.format("%s:%s:%s", Integer.toString(coords[0]), Integer.toString(coords[1]-1), Integer.toString(coords[2]));
-						if(!shouldRetrive)
-						{
-							entity.setActualStack(this.numberOfLimbs.get(stringCoords));
-						}
+
 						if(!this.numberOfLimbs.containsKey(stringCoords))
 						{
 							intCoords[0] = Integer.parseInt(stringCoords.split(":")[0]);
@@ -181,10 +155,6 @@ public class GGUEntityModularCore extends TileEntity
 							{
 								this.numberOfLimbs.put(stringCoords, entity.getActualStack());
 								calculateLimbs(intCoords, true);
-							}
-							else
-							{
-								calculateLimbs(intCoords, false);
 							}
 						}
 					}
@@ -197,10 +167,7 @@ public class GGUEntityModularCore extends TileEntity
 
 
 						stringCoords = String.format("%s:%s:%s", Integer.toString(coords[0]), Integer.toString(coords[1]), Integer.toString(coords[2]+1));
-						if(!shouldRetrive)
-						{
-							entity.setActualStack(this.numberOfLimbs.get(stringCoords));
-						}
+
 						if(!this.numberOfLimbs.containsKey(stringCoords))
 						{
 							intCoords[0] = Integer.parseInt(stringCoords.split(":")[0]);
@@ -210,10 +177,6 @@ public class GGUEntityModularCore extends TileEntity
 							{
 								this.numberOfLimbs.put(stringCoords, entity.getActualStack());
 								calculateLimbs(intCoords, true);
-							}
-							else
-							{
-								calculateLimbs(intCoords, false);
 							}
 						}
 					}
@@ -226,10 +189,7 @@ public class GGUEntityModularCore extends TileEntity
 
 
 						stringCoords = String.format("%s:%s:%s", Integer.toString(coords[0]), Integer.toString(coords[1]), Integer.toString(coords[2]-1));
-						if(!shouldRetrive)
-						{
-							entity.setActualStack(this.numberOfLimbs.get(stringCoords));
-						}
+
 						if(!this.numberOfLimbs.containsKey(stringCoords))
 						{
 							intCoords[0] = Integer.parseInt(stringCoords.split(":")[0]);
@@ -239,10 +199,6 @@ public class GGUEntityModularCore extends TileEntity
 							{
 								this.numberOfLimbs.put(stringCoords, entity.getActualStack());
 								calculateLimbs(intCoords, true);
-							}
-							else
-							{
-								calculateLimbs(intCoords, false);
 							}
 						}
 					}
@@ -260,22 +216,6 @@ public class GGUEntityModularCore extends TileEntity
 		super.writeToNBT(compound);
 
 		compound.setString("owner", this.owner);
-
-		//		Iterator it = this.numberOfLimbs.entrySet().iterator();
-		//		NBTTagList items = new NBTTagList();
-		//		int i=0;
-		//		
-		//		while (it.hasNext()) {
-		//			Map.Entry pairs = (Map.Entry)it.next();
-		//			NBTTagCompound item = new NBTTagCompound();
-		//			item.setByte("Slot", (byte) i);
-		//			((ItemStack)pairs.getValue()).writeToNBT(item);
-		//			items.appendTag(item);
-		//			
-		//			i++;
-		//		}
-		//		
-		//		compound.setTag("messInv", items);
 	}
 
 	@Override
@@ -283,20 +223,6 @@ public class GGUEntityModularCore extends TileEntity
 	{
 		super.readFromNBT(compound);
 		this.owner = compound.getString("owner");
-
-		//		Iterator it = this.numberOfLimbs.entrySet().iterator();
-		//		int i=0;
-		//
-		//		NBTTagList items = compound.getTagList("messInv", Constants.NBT.TAG_COMPOUND);
-		//		
-		//		while (it.hasNext()) {
-		//			Map.Entry pairs = (Map.Entry)it.next();
-		//			NBTTagCompound item = items.getCompoundTagAt(i);
-		//			byte slot = item.getByte("Slot");
-		//			if (slot >= 0) {
-		//				pairs.setValue(ItemStack.loadItemStackFromNBT(item));
-		//			}
-		//		}
 	}
 
 	@Override
@@ -312,7 +238,8 @@ public class GGUEntityModularCore extends TileEntity
 	{
 		readFromNBT(packet.func_148857_g());
 	}
-
+	
+	
 	/**
 	 * public method to force recalculation of limbs.
 	 * @param coords of the core
@@ -323,6 +250,8 @@ public class GGUEntityModularCore extends TileEntity
 		{
 			this.numberOfLimbs.clear();
 		}
+
+		this.tempCoordArray.clear();
 		calculateLimbs(coords, getFromEntity);
 	}
 
@@ -358,11 +287,11 @@ public class GGUEntityModularCore extends TileEntity
 	{
 		ItemStack[] inv = new ItemStack[GGUInventoryMess.INV_SIZE];
 
-		Iterator it = this.numberOfLimbs.entrySet().iterator();
+		Iterator<Entry<String, ItemStack>> it = this.numberOfLimbs.entrySet().iterator();
 		int i=0;
 
 		while (it.hasNext()) {
-			Map.Entry pairs = (Map.Entry)it.next();
+			Map.Entry<String, ItemStack> pairs = (Entry<String, ItemStack>)it.next();
 			inv[i] = ((ItemStack)pairs.getValue());
 			i++;
 		}
@@ -372,17 +301,20 @@ public class GGUEntityModularCore extends TileEntity
 
 	public void setItems(ItemStack[] items)
 	{
-		ItemStack[] inv = items;
-		int[] coords = {xCoord, yCoord, zCoord};
+		World world = this.worldObj;
+		int[] intCoords = new int[3];
 		Iterator<Entry<String, ItemStack>> it = this.numberOfLimbs.entrySet().iterator();
 		int i=0;
 
 		while (it.hasNext()) {
-			Map.Entry pairs = (Map.Entry)it.next();
+			Map.Entry<String, ItemStack> pairs = (Entry<String, ItemStack>)it.next();
 			pairs.setValue(items[i]);
+			intCoords[0] = Integer.parseInt(((String)pairs.getKey()).split(":")[0]);
+			intCoords[1] = Integer.parseInt(((String)pairs.getKey()).split(":")[1]);
+			intCoords[2] = Integer.parseInt(((String)pairs.getKey()).split(":")[2]);
+			GGUEntityModularLimb te = (GGUEntityModularLimb) world.getTileEntity(intCoords[0], intCoords[1], intCoords[2]);
+			te.setActualStack((ItemStack)pairs.getValue());
 			i++;
 		}
-
-		this.reCalculateLimbs(coords, false);
 	}
 }

@@ -131,6 +131,7 @@ public class GGUInventoryMess implements IInventory
 			GGUExtendedPlayer props = GGUExtendedPlayer.get(player);
 			int[] coords = props.getMessCoords();
 			GGUEntityModularCore te = (GGUEntityModularCore)player.worldObj.getTileEntity(coords[0], coords[1], coords[2]);
+
 			inv = te.getItems();	
 		}
 		return inv;

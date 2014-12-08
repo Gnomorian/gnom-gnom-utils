@@ -8,12 +8,15 @@ public class GGUSlotMess extends Slot
 {
 	public GGUSlotMess(IInventory inventory, int slotIndex, int x, int y) {
 		super(inventory, slotIndex, x, y);
-		System.out.println(this.getSlotStackLimit());
+	}
+	
+	@Override
+	public int getSlotStackLimit() {
+		return Integer.MAX_VALUE;
 	}
 	
 	@Override
 	public boolean isItemValid(ItemStack p_75214_1_) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 }
