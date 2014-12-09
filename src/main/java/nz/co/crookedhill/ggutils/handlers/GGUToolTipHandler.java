@@ -73,6 +73,24 @@ public class GGUToolTipHandler
 			event.toolTip.add("you have in your current inventory");
 			event.toolTip.add("and craft it with a single click!");
 		}
+		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.cobbleDegen")) 
+		{
+			event.toolTip.add("Power with redstone and activate");
+			event.toolTip.add("to get rid of all cobblestone");
+			event.toolTip.add("cluttering your inventory!");
+		}
+		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.modularCore")) 
+		{
+			event.toolTip.add("Connect MESS Limbs to this to");
+			event.toolTip.add("create a modular storage system");
+			event.toolTip.add("accessible via the MESSI item.");
+		}
+//		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.messLimb")) 
+//		{
+//			event.toolTip.add("Power with redstone and activate");
+//			event.toolTip.add("to get rid of all cobblestone");
+//			event.toolTip.add("cluttering your inventory!");
+//		}
 	}
 
 }
