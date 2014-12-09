@@ -2,7 +2,6 @@ package nz.co.crookedhill.ggutils.handlers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.player.EntityPlayer;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.network.GGUInventorySwitchPacket;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -17,8 +16,6 @@ public class GGUKeybindHandler
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
 	{
-
-		EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
 		if (FMLClientHandler.instance().getClient().inGameHasFocus)
 		{
 

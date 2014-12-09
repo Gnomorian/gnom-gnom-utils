@@ -57,7 +57,7 @@ public class GGULazyCrafter extends Block
 		if (world.isRemote)
 		{
 			IInventory inventory = player.inventory;
-			List invItems = new ArrayList();
+			List<ItemStack> invItems = new ArrayList<ItemStack>();
 			// 36-39=armour
 			for (int i = 0; i < 35; i++)
 			{

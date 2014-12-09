@@ -28,79 +28,80 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class GGUBlocks
 {
+	public static Block growthBlock;
+	public static Block growthBlockSemi;
+	public static Block growthBlockAuto;
+	public static Block sortivator;
+	public static Block eggTimer;
+	public static Block lazyCrafter;
+	public static Block fabricator;
+	public static Block modularCore;
+	public static Block modularLimb;
+	public static Block cobbleDegen;
 
-    public static Block growthBlock;
-    public static Block growthBlockSemi;
-    public static Block growthBlockAuto;
-    public static Block sortivator;
-    public static Block eggTimer;
-    public static Block lazyCrafter;
-    public static Block fabricator;
-    public static Block modularCore;
-    public static Block modularLimb;
-
-    public static void init()
-    {
-	// register Blocks
-	growthBlock = new GGUBlockGrowthBlock(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
-	growthBlockSemi = new GGUBlockGrowthBlockSemi(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
-	growthBlockAuto = new GGUBlockGrowthBlockAuto(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
-	sortivator = new GGUBlockSortivator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
-	eggTimer = new GGUBlockEggTimer(Material.anvil).setCreativeTab(GGUtils.ggutilsCreativeTab);
-	lazyCrafter = new GGULazyCrafter(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
-	fabricator = new GGUFabricator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
-	modularCore = new GGUBlockModularCore(Material.iron).setCreativeTab(GGUtils.ggutilsCreativeTab);
-	modularLimb = new GGUBlockModularLimb(Material.packedIce).setCreativeTab(GGUtils.ggutilsCreativeTab);
-
-	registerItems();
-	registerRecipes();
-
-    }
-
-    private static void registerItems()
-    {
-	if (GGUConfigManager.growthBlockEnabled)
+	public static void init()
 	{
-	    GameRegistry.registerBlock(growthBlock, "GrowthBlock");
-	    GameRegistry.registerBlock(growthBlockSemi, "GrowthBlockSemi");
-	    GameRegistry.registerBlock(growthBlockAuto, "GrowthBlockAuto");
+		// register Blocks
+		growthBlock = new GGUBlockGrowthBlock(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		growthBlockSemi = new GGUBlockGrowthBlockSemi(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		growthBlockAuto = new GGUBlockGrowthBlockAuto(Material.ground).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		sortivator = new GGUBlockSortivator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		eggTimer = new GGUBlockEggTimer(Material.anvil).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		lazyCrafter = new GGULazyCrafter(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		fabricator = new GGUFabricator(Material.wood).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		modularCore = new GGUBlockModularCore(Material.iron).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		modularLimb = new GGUBlockModularLimb(Material.packedIce).setCreativeTab(GGUtils.ggutilsCreativeTab);
+		cobbleDegen = new GGUBlockCobbleDegen(Material.rock).setCreativeTab(GGUtils.ggutilsCreativeTab);
+
+		registerItems();
+		registerRecipes();
 	}
 
-	if (GGUConfigManager.sortivatorEnabled)
-	    GameRegistry.registerBlock(sortivator, "sortivator");
-	// if(GGUConfigManager.eggTimerEnabled)
-	// GameRegistry.registerBlock(eggTimer, "eggTimer");
-	// if (GGUConfigManager.lazyCrafterEnabled)
-	// GameRegistry.registerBlock(lazyCrafter, "lazyCrafter");
-	// if(GGUConfigManager.fabricatorEnabled)
-	// GameRegistry.registerBlock(fabricator, "fabricator");
-
-	GameRegistry.registerBlock(modularCore, "modularCore");
-	GameRegistry.registerBlock(modularLimb, "modularLimb");
-
-    }
-
-    private static void registerRecipes()
-    {
-	// register Block Recipes
-	if (GGUConfigManager.growthBlockEnabled)
+	private static void registerItems()
 	{
-	    GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock, 1, 0), "ddd", "isi", "iii", 'd', Blocks.dirt, 'i', Items.iron_ingot, 's', Items.speckled_melon);
+		if (GGUConfigManager.growthBlockEnabled)
+		{
+			GameRegistry.registerBlock(growthBlock, "GrowthBlock");
+			GameRegistry.registerBlock(growthBlockSemi, "GrowthBlockSemi");
+			GameRegistry.registerBlock(growthBlockAuto, "GrowthBlockAuto");
+		}
 
-	    GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlockSemi, 1, 0), "rrr", "rgr", "rrr", 'g', new ItemStack(GGUBlocks.growthBlock, 1, 0), 'r', Items.redstone);
+		if (GGUConfigManager.sortivatorEnabled)
+			GameRegistry.registerBlock(sortivator, "sortivator");
+		// if(GGUConfigManager.eggTimerEnabled)
+		// GameRegistry.registerBlock(eggTimer, "eggTimer");
+		// if (GGUConfigManager.lazyCrafterEnabled)
+		// GameRegistry.registerBlock(lazyCrafter, "lazyCrafter");
+		// if(GGUConfigManager.fabricatorEnabled)
+		// GameRegistry.registerBlock(fabricator, "fabricator");
 
-	    GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlockAuto, 1, 0), "rrr", "dgd", "rrr", 'g', new ItemStack(GGUBlocks.growthBlock, 1, 0), 'd', Items.diamond, 'r', Items.redstone);
+		GameRegistry.registerBlock(modularCore, "modularCore");
+		GameRegistry.registerBlock(modularLimb, "modularLimb");
+		GameRegistry.registerBlock(cobbleDegen, "cobbleDegen");
+
 	}
 
-	if (GGUConfigManager.sortivatorEnabled)
-	    GameRegistry.addRecipe(new ItemStack(GGUBlocks.sortivator), "wgw", "geg", "wgw", 'w', Blocks.planks, 'g', GGUItems.woodenGear, 'e', Items.ender_pearl);
-	if (GGUConfigManager.lazyCrafterEnabled)
-	    GameRegistry.addRecipe(new ItemStack(GGUBlocks.lazyCrafter), " c ", "cec", " c ", 'c', Blocks.crafting_table, 'e', Items.ender_pearl);
-	if (GGUConfigManager.fabricatorEnabled)
-	    GameRegistry.addRecipe(new ItemStack(GGUBlocks.fabricator), "ici", "cec", "ici", 'i', Items.iron_ingot, 'c', Blocks.crafting_table, 'e', Items.ender_eye);
+	private static void registerRecipes()
+	{
+		// register Block Recipes
+		if (GGUConfigManager.growthBlockEnabled)
+		{
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlock, 1, 0), "ddd", "isi", "iii", 'd', Blocks.dirt, 'i', Items.iron_ingot, 's', Items.speckled_melon);
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlockSemi, 1, 0), "rrr", "rgr", "rrr", 'g', GGUBlocks.growthBlock, 'r', Items.redstone);
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.growthBlockAuto, 1, 0), "rrr", "dgd", "rrr", 'g', GGUBlocks.growthBlock, 'd', Items.diamond, 'r', Items.redstone);
+		}
 
-	GameRegistry.addRecipe(new ItemStack(GGUBlocks.modularCore), "opo", "pep", "opo", 'o', Blocks.obsidian, 'p', Items.ender_pearl, 'e', Items.ender_eye);
+		if (GGUConfigManager.sortivatorEnabled)
+		{
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.sortivator), "wgw", "geg", "wgw", 'w', Blocks.planks, 'g', GGUItems.woodenGear, 'e', Items.ender_pearl);
+		}
+		//		if (GGUConfigManager.lazyCrafterEnabled)
+		//			GameRegistry.addRecipe(new ItemStack(GGUBlocks.lazyCrafter), " c ", "cec", " c ", 'c', Blocks.crafting_table, 'e', Items.ender_pearl);
+		/*		if (GGUConfigManager.fabricatorEnabled)
+			GameRegistry.addRecipe(new ItemStack(GGUBlocks.fabricator), "ici", "cec", "ici", 'i', Items.iron_ingot, 'c', Blocks.crafting_table, 'e', Items.ender_eye);*/
 
-	GameRegistry.addRecipe(new ItemStack(GGUBlocks.modularLimb), "igi", "gpg", "igi", 'i', Items.iron_ingot, 'g', Blocks.glass_pane, 'p', Items.ender_pearl);
-    }
+		GameRegistry.addRecipe(new ItemStack(GGUBlocks.modularCore, 1, 0), "opo", "pep", "opo", 'o', Blocks.obsidian, 'p', Items.ender_pearl, 'e', Items.ender_eye);
+		GameRegistry.addRecipe(new ItemStack(GGUBlocks.modularLimb, 1, 0), "igi", "gpg", "igi", 'i', Items.iron_ingot, 'g', Blocks.glass_pane, 'p', Items.ender_pearl);
+		GameRegistry.addRecipe(new ItemStack(GGUBlocks.cobbleDegen, 1, 0), "rir", "ici", "rir", 'i', Blocks.iron_bars, 'c', Blocks.cobblestone, 'r', Items.redstone);
+	}
 }

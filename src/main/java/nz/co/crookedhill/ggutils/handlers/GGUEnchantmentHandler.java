@@ -106,55 +106,57 @@ public class GGUEnchantmentHandler
 			ItemStack[] inventory = player.inventory.armorInventory;
 
 			ItemStack armor = inventory[2];
-            
+
 			//check if armor is being worn
 			if(armor != null)
 			{
 				enchantmentLevel =  EnchantmentHelper.getEnchantmentLevel(GGUEnchantment.icarus.effectId, armor);
 			}
-			
-			if(enchantmentLevel == 1)
+			if(enchantmentLevel != 0)
 			{
-				player.capabilities.allowFlying = true;
-				player.capabilities.setFlySpeed(0.05F);
-				
-				if(this.icarusTimer >= 40 && !player.worldObj.isRemote && !player.onGround)
+				if(enchantmentLevel == 1)
 				{
-					armor.damageItem(1, (EntityLivingBase)player);	
-		            if (armor.stackSize == 0)
-		            {
-		                armor = null;
-		                player.inventory.setInventorySlotContents(38, null);
-		            }
+					player.capabilities.allowFlying = true;
+					player.capabilities.setFlySpeed(0.05F);
+
+					if(this.icarusTimer >= 40 && !player.worldObj.isRemote && !player.onGround)
+					{
+						armor.damageItem(1, (EntityLivingBase)player);	
+						if (armor.stackSize == 0)
+						{
+							armor = null;
+							player.inventory.setInventorySlotContents(38, null);
+						}
+						this.icarusTimer = 0;
+					}
+
+				}
+				else if(enchantmentLevel == 2)
+				{
+					player.capabilities.allowFlying = true;
+					player.capabilities.setFlySpeed(0.1F);
+					if(this.icarusTimer >= 80 && !player.worldObj.isRemote && !player.onGround)
+					{
+						armor.damageItem(1, (EntityLivingBase)player);	
+						if (armor.stackSize == 0)
+						{
+							armor = null;
+							player.inventory.setInventorySlotContents(38, null);
+						}
+						this.icarusTimer = 0;
+					}
+				}
+				else if(!player.capabilities.isCreativeMode)
+				{
+					player.capabilities.allowFlying = false;
+					player.capabilities.isFlying = false;
 					this.icarusTimer = 0;
 				}
 
-			}
-			else if(enchantmentLevel == 2)
-			{
-				player.capabilities.allowFlying = true;
-				player.capabilities.setFlySpeed(0.1F);
-				if(this.icarusTimer >= 80 && !player.worldObj.isRemote && !player.onGround)
+				if(!player.onGround)
 				{
-					armor.damageItem(1, (EntityLivingBase)player);	
-		            if (armor.stackSize == 0)
-		            {
-		                armor = null;
-		                player.inventory.setInventorySlotContents(38, null);
-		            }
-					this.icarusTimer = 0;
+					this.icarusTimer++;
 				}
-			}
-			else
-			{
-				player.capabilities.allowFlying = false;
-				player.capabilities.isFlying = false;
-				this.icarusTimer = 0;
-			}
-
-			if(!player.onGround)
-			{
-				this.icarusTimer++;
 			}
 		}
 	}
