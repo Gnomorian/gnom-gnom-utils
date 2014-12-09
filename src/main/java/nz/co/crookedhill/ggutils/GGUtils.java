@@ -6,8 +6,8 @@
 
 package nz.co.crookedhill.ggutils;
 
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.common.MinecraftForge;
 import nz.co.crookedhill.ggutils.achievements.GGUAchievements;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
@@ -32,6 +32,7 @@ import nz.co.crookedhill.ggutils.network.GGUSortPacketHandler;
 import nz.co.crookedhill.ggutils.network.GGUSyncPlayerPropertiesPacketHandler;
 import nz.co.crookedhill.ggutils.network.GGUSyncPlayerPropsPacket;
 import nz.co.crookedhill.ggutils.proxy.CommonProxy;
+import nz.co.crookedhill.ggutils.util.GGURecipeManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -55,7 +56,7 @@ public class GGUtils
      * of features added (blocks, items etc.) forth 0= the number of bug
      * fixes/sub features added since last feature added.
      */
-    public static final String VERSION = "0.1.1.0";
+    public static final String VERSION = "0.1.0.0";
 
 	// Setting proxy for client and server side
 	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
@@ -67,7 +68,7 @@ public class GGUtils
 
 	public static SimpleNetworkWrapper network;
 
-	public static KeyBinding arseTardis;
+	public static Object arseTardis;
 
 	// Set Creative Tabs
 	public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(CreativeTabs.getNextID(), MODID);
@@ -117,9 +118,7 @@ public class GGUtils
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		proxy.postInit();
-		
-		//THIS IS FUCKING WITH OUR RECIPES SOMEHOW!
-//		GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
+		GGURecipeManager.init(CraftingManager.getInstance().getRecipeList());
 	}
 
 	@EventHandler

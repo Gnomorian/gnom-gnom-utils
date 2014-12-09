@@ -10,14 +10,13 @@ tile.lazyCrafter.name=Lazy Crafter
 tile.fabricator.name=Fabricator
 tile.modularCore.name=MESS Core
 tile.modularLimb.name=MESS Limb
-tile.cobbleDegen.name=Cobblestone Degenerator
 
 **********************************
 ITEMS
 **********************************
 item.blockFinder.name=Block Finder
 item.woodenGear.name=Wooden Gear
-item.messi.name=MESSI
+item.messi.name=MESSI (WIP!)
 item.stableEnderiumRebirth.name=Enderium Rebirth Crystal
 item.unstableEnderiumRebirth.name=Unstable Enderium Rebirth Crystal
 item.betterBoat.name=Better Boat
