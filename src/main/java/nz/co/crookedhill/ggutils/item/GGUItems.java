@@ -33,7 +33,7 @@ public class GGUItems
 		woodenGear = new GGUWoodenGear().setUnlocalizedName("woodenGear").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		enderiumRebirthStable = new GGUEnderiumRebirth(true).setUnlocalizedName("stableEnderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		enderiumRebirthUnstable = new GGUEnderiumRebirth(false).setUnlocalizedName("unstableEnderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
-		selfPlaceCart = new GGUItemCart().setUnlocalizedName("selfPlaceCart").setCreativeTab(GGUtils.ggutilsCreativeTab);
+		selfPlaceCart = new GGUItemAutoCart(10).setUnlocalizedName("autoCart").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		boat = new GGUItemBoat().setUnlocalizedName("betterBoat").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		messi = new GGUItemMessi().setUnlocalizedName("messi").setCreativeTab(GGUtils.ggutilsCreativeTab);
 
@@ -55,7 +55,7 @@ public class GGUItems
 		}
 
 //		GameRegistry.registerItem(boat, boat.getUnlocalizedName().replace("item.", ""));
-//		GameRegistry.registerItem(selfPlaceCart, selfPlaceCart.getUnlocalizedName().replace("item.", ""));
+		GameRegistry.registerItem(selfPlaceCart, selfPlaceCart.getUnlocalizedName().replace("item.", ""));
 		GameRegistry.registerItem(messi, messi.getUnlocalizedName().replace("item.", ""));
 	}
 
