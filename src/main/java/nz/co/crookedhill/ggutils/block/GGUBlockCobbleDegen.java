@@ -59,8 +59,6 @@ public class GGUBlockCobbleDegen extends Block
 		Random rand = new Random();
 		if(world.isBlockIndirectlyGettingPowered(x, y, z))
 		{
-			if (world.isRemote)
-			{
 				ItemStack[] inventory = player.inventory.mainInventory;
 				String cobbleStone = new ItemStack(Blocks.cobblestone, 1, 0).getDisplayName();
 				for(int i=0; i < inventory.length; i++)
@@ -86,7 +84,7 @@ public class GGUBlockCobbleDegen extends Block
 			{
 				world.spawnParticle("angryVillager", x+rand.nextFloat(), y+1, z+rand.nextFloat(), 0, 1, 0);			
 			}
-		}
+			
 		//coz it ain't free!
 		if(rand.nextInt(20) == 0)
 		{
