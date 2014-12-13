@@ -1,19 +1,27 @@
 **********************************
 BLOCKS
 **********************************
-tile.GrowthBlock.name=Remède de Damara
+tile.GrowthBlock.name=Remède de Damara (manuel)
+tile.GrowthBlockSemi.name=Remède de Damara (Semi-Auto)
+tile.GrowthBlockAuto.name=Remède de Damara (Auto)
 tile.sortivator.name=Triviculteur
 tile.eggTimer.name=Sablier d'oeuf
 tile.lazyCrafter.name=Artisan paresseux
 tile.fabricator.name=Fabricateur
+tile.modularCore.name=Cœur de MESS
+tile.modularLimb.name=membre de MESS
+tile.cobbleDegen.name=Dégénérateur de pavés
 
 **********************************
 ITEMS
 **********************************
 item.blockFinder.name=Inventeur de bloc
 item.woodenGear.name=Engrenage en bois
-item.arseTardis.name=Arse Tardis
-item.enderiumRebirth.name=Cristal de renaissance d'enderium
+item.messi.name=MESSI
+item.stableEnderiumRebirth.name=Cristal de renaissance d'enderium
+item.unstableEnderiumRebirth.name=Cristal de renaissance d'enderium instable
+item.betterBoat.name=Meilleur bateau
+item.selfPlaceCart.name=Chariot d'auto-endroit
 
 **********************************
 MOBS
@@ -24,6 +32,8 @@ entity.creeper_mite.name=Mite Creeper
 ENCHANTMENT!
 **********************************
 enchantment.ProsperousAutoSmelt=Prospérité
+enchantment.Icarus=Icarus
+
 
 **********************************
 ACHIEVEMENTS
