@@ -29,12 +29,12 @@ public class GGUItems
 	public static void init()
 	{
 
-		blockFinder = new ItemBlockFinder().setUnlocalizedName("blockFinder").setCreativeTab(GGUtils.ggutilsCreativeTab);
+//		blockFinder = new ItemBlockFinder().setUnlocalizedName("blockFinder").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		woodenGear = new GGUWoodenGear().setUnlocalizedName("woodenGear").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		enderiumRebirthStable = new GGUEnderiumRebirth(true).setUnlocalizedName("stableEnderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		enderiumRebirthUnstable = new GGUEnderiumRebirth(false).setUnlocalizedName("unstableEnderiumRebirth").setCreativeTab(GGUtils.ggutilsCreativeTab);
-		selfPlaceCart = new GGUItemCart().setUnlocalizedName("selfPlaceCart").setCreativeTab(GGUtils.ggutilsCreativeTab);
-		boat = new GGUItemBoat().setUnlocalizedName("betterBoat").setCreativeTab(GGUtils.ggutilsCreativeTab);
+//		selfPlaceCart = new GGUItemCart().setUnlocalizedName("selfPlaceCart").setCreativeTab(GGUtils.ggutilsCreativeTab);
+//		boat = new GGUItemBoat().setUnlocalizedName("betterBoat").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		messi = new GGUItemMessi().setUnlocalizedName("messi").setCreativeTab(GGUtils.ggutilsCreativeTab);
 
 		registerItems();
