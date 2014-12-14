@@ -20,6 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
@@ -98,7 +99,7 @@ public class GGUBlockModularLimb extends Block {
 			}
 		}
 	}
-	
+
 	@Override
 	public void onBlockPlacedBy(World world, int x,
 			int y, int z, EntityLivingBase entity,
@@ -113,14 +114,28 @@ public class GGUBlockModularLimb extends Block {
 			stack.setTagCompound(new NBTTagCompound());
 		}
 
-		NBTTagList items = stack.getTagCompound().getTagList("Items", Constants.NBT.TAG_COMPOUND);
+		if(stack != null)
+		{
+			NBTTagList items = stack.getTagCompound().getTagList("Items", Constants.NBT.TAG_COMPOUND);
 
-		NBTTagCompound item = items.getCompoundTagAt(0);
-		ItemStack actualStack = ItemStack.loadItemStackFromNBT(item);	
+			NBTTagCompound item = items.getCompoundTagAt(0);
+			ItemStack actualStack = ItemStack.loadItemStackFromNBT(item);	
+			
+			if(stack.getTagCompound().getInteger("stackSize") != 0)
+			{
+				actualStack.stackSize = stack.getTagCompound().getInteger("stackSize");
+			}
+			
+			te.setActualStack(actualStack);
 
-		te.setActualStack(actualStack);
+		}
 	} 
 
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world,
+			int x, int y, int z) {
+		return new ItemStack(GGUBlocks.modularLimb);
+	}
 	@Override
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z,
 			int metadata, int fortune) {
@@ -140,7 +155,7 @@ public class GGUBlockModularLimb extends Block {
 		{
 			nbtItems.appendTag(item1);
 			this.tileEntityStack.writeToNBT(item1);
-			thisItemStack.getTagCompound().setInteger("stackSize", this.tileEntityStackSize);
+			thisItemStack.getTagCompound().setInteger("stackSize", this.tileEntityStack.stackSize);
 			thisItemStack.getTagCompound().setTag("Items", nbtItems);		
 		}
 

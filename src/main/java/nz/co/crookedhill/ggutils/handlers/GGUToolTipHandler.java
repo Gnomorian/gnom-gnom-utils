@@ -96,11 +96,17 @@ public class GGUToolTipHandler
 				NBTTagList items = event.itemStack.getTagCompound().getTagList("Items", Constants.NBT.TAG_COMPOUND);
 				NBTTagCompound item = items.getCompoundTagAt(0);
 				ItemStack stack = ItemStack.loadItemStackFromNBT(item);
+				int stackSize = event.itemStack.getTagCompound().getInteger("stackSize");
 
 				if(stack != null)
 				{
 					event.toolTip.add("This MESS limb contains");
-					event.toolTip.add("x" + stack.stackSize + " " + stack.getDisplayName());
+					event.toolTip.add("x" + stackSize + " " + stack.getDisplayName());
+				}
+				else
+				{
+					event.toolTip.add("This MESS limb contains");
+					event.toolTip.add("absolutely nothing!");
 				}
 			}
 			else
