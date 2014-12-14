@@ -100,19 +100,16 @@ public class GGUToolTipHandler
 
 				if(stack != null)
 				{
-					event.toolTip.add("This MESS limb contains");
 					event.toolTip.add("x" + stackSize + " " + stack.getDisplayName());
 				}
 				else
 				{
-					event.toolTip.add("This MESS limb contains");
-					event.toolTip.add("absolutely nothing!");
+					event.toolTip.add("Empty");
 				}
 			}
 			else
 			{
-				event.toolTip.add("This MESS limb contains");
-				event.toolTip.add("absolutely nothing!");	
+				event.toolTip.add("Empty");	
 			}
 		}
 	}
