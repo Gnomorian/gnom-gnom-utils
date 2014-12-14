@@ -57,34 +57,40 @@ public class GGUBlockCobbleDegen extends Block
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float float1, float float2, float float3)
 	{
 		Random rand = new Random();
+
 		if(world.isBlockIndirectlyGettingPowered(x, y, z))
 		{
-				ItemStack[] inventory = player.inventory.mainInventory;
-				String cobbleStone = new ItemStack(Blocks.cobblestone, 1, 0).getDisplayName();
-				for(int i=0; i < inventory.length; i++)
-				{
-					if(inventory[i] != null)
-					{
-						String inventoryDisplayName = inventory[i].getDisplayName();
+			ItemStack[] inventory = player.inventory.mainInventory;
+			String cobbleStone = new ItemStack(Blocks.cobblestone, 1, 0).getDisplayName();
+			boolean hasCobble = false;
 
-						if(inventoryDisplayName.equals(cobbleStone))
-						{
-							inventory[i] = null;
-						}
-					}
-					else
+			for(int i=0; i < inventory.length; i++)
+			{
+				if(inventory[i] != null)
+				{
+					String inventoryDisplayName = inventory[i].getDisplayName();
+
+					if(inventoryDisplayName.equals(cobbleStone))
 					{
+						hasCobble = true;
 						inventory[i] = null;
 					}
 				}
-				player.inventory.mainInventory = inventory;
+				else
+				{
+					inventory[i] = null;
+				}
 			}
-
-			for(int i=0;i<10;i++)
+			player.inventory.mainInventory = inventory;
+			if(hasCobble)
 			{
-				world.spawnParticle("angryVillager", x+rand.nextFloat(), y+1, z+rand.nextFloat(), 0, 1, 0);			
+				for(int i=0;i<10;i++)
+				{
+					world.spawnParticle("angryVillager", x+rand.nextFloat(), y+1, z+rand.nextFloat(), 0, 1, 0);			
+				}
 			}
-			
+		}
+
 		//coz it ain't free!
 		if(rand.nextInt(20) == 0)
 		{
@@ -92,5 +98,5 @@ public class GGUBlockCobbleDegen extends Block
 		}
 		return true;
 	}
-	
+
 }
