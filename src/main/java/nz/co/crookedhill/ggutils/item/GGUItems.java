@@ -9,6 +9,7 @@ package nz.co.crookedhill.ggutils.item;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
@@ -24,6 +25,7 @@ public class GGUItems
 	public static Item boat;
 	public static Item selfPlaceCart;
 	public static Item messi;
+	public static Item wockyJab;
 	
 
 	public static void init()
@@ -36,6 +38,7 @@ public class GGUItems
 //		selfPlaceCart = new GGUItemCart().setUnlocalizedName("selfPlaceCart").setCreativeTab(GGUtils.ggutilsCreativeTab);
 //		boat = new GGUItemBoat().setUnlocalizedName("betterBoat").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		messi = new GGUItemMessi().setUnlocalizedName("messi").setCreativeTab(GGUtils.ggutilsCreativeTab);
+		wockyJab = new GGUItemWockyJab(ToolMaterial.GOLD).setUnlocalizedName("wockyJab").setCreativeTab(GGUtils.ggutilsCreativeTab);
 
 		registerItems();
 		registerRecipes();
@@ -57,6 +60,7 @@ public class GGUItems
 //		GameRegistry.registerItem(boat, boat.getUnlocalizedName().replace("item.", ""));
 //		GameRegistry.registerItem(selfPlaceCart, selfPlaceCart.getUnlocalizedName().replace("item.", ""));
 		GameRegistry.registerItem(messi, messi.getUnlocalizedName().replace("item.", ""));
+		GameRegistry.registerItem(wockyJab, wockyJab.getUnlocalizedName().replace("item.", ""));
 	}
 
 	private static void registerRecipes()
