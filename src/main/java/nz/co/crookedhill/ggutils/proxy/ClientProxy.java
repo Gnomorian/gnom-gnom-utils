@@ -7,9 +7,12 @@
 package nz.co.crookedhill.ggutils.proxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import nz.co.crookedhill.ggutils.GGUtils;
+import nz.co.crookedhill.ggutils.entity.GGUEntityWockyJab;
 import nz.co.crookedhill.ggutils.entity.monster.GGUEntityCreeperMite;
 import nz.co.crookedhill.ggutils.entity.tile.GGUEntityModularLimb;
 import nz.co.crookedhill.ggutils.handlers.GGUKeybindHandler;
@@ -25,12 +28,8 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy
 {
-
 	@Override
-	public void postInit()
-	{
-
-	}
+	public void postInit(){}
 
 	@Override
 	public void init()
@@ -53,5 +52,6 @@ public class ClientProxy extends CommonProxy
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(GGUEntityModularLimb.class, new GGURenderModularLimb());
 		RenderingRegistry.registerEntityRenderingHandler(GGUEntityCreeperMite.class, new GGURenderCreeperMite());
+		RenderingRegistry.registerEntityRenderingHandler(GGUEntityWockyJab.class, new RenderSnowball(Items.apple));
 	}
 }

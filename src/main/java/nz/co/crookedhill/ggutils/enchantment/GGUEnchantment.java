@@ -8,7 +8,6 @@ package nz.co.crookedhill.ggutils.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
-import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 
 public class GGUEnchantment
 {
@@ -18,8 +17,23 @@ public class GGUEnchantment
 
 	public static void init()
 	{
-		prosperousAutoSmelt = new GGUEnchantmentProsperity(GGUConfigManager.autoSmeltid, 3, EnumEnchantmentType.digger);
-		icarus = new GGUEnchantmentIcarus(GGUConfigManager.icarusID, 1, EnumEnchantmentType.armor_torso);
+		prosperousAutoSmelt = new GGUEnchantmentProsperity(getNextEnchantmentSlot(), 3, EnumEnchantmentType.digger);
+		icarus = new GGUEnchantmentIcarus(getNextEnchantmentSlot(), 1, EnumEnchantmentType.armor_torso);
 	}
 
+	
+	private static int getNextEnchantmentSlot()
+	{
+		int j = 200;
+		
+		for(int i=100; i<Enchantment.enchantmentsList.length-100; i++)
+		{
+			if(Enchantment.enchantmentsList[i] == null)
+			{
+				return i;
+			}
+		}
+		
+		return j;
+	}
 }
