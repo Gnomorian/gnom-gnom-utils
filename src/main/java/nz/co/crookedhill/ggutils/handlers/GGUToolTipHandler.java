@@ -85,12 +85,6 @@ public class GGUToolTipHandler
 			event.toolTip.add("create a modular storage system");
 			event.toolTip.add("accessible via the MESSI item.");
 		}
-//		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.messLimb")) 
-//		{
-//			event.toolTip.add("Power with redstone and activate");
-//			event.toolTip.add("to get rid of all cobblestone");
-//			event.toolTip.add("cluttering your inventory!");
-//		}
 	}
 
 }

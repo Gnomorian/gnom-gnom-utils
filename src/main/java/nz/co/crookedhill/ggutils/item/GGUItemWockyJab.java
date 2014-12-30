@@ -6,6 +6,8 @@
 
 package nz.co.crookedhill.ggutils.item;
 
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
