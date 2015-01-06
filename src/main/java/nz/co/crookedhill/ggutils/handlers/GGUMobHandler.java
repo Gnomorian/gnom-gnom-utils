@@ -46,7 +46,8 @@ public class GGUMobHandler
 				for (int i = 0; i < rand.nextInt(20); i++)
 				{
 					Entity creeperMite = new GGUEntityCreeperMite(world);
-					creeperMite.addVelocity(0.2D, 0.8D, 0.2D); // TODO: Fix the
+					creeperMite.addVelocity(0.2D, 0.8D, 0.2D); 
+					// TODO: Fix the
 					// client side in
 					// ground glitch.
 					creeperMite.setLocationAndAngles(x, y, z, 0.0F, 0.0F);

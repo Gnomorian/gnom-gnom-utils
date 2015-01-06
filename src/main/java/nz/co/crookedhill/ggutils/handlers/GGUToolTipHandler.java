@@ -85,6 +85,13 @@ public class GGUToolTipHandler
 			event.toolTip.add("create a modular storage system");
 			event.toolTip.add("accessible via the MESSI item.");
 		}
+		if(event.itemStack.getItem().getUnlocalizedName().equals("item.wockyJab")) 
+		{
+			event.toolTip.add("Twas brillig, and the slithy toves");
+			event.toolTip.add("Did gyre and gimble in the wabe:");
+			event.toolTip.add("All mimsy were the borogoves,");
+			event.toolTip.add("And the mome raths outgrabe.");
+		}  
 	}
 
 }

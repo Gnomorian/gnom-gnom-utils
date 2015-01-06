@@ -6,8 +6,10 @@
 
 package nz.co.crookedhill.ggutils.item;
 
-import java.util.List;
+import java.util.Random;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
@@ -45,10 +47,32 @@ public class GGUItemWockyJab extends ItemSword
 	public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int count) 
 	{
 		int time = this.getMaxItemUseDuration(itemStack) - count;
+		Random rand = new Random();
 
-		if(time > 30)
+		if(time > 20)
 		{
-			world.spawnEntityInWorld(new GGUEntityWockyJab(world, player));		
+			if(rand.nextInt(10) == 0)
+			{
+				if(world.canBlockSeeTheSky((int)player.posX, (int)player.posY, (int)player.posZ))
+				{
+					player.setLocationAndAngles(player.posX, player.posY+64, player.posZ, 0, 0);
+				}
+				else if(!world.isRemote)
+				{
+					for(int i=0; i<10; i++)
+					{
+						Entity creeper = new EntityCreeper(world);
+						int randomX = 5-rand.nextInt(10);
+						int randomZ = 5-rand.nextInt(10);
+						creeper.setLocationAndAngles(player.posX+randomX, player.posY, player.posZ+randomZ, 0, 0);
+						world.spawnEntityInWorld(creeper);
+					}
+				}
+			}
+			else
+			{
+				world.spawnEntityInWorld(new GGUEntityWockyJab(world, player));		
+			}
 		}
 	}
 }
