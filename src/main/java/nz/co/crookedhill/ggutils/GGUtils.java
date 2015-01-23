@@ -8,6 +8,7 @@ package nz.co.crookedhill.ggutils;
 
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import nz.co.crookedhill.ggutils.achievements.GGUAchievements;
 import nz.co.crookedhill.ggutils.block.GGUBlocks;
@@ -48,6 +49,8 @@ import cpw.mods.fml.relauncher.Side;
 public class GGUtils
 {
 	public static final String MODID = "ggutils";
+	public static final String CLIENT_PROXY = "nz.co.crookedhill.ggutils.proxy.ClientProxy";
+	public static final String SERVER_PROXY = "nz.co.crookedhill.ggutils.proxy.CommonProxy";
 
     /**
      * 0.0.0.0 first 0= the number of Minecraft versions supported since making
@@ -55,10 +58,10 @@ public class GGUtils
      * of features added (blocks, items etc.) forth 0= the number of bug
      * fixes/sub features added since last feature added.
      */
-    public static final String VERSION = "0.1.1.2";
+    public static final String VERSION = "$VERSION$";
 
 	// Setting proxy for client and server side
-	@SidedProxy(clientSide = "nz.co.crookedhill.ggutils.proxy.ClientProxy", serverSide = "nz.co.crookedhill.ggutils.proxy.CommonProxy")
+	@SidedProxy(clientSide = CLIENT_PROXY, serverSide = SERVER_PROXY)
 	public static CommonProxy proxy;
 
 	// Mod instance
@@ -66,8 +69,10 @@ public class GGUtils
 	public static GGUtils instance;
 
 	public static SimpleNetworkWrapper network;
-
-	public static KeyBinding arseTardis;
+	
+	// stop changing the keybinding to keybinding, 
+	// it crashes the server, leave it as object!
+	public static Object arseTardis;
 
 	// Set Creative Tabs
 	public static CreativeTabs ggutilsCreativeTab = new GGUCreativeTabBlock(CreativeTabs.getNextID(), MODID);
@@ -77,8 +82,7 @@ public class GGUtils
 	/** This is used to keep track of GUIs that we make*/
 	private static int modGuiIndex = 10;
 	/** Custom GUI indices: */
-	public static final int
-	GUI_MESS_INV = modGuiIndex++;
+	public static final int GUI_MESS_INV = modGuiIndex++;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)

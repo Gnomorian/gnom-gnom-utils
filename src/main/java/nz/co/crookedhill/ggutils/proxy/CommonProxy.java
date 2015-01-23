@@ -11,6 +11,7 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import nz.co.crookedhill.ggutils.GGUtils;
 import nz.co.crookedhill.ggutils.gui.GGUGuiMessi;
@@ -82,6 +83,8 @@ public class CommonProxy implements IGuiHandler
 
 	public void postInit()
 	{
+		System.out.println("------------------------------------------------------------");
+		System.out.println(MinecraftServer.getServer().getPlugins());
 		// TODO Auto-generated method stub
 
 	}

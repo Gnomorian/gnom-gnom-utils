@@ -25,11 +25,23 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ClientProxy extends CommonProxy
 {
 	@Override
-	public void postInit(){}
+	public void postInit()
+	{
+		System.out.println("------------------------------------------");
+		if(GameRegistry.findItem("Forestry", "item.apatite") != null)
+		{
+			System.out.println("Found apitite");
+		}
+		else
+		{
+			System.out.println("havent Found apitite");
+		}
+	}
 
 	@Override
 	public void init()
