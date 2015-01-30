@@ -10,7 +10,4 @@
 /mods/
 /resourcepacks/
 /saves/
-*.json
-*.txt
-servers.dat
-*.orig
+/gradle/
