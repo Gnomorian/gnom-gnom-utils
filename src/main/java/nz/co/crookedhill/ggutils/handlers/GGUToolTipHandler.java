@@ -6,6 +6,10 @@
 
 package nz.co.crookedhill.ggutils.handlers;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -84,6 +88,30 @@ public class GGUToolTipHandler
 			event.toolTip.add("Connect MESS Limbs to this to");
 			event.toolTip.add("create a modular storage system");
 			event.toolTip.add("accessible via the MESSI item.");
+		}
+		
+		if(event.itemStack.getItem().getUnlocalizedName().equals("tile.modularLimb")) 
+		{
+			if(event.itemStack.getTagCompound() != null && event.itemStack.getTagCompound().getTagList("Items", Constants.NBT.TAG_COMPOUND) != null)
+			{
+				NBTTagList items = event.itemStack.getTagCompound().getTagList("Items", Constants.NBT.TAG_COMPOUND);
+				NBTTagCompound item = items.getCompoundTagAt(0);
+				ItemStack stack = ItemStack.loadItemStackFromNBT(item);
+				int stackSize = event.itemStack.getTagCompound().getInteger("stackSize");
+
+				if(stack != null)
+				{
+					event.toolTip.add("x" + stackSize + " " + stack.getDisplayName());
+				}
+				else
+				{
+					event.toolTip.add("Empty");
+				}
+			}
+			else
+			{
+				event.toolTip.add("Empty");	
+			}
 		}
 	}
 

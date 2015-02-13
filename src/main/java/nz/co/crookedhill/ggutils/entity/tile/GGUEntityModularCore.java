@@ -280,7 +280,7 @@ public class GGUEntityModularCore extends TileEntity
 		Iterator<Entry<String, ItemStack>> it = this.numberOfLimbs.entrySet().iterator();
 		int i=0;
 
-		while (it.hasNext()) {
+		while (it.hasNext() && i<GGUInventoryMess.INV_SIZE) {
 			Map.Entry<String, ItemStack> pairs = (Entry<String, ItemStack>)it.next();
 			inv[i] = ((ItemStack)pairs.getValue());
 			i++;
@@ -296,7 +296,7 @@ public class GGUEntityModularCore extends TileEntity
 		Iterator<Entry<String, ItemStack>> it = this.numberOfLimbs.entrySet().iterator();
 		int i=0;
 
-		while (it.hasNext()) {
+		while (it.hasNext() && i<GGUInventoryMess.INV_SIZE) {
 			Map.Entry<String, ItemStack> pairs = (Entry<String, ItemStack>)it.next();
 			pairs.setValue(items[i]);
 			intCoords[0] = Integer.parseInt(((String)pairs.getKey()).split(":")[0]);

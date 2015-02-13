@@ -37,6 +37,8 @@ public class GGUEntityModularLimb extends TileEntity
 	public GGUEntityModularLimb(ItemStack stack)
 	{
 		this.stack = stack;
+		this.actualStack = null;
+		this.actualStackSize = 0;
 	}
 
 	@Override
@@ -152,6 +154,11 @@ public class GGUEntityModularLimb extends TileEntity
 	public void setActualStack(ItemStack stack)
 	{
 		this.actualStack = stack;
+		
+		if(stack != null)
+		{
+			this.actualStackSize = stack.stackSize;
+		}
 	}
 
 	/**
@@ -161,5 +168,10 @@ public class GGUEntityModularLimb extends TileEntity
 	public ItemStack getActualStack()
 	{
 		return this.actualStack;
+	}
+		
+	public int getActualStackSize()
+	{
+		return this.actualStackSize;
 	}
 }
