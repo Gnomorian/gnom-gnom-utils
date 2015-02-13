@@ -34,9 +34,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void init()
 	{
-		GGUtils.arseTardis = new KeyBinding("Arse Tardis", Keyboard.KEY_Z, "GG Utils");
-		ClientRegistry.registerKeyBinding((KeyBinding) GGUtils.arseTardis);
-		FMLCommonHandler.instance().bus().register(new GGUKeybindHandler());
+		new GGUKeybindHandler().init();
 	}
 
 	/**
