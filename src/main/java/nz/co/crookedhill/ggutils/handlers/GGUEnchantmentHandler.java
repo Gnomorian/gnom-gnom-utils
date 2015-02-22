@@ -7,6 +7,8 @@
 package nz.co.crookedhill.ggutils.handlers;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -24,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import nz.co.crookedhill.ggutils.enchantment.GGUEnchantment;
+import nz.co.crookedhill.ggutils.helper.GGUConfigManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -58,9 +61,9 @@ public class GGUEnchantmentHandler
 			int z = event.z;
 			Item heldItem = heldItemStack.getItem();
 			ArrayList<ItemStack> items;
+			int enchantLevel = hasItemstackEnchantment(heldItemStack, GGUEnchantment.prosperousAutoSmelt.effectId);
 
-			if(heldItemStack != null 
-					&& heldItemStack.getEnchantmentTagList() != null) 
+			if(heldItemStack != null && heldItemStack.getEnchantmentTagList() != null && enchantLevel != 0) 
 			{
 				if(heldItem.getToolClasses(heldItemStack).contains(block.getHarvestTool(metaData)) 
 						&& heldItem.getHarvestLevel(heldItemStack, block.getHarvestTool(metaData)) >= block.getHarvestLevel(metaData)) 
@@ -73,6 +76,7 @@ public class GGUEnchantmentHandler
 
 						for(int j = 0; j < items.size(); j++)
 						{
+							items.get(j).stackSize = items.get(j).stackSize + world.rand.nextInt(enchantLevel);
 							world.spawnEntityInWorld(new EntityItem(world, (float)x, (float)y, (float)z, items.get(j)));
 						}
 					}
@@ -170,23 +174,44 @@ public class GGUEnchantmentHandler
 	 */
 	private ArrayList<ItemStack> getItemsToDrop(World world, Block block, ItemStack itemStack, int x, int y, int z)
 	{
-		Random rand = new Random();
+		Random rand = world.rand;
 
 		int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(GGUEnchantment.prosperousAutoSmelt.effectId, itemStack);
 
 		FurnaceRecipes recipes = FurnaceRecipes.smelting();
-		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, 0, 3);
+		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, 0, enchantmentLevel);
 		for (int i = 0; i < items.size(); i++)
 		{
 			if (recipes.getSmeltingResult(items.get(i)) != null)
 			{
 				items.set(i, recipes.getSmeltingResult(items.get(i)));
-				int addedRand = Math.abs(rand.nextInt(enchantmentLevel + 1));
+				int addedRand = rand.nextInt(enchantmentLevel + 1);
 				int dropCount = items.get(i).stackSize + addedRand;
 				items.get(i).stackSize = dropCount;
 			}
 		}
 
 		return items;
+	}
+	/**
+	 * checks if an itemstack has an enchantment id, returns 0 if doesnt else it reuturns the enchantment level.
+	 * @param itemstack the itemstack to check for enchantments.
+	 * @param enchantmentID the id of the enchantment to check for
+	 * @return 0 if no enchantment or the enchantment level.
+	 */
+	private int hasItemstackEnchantment(ItemStack itemstack, int enchantmentID)
+	{
+		Map<Integer, Integer> enchants = EnchantmentHelper.getEnchantments(itemstack);
+		if(enchants != null)
+		{
+			for(Entry<Integer, Integer> entry : enchants.entrySet())
+			{
+				if(entry.getKey().equals(enchantmentID))
+				{
+					return entry.getValue();
+				}
+			}
+		}
+		return 0;
 	}
 }
