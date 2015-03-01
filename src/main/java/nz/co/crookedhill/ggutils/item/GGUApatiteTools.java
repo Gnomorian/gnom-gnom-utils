@@ -56,6 +56,7 @@ public class GGUApatiteTools
 			super(material);
 			this.setUnlocalizedName("apitite_pickaxe");
 			this.setCreativeTab(GGUtils.ggutilsCreativeTab);
+			this.setTextureName(GGUtils.MODID + ":apitite_pickaxe");
 		}
 		
 	}
@@ -66,6 +67,7 @@ public class GGUApatiteTools
 			super(material);
 			this.setUnlocalizedName("apitite_axe");
 			this.setCreativeTab(GGUtils.ggutilsCreativeTab);
+			this.setTextureName(GGUtils.MODID + ":apitite_axe");
 		}
 		
 	}
@@ -76,6 +78,7 @@ public class GGUApatiteTools
 			super(material);
 			this.setUnlocalizedName("apitite_spade");
 			this.setCreativeTab(GGUtils.ggutilsCreativeTab);
+			this.setTextureName(GGUtils.MODID + ":apitite_spade");
 		}
 		
 	}
@@ -86,6 +89,7 @@ public class GGUApatiteTools
 			super(material);
 			this.setUnlocalizedName("apitite_hoe");
 			this.setCreativeTab(GGUtils.ggutilsCreativeTab);
+			this.setTextureName(GGUtils.MODID + ":apitite_hoe");
 		}
 		
 	}
@@ -96,6 +100,7 @@ public class GGUApatiteTools
 			super(material);
 			this.setUnlocalizedName("apitite_sword");
 			this.setCreativeTab(GGUtils.ggutilsCreativeTab);
+			this.setTextureName(GGUtils.MODID + ":apitite_hoe");
 		}
 		
 	}
