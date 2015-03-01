@@ -26,6 +26,7 @@ public class GGUItems
 	public static Item selfPlaceCart;
 	public static Item messi;
 	public static Item wockyJab;
+	public static GGUApatiteTools apititeTools;
 	
 
 	public static void init()
@@ -39,6 +40,8 @@ public class GGUItems
 //		boat = new GGUItemBoat().setUnlocalizedName("betterBoat").setCreativeTab(GGUtils.ggutilsCreativeTab);
 		messi = new GGUItemMessi().setUnlocalizedName("messi").setCreativeTab(GGUtils.ggutilsCreativeTab);
 //		wockyJab = new GGUItemWockyJab(ToolMaterial.GOLD).setUnlocalizedName("wockyJab").setCreativeTab(GGUtils.ggutilsCreativeTab);
+		
+		apititeTools = new GGUApatiteTools(ToolMaterial.IRON);
 
 		registerItems();
 		registerRecipes();
