@@ -82,7 +82,7 @@ public class GGUApatiteTools
 		}
 		
 	}
-	public class GGUApatiteSword extends ItemHoe
+	public class GGUApatiteSword extends ItemSword
 	{
 
 		public GGUApatiteSword(ToolMaterial material) {
@@ -93,7 +93,7 @@ public class GGUApatiteTools
 		}
 		
 	}
-	public class GGUApatiteHoe extends ItemSword
+	public class GGUApatiteHoe extends ItemHoe
 	{
 
 		public GGUApatiteHoe(ToolMaterial material) {
