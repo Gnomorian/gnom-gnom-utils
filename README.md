@@ -1,7 +1,7 @@
 # gnom-gnom-utils
 ===============
 
-This project has been archived. It was mighty fun to work on and really got me into programming. spent alot of time on this with @Unrelentless
+**This project has been archived. It was mighty fun to work on and really got me into programming. spent alot of time on this with @Unrelentless**
 
 I dont play minecraft anymore, lost the drive to mod it a while ago. specially with all the changes they made to the api and the game itself.
 
