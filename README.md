@@ -1,6 +1,10 @@
 # gnom-gnom-utils
 ===============
 
+This project has been archived. It was mighty fun to work on and really got me into programming. spent alot of time on this with @Unrelentless
+
+I dont play minecraft anymore, lost the drive to mod it a while ago. specially with all the changes they made to the api and the game itself.
+
 GnomGnom's Utils is a mod that attempts to add useful things to the game (pronounced /ɡnom/, /ɲom/) 
 
 ![Banner](http://static.planetminecraft.com/files/resource_media/screenshot/1446/gnomgnomsutils8323094.jpg)
